@@ -180,3 +180,58 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== TAG SYSTEM ===== */
+
+.tags-container {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tag {
+  background: #00f0ff22;
+  border: 1px solid #00f0ff55;
+  color: #00f0ff;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.tag span {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tag span:hover {
+  color: #ff4d4d;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.option {
+  transition: all 0.15s ease;
+}
+
+.option.active {
+  transform: scale(1.05);
+  animation: microShake 0.15s ease;
+}
+
+@keyframes microShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  50% { transform: translateX(1px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
