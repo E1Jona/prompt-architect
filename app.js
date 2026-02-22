@@ -1,40 +1,85 @@
+// ========================
+// STATE
+// ========================
+
 let selectedOptions = {};
-function playSound() {
-  const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
-  audio.volume = 0.1;
-  audio.play();
+
+// ========================
+// SAFE INIT (espera que cargue el DOM)
+// ========================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelectorAll(".option").forEach(btn => {
+    btn.addEventListener("click", () => handleOptionClick(btn));
+  });
+
+});
+
+// ========================
+// CLICK HANDLER
+// ========================
+
+function handleOptionClick(btn) {
+
+  const group = btn.parentElement.dataset.group;
+
+  // WEATHER → MULTI SELECT
+  if (group === "weather") {
+
+    btn.classList.toggle("active");
+
+    if (!selectedOptions[group]) {
+      selectedOptions[group] = [];
+    }
+
+    const value = btn.dataset.value;
+
+    if (selectedOptions[group].includes(value)) {
+      selectedOptions[group] =
+        selectedOptions[group].filter(v => v !== value);
+    } else {
+      selectedOptions[group].push(value);
+    }
+
+    if (selectedOptions[group].length === 0) {
+      delete selectedOptions[group];
+    }
+
+    updateTags();
+    playSound();
+    return;
+  }
+
+  // RESTO → TOGGLE NORMAL
+
+  if (btn.classList.contains("active")) {
+    btn.classList.remove("active");
+    delete selectedOptions[group];
+    updateTags();
+    return;
+  }
+
+  btn.parentElement.querySelectorAll(".option")
+    .forEach(b => b.classList.remove("active"));
+
+  btn.classList.add("active");
+  selectedOptions[group] = btn.dataset.value;
+
+  updateTags();
+  playSound();
 }
 
-document.querySelectorAll(".option").forEach(btn => {
-  btn.addEventListener("click", () => {
+// ========================
+// TAG SYSTEM
+// ========================
 
-    const group = btn.parentElement.dataset.group;
-
-    // WEATHER → MULTI SELECT
-    if (group === "weather") {
-
-      btn.classList.toggle("active");
-
-      if (!selectedOptions[group]) {
-        selectedOptions[group] = [];
-      }
-
-      const value = btn.dataset.value;
-
-      if (selectedOptions[group].includes(value)) {
-        selectedOptions[group] =
-          selectedOptions[group].filter(v => v !== value);
-      } else {
-        selectedOptions[group].push(value);
-      }
-
-      if (selectedOptions[group].length === 0) {
-        delete selectedOptions[group];
-      }
-
-      function updateTags() {
+function updateTags() {
 
   const container = document.getElementById("selectedTags");
+
+  if (!container) return; // seguridad
+
   container.innerHTML = "";
 
   Object.keys(selectedOptions).forEach(group => {
@@ -68,7 +113,6 @@ function createTag(group, value) {
       if (selectedOptions[group].length === 0) {
         delete selectedOptions[group];
       }
-
     } else {
       delete selectedOptions[group];
     }
@@ -88,87 +132,73 @@ function createTag(group, value) {
   container.appendChild(tag);
 }
 
-    // RESTO → SELECCIÓN ÚNICA CON TOGGLE
+// ========================
+// SOUND
+// ========================
 
-    if (btn.classList.contains("active")) {
-      btn.classList.remove("active");
-      delete selectedOptions[group];
-      updateTags();
-      return;
-    }
+function playSound() {
+  const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
+  audio.volume = 0.1;
+  audio.play();
+}
 
-    btn.parentElement.querySelectorAll(".option")
-      .forEach(b => b.classList.remove("active"));
-
-    btn.classList.add("active");
-    selectedOptions[group] = btn.dataset.value;
-
-    updateTags();
-    playSound();
-  });
-});
+// ========================
+// GENERATE PROMPT
+// ========================
 
 function generatePrompt() {
 
-  const base = [
-    document.getElementById("subject").value,
-    document.getElementById("action").value,
-    document.getElementById("location").value
-  ];
+  const subject = document.getElementById("subject").value;
+  const action = document.getElementById("action").value;
+  const location = document.getElementById("location").value;
 
+  // WEATHER
   const weatherChip = selectedOptions.weather;
-const weatherCustom = document.getElementById("customWeather").value;
+  const weatherCustom = document.getElementById("customWeather")?.value || "";
 
-let weatherCombined = "";
+  let weatherCombined = "";
 
-if (Array.isArray(weatherChip)) {
-  weatherCombined = weatherChip.join(", ");
-} else if (weatherChip) {
-  weatherCombined = weatherChip;
-}
-
-if (weatherCustom) {
-  weatherCombined = weatherCombined
-    ? weatherCombined + ", " + weatherCustom
-    : weatherCustom;
-}
-
-const modular = [
-  weatherCombined,
-  selectedOptions.style,
-  selectedOptions.engine,
-  selectedOptions.camera,
-  selectedOptions.lens,
-  selectedOptions.lighting,
-  selectedOptions.mood,
-  selectedOptions.resolution,
-  selectedOptions.ratio
-];
-
-  const cleaned = [...base, ...modular]
-    .filter(v => v && v.trim() !== "");
-
-  let finalPrompt = cleaned.join(", ");
-
-  const negative = document.getElementById("negative").value;
-
-  if (negative.trim() !== "") {
-    finalPrompt += ` --negative ${negative}`;
+  if (Array.isArray(weatherChip)) {
+    weatherCombined = weatherChip.join(", ");
+  } else if (weatherChip) {
+    weatherCombined = weatherChip;
   }
 
-  document.getElementById("result").value = finalPrompt;
+  if (weatherCustom) {
+    weatherCombined = weatherCombined
+      ? weatherCombined + ", " + weatherCustom
+      : weatherCustom;
+  }
+
+  const modular = [
+    weatherCombined,
+    selectedOptions.style,
+    selectedOptions.engine,
+    selectedOptions.camera,
+    selectedOptions.lens,
+    selectedOptions.lighting,
+    selectedOptions.mood,
+    selectedOptions.resolution,
+    selectedOptions.ratio
+  ];
+
+  const finalArray = [
+    subject,
+    action,
+    location,
+    ...modular
+  ].filter(v => v && v.trim() !== "");
+
+  document.getElementById("result").value =
+    finalArray.join(", ");
 }
+
+// ========================
+// COPY
+// ========================
 
 function copyPrompt() {
   const result = document.getElementById("result");
   result.select();
   document.execCommand("copy");
-  alert("Prompt copied.");
 }
-
-
-
-
-
-
-
