@@ -1,4 +1,6 @@
-// Expand / Collapse modules
+let selectedOptions = {};
+
+// Expand modules
 document.querySelectorAll(".module-toggle").forEach(button => {
   button.addEventListener("click", () => {
     const content = button.nextElementSibling;
@@ -6,25 +8,40 @@ document.querySelectorAll(".module-toggle").forEach(button => {
   });
 });
 
-// Clean builder
+// Option selection
+document.querySelectorAll(".option").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const group = btn.parentElement.dataset.group;
+
+    btn.parentElement.querySelectorAll(".option")
+      .forEach(b => b.classList.remove("active"));
+
+    btn.classList.add("active");
+    selectedOptions[group] = btn.dataset.value;
+  });
+});
+
 function generatePrompt() {
 
-  const values = [
+  const base = [
     document.getElementById("subject").value,
     document.getElementById("action").value,
-    document.getElementById("location").value,
-    document.getElementById("style").value,
-    document.getElementById("engine").value,
-    document.getElementById("camera").value,
-    document.getElementById("lens").value,
-    document.getElementById("lighting").value,
-    document.getElementById("mood").value,
-    document.getElementById("resolution").value,
-    document.getElementById("ratio").value
+    document.getElementById("location").value
   ];
 
-  // Remove empty values
-  const cleaned = values.filter(v => v && v.trim() !== "");
+  const modular = [
+    selectedOptions.style,
+    selectedOptions.engine,
+    selectedOptions.camera,
+    selectedOptions.lens,
+    selectedOptions.lighting,
+    selectedOptions.mood,
+    selectedOptions.resolution,
+    selectedOptions.ratio
+  ];
+
+  const cleaned = [...base, ...modular]
+    .filter(v => v && v.trim() !== "");
 
   let finalPrompt = cleaned.join(", ");
 
@@ -37,10 +54,9 @@ function generatePrompt() {
   document.getElementById("result").value = finalPrompt;
 }
 
-// Copy
 function copyPrompt() {
   const result = document.getElementById("result");
   result.select();
   document.execCommand("copy");
-  alert("Prompt copied to clipboard.");
+  alert("Prompt copied.");
 }
