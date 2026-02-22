@@ -10,115 +10,141 @@
 
 <div class="app">
 
-  <header>
-    <h1>Prompt Architect</h1>
-    <p>Futuristic AI Prompt Engineering System</p>
-  </header>
+<header>
+  <h1>Prompt Architect</h1>
+  <p>Futuristic AI Prompt Engineering System</p>
+</header>
 
-  <!-- BASE SCENE -->
-  <section class="module">
-    <button class="module-toggle">Base Scene</button>
-    <div class="module-content">
-      <textarea id="subject" placeholder="Subject..."></textarea>
-      <textarea id="action" placeholder="Action..."></textarea>
-      <textarea id="location" placeholder="Location / Context..."></textarea>
-    </div>
-  </section>
+<!-- BASE SCENE -->
+<section class="module">
+<button class="module-toggle">Base Scene</button>
+<div class="module-content">
+  <textarea id="subject" placeholder="Subject..."></textarea>
+  <textarea id="action" placeholder="Action..."></textarea>
+  <textarea id="location" placeholder="Location / Context..."></textarea>
+</div>
+</section>
 
-  <!-- VISUAL STYLE -->
-  <section class="module">
-    <button class="module-toggle">Visual Style</button>
-    <div class="module-content">
-      <select id="style">
-        <option value="">Select Style</option>
-        <option value="cinematic">Cinematic</option>
-        <option value="cyberpunk">Cyberpunk</option>
-        <option value="ultra realistic">Ultra Realistic</option>
-        <option value="anime style">Anime</option>
-      </select>
+<!-- VISUAL STYLE -->
+<section class="module">
+<button class="module-toggle">Visual Style</button>
+<div class="module-content">
 
-      <select id="engine">
-        <option value="">Render Engine</option>
-        <option value="Unreal Engine render">Unreal Engine</option>
-        <option value="Octane render">Octane</option>
-        <option value="Redshift render">Redshift</option>
-      </select>
-    </div>
-  </section>
+<div class="option-group">
+<label>Style</label>
+<div class="options" data-group="style">
+<button class="option" data-value="cinematic">Cinematic</button>
+<button class="option" data-value="cyberpunk">Cyberpunk</button>
+<button class="option" data-value="ultra realistic">Ultra Realistic</button>
+<button class="option" data-value="anime style">Anime</button>
+<button class="option" data-value="fantasy art">Fantasy</button>
+</div>
+</div>
 
-  <!-- CINEMATOGRAPHY -->
-  <section class="module">
-    <button class="module-toggle">Cinematography</button>
-    <div class="module-content">
-      <select id="camera">
-        <option value="">Camera Shot</option>
-        <option value="wide angle shot">Wide Angle</option>
-        <option value="close-up shot">Close-up</option>
-        <option value="low angle shot">Low Angle</option>
-        <option value="drone shot">Drone Shot</option>
-      </select>
+<div class="option-group">
+<label>Render Engine</label>
+<div class="options" data-group="engine">
+<button class="option" data-value="Unreal Engine render">Unreal</button>
+<button class="option" data-value="Octane render">Octane</button>
+<button class="option" data-value="Redshift render">Redshift</button>
+</div>
+</div>
 
-      <select id="lens">
-        <option value="">Lens</option>
-        <option value="35mm lens">35mm</option>
-        <option value="50mm lens">50mm</option>
-        <option value="85mm lens">85mm</option>
-      </select>
-    </div>
-  </section>
+</div>
+</section>
 
-  <!-- LIGHTING -->
-  <section class="module">
-    <button class="module-toggle">Lighting & Atmosphere</button>
-    <div class="module-content">
-      <select id="lighting">
-        <option value="">Lighting</option>
-        <option value="dramatic lighting">Dramatic</option>
-        <option value="volumetric lighting">Volumetric</option>
-        <option value="neon lighting">Neon</option>
-        <option value="soft cinematic lighting">Soft Cinematic</option>
-      </select>
+<!-- CINEMATOGRAPHY -->
+<section class="module">
+<button class="module-toggle">Cinematography</button>
+<div class="module-content">
 
-      <select id="mood">
-        <option value="">Mood</option>
-        <option value="dark atmosphere">Dark</option>
-        <option value="epic atmosphere">Epic</option>
-        <option value="mysterious atmosphere">Mysterious</option>
-      </select>
-    </div>
-  </section>
+<div class="option-group">
+<label>Camera Shot</label>
+<div class="options" data-group="camera">
+<button class="option" data-value="wide angle shot">Wide</button>
+<button class="option" data-value="close-up shot">Close-up</button>
+<button class="option" data-value="low angle shot">Low Angle</button>
+<button class="option" data-value="drone shot">Drone</button>
+</div>
+</div>
 
-  <!-- OUTPUT -->
-  <section class="module">
-    <button class="module-toggle">Output Settings</button>
-    <div class="module-content">
-      <select id="resolution">
-        <option value="">Resolution</option>
-        <option value="8K resolution">8K</option>
-        <option value="4K resolution">4K</option>
-        <option value="HDR">HDR</option>
-      </select>
+<div class="option-group">
+<label>Lens</label>
+<div class="options" data-group="lens">
+<button class="option" data-value="35mm lens">35mm</button>
+<button class="option" data-value="50mm lens">50mm</button>
+<button class="option" data-value="85mm lens">85mm</button>
+</div>
+</div>
 
-      <select id="ratio">
-        <option value="">Aspect Ratio</option>
-        <option value="16:9 aspect ratio">16:9</option>
-        <option value="9:16 aspect ratio">9:16</option>
-        <option value="1:1 aspect ratio">1:1</option>
-      </select>
-    </div>
-  </section>
+</div>
+</section>
 
-  <section class="module">
-    <button class="module-toggle">Negative Prompt</button>
-    <div class="module-content">
-      <textarea id="negative" placeholder="Elements to avoid..."></textarea>
-    </div>
-  </section>
+<!-- LIGHTING -->
+<section class="module">
+<button class="module-toggle">Lighting & Atmosphere</button>
+<div class="module-content">
 
-  <button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
+<div class="option-group">
+<label>Lighting</label>
+<div class="options" data-group="lighting">
+<button class="option" data-value="dramatic lighting">Dramatic</button>
+<button class="option" data-value="volumetric lighting">Volumetric</button>
+<button class="option" data-value="neon lighting">Neon</button>
+<button class="option" data-value="soft cinematic lighting">Soft</button>
+</div>
+</div>
 
-  <textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
-  <button class="copy" onclick="copyPrompt()">COPY</button>
+<div class="option-group">
+<label>Mood</label>
+<div class="options" data-group="mood">
+<button class="option" data-value="dark atmosphere">Dark</button>
+<button class="option" data-value="epic atmosphere">Epic</button>
+<button class="option" data-value="mysterious atmosphere">Mysterious</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- OUTPUT -->
+<section class="module">
+<button class="module-toggle">Output Settings</button>
+<div class="module-content">
+
+<div class="option-group">
+<label>Resolution</label>
+<div class="options" data-group="resolution">
+<button class="option" data-value="8K resolution">8K</button>
+<button class="option" data-value="4K resolution">4K</button>
+<button class="option" data-value="HDR">HDR</button>
+</div>
+</div>
+
+<div class="option-group">
+<label>Aspect Ratio</label>
+<div class="options" data-group="ratio">
+<button class="option" data-value="16:9 aspect ratio">16:9</button>
+<button class="option" data-value="9:16 aspect ratio">9:16</button>
+<button class="option" data-value="1:1 aspect ratio">1:1</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- NEGATIVE -->
+<section class="module">
+<button class="module-toggle">Negative Prompt</button>
+<div class="module-content">
+<textarea id="negative" placeholder="Elements to avoid..."></textarea>
+</div>
+</section>
+
+<button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
+
+<textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
+<button class="copy" onclick="copyPrompt()">COPY</button>
 
 </div>
 
