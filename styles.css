@@ -5,10 +5,15 @@ body {
   color: #e6faff;
 }
 
+/* MAIN GRID LAYOUT */
 .app {
   max-width: 1200px;
   margin: auto;
   padding: 30px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
 }
 
 header {
@@ -26,17 +31,6 @@ header h1 {
 header p {
   opacity: 0.5;
   margin-top: 6px;
-}
-
-/* GRID LAYOUT */
-.app {
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
 }
 
 /* Full width elements */
@@ -107,15 +101,13 @@ textarea:focus {
   border-radius: 20px;
   color: #00f0ff;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
-/* Hover */
 .option:hover {
   background: #00f0ff22;
 }
 
-/* ACTIVE STATE */
 .option.active {
   background: #00f0ff;
   color: #001018;
@@ -152,6 +144,7 @@ textarea:focus {
   color: #00f0ff;
   cursor: pointer;
   border-radius: 6px;
+  transition: 0.2s;
 }
 
 .copy:hover {
@@ -164,4 +157,3 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 }
-
