@@ -121,12 +121,16 @@ const weatherCustom = document.getElementById("customWeather").value;
 
 let weatherCombined = "";
 
-if (weatherChip && weatherCustom) {
-  weatherCombined = weatherChip + ", " + weatherCustom;
+if (Array.isArray(weatherChip)) {
+  weatherCombined = weatherChip.join(", ");
 } else if (weatherChip) {
   weatherCombined = weatherChip;
-} else if (weatherCustom) {
-  weatherCombined = weatherCustom;
+}
+
+if (weatherCustom) {
+  weatherCombined = weatherCombined
+    ? weatherCombined + ", " + weatherCustom
+    : weatherCustom;
 }
 
 const modular = [
@@ -161,6 +165,7 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
 
 
 
