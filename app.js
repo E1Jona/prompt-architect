@@ -7,21 +7,53 @@ function playSound() {
 
 document.querySelectorAll(".option").forEach(btn => {
   btn.addEventListener("click", () => {
+
     const group = btn.parentElement.dataset.group;
 
-    // Si ya está activa → desactivar
-    if (btn.classList.contains("active")) {
-      btn.classList.remove("active");
-      delete selectedOptions[group];
+    // WEATHER → MULTI SELECT
+    if (group === "weather") {
+
+      btn.classList.toggle("active");
+
+      if (!selectedOptions[group]) {
+        selectedOptions[group] = [];
+      }
+
+      const value = btn.dataset.value;
+
+      if (selectedOptions[group].includes(value)) {
+        selectedOptions[group] =
+          selectedOptions[group].filter(v => v !== value);
+      } else {
+        selectedOptions[group].push(value);
+      }
+
+      if (selectedOptions[group].length === 0) {
+        delete selectedOptions[group];
+      }
+
+      updateTags();
+      playSound();
       return;
     }
 
-    // Si no está activa → activar y desactivar otras del mismo grupo
+    // RESTO → SELECCIÓN ÚNICA CON TOGGLE
+
+    if (btn.classList.contains("active")) {
+      btn.classList.remove("active");
+      delete selectedOptions[group];
+      updateTags();
+      return;
+    }
+
     btn.parentElement.querySelectorAll(".option")
       .forEach(b => b.classList.remove("active"));
 
     btn.classList.add("active");
     selectedOptions[group] = btn.dataset.value;
+
+    updateTags();
+    playSound();
   });
 });
 
@@ -78,6 +110,7 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
 
 
 
