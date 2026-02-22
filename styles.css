@@ -1,121 +1,14 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top, #0a0f1f, #05080f 70%);
-  color: #e2f3ff;
-}
-
-.app {
-  max-width: 900px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 32px;
-  letter-spacing: 2px;
-  color: #00e5ff;
-  text-shadow: 0 0 15px #00e5ff88;
-}
-
-header p {
-  opacity: 0.6;
-  margin-top: 8px;
-}
-
-.module {
-  margin-bottom: 20px;
-  border: 1px solid #00e5ff22;
-  border-radius: 10px;
-  overflow: hidden;
+.panel {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 12px;
   background: #0f1629;
-}
-
-.module-toggle {
-  width: 100%;
-  padding: 14px;
-  background: #0f1c35;
-  border: none;
-  color: #00e5ff;
-  text-align: left;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.module-toggle:hover {
-  background: #13244a;
-}
-
-.module-content {
-  padding: 15px;
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-}
-
-textarea, select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
   border: 1px solid #00e5ff22;
-  background: #08101f;
-  color: #e2f3ff;
 }
 
-textarea:focus, select:focus {
-  outline: none;
-  border: 1px solid #00e5ff;
-  box-shadow: 0 0 10px #00e5ff55;
-}
-
-.generate {
-  width: 100%;
-  padding: 16px;
-  margin-top: 20px;
-  background: linear-gradient(90deg, #00e5ff, #00b3ff);
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  color: #001018;
-  letter-spacing: 1px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.generate:hover {
-  box-shadow: 0 0 20px #00e5ff88;
-}
-
-#result {
-  margin-top: 20px;
-  min-height: 120px;
-}
-
-.copy {
-  width: 100%;
-  margin-top: 10px;
-  padding: 14px;
-  background: #00e5ff22;
-  border: 1px solid #00e5ff55;
+.panel h2 {
+  margin-top: 0;
   color: #00e5ff;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.copy:hover {
-  background: #00e5ff33;
-}
-
-@media(max-width:600px){
-  .app{
-    padding:20px 10px;
-  }
+  font-size: 18px;
+  margin-bottom: 15px;
 }
