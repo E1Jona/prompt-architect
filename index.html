@@ -2,64 +2,135 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Prompt Architect | AI Command Interface</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Prompt Builder</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="container">
+<div class="app">
 
-<h1>Ultimate Prompt Builder</h1>
+<header>
+  <h1>Prompt Architect</h1>
+  <p>Futuristic AI Prompt Engineering System</p>
+</header>
 
-<!-- SUBJECT -->
-<input type="text" id="subject" placeholder="Subject (e.g. warrior woman)">
-<input type="text" id="action" placeholder="Action (e.g. standing in rain)">
-<input type="text" id="location" placeholder="Location Context (e.g. cyberpunk city)">
+<!-- BASE SCENE -->
+<section class="panel">
+<h2>Base Scene</h2>
+<textarea id="subject" placeholder="Subject..."></textarea>
+<textarea id="action" placeholder="Action..."></textarea>
+<textarea id="location" placeholder="Location / Context..."></textarea>
+</section>
 
-<!-- WEATHER CUSTOM INPUT -->
-<input type="text" id="customWeather" placeholder="Custom Weather (optional)">
+<!-- VISUAL STYLE -->
+<section class="panel">
+<h2>Visual Style</h2>
 
-<!-- TAGS -->
-<div id="selectedTags" class="tags-container"></div>
-
-<!-- WEATHER OPTIONS -->
-<div class="section">
-<h2>Weather</h2>
-<div class="options" data-group="weather">
-<button class="option" data-value="Rain">Rain</button>
-<button class="option" data-value="Storm">Storm</button>
-<button class="option" data-value="Snow">Snow</button>
-<button class="option" data-value="Fog">Fog</button>
-<button class="option" data-value="Sunny">Sunny</button>
-</div>
-</div>
-
-<!-- STYLE -->
-<div class="section">
-<h2>Style</h2>
+<div class="option-group">
+<label>Style</label>
 <div class="options" data-group="style">
-<button class="option" data-value="Ultra realistic">Ultra Realistic</button>
-<button class="option" data-value="Cinematic">Cinematic</button>
-<button class="option" data-value="Anime">Anime</button>
+<button class="option" data-value="cinematic">Cinematic</button>
+<button class="option" data-value="cyberpunk">Cyberpunk</button>
+<button class="option" data-value="ultra realistic">Ultra Realistic</button>
+<button class="option" data-value="anime style">Anime</button>
+<button class="option" data-value="fantasy art">Fantasy</button>
 </div>
 </div>
+
+<div class="option-group">
+<label>Render Engine</label>
+<div class="options" data-group="engine">
+<button class="option" data-value="Unreal Engine render">Unreal</button>
+<button class="option" data-value="Octane render">Octane</button>
+<button class="option" data-value="Redshift render">Redshift</button>
+</div>
+</div>
+
+</section>
+
+<!-- CINEMATOGRAPHY -->
+<section class="panel">
+<h2>Cinematography</h2>
+
+<div class="option-group">
+<label>Camera Shot</label>
+<div class="options" data-group="camera">
+<button class="option" data-value="wide angle shot">Wide</button>
+<button class="option" data-value="close-up shot">Close-up</button>
+<button class="option" data-value="low angle shot">Low Angle</button>
+<button class="option" data-value="drone shot">Drone</button>
+</div>
+</div>
+
+<div class="option-group">
+<label>Lens</label>
+<div class="options" data-group="lens">
+<button class="option" data-value="35mm lens">35mm</button>
+<button class="option" data-value="50mm lens">50mm</button>
+<button class="option" data-value="85mm lens">85mm</button>
+</div>
+</div>
+
+</section>
 
 <!-- LIGHTING -->
-<div class="section">
-<h2>Lighting</h2>
+<section class="panel">
+<h2>Lighting & Atmosphere</h2>
+
+<div class="option-group">
+<label>Lighting</label>
 <div class="options" data-group="lighting">
-<button class="option" data-value="Soft lighting">Soft</button>
-<button class="option" data-value="Dramatic lighting">Dramatic</button>
-<button class="option" data-value="Neon glow">Neon</button>
+<button class="option" data-value="dramatic lighting">Dramatic</button>
+<button class="option" data-value="volumetric lighting">Volumetric</button>
+<button class="option" data-value="neon lighting">Neon</button>
+<button class="option" data-value="soft cinematic lighting">Soft</button>
 </div>
 </div>
 
-<!-- BUTTONS -->
-<button onclick="generatePrompt()">Generate Prompt</button>
-<button onclick="copyPrompt()">Copy</button>
+<div class="option-group">
+<label>Mood</label>
+<div class="options" data-group="mood">
+<button class="option" data-value="dark atmosphere">Dark</button>
+<button class="option" data-value="epic atmosphere">Epic</button>
+<button class="option" data-value="mysterious atmosphere">Mysterious</button>
+</div>
+</div>
 
-<textarea id="result" placeholder="Your generated prompt will appear here..."></textarea>
+</section>
+
+<!-- OUTPUT -->
+<section class="panel">
+<h2>Output Settings</h2>
+
+<div class="option-group">
+<label>Resolution</label>
+<div class="options" data-group="resolution">
+<button class="option" data-value="8K resolution">8K</button>
+<button class="option" data-value="4K resolution">4K</button>
+<button class="option" data-value="HDR">HDR</button>
+</div>
+</div>
+
+<div class="option-group">
+<label>Aspect Ratio</label>
+<div class="options" data-group="ratio">
+<button class="option" data-value="16:9 aspect ratio">16:9</button>
+<button class="option" data-value="9:16 aspect ratio">9:16</button>
+<button class="option" data-value="1:1 aspect ratio">1:1</button>
+</div>
+</div>
+
+</section>
+
+<section class="panel">
+<h2>Negative Prompt</h2>
+<textarea id="negative" placeholder="Elements to avoid..."></textarea>
+</section>
+
+<button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
+<textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
+<button class="copy" onclick="copyPrompt()">COPY</button>
 
 </div>
 
