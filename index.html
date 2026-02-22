@@ -16,19 +16,16 @@
 </header>
 
 <!-- BASE SCENE -->
-<section class="module">
-<button class="module-toggle">Base Scene</button>
-<div class="module-content">
-  <textarea id="subject" placeholder="Subject..."></textarea>
-  <textarea id="action" placeholder="Action..."></textarea>
-  <textarea id="location" placeholder="Location / Context..."></textarea>
-</div>
+<section class="panel">
+<h2>Base Scene</h2>
+<textarea id="subject" placeholder="Subject..."></textarea>
+<textarea id="action" placeholder="Action..."></textarea>
+<textarea id="location" placeholder="Location / Context..."></textarea>
 </section>
 
 <!-- VISUAL STYLE -->
-<section class="module">
-<button class="module-toggle">Visual Style</button>
-<div class="module-content">
+<section class="panel">
+<h2>Visual Style</h2>
 
 <div class="option-group">
 <label>Style</label>
@@ -50,13 +47,11 @@
 </div>
 </div>
 
-</div>
 </section>
 
 <!-- CINEMATOGRAPHY -->
-<section class="module">
-<button class="module-toggle">Cinematography</button>
-<div class="module-content">
+<section class="panel">
+<h2>Cinematography</h2>
 
 <div class="option-group">
 <label>Camera Shot</label>
@@ -77,13 +72,11 @@
 </div>
 </div>
 
-</div>
 </section>
 
 <!-- LIGHTING -->
-<section class="module">
-<button class="module-toggle">Lighting & Atmosphere</button>
-<div class="module-content">
+<section class="panel">
+<h2>Lighting & Atmosphere</h2>
 
 <div class="option-group">
 <label>Lighting</label>
@@ -104,13 +97,11 @@
 </div>
 </div>
 
-</div>
 </section>
 
 <!-- OUTPUT -->
-<section class="module">
-<button class="module-toggle">Output Settings</button>
-<div class="module-content">
+<section class="panel">
+<h2>Output Settings</h2>
 
 <div class="option-group">
 <label>Resolution</label>
@@ -130,19 +121,14 @@
 </div>
 </div>
 
-</div>
 </section>
 
-<!-- NEGATIVE -->
-<section class="module">
-<button class="module-toggle">Negative Prompt</button>
-<div class="module-content">
+<section class="panel">
+<h2>Negative Prompt</h2>
 <textarea id="negative" placeholder="Elements to avoid..."></textarea>
-</div>
 </section>
 
 <button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
-
 <textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
 <button class="copy" onclick="copyPrompt()">COPY</button>
 
