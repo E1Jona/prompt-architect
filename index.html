@@ -1,78 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Prompt Architect | Professional Builder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Prompt Architect | AI Command Interface</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="container">
-  <h1>Prompt Architect</h1>
-  <p class="subtitle">Modular AI Prompt Builder</p>
+<div class="app">
 
-  <label>Description</label>
-  <textarea id="description" placeholder="Describe your scene..."></textarea>
+  <header>
+    <h1>Prompt Architect</h1>
+    <p>Futuristic AI Prompt Engineering System</p>
+  </header>
 
-  <div class="grid">
-    <div>
-      <label>Style</label>
+  <!-- BASE SCENE -->
+  <section class="module">
+    <button class="module-toggle">Base Scene</button>
+    <div class="module-content">
+      <textarea id="subject" placeholder="Subject..."></textarea>
+      <textarea id="action" placeholder="Action..."></textarea>
+      <textarea id="location" placeholder="Location / Context..."></textarea>
+    </div>
+  </section>
+
+  <!-- VISUAL STYLE -->
+  <section class="module">
+    <button class="module-toggle">Visual Style</button>
+    <div class="module-content">
       <select id="style">
-        <option value="">None</option>
+        <option value="">Select Style</option>
         <option value="cinematic">Cinematic</option>
-        <option value="anime style">Anime</option>
+        <option value="cyberpunk">Cyberpunk</option>
         <option value="ultra realistic">Ultra Realistic</option>
-        <option value="fantasy art">Fantasy</option>
+        <option value="anime style">Anime</option>
+      </select>
+
+      <select id="engine">
+        <option value="">Render Engine</option>
+        <option value="Unreal Engine render">Unreal Engine</option>
+        <option value="Octane render">Octane</option>
+        <option value="Redshift render">Redshift</option>
       </select>
     </div>
+  </section>
 
-    <div>
-      <label>Camera</label>
+  <!-- CINEMATOGRAPHY -->
+  <section class="module">
+    <button class="module-toggle">Cinematography</button>
+    <div class="module-content">
       <select id="camera">
-        <option value="">None</option>
+        <option value="">Camera Shot</option>
         <option value="wide angle shot">Wide Angle</option>
         <option value="close-up shot">Close-up</option>
-        <option value="drone shot">Drone Shot</option>
         <option value="low angle shot">Low Angle</option>
+        <option value="drone shot">Drone Shot</option>
+      </select>
+
+      <select id="lens">
+        <option value="">Lens</option>
+        <option value="35mm lens">35mm</option>
+        <option value="50mm lens">50mm</option>
+        <option value="85mm lens">85mm</option>
       </select>
     </div>
+  </section>
 
-    <div>
-      <label>Lighting</label>
+  <!-- LIGHTING -->
+  <section class="module">
+    <button class="module-toggle">Lighting & Atmosphere</button>
+    <div class="module-content">
       <select id="lighting">
-        <option value="">None</option>
+        <option value="">Lighting</option>
         <option value="dramatic lighting">Dramatic</option>
-        <option value="soft lighting">Soft</option>
-        <option value="neon lighting">Neon</option>
         <option value="volumetric lighting">Volumetric</option>
+        <option value="neon lighting">Neon</option>
+        <option value="soft cinematic lighting">Soft Cinematic</option>
+      </select>
+
+      <select id="mood">
+        <option value="">Mood</option>
+        <option value="dark atmosphere">Dark</option>
+        <option value="epic atmosphere">Epic</option>
+        <option value="mysterious atmosphere">Mysterious</option>
       </select>
     </div>
+  </section>
 
-    <div>
-      <label>Quality</label>
-      <select id="quality">
-        <option value="">None</option>
+  <!-- OUTPUT -->
+  <section class="module">
+    <button class="module-toggle">Output Settings</button>
+    <div class="module-content">
+      <select id="resolution">
+        <option value="">Resolution</option>
         <option value="8K resolution">8K</option>
         <option value="4K resolution">4K</option>
         <option value="HDR">HDR</option>
       </select>
+
+      <select id="ratio">
+        <option value="">Aspect Ratio</option>
+        <option value="16:9 aspect ratio">16:9</option>
+        <option value="9:16 aspect ratio">9:16</option>
+        <option value="1:1 aspect ratio">1:1</option>
+      </select>
     </div>
-  </div>
+  </section>
 
-  <div class="checkboxes">
-    <label><input type="checkbox" value="hyper-detailed"> Hyper Detailed</label>
-    <label><input type="checkbox" value="sharp focus"> Sharp Focus</label>
-    <label><input type="checkbox" value="high dynamic range"> HDR+</label>
-    <label><input type="checkbox" value="professional composition"> Pro Composition</label>
-  </div>
+  <section class="module">
+    <button class="module-toggle">Negative Prompt</button>
+    <div class="module-content">
+      <textarea id="negative" placeholder="Elements to avoid..."></textarea>
+    </div>
+  </section>
 
-  <button onclick="generatePrompt()">Generate Prompt</button>
+  <button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
 
-  <h2>Final Prompt</h2>
-  <textarea id="result" readonly></textarea>
+  <textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
+  <button class="copy" onclick="copyPrompt()">COPY</button>
 
-  <button onclick="copyPrompt()" class="copy">Copy Prompt</button>
 </div>
 
 <script src="app.js"></script>
