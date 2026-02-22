@@ -4,6 +4,14 @@ document.querySelectorAll(".option").forEach(btn => {
   btn.addEventListener("click", () => {
     const group = btn.parentElement.dataset.group;
 
+    // Si ya está activa → desactivar
+    if (btn.classList.contains("active")) {
+      btn.classList.remove("active");
+      delete selectedOptions[group];
+      return;
+    }
+
+    // Si no está activa → activar y desactivar otras del mismo grupo
     btn.parentElement.querySelectorAll(".option")
       .forEach(b => b.classList.remove("active"));
 
@@ -65,5 +73,6 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
 
 
