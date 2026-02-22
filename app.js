@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener("click", () => {
 
-      // Toggle simple
+      // Toggle multi-select
       btn.classList.toggle("active");
 
     });
@@ -21,12 +21,13 @@ function generatePrompt() {
     document.getElementById("location").value
   ];
 
-  // Obtener TODAS las opciones activas
   const activeOptions = Array.from(
     document.querySelectorAll(".option.active")
   ).map(btn => btn.dataset.value);
 
-  const cleaned = [...base, ...activeOptions]
+  const customWeather = document.getElementById("customWeather")?.value || "";
+
+  const cleaned = [...base, ...activeOptions, customWeather]
     .filter(v => v && v.trim() !== "");
 
   let finalPrompt = cleaned.join(", ");
