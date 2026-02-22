@@ -1,14 +1,162 @@
-.panel {
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #05070d;
+  color: #e6faff;
+}
+
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+}
+
+header {
+  text-align: center;
   margin-bottom: 30px;
-  padding: 20px;
-  border-radius: 12px;
-  background: #0f1629;
-  border: 1px solid #00e5ff22;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #00f0ff;
+  text-shadow: 0 0 15px #00f0ff55;
+}
+
+header p {
+  opacity: 0.5;
+  margin-top: 6px;
+}
+
+/* GRID LAYOUT */
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* Full width elements */
+header,
+.generate,
+#result,
+.copy {
+  grid-column: 1 / -1;
+}
+
+/* PANEL */
+.panel {
+  padding: 18px;
+  border-radius: 10px;
+  background: #0b111f;
+  border: 1px solid #00f0ff11;
 }
 
 .panel h2 {
   margin-top: 0;
-  color: #00e5ff;
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 16px;
+  color: #00f0ff;
+  margin-bottom: 12px;
+}
+
+/* TEXTAREAS */
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #00f0ff22;
+  background: #060c18;
+  color: #e6faff;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 8px #00f0ff55;
+}
+
+/* OPTION GROUP */
+.option-group {
+  margin-bottom: 14px;
+}
+
+.option-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+/* OPTIONS */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.option {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #08101f;
+  border: 1px solid #00f0ff22;
+  border-radius: 20px;
+  color: #00f0ff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Hover */
+.option:hover {
+  background: #00f0ff22;
+}
+
+/* ACTIVE STATE */
+.option.active {
+  background: #00f0ff;
+  color: #001018;
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 10px #00f0ff99;
+}
+
+/* BUTTONS */
+.generate {
+  padding: 14px;
+  background: linear-gradient(90deg, #00f0ff, #00b8ff);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #001018;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.generate:hover {
+  box-shadow: 0 0 20px #00f0ff88;
+}
+
+#result {
+  min-height: 100px;
+  margin-top: 15px;
+}
+
+.copy {
+  padding: 12px;
+  margin-top: 8px;
+  background: #00f0ff22;
+  border: 1px solid #00f0ff55;
+  color: #00f0ff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.copy:hover {
+  background: #00f0ff33;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
 }
