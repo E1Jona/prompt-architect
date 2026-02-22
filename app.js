@@ -21,15 +21,16 @@ function generatePrompt() {
   ];
 
   const modular = [
-    selectedOptions.style,
-    selectedOptions.engine,
-    selectedOptions.camera,
-    selectedOptions.lens,
-    selectedOptions.lighting,
-    selectedOptions.mood,
-    selectedOptions.resolution,
-    selectedOptions.ratio
-  ];
+  selectedOptions.weather,
+  selectedOptions.style,
+  selectedOptions.engine,
+  selectedOptions.camera,
+  selectedOptions.lens,
+  selectedOptions.lighting,
+  selectedOptions.mood,
+  selectedOptions.resolution,
+  selectedOptions.ratio
+];
 
   const cleaned = [...base, ...modular]
     .filter(v => v && v.trim() !== "");
@@ -51,3 +52,4 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
