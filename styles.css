@@ -30,6 +30,10 @@ header p {
 
 /* GRID LAYOUT */
 .app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
@@ -160,3 +164,4 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 }
+
