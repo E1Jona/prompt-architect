@@ -2,24 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Prompt Architect | AI Prompt Optimizer</title>
+  <title>Prompt Architect | Professional Builder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="container">
-    <h1>Prompt Architect</h1>
-    <p class="subtitle">AI Prompt Optimization Engine</p>
+<div class="container">
+  <h1>Prompt Architect</h1>
+  <p class="subtitle">Modular AI Prompt Builder</p>
 
-    <textarea id="inputPrompt" placeholder="Describe what you want to generate..."></textarea>
+  <label>Description</label>
+  <textarea id="description" placeholder="Describe your scene..."></textarea>
 
-    <button onclick="generatePrompt()">Generate Prompt</button>
+  <div class="grid">
+    <div>
+      <label>Style</label>
+      <select id="style">
+        <option value="">None</option>
+        <option value="cinematic">Cinematic</option>
+        <option value="anime style">Anime</option>
+        <option value="ultra realistic">Ultra Realistic</option>
+        <option value="fantasy art">Fantasy</option>
+      </select>
+    </div>
 
-    <h2>Optimized Prompt</h2>
-    <textarea id="outputPrompt" readonly></textarea>
+    <div>
+      <label>Camera</label>
+      <select id="camera">
+        <option value="">None</option>
+        <option value="wide angle shot">Wide Angle</option>
+        <option value="close-up shot">Close-up</option>
+        <option value="drone shot">Drone Shot</option>
+        <option value="low angle shot">Low Angle</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Lighting</label>
+      <select id="lighting">
+        <option value="">None</option>
+        <option value="dramatic lighting">Dramatic</option>
+        <option value="soft lighting">Soft</option>
+        <option value="neon lighting">Neon</option>
+        <option value="volumetric lighting">Volumetric</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Quality</label>
+      <select id="quality">
+        <option value="">None</option>
+        <option value="8K resolution">8K</option>
+        <option value="4K resolution">4K</option>
+        <option value="HDR">HDR</option>
+      </select>
+    </div>
   </div>
 
-  <script src="app.js"></script>
+  <div class="checkboxes">
+    <label><input type="checkbox" value="hyper-detailed"> Hyper Detailed</label>
+    <label><input type="checkbox" value="sharp focus"> Sharp Focus</label>
+    <label><input type="checkbox" value="high dynamic range"> HDR+</label>
+    <label><input type="checkbox" value="professional composition"> Pro Composition</label>
+  </div>
+
+  <button onclick="generatePrompt()">Generate Prompt</button>
+
+  <h2>Final Prompt</h2>
+  <textarea id="result" readonly></textarea>
+
+  <button onclick="copyPrompt()" class="copy">Copy Prompt</button>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
