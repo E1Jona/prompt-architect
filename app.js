@@ -20,8 +20,21 @@ function generatePrompt() {
     document.getElementById("location").value
   ];
 
-  const modular = [
-  selectedOptions.weather,
+  const weatherChip = selectedOptions.weather;
+const weatherCustom = document.getElementById("customWeather").value;
+
+let weatherCombined = "";
+
+if (weatherChip && weatherCustom) {
+  weatherCombined = weatherChip + ", " + weatherCustom;
+} else if (weatherChip) {
+  weatherCombined = weatherChip;
+} else if (weatherCustom) {
+  weatherCombined = weatherCustom;
+}
+
+const modular = [
+  weatherCombined,
   selectedOptions.style,
   selectedOptions.engine,
   selectedOptions.camera,
@@ -52,4 +65,5 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
 
