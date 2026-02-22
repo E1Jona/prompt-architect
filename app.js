@@ -1,15 +1,16 @@
-let selectedOptions = {};
+document.addEventListener("DOMContentLoaded", () => {
 
-document.querySelectorAll(".option").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const group = btn.parentElement.dataset.group;
+  document.querySelectorAll(".option").forEach(btn => {
 
-    btn.parentElement.querySelectorAll(".option")
-      .forEach(b => b.classList.remove("active"));
+    btn.addEventListener("click", () => {
 
-    btn.classList.add("active");
-    selectedOptions[group] = btn.dataset.value;
+      // Toggle simple
+      btn.classList.toggle("active");
+
+    });
+
   });
+
 });
 
 function generatePrompt() {
@@ -20,18 +21,12 @@ function generatePrompt() {
     document.getElementById("location").value
   ];
 
-  const modular = [
-    selectedOptions.style,
-    selectedOptions.engine,
-    selectedOptions.camera,
-    selectedOptions.lens,
-    selectedOptions.lighting,
-    selectedOptions.mood,
-    selectedOptions.resolution,
-    selectedOptions.ratio
-  ];
+  // Obtener TODAS las opciones activas
+  const activeOptions = Array.from(
+    document.querySelectorAll(".option.active")
+  ).map(btn => btn.dataset.value);
 
-  const cleaned = [...base, ...modular]
+  const cleaned = [...base, ...activeOptions]
     .filter(v => v && v.trim() !== "");
 
   let finalPrompt = cleaned.join(", ");
