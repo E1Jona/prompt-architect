@@ -1,14 +1,5 @@
 let selectedOptions = {};
 
-// Expand modules
-document.querySelectorAll(".module-toggle").forEach(button => {
-  button.addEventListener("click", () => {
-    const content = button.nextElementSibling;
-    content.style.display = content.style.display === "flex" ? "none" : "flex";
-  });
-});
-
-// Option selection
 document.querySelectorAll(".option").forEach(btn => {
   btn.addEventListener("click", () => {
     const group = btn.parentElement.dataset.group;
