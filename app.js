@@ -6,7 +6,7 @@ function generatePrompt() {
     return;
   }
 
-  const optimized = `Ultra-detailed cinematic scene, ${input}, 8K resolution, dramatic lighting, hyper-realistic, sharp focus, professional composition`;
+  const optimized = `Ultra-detailed cinematic scene, ${input}, 8K resolution, dramatic lighting, hyper-realistic, sharp focus, professional composition, volumetric lighting, high dynamic range`;
 
   document.getElementById("outputPrompt").value = optimized;
 }
