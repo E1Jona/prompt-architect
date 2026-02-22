@@ -1,30 +1,15 @@
-// ========================
-// STATE
-// ========================
-
 let selectedOptions = {};
 
-// ========================
-// SAFE INIT (espera que cargue el DOM)
-// ========================
-
 document.addEventListener("DOMContentLoaded", () => {
-
   document.querySelectorAll(".option").forEach(btn => {
     btn.addEventListener("click", () => handleOptionClick(btn));
   });
-
 });
-
-// ========================
-// CLICK HANDLER
-// ========================
 
 function handleOptionClick(btn) {
 
   const group = btn.parentElement.dataset.group;
 
-  // WEATHER → MULTI SELECT
   if (group === "weather") {
 
     btn.classList.toggle("active");
@@ -51,8 +36,6 @@ function handleOptionClick(btn) {
     return;
   }
 
-  // RESTO → TOGGLE NORMAL
-
   if (btn.classList.contains("active")) {
     btn.classList.remove("active");
     delete selectedOptions[group];
@@ -70,16 +53,9 @@ function handleOptionClick(btn) {
   playSound();
 }
 
-// ========================
-// TAG SYSTEM
-// ========================
-
 function updateTags() {
 
   const container = document.getElementById("selectedTags");
-
-  if (!container) return; // seguridad
-
   container.innerHTML = "";
 
   Object.keys(selectedOptions).forEach(group => {
@@ -91,9 +67,7 @@ function updateTags() {
     } else {
       createTag(group, value);
     }
-
   });
-
 }
 
 function createTag(group, value) {
@@ -132,19 +106,11 @@ function createTag(group, value) {
   container.appendChild(tag);
 }
 
-// ========================
-// SOUND
-// ========================
-
 function playSound() {
   const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
   audio.volume = 0.1;
   audio.play();
 }
-
-// ========================
-// GENERATE PROMPT
-// ========================
 
 function generatePrompt() {
 
@@ -152,9 +118,8 @@ function generatePrompt() {
   const action = document.getElementById("action").value;
   const location = document.getElementById("location").value;
 
-  // WEATHER
   const weatherChip = selectedOptions.weather;
-  const weatherCustom = document.getElementById("customWeather")?.value || "";
+  const weatherCustom = document.getElementById("customWeather").value;
 
   let weatherCombined = "";
 
@@ -173,13 +138,7 @@ function generatePrompt() {
   const modular = [
     weatherCombined,
     selectedOptions.style,
-    selectedOptions.engine,
-    selectedOptions.camera,
-    selectedOptions.lens,
-    selectedOptions.lighting,
-    selectedOptions.mood,
-    selectedOptions.resolution,
-    selectedOptions.ratio
+    selectedOptions.lighting
   ];
 
   const finalArray = [
@@ -192,10 +151,6 @@ function generatePrompt() {
   document.getElementById("result").value =
     finalArray.join(", ");
 }
-
-// ========================
-// COPY
-// ========================
 
 function copyPrompt() {
   const result = document.getElementById("result");
