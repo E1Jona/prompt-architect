@@ -1,4 +1,9 @@
 let selectedOptions = {};
+function playSound() {
+  const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
+  audio.volume = 0.1;
+  audio.play();
+}
 
 document.querySelectorAll(".option").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -73,6 +78,7 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
 
 
 
