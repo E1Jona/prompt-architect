@@ -15,202 +15,251 @@
   <p>Futuristic AI Prompt Engineering System</p>
 </header>
 
+<!-- CHARACTER DNA -->
+<section class="panel">
+<h2>Character DNA / Identidad</h2>
+<textarea id="charName" placeholder="Character Name..."></textarea>
+<textarea id="charTraits" placeholder="Character Traits / Physical Details..."></textarea>
+</section>
+
 <!-- BASE SCENE -->
 <section class="panel">
-<h2>Base Scene / Escena Base</h2>
-<textarea id="subject" placeholder="Subject / Sujeto..."></textarea>
-<textarea id="action" placeholder="Action / Acción..."></textarea>
-<textarea id="location" placeholder="Location / Context / Ubicación..."></textarea>
+<h2>Base Scene</h2>
+<textarea id="subject" placeholder="Subject..."></textarea>
+<textarea id="action" placeholder="Action..."></textarea>
+<textarea id="location" placeholder="Location / Context..."></textarea>
+</section>
+
+<!-- NARRATIVE MODE -->
+<section class="panel">
+<h2>Intention / Narrative</h2>
+<div class="options" data-group="narrative">
+<button class="option" data-value="epic cinematic narrative">Epic Cinematic</button>
+<button class="option" data-value="intense suspense story">Intense Suspense</button>
+<button class="option" data-value="romantic emotional scene">Romantic</button>
+<button class="option" data-value="high action sequence">High Action</button>
+<button class="option" data-value="mystery thriller atmosphere">Mystery</button>
+</div>
+</section>
+
+<!-- TIME OF DAY -->
+<section class="panel">
+<h2>Time of Day</h2>
+<div class="options" data-group="timeOfDay">
+<button class="option" data-value="dawn lighting">Dawn</button>
+<button class="option" data-value="midday sun">Midday</button>
+<button class="option" data-value="sunset glow">Sunset</button>
+<button class="option" data-value="nighttime scene">Night</button>
+</div>
 </section>
 
 <!-- WEATHER -->
 <section class="panel">
-<h2>Weather & Atmosphere / Clima y Atmósfera</h2>
+<h2>Weather & Atmosphere</h2>
 
 <div class="option-group">
-<label>Quick Weather / Clima Rápido</label>
+<label>Quick Weather</label>
 <div class="options" data-group="weather">
-<button class="option" data-value="rainy weather">Lluvia / Rain</button>
-<button class="option" data-value="heavy storm">Tormenta / Storm</button>
-<button class="option" data-value="snowing weather">Nieve / Snow</button>
-<button class="option" data-value="foggy atmosphere">Niebla / Fog</button>
-<button class="option" data-value="sunny weather">Soleado / Sunny</button>
-<button class="option" data-value="overcast sky">Nublado / Overcast</button>
-<button class="option" data-value="night mist">Niebla Nocturna / Night Mist</button>
+<button class="option" data-value="rainy weather">Rain</button>
+<button class="option" data-value="heavy storm">Storm</button>
+<button class="option" data-value="snowing weather">Snow</button>
+<button class="option" data-value="foggy atmosphere">Fog</button>
+<button class="option" data-value="sunny weather">Sunny</button>
+<button class="option" data-value="overcast sky">Overcast</button>
+<button class="option" data-value="night mist">Night Mist</button>
 </div>
 </div>
 
 <div class="option-group">
-<label>Custom Weather / Clima Personalizado</label>
-<textarea id="customWeather" placeholder="Describe custom weather / Describe el clima..."></textarea>
+<label>Custom Weather</label>
+<textarea id="customWeather" placeholder="Describe custom weather..."></textarea>
 </div>
 
+</section>
+
+<!-- ENVIRONMENT -->
+<section class="panel">
+<h2>Environment / Biome</h2>
+<div class="options" data-group="environment">
+<button class="option" data-value="forest environment">Forest</button>
+<button class="option" data-value="desert environment">Desert</button>
+<button class="option" data-value="futuristic cityscape">Cityscape</button>
+<button class="option" data-value="mountain region">Mountain</button>
+<button class="option" data-value="outer space scene">Outer Space</button>
+</div>
 </section>
 
 <!-- VISUAL STYLE -->
 <section class="panel">
-<h2>Visual Style / Estilo Visual</h2>
+<h2>Visual Style</h2>
 
 <div class="option-group">
-<label>Style / Estilo</label>
+<label>Style</label>
 <div class="options" data-group="style">
-<button class="option" data-value="cinematic">Cinemático / Cinematic</button>
-<button class="option" data-value="cyberpunk">Cyberpunk / Cyberpunk</button>
-<button class="option" data-value="ultra realistic">Ultra Realista / Ultra Realistic</button>
-<button class="option" data-value="anime style">Anime / Anime Style</button>
-<button class="option" data-value="fantasy art">Arte Fantasía / Fantasy Art</button>
+<button class="option" data-value="cinematic">Cinematic</button>
+<button class="option" data-value="cyberpunk">Cyberpunk</button>
+<button class="option" data-value="ultra realistic">Ultra Realistic</button>
+<button class="option" data-value="anime style">Anime</button>
+<button class="option" data-value="fantasy art">Fantasy</button>
 </div>
 </div>
 
 <div class="option-group">
-<label>Render Engine / Motor de Render</label>
+<label>Render Engine</label>
 <div class="options" data-group="engine">
-<button class="option" data-value="Unreal Engine render">Unreal Engine / Unreal</button>
-<button class="option" data-value="Octane render">Octane Render / Octane</button>
-<button class="option" data-value="Redshift render">Redshift Render / Redshift</button>
+<button class="option" data-value="Unreal Engine render">Unreal</button>
+<button class="option" data-value="Octane render">Octane</button>
+<button class="option" data-value="Redshift render">Redshift</button>
 </div>
 </div>
 
+</section>
+
+<!-- RENDER ENHANCERS -->
+<section class="panel">
+<h2>Render & Detail Enhancers</h2>
+<div class="options" data-group="renderEnhance">
+<button class="option" data-value="high detail">High Detail</button>
+<button class="option" data-value="ultra realistic">Ultra Realistic Boost</button>
+<button class="option" data-value="hdr enhanced">HDR Enhanced</button>
+<button class="option" data-value="film look">Film Look</button>
+</div>
 </section>
 
 <!-- CINEMATOGRAPHY -->
 <section class="panel">
-<h2>Cinematography / Cinematografía</h2>
+<h2>Cinematography</h2>
 
 <div class="option-group">
-<label>Camera Shot / Plano</label>
+<label>Camera Shot</label>
 <div class="options" data-group="camera">
-<button class="option" data-value="wide angle shot">Plano Abierto / Wide Shot</button>
-<button class="option" data-value="close-up shot">Primer Plano / Close-Up</button>
-<button class="option" data-value="low angle shot">Ángulo Bajo / Low Angle</button>
-<button class="option" data-value="high angle shot">Ángulo Alto / High Angle</button>
-<button class="option" data-value="drone aerial shot">Toma Aérea / Drone Shot</button>
-<button class="option" data-value="over the shoulder shot">Sobre el Hombro / Over Shoulder</button>
-<button class="option" data-value="POV shot">Punto de Vista / POV</button>
-<button class="option" data-value="full body shot">Cuerpo Completo / Full Body</button>
+<button class="option" data-value="wide angle shot">Wide</button>
+<button class="option" data-value="close-up shot">Close-up</button>
+<button class="option" data-value="low angle shot">Low Angle</button>
+<button class="option" data-value="high angle shot">High Angle</button>
+<button class="option" data-value="drone aerial shot">Drone</button>
+<button class="option" data-value="over the shoulder shot">Over Shoulder</button>
+<button class="option" data-value="POV shot">POV</button>
+<button class="option" data-value="full body shot">Full Body</button>
 </div>
 </div>
 
 <div class="option-group">
-<label>Lens / Lente</label>
+<label>Lens</label>
 <div class="options" data-group="lens">
-<button class="option" data-value="24mm wide angle lens">24mm Gran Angular / 24mm Wide</button>
-<button class="option" data-value="35mm lens">35mm / 35mm Lens</button>
-<button class="option" data-value="50mm lens">50mm / 50mm Lens</button>
-<button class="option" data-value="85mm lens">85mm / 85mm Lens</button>
-<button class="option" data-value="telephoto lens">Teleobjetivo / Telephoto</button>
-<button class="option" data-value="anamorphic lens">Anamórfico / Anamorphic</button>
+<button class="option" data-value="24mm wide angle lens">24mm</button>
+<button class="option" data-value="35mm lens">35mm</button>
+<button class="option" data-value="50mm lens">50mm</button>
+<button class="option" data-value="85mm lens">85mm</button>
+<button class="option" data-value="telephoto lens">Telephoto</button>
+<button class="option" data-value="anamorphic lens">Anamorphic</button>
 </div>
 </div>
 
 <div class="option-group">
-<label>Optical Effects / Efectos Ópticos</label>
+<label>Optical Effects</label>
 <div class="options" data-group="optical">
-<button class="option" data-value="cinematic depth of field">Profundidad de Campo / Depth of Field</button>
-<button class="option" data-value="bokeh background blur">Bokeh / Bokeh</button>
-<button class="option" data-value="lens flare effect">Destello de Lente / Lens Flare</button>
-<button class="option" data-value="volumetric light rays">Rayos Volumétricos / Volumetric Light</button>
-<button class="option" data-value="film grain texture">Grano de Película / Film Grain</button>
-<button class="option" data-value="motion blur effect">Desenfoque de Movimiento / Motion Blur</button>
-</div>
-</div>
-
-<div class="option-group">
-<label>Camera Movement (Video Optional) / Movimiento de Cámara</label>
-<div class="options" data-group="movement">
-<button class="option" data-value="slow cinematic pan">Paneo Lento / Slow Pan</button>
-<button class="option" data-value="fast whip pan">Paneo Rápido / Whip Pan</button>
-<button class="option" data-value="smooth tracking shot">Seguimiento Suave / Tracking Shot</button>
-<button class="option" data-value="steady cam follow">Steady Cam / Steady Cam</button>
-<button class="option" data-value="handheld camera motion">Cámara en Mano / Handheld</button>
-<button class="option" data-value="crane shot movement">Movimiento Grúa / Crane Shot</button>
-<button class="option" data-value="dramatic zoom in">Zoom In Dramático / Zoom In</button>
-<button class="option" data-value="dramatic zoom out">Zoom Out Dramático / Zoom Out</button>
-<button class="option" data-value="orbit camera rotation">Órbita / Orbit</button>
-<button class="option" data-value="360 cinematic rotation">Rotación 360° / 360° Rotation</button>
-</div>
-</div>
-
-<div class="option-group">
-<label>Transition Effects (Video Optional) / Transiciones</label>
-<div class="options" data-group="transition">
-<button class="option" data-value="smooth fade out">Desvanecer Suave / Fade Out</button>
-<button class="option" data-value="fade to black">Fundido a Negro / Fade to Black</button>
-<button class="option" data-value="cinematic cross dissolve">Disolvencia Cruzada / Cross Dissolve</button>
-<button class="option" data-value="glitch transition effect">Transición Glitch / Glitch</button>
-<button class="option" data-value="hard cinematic cut">Corte Directo / Hard Cut</button>
-<button class="option" data-value="motion blur transition">Transición Motion Blur / Motion Blur</button>
-<button class="option" data-value="light flash transition">Flash de Luz / Light Flash</button>
-</div>
-</div>
-
-<div class="option-group">
-<label>Temporal Consistency (Video Optional) / Consistencia Temporal</label>
-<div class="options" data-group="consistency">
-<button class="option" data-value="high temporal consistency">Alta Consistencia / High Consistency</button>
-<button class="option" data-value="smooth frame interpolation">Interpolación Suave / Smooth Frames</button>
-<button class="option" data-value="stable character continuity">Continuidad de Personaje / Character Continuity</button>
-<button class="option" data-value="consistent lighting across frames">Iluminación Consistente / Lighting Stability</button>
+<button class="option" data-value="cinematic depth of field">Depth of Field</button>
+<button class="option" data-value="bokeh background blur">Bokeh</button>
+<button class="option" data-value="lens flare effect">Lens Flare</button>
+<button class="option" data-value="volumetric light rays">Volumetric Light</button>
+<button class="option" data-value="film grain texture">Film Grain</button>
+<button class="option" data-value="motion blur effect">Motion Blur</button>
 </div>
 </div>
 
 </section>
 
+<!-- FOCUS CONTROL -->
 <section class="panel">
-<h2>Lighting & Atmosphere / Iluminación y Ambiente</h2>
+<h2>Focus & Depth Control</h2>
+<div class="options" data-group="focus">
+<button class="option" data-value="shallow depth of field">Shallow DOF</button>
+<button class="option" data-value="deep focus">Deep Focus</button>
+<button class="option" data-value="soft focus">Soft Focus</button>
+<button class="option" data-value="sharp focus">Sharp Focus</button>
+</div>
+</section>
+
+<!-- AUDIO DESIGN -->
+<section class="panel">
+<h2>Audio / Sound Design (Video)</h2>
+<div class="options" data-group="audio">
+<button class="option" data-value="soft ambient soundtrack">Ambient Soundtrack</button>
+<button class="option" data-value="epic orchestral music">Epic Orchestral</button>
+<button class="option" data-value="dialogue heavy scene">Dialogue Scene</button>
+<button class="option" data-value="dramatic sound effects">Dramatic Sound FX</button>
+</div>
+</section>
+
+<!-- LIGHTING -->
+<section class="panel">
+<h2>Lighting & Atmosphere</h2>
 
 <div class="option-group">
-<label>Lighting / Iluminación</label>
+<label>Lighting</label>
 <div class="options" data-group="lighting">
-<button class="option" data-value="dramatic lighting">Iluminación Dramática / Dramatic</button>
-<button class="option" data-value="volumetric lighting">Iluminación Volumétrica / Volumetric</button>
-<button class="option" data-value="neon lighting">Iluminación Neón / Neon</button>
-<button class="option" data-value="soft cinematic lighting">Iluminación Suave / Soft</button>
+<button class="option" data-value="dramatic lighting">Dramatic</button>
+<button class="option" data-value="volumetric lighting">Volumetric</button>
+<button class="option" data-value="neon lighting">Neon</button>
+<button class="option" data-value="soft cinematic lighting">Soft</button>
 </div>
 </div>
 
 <div class="option-group">
-<label>Mood / Ambiente</label>
+<label>Mood</label>
 <div class="options" data-group="mood">
-<button class="option" data-value="dark atmosphere">Oscuro / Dark</button>
-<button class="option" data-value="epic atmosphere">Épico / Epic</button>
-<button class="option" data-value="mysterious atmosphere">Misterioso / Mysterious</button>
+<button class="option" data-value="dark atmosphere">Dark</button>
+<button class="option" data-value="epic atmosphere">Epic</button>
+<button class="option" data-value="mysterious atmosphere">Mysterious</button>
 </div>
 </div>
 
 </section>
 
+<!-- OUTPUT -->
 <section class="panel">
-<h2>Output Settings / Configuración de Salida</h2>
+<h2>Output Settings</h2>
 
 <div class="option-group">
-<label>Resolution / Resolución</label>
+<label>Resolution</label>
 <div class="options" data-group="resolution">
-<button class="option" data-value="8K resolution">Resolución 8K / 8K</button>
-<button class="option" data-value="4K resolution">Resolución 4K / 4K</button>
-<button class="option" data-value="HDR">HDR / HDR</button>
+<button class="option" data-value="8K resolution">8K</button>
+<button class="option" data-value="4K resolution">4K</button>
+<button class="option" data-value="HDR">HDR</button>
 </div>
 </div>
 
 <div class="option-group">
-<label>Aspect Ratio / Relación de Aspecto</label>
+<label>Aspect Ratio</label>
 <div class="options" data-group="ratio">
-<button class="option" data-value="16:9 aspect ratio">Horizontal 16:9 / 16:9</button>
-<button class="option" data-value="9:16 aspect ratio">Vertical 9:16 / 9:16</button>
-<button class="option" data-value="1:1 aspect ratio">Cuadrado 1:1 / 1:1</button>
+<button class="option" data-value="16:9 aspect ratio">16:9</button>
+<button class="option" data-value="9:16 aspect ratio">9:16</button>
+<button class="option" data-value="1:1 aspect ratio">1:1</button>
 </div>
 </div>
 
+</section>
+
+<!-- NEGATIVE -->
+<section class="panel">
+<h2>Negative Prompt</h2>
+<textarea id="negative" placeholder="Elements to avoid..."></textarea>
 </section>
 
 <section class="panel">
-<h2>Negative Prompt / Prompt Negativo</h2>
-<textarea id="negative" placeholder="Elements to avoid / Elementos a evitar..."></textarea>
+<h2>Quick Negative Suggestions</h2>
+<div class="options" data-group="negativeQuick">
+<button class="option" data-value="text watermark">Text / Watermark</button>
+<button class="option" data-value="low resolution">Low Resolution</button>
+<button class="option" data-value="blurry image">Blurry</button>
+<button class="option" data-value="unwanted background elements">Unwanted Background</button>
+</div>
 </section>
 
-<button class="generate" onclick="generatePrompt()">GENERAR PROMPT / GENERATE PROMPT</button>
+<button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
 <textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
-<button class="copy" onclick="copyPrompt()">COPIAR / COPY</button>
+<button class="copy" onclick="copyPrompt()">COPY</button>
 
 </div>
 
