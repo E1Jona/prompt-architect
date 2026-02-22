@@ -32,10 +32,61 @@ document.querySelectorAll(".option").forEach(btn => {
         delete selectedOptions[group];
       }
 
-      updateTags();
-      playSound();
-      return;
+      function updateTags() {
+
+  const container = document.getElementById("selectedTags");
+  container.innerHTML = "";
+
+  Object.keys(selectedOptions).forEach(group => {
+
+    const value = selectedOptions[group];
+
+    if (Array.isArray(value)) {
+      value.forEach(val => createTag(group, val));
+    } else {
+      createTag(group, value);
     }
+
+  });
+
+}
+
+function createTag(group, value) {
+
+  const container = document.getElementById("selectedTags");
+
+  const tag = document.createElement("div");
+  tag.classList.add("tag");
+  tag.innerHTML = `${value} <span>✕</span>`;
+
+  tag.querySelector("span").addEventListener("click", () => {
+
+    if (Array.isArray(selectedOptions[group])) {
+      selectedOptions[group] =
+        selectedOptions[group].filter(v => v !== value);
+
+      if (selectedOptions[group].length === 0) {
+        delete selectedOptions[group];
+      }
+
+    } else {
+      delete selectedOptions[group];
+    }
+
+    document.querySelectorAll(`.options[data-group="${group}"] .option`)
+      .forEach(btn => {
+        if (btn.dataset.value === value) {
+          btn.classList.remove("active");
+        }
+      });
+
+    tag.classList.add("fade-out");
+
+    setTimeout(() => updateTags(), 200);
+  });
+
+  container.appendChild(tag);
+}
 
     // RESTO → SELECCIÓN ÚNICA CON TOGGLE
 
@@ -110,6 +161,7 @@ function copyPrompt() {
   document.execCommand("copy");
   alert("Prompt copied.");
 }
+
 
 
 
