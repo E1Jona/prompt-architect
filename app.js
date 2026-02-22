@@ -1,12 +1,46 @@
-function generatePrompt() {
-  const input = document.getElementById("inputPrompt").value;
+// Expand / Collapse modules
+document.querySelectorAll(".module-toggle").forEach(button => {
+  button.addEventListener("click", () => {
+    const content = button.nextElementSibling;
+    content.style.display = content.style.display === "flex" ? "none" : "flex";
+  });
+});
 
-  if (!input.trim()) {
-    alert("Please enter a description first.");
-    return;
+// Clean builder
+function generatePrompt() {
+
+  const values = [
+    document.getElementById("subject").value,
+    document.getElementById("action").value,
+    document.getElementById("location").value,
+    document.getElementById("style").value,
+    document.getElementById("engine").value,
+    document.getElementById("camera").value,
+    document.getElementById("lens").value,
+    document.getElementById("lighting").value,
+    document.getElementById("mood").value,
+    document.getElementById("resolution").value,
+    document.getElementById("ratio").value
+  ];
+
+  // Remove empty values
+  const cleaned = values.filter(v => v && v.trim() !== "");
+
+  let finalPrompt = cleaned.join(", ");
+
+  const negative = document.getElementById("negative").value;
+
+  if (negative.trim() !== "") {
+    finalPrompt += ` --negative ${negative}`;
   }
 
-  const optimized = `Ultra-detailed cinematic scene, ${input}, 8K resolution, dramatic lighting, hyper-realistic, sharp focus, professional composition, volumetric lighting, high dynamic range`;
+  document.getElementById("result").value = finalPrompt;
+}
 
-  document.getElementById("outputPrompt").value = optimized;
+// Copy
+function copyPrompt() {
+  const result = document.getElementById("result");
+  result.select();
+  document.execCommand("copy");
+  alert("Prompt copied to clipboard.");
 }
