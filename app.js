@@ -1,27 +1,53 @@
-document.addEventListener("DOMContentLoaded", () => {
+let selectedOptions = {};
 
-  document.querySelectorAll(".option").forEach(btn => {
+document.querySelectorAll(".option").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const group = btn.parentElement.dataset.group;
 
-    btn.addEventListener("click", () => {
+    btn.parentElement.querySelectorAll(".option")
+      .forEach(b => b.classList.remove("active"));
 
-      const group = btn.parentElement.dataset.group;
-
-      // Si ya está activo → desmarcar
-      if (btn.classList.contains("active")) {
-        btn.classList.remove("active");
-        return;
-      }
-
-      // Quitar activos del mismo grupo
-      document
-        .querySelectorAll(`.options[data-group="${group}"] .option`)
-        .forEach(b => b.classList.remove("active"));
-
-      // Activar el actual
-      btn.classList.add("active");
-
-    });
-
+    btn.classList.add("active");
+    selectedOptions[group] = btn.dataset.value;
   });
-
 });
+
+function generatePrompt() {
+
+  const base = [
+    document.getElementById("subject").value,
+    document.getElementById("action").value,
+    document.getElementById("location").value
+  ];
+
+  const modular = [
+    selectedOptions.style,
+    selectedOptions.engine,
+    selectedOptions.camera,
+    selectedOptions.lens,
+    selectedOptions.lighting,
+    selectedOptions.mood,
+    selectedOptions.resolution,
+    selectedOptions.ratio
+  ];
+
+  const cleaned = [...base, ...modular]
+    .filter(v => v && v.trim() !== "");
+
+  let finalPrompt = cleaned.join(", ");
+
+  const negative = document.getElementById("negative").value;
+
+  if (negative.trim() !== "") {
+    finalPrompt += ` --negative ${negative}`;
+  }
+
+  document.getElementById("result").value = finalPrompt;
+}
+
+function copyPrompt() {
+  const result = document.getElementById("result");
+  result.select();
+  document.execCommand("copy");
+  alert("Prompt copied.");
+}
