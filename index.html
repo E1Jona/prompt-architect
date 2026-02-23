@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Prompt Architect | Compact</title>
+<title>Prompt Architect | Bilingual</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
@@ -24,11 +24,11 @@
         color: var(--text-main);
         margin: 0;
         padding: 0;
-        padding-bottom: 250px; /* Space for fixed output */
+        padding-bottom: 250px;
     }
 
-    /* --- STICKY SUMMARY BAR --- */
-    .sticky-summary {
+    /* --- TOP BAR (Lang + Summary) --- */
+    .top-bar {
         position: fixed;
         top: 0;
         left: 0;
@@ -39,10 +39,46 @@
         padding: 10px 20px;
         z-index: 1000;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .lang-switch {
+        display: flex;
+        gap: 5px;
+        background: #0b0d12;
+        padding: 4px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+    }
+
+    .lang-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        padding: 4px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .lang-btn.active {
+        background: var(--accent);
+        color: #000;
+    }
+
+    .summary-container {
+        display: flex;
         flex-wrap: wrap;
         gap: 8px;
         align-items: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        flex: 1;
+        margin-left: 20px;
+        min-width: 200px;
     }
 
     .summary-label {
@@ -50,7 +86,7 @@
         text-transform: uppercase;
         color: var(--text-muted);
         font-weight: bold;
-        margin-right: 5px;
+        white-space: nowrap;
     }
 
     .summary-tag {
@@ -64,6 +100,7 @@
         align-items: center;
         gap: 6px;
         animation: popIn 0.3s ease;
+        max-width: 200px;
     }
 
     .summary-tag .remove {
@@ -81,7 +118,7 @@
     /* --- MAIN LAYOUT --- */
     .app {
         max-width: 1200px;
-        margin: 60px auto 0;
+        margin: 70px auto 0;
         padding: 20px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -98,7 +135,7 @@
     h1 { margin: 0; color: var(--accent); font-size: 1.5rem; letter-spacing: 2px; }
     p { color: var(--text-muted); margin: 5px 0 0; font-size: 0.9rem; }
 
-    /* --- COMPACT PANELS --- */
+    /* --- PANELS --- */
     .panel {
         background: var(--panel-bg);
         border: 1px solid var(--border);
@@ -130,7 +167,7 @@
         padding: 0 15px;
     }
     .panel.active .panel-content {
-        max-height: 500px;
+        max-height: 600px;
         padding: 15px;
         border-top: 1px solid var(--border);
     }
@@ -150,7 +187,7 @@
     }
     textarea:focus { outline: 1px solid var(--accent); }
 
-    /* --- OPTION GRIDS --- */
+    /* --- OPTION GRIDS (MULTI-SELECT) --- */
     .option-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -171,13 +208,17 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        user-select: none;
     }
     .option-btn:hover { border-color: var(--text-muted); color: var(--text-main); }
+    
+    /* MULTI-SELECT STATE */
     .option-btn.selected {
         background: var(--accent);
         color: #000;
         border-color: var(--accent);
         font-weight: 600;
+        box-shadow: 0 0 8px var(--accent-glow);
     }
 
     .sub-label {
@@ -205,6 +246,7 @@
         gap: 10px;
         margin-bottom: 10px;
         justify-content: center;
+        flex-wrap: wrap;
     }
     #result {
         width: 100%;
@@ -244,23 +286,29 @@
 </head>
 <body>
 
-<!-- STICKY SUMMARY BAR -->
-<div class="sticky-summary" id="summaryBar">
-    <span class="summary-label">Active:</span>
-    <div id="summaryTags" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+<!-- TOP BAR: Lang Switch + Summary -->
+<div class="top-bar">
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">EN</button>
+        <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">ES</button>
+    </div>
+    <div class="summary-container" id="summaryBar">
+        <span class="summary-label" data-i18n="active">Active:</span>
+        <div id="summaryTags" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+    </div>
 </div>
 
 <div class="app">
 
 <header>
-  <h1>PROMPT ARCHITECT</h1>
-  <p>Compact Dashboard Interface</p>
+  <h1 data-i18n="title">PROMPT ARCHITECT</h1>
+  <p data-i18n="subtitle">Compact Dashboard Interface</p>
 </header>
 
 <!-- PANEL 1: CHARACTER -->
 <div class="panel active">
     <div class="panel-header">
-        <h3>🧬 Character</h3>
+        <h3 data-i18n="character">🧬 Character</h3>
         <span class="panel-summary" id="sum-character"></span>
     </div>
     <div class="panel-content">
@@ -272,7 +320,7 @@
 <!-- PANEL 2: SCENE -->
 <div class="panel active">
     <div class="panel-header">
-        <h3>🎬 Scene</h3>
+        <h3 data-i18n="scene">🎬 Scene</h3>
         <span class="panel-summary" id="sum-scene"></span>
     </div>
     <div class="panel-content">
@@ -285,11 +333,11 @@
 <!-- PANEL 3: STYLE -->
 <div class="panel">
     <div class="panel-header">
-        <h3>🎨 Style</h3>
+        <h3 data-i18n="style">🎨 Style</h3>
         <span class="panel-summary" id="sum-style"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label">Art Style</span>
+        <span class="sub-label" data-i18n="artStyle">Art Style</span>
         <div class="option-grid" data-group="style">
             <button class="option-btn" data-value="cinematic">Cinematic</button>
             <button class="option-btn" data-value="cyberpunk">Cyberpunk</button>
@@ -298,7 +346,7 @@
             <button class="option-btn" data-value="fantasy art">Fantasy</button>
             <button class="option-btn" data-value="oil painting">Oil Painting</button>
         </div>
-        <span class="sub-label">Engine</span>
+        <span class="sub-label" data-i18n="engine">Engine</span>
         <div class="option-grid" data-group="engine">
             <button class="option-btn" data-value="Unreal Engine 5">Unreal 5</button>
             <button class="option-btn" data-value="Octane render">Octane</button>
@@ -310,18 +358,18 @@
 <!-- PANEL 4: LIGHTING & TIME -->
 <div class="panel">
     <div class="panel-header">
-        <h3>💡 Light & Time</h3>
+        <h3 data-i18n="lightTime">💡 Light & Time</h3>
         <span class="panel-summary" id="sum-light"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label">Time</span>
+        <span class="sub-label" data-i18n="time">Time</span>
         <div class="option-grid" data-group="time">
             <button class="option-btn" data-value="dawn">Dawn</button>
             <button class="option-btn" data-value="midday">Midday</button>
             <button class="option-btn" data-value="sunset">Sunset</button>
             <button class="option-btn" data-value="night">Night</button>
         </div>
-        <span class="sub-label">Lighting</span>
+        <span class="sub-label" data-i18n="lighting">Lighting</span>
         <div class="option-grid" data-group="lighting">
             <button class="option-btn" data-value="dramatic lighting">Dramatic</button>
             <button class="option-btn" data-value="neon lighting">Neon</button>
@@ -334,11 +382,11 @@
 <!-- PANEL 5: CAMERA -->
 <div class="panel">
     <div class="panel-header">
-        <h3>📷 Camera</h3>
+        <h3 data-i18n="camera">📷 Camera</h3>
         <span class="panel-summary" id="sum-camera"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label">Shot</span>
+        <span class="sub-label" data-i18n="shot">Shot</span>
         <div class="option-grid" data-group="camera">
             <button class="option-btn" data-value="wide angle">Wide</button>
             <button class="option-btn" data-value="close-up">Close-up</button>
@@ -346,7 +394,7 @@
             <button class="option-btn" data-value="POV">POV</button>
             <button class="option-btn" data-value="macro shot">Macro</button>
         </div>
-        <span class="sub-label">Lens</span>
+        <span class="sub-label" data-i18n="lens">Lens</span>
         <div class="option-grid" data-group="lens">
             <button class="option-btn" data-value="35mm">35mm</button>
             <button class="option-btn" data-value="85mm">85mm</button>
@@ -359,23 +407,24 @@
 <!-- PANEL 6: ENV & WEATHER -->
 <div class="panel">
     <div class="panel-header">
-        <h3>🌍 Env & Weather</h3>
+        <h3 data-i18n="envWeather">🌍 Env & Weather</h3>
         <span class="panel-summary" id="sum-env"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label">Environment</span>
+        <span class="sub-label" data-i18n="environment">Environment</span>
         <div class="option-grid" data-group="environment">
             <button class="option-btn" data-value="forest">Forest</button>
             <button class="option-btn" data-value="desert">Desert</button>
             <button class="option-btn" data-value="cityscape">City</button>
             <button class="option-btn" data-value="space">Space</button>
         </div>
-        <span class="sub-label">Weather</span>
+        <span class="sub-label" data-i18n="weather">Weather</span>
         <div class="option-grid" data-group="weather">
             <button class="option-btn" data-value="rainy">Rain</button>
             <button class="option-btn" data-value="stormy">Storm</button>
             <button class="option-btn" data-value="foggy">Fog</button>
             <button class="option-btn" data-value="sunny">Sunny</button>
+            <button class="option-btn" data-value="snowy">Snow</button>
         </div>
     </div>
 </div>
@@ -383,17 +432,17 @@
 <!-- PANEL 7: OUTPUT -->
 <div class="panel">
     <div class="panel-header">
-        <h3>⚙️ Output</h3>
+        <h3 data-i18n="output">⚙️ Output</h3>
         <span class="panel-summary" id="sum-output"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label">Resolution</span>
+        <span class="sub-label" data-i18n="resolution">Resolution</span>
         <div class="option-grid" data-group="resolution">
             <button class="option-btn" data-value="8K">8K</button>
             <button class="option-btn" data-value="4K">4K</button>
             <button class="option-btn" data-value="HDR">HDR</button>
         </div>
-        <span class="sub-label">Ratio</span>
+        <span class="sub-label" data-i18n="ratio">Ratio</span>
         <div class="option-grid" data-group="ratio">
             <button class="option-btn" data-value="--ar 16:9">16:9</button>
             <button class="option-btn" data-value="--ar 9:16">9:16</button>
@@ -405,7 +454,7 @@
 <!-- PANEL 8: NEGATIVE -->
 <div class="panel">
     <div class="panel-header">
-        <h3>⛔ Negative</h3>
+        <h3 data-i18n="negative">⛔ Negative</h3>
         <span class="panel-summary" id="sum-negative"></span>
     </div>
     <div class="panel-content">
@@ -423,15 +472,120 @@
 <!-- FIXED OUTPUT AREA -->
 <div class="output-area">
     <div class="output-controls">
-        <button class="btn btn-random" onclick="randomize()">🎲 Random</button>
-        <button class="btn btn-primary" onclick="generatePrompt()">⚡ Generate</button>
-        <button class="btn btn-secondary" onclick="copyPrompt()">📋 Copy</button>
-        <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear</button>
+        <button class="btn btn-random" onclick="randomize()">🎲 <span data-i18n="random">Random</span></button>
+        <button class="btn btn-primary" onclick="generatePrompt()">⚡ <span data-i18n="generate">Generate</span></button>
+        <button class="btn btn-secondary" onclick="copyPrompt()">📋 <span data-i18n="copy">Copy</span></button>
+        <button class="btn btn-secondary" onclick="clearAll()">🗑️ <span data-i18n="clear">Clear</span></button>
     </div>
     <textarea id="result" readonly placeholder="Your prompt will appear here..."></textarea>
 </div>
 
 <script>
+    // --- TRANSLATIONS ---
+    const translations = {
+        en: {
+            active: "Active:",
+            title: "PROMPT ARCHITECT",
+            subtitle: "Compact Dashboard Interface",
+            character: "🧬 Character",
+            scene: "🎬 Scene",
+            style: "🎨 Style",
+            artStyle: "Art Style",
+            engine: "Engine",
+            lightTime: "💡 Light & Time",
+            time: "Time",
+            lighting: "Lighting",
+            camera: "📷 Camera",
+            shot: "Shot",
+            lens: "Lens",
+            envWeather: "🌍 Env & Weather",
+            environment: "Environment",
+            weather: "Weather",
+            output: "⚙️ Output",
+            resolution: "Resolution",
+            ratio: "Ratio",
+            negative: "⛔ Negative",
+            random: "Random",
+            generate: "Generate",
+            copy: "Copy",
+            clear: "Clear",
+            placeholderName: "Name...",
+            placeholderTraits: "Traits...",
+            placeholderSubject: "Subject...",
+            placeholderAction: "Action...",
+            placeholderLocation: "Location...",
+            placeholderNegative: "Custom negative...",
+            resultPlaceholder: "Your prompt will appear here..."
+        },
+        es: {
+            active: "Activo:",
+            title: "ARQUITECTO DE PROMPTS",
+            subtitle: "Interfaz Compacta de Panel",
+            character: "🧬 Personaje",
+            scene: "🎬 Escena",
+            style: "🎨 Estilo",
+            artStyle: "Estilo de Arte",
+            engine: "Motor",
+            lightTime: "💡 Luz y Tiempo",
+            time: "Tiempo",
+            lighting: "Iluminación",
+            camera: "📷 Cámara",
+            shot: "Toma",
+            lens: "Lente",
+            envWeather: "🌍 Entorno y Clima",
+            environment: "Entorno",
+            weather: "Clima",
+            output: "⚙️ Salida",
+            resolution: "Resolución",
+            ratio: "Proporción",
+            negative: "⛔ Negativo",
+            random: "Aleatorio",
+            generate: "Generar",
+            copy: "Copiar",
+            clear: "Limpiar",
+            placeholderName: "Nombre...",
+            placeholderTraits: "Rasgos...",
+            placeholderSubject: "Sujeto...",
+            placeholderAction: "Acción...",
+            placeholderLocation: "Ubicación...",
+            placeholderNegative: "Negativo personalizado...",
+            resultPlaceholder: "Tu prompt aparecerá aquí..."
+        }
+    };
+
+    let currentLang = 'en';
+
+    // --- LANGUAGE SWITCH ---
+    function setLanguage(lang) {
+        currentLang = lang;
+        
+        // Update buttons
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        
+        // Update all text elements with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        // Update placeholders
+        document.getElementById('charName').placeholder = translations[lang].placeholderName;
+        document.getElementById('charTraits').placeholder = translations[lang].placeholderTraits;
+        document.getElementById('subject').placeholder = translations[lang].placeholderSubject;
+        document.getElementById('action').placeholder = translations[lang].placeholderAction;
+        document.getElementById('location').placeholder = translations[lang].placeholderLocation;
+        document.getElementById('negative').placeholder = translations[lang].placeholderNegative;
+        document.getElementById('result').placeholder = translations[lang].resultPlaceholder;
+
+        // Update summary label
+        document.querySelector('.summary-label').textContent = translations[lang].active + ' ';
+        
+        updateSummary();
+    }
+
     // --- ACCORDION ---
     document.querySelectorAll('.panel-header').forEach(header => {
         header.addEventListener('click', () => {
@@ -440,26 +594,19 @@
         });
     });
 
-    // --- BUTTON SELECTION ---
+    // --- MULTI-SELECT BUTTON LOGIC ---
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            const group = this.parentElement.getAttribute('data-group');
-            // Toggle selection
-            if(this.classList.contains('selected')) {
-                this.classList.remove('selected');
-            } else {
-                // Remove siblings
-                document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(b => b.classList.remove('selected'));
-                this.classList.add('selected');
-            }
+            // Toggle current button (no exclusive logic anymore!)
+            this.classList.toggle('selected');
             updateSummary();
         });
     });
 
     // --- SUMMARY SYSTEM ---
-    function getSelected(group) {
-        const el = document.querySelector(`.option-grid[data-group="${group}"] .option-btn.selected`);
-        return el ? el.getAttribute('data-value') : null;
+    function getSelectedValues(group) {
+        const selected = document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn.selected`);
+        return Array.from(selected).map(btn => btn.getAttribute('data-value'));
     }
 
     function getText(id) {
@@ -479,34 +626,37 @@
             { group: 'lighting', label: 'Light' },
             { group: 'camera', label: 'Camera' },
             { group: 'environment', label: 'Env' },
+            { group: 'weather', label: 'Weather' },
             { group: 'ratio', label: 'Ratio' }
         ];
 
         let activeCount = 0;
 
         selections.forEach(sel => {
-            let value = sel.group ? getSelected(sel.group) : getText(sel.id);
-            if(value) {
-                activeCount++;
-                const tag = document.createElement('div');
-                tag.className = 'summary-tag';
-                tag.innerHTML = `<span>${value}</span><span class="remove" onclick="clearSelection('${sel.group}', '${sel.id}')">×</span>`;
-                tagsContainer.appendChild(tag);
-            }
+            let values = sel.group ? getSelectedValues(sel.group) : (getText(sel.id) ? [getText(sel.id)] : []);
+            values.forEach(value => {
+                if(value) {
+                    activeCount++;
+                    const tag = document.createElement('div');
+                    tag.className = 'summary-tag';
+                    tag.innerHTML = `<span>${value}</span><span class="remove" onclick="removeSelection('${sel.group}', '${sel.id}', '${value}')">×</span>`;
+                    tagsContainer.appendChild(tag);
+                }
+            });
         });
 
         if(activeCount === 0) {
-            tagsContainer.innerHTML = '<span style="color:var(--text-muted); font-size:0.75rem;">No options selected yet</span>';
+            tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.75rem;">${currentLang === 'en' ? 'No options selected yet' : 'Aún no hay opciones seleccionadas'}</span>`;
         }
 
         // Update panel summaries
         updatePanelSummary('sum-character', [getText('charName'), getText('charTraits')]);
         updatePanelSummary('sum-scene', [getText('subject'), getText('location')]);
-        updatePanelSummary('sum-style', [getSelected('style'), getSelected('engine')]);
-        updatePanelSummary('sum-light', [getSelected('time'), getSelected('lighting')]);
-        updatePanelSummary('sum-camera', [getSelected('camera'), getSelected('lens')]);
-        updatePanelSummary('sum-env', [getSelected('environment'), getSelected('weather')]);
-        updatePanelSummary('sum-output', [getSelected('resolution'), getSelected('ratio')]);
+        updatePanelSummary('sum-style', [...getSelectedValues('style'), ...getSelectedValues('engine')]);
+        updatePanelSummary('sum-light', [...getSelectedValues('time'), ...getSelectedValues('lighting')]);
+        updatePanelSummary('sum-camera', [...getSelectedValues('camera'), ...getSelectedValues('lens')]);
+        updatePanelSummary('sum-env', [...getSelectedValues('environment'), ...getSelectedValues('weather')]);
+        updatePanelSummary('sum-output', [...getSelectedValues('resolution'), ...getSelectedValues('ratio')]);
         updatePanelSummary('sum-negative', [getText('negative')]);
     }
 
@@ -516,9 +666,14 @@
         el.textContent = filtered.length > 0 ? filtered.join(' • ') : '';
     }
 
-    function clearSelection(group, id) {
+    function removeSelection(group, id, value) {
         if(group) {
-            document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(b => b.classList.remove('selected'));
+            // Find and deselect specific button
+            document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(btn => {
+                if(btn.getAttribute('data-value') === value) {
+                    btn.classList.remove('selected');
+                }
+            });
         }
         if(id) {
             document.getElementById(id).value = '';
@@ -526,27 +681,27 @@
         updateSummary();
     }
 
-    // --- GENERATE ---
+    // --- GENERATE PROMPT (ALWAYS IN ENGLISH) ---
     function generatePrompt() {
         let parts = [];
         
-        // Text inputs
+        // Text inputs (user types in any language, but we keep as-is for names)
         ['charName', 'charTraits', 'subject', 'action', 'location'].forEach(id => {
             const txt = getText(id);
             if(txt) parts.push(txt);
         });
 
-        // Selected options
+        // Selected options (ALL data-values are in English)
         ['style', 'engine', 'time', 'lighting', 'camera', 'lens', 'environment', 'weather', 'resolution', 'ratio'].forEach(grp => {
-            const val = getSelected(grp);
-            if(val) parts.push(val);
+            const vals = getSelectedValues(grp);
+            vals.forEach(v => parts.push(v));
         });
 
         // Negative
         const neg = getText('negative');
-        const negQ = getSelected('negQuick');
-        if(neg || negQ) {
-            parts.push('--no ' + [neg, negQ].filter(Boolean).join(', '));
+        const negQ = getSelectedValues('negQuick');
+        if(neg || negQ.length > 0) {
+            parts.push('--no ' + [neg, ...negQ].filter(Boolean).join(', '));
         }
 
         document.getElementById('result').value = parts.join(', ');
@@ -558,10 +713,12 @@
         const el = document.getElementById('result');
         el.select();
         navigator.clipboard.writeText(el.value);
-        const btn = event.target;
+        const btn = event.target.closest('.btn');
         const orig = btn.textContent;
-        btn.textContent = '✅ Copied!';
-        setTimeout(() => btn.textContent = orig, 1500);
+        btn.textContent = currentLang === 'en' ? '✅ Copied!' : '✅ ¡Copiado!';
+        setTimeout(() => {
+            btn.innerHTML = '📋 <span data-i18n="copy">' + (currentLang === 'en' ? 'Copy' : 'Copiar') + '</span>';
+        }, 1500);
     }
 
     function clearAll() {
@@ -572,12 +729,18 @@
     }
 
     function randomize() {
-        const groups = ['style', 'time', 'lighting', 'camera', 'environment', 'ratio'];
+        const groups = ['style', 'time', 'lighting', 'camera', 'environment', 'weather', 'ratio'];
         groups.forEach(g => {
             const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
             if(opts.length) {
+                // Clear previous
                 opts.forEach(o => o.classList.remove('selected'));
-                opts[Math.floor(Math.random() * opts.length)].classList.add('selected');
+                // Select 1-3 random options
+                const count = Math.floor(Math.random() * 3) + 1;
+                for(let i = 0; i < count; i++) {
+                    const random = opts[Math.floor(Math.random() * opts.length)];
+                    random.classList.add('selected');
+                }
             }
         });
         document.getElementById('charName').value = 'Cyber Entity';
@@ -587,6 +750,7 @@
     }
 
     // Init
+    setLanguage('en');
     updateSummary();
 </script>
 
