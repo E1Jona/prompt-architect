@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Grok Prompt Architect v4.3 | AI Assistant + Imagine Optimized</title>
+<title>Grok Prompt Architect v4.2 | Imagine Optimized</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
@@ -610,147 +610,6 @@
         transform: translateX(20px);
     }
 
-    /* --- AI ASSISTANT MODAL --- */
-    .ai-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.85);
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(5px);
-    }
-
-    .ai-modal-content {
-        background: #14171d;
-        padding: 30px;
-        border-radius: 12px;
-        max-width: 650px;
-        width: 90%;
-        border: 1px solid var(--accent);
-        max-height: 85vh;
-        overflow-y: auto;
-        box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
-    }
-
-    .ai-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .ai-modal-header h2 {
-        margin: 0;
-        color: var(--accent);
-        font-size: 1.3rem;
-    }
-
-    .ai-modal-close {
-        background: transparent;
-        border: none;
-        color: var(--text-muted);
-        font-size: 1.8rem;
-        cursor: pointer;
-        transition: color 0.2s;
-    }
-
-    .ai-modal-close:hover {
-        color: var(--text-main);
-    }
-
-    .ai-modal-section {
-        margin-bottom: 20px;
-    }
-
-    .ai-modal-label {
-        display: block;
-        color: var(--text-main);
-        margin-bottom: 8px;
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .ai-modal-textarea {
-        width: 100%;
-        min-height: 90px;
-        background: #0a0c10;
-        border: 1px solid var(--border);
-        color: var(--text-main);
-        padding: 12px;
-        border-radius: 6px;
-        font-family: inherit;
-        font-size: 0.9rem;
-        resize: vertical;
-    }
-
-    .ai-modal-textarea:focus {
-        outline: 1px solid var(--accent);
-        border-color: var(--accent);
-    }
-
-    .ai-templates-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .ai-template-btn {
-        background: #1a1e26;
-        border: 1px solid var(--border);
-        color: var(--text-muted);
-        padding: 12px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        text-align: center;
-        transition: all 0.25s;
-    }
-
-    .ai-template-btn:hover {
-        border-color: var(--accent);
-        color: var(--text-main);
-        background: #222831;
-    }
-
-    .ai-preview-box {
-        width: 100%;
-        min-height: 120px;
-        background: #0a0c10;
-        border: 1px solid var(--accent);
-        color: var(--success);
-        padding: 12px;
-        border-radius: 6px;
-        font-family: 'Consolas', monospace;
-        font-size: 0.85rem;
-        resize: vertical;
-        line-height: 1.5;
-    }
-
-    .ai-modal-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .ai-modal-note {
-        margin-top: 15px;
-        padding: 12px;
-        background: rgba(255, 170, 0, 0.1);
-        border: 1px solid var(--warning);
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: var(--warning);
-        line-height: 1.5;
-    }
-
     /* --- SCROLLBAR --- */
     ::-webkit-scrollbar {
         width: 7px;
@@ -794,14 +653,6 @@
             width: 100%;
             justify-content: center;
         }
-
-        .ai-templates-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .ai-modal-actions {
-            grid-template-columns: 1fr;
-        }
     }
 </style>
 </head>
@@ -812,8 +663,8 @@
     <div class="brand">
         <div class="brand-logo">G</div>
         <div class="brand-text">
-            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.3</span></h1>
-            <span data-i18n="subtitle">Imagine 1.0 | Aurora Engine + AI</span>
+            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.2</span></h1>
+            <span data-i18n="subtitle">Imagine 1.0 | Aurora Engine</span>
         </div>
     </div>
     
@@ -1297,9 +1148,6 @@
     </div>
 
     <div class="output-controls">
-        <button class="btn btn-grok" onclick="showAIAssistant()">
-            🤖 <span data-i18n="aiAssistant">AI Assistant</span>
-        </button>
         <button class="btn btn-random" onclick="randomize()">
             🎲 <span data-i18n="random">Random</span>
         </button>
@@ -1322,61 +1170,11 @@
     </div>
 </div>
 
-<!-- AI ASSISTANT MODAL -->
-<div id="aiModal" class="ai-modal">
-    <div class="ai-modal-content">
-        <div class="ai-modal-header">
-            <h2 data-i18n="aiModalTitle">🤖 AI Prompt Assistant</h2>
-            <button class="ai-modal-close" onclick="closeAIAssistant()">×</button>
-        </div>
-
-        <!-- Idea Input -->
-        <div class="ai-modal-section">
-            <label class="ai-modal-label" data-i18n="aiIdeaLabel">Describe your idea (Spanish or English):</label>
-            <textarea id="aiIdea" class="ai-modal-textarea" data-i18n-placeholder="aiIdeaPlaceholder" placeholder="e.g. cybernetic warrior in futuristic city with neon rain..."></textarea>
-        </div>
-
-        <!-- Templates -->
-        <div class="ai-modal-section">
-            <label class="ai-modal-label" data-i18n="aiTemplateLabel">Or use a template:</label>
-            <div class="ai-templates-grid">
-                <button class="ai-template-btn" onclick="useTemplate('cinematic')">🎬 <span data-i18n="tplCinematic">Cinematic</span></button>
-                <button class="ai-template-btn" onclick="useTemplate('marketing')">📱 <span data-i18n="tplMarketing">Marketing</span></button>
-                <button class="ai-template-btn" onclick="useTemplate('anime')">🎌 <span data-i18n="tplAnime">Anime</span></button>
-                <button class="ai-template-btn" onclick="useTemplate('horror')">👻 <span data-i18n="tplHorror">Horror</span></button>
-                <button class="ai-template-btn" onclick="useTemplate('fashion')">👗 <span data-i18n="tplFashion">Fashion</span></button>
-                <button class="ai-template-btn" onclick="useTemplate('scifi')">🚀 <span data-i18n="tplScifi">Sci-Fi</span></button>
-            </div>
-        </div>
-
-        <!-- Preview -->
-        <div class="ai-modal-section">
-            <label class="ai-modal-label" data-i18n="aiPreviewLabel">Generated Prompt:</label>
-            <textarea id="aiPreview" class="ai-preview-box" readonly></textarea>
-        </div>
-
-        <!-- Actions -->
-        <div class="ai-modal-actions">
-            <button class="btn btn-primary" onclick="generateAIPrompt()" style="justify-content:center;">
-                ✨ <span data-i18n="aiGenerateBtn">Generate with AI</span>
-            </button>
-            <button class="btn btn-secondary" onclick="applyAIPrompt()" style="justify-content:center;">
-                ✅ <span data-i18n="aiApplyBtn">Apply to App</span>
-            </button>
-        </div>
-
-        <!-- Note -->
-        <div class="ai-modal-note" data-i18n="aiApiNote">
-            ⚠️ Note: AI generation requires API Key (Grok/OpenAI). Without API, uses predefined templates and local logic.
-        </div>
-    </div>
-</div>
-
 <script>
-    // === TRANSLATIONS ===
+    // --- TRANSLATIONS ---
     const translations = {
         en: {
-            subtitle: "Imagine 1.0 | Aurora Engine + AI",
+            subtitle: "Imagine 1.0 | Aurora Engine",
             active: "Active:",
             alertTitle: "Grok Protocol Active:",
             alertText: "Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.",
@@ -1432,7 +1230,6 @@
             spicyWarning: "Legal Warning",
             finalPrompt: "Final Prompt (Always in English)",
             structureHint: "Subject→Action→Optics; Lighting; Physics",
-            aiAssistant: "AI Assistant",
             random: "Random",
             generate: "Generate",
             copy: "Copy",
@@ -1445,20 +1242,6 @@
             placeholderLocation: "e.g. rain-soaked neon cityscape with reflections...",
             placeholderNegative: "Additional elements to avoid...",
             resultPlaceholder: "Your Grok-optimized prompt will appear here...",
-            aiModalTitle: "🤖 AI Prompt Assistant",
-            aiIdeaLabel: "Describe your idea (Spanish or English):",
-            aiIdeaPlaceholder: "e.g. cybernetic warrior in futuristic city with neon rain...",
-            aiTemplateLabel: "Or use a template:",
-            aiPreviewLabel: "Generated Prompt:",
-            aiGenerateBtn: "✨ Generate with AI",
-            aiApplyBtn: "✅ Apply to App",
-            aiApiNote: "⚠️ Note: AI generation requires API Key (Grok/OpenAI). Without API, uses predefined templates and local logic.",
-            tplCinematic: "Cinematic",
-            tplMarketing: "Marketing",
-            tplAnime: "Anime",
-            tplHorror: "Horror",
-            tplFashion: "Fashion",
-            tplScifi: "Sci-Fi",
             
             // === BUTTONS ===
             btn_14mm: "14mm Fisheye",
@@ -1612,7 +1395,7 @@
             btn_artisticnudity: "Artistic Nudity"
         },
         es: {
-            subtitle: "Imagine 1.0 | Motor Aurora + IA",
+            subtitle: "Imagine 1.0 | Motor Aurora",
             active: "Activo:",
             alertTitle: "Protocolo Grok Activo:",
             alertText: "Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.",
@@ -1668,7 +1451,6 @@
             spicyWarning: "Advertencia Legal",
             finalPrompt: "Prompt Final (Siempre en Inglés)",
             structureHint: "Sujeto→Acción→Óptica; Iluminación; Física",
-            aiAssistant: "Asistente IA",
             random: "Aleatorio",
             generate: "Generar",
             copy: "Copiar",
@@ -1681,20 +1463,6 @@
             placeholderLocation: "ej. paisaje urbano de neón empapado con reflejos...",
             placeholderNegative: "Elementos adicionales a evitar...",
             resultPlaceholder: "Tu prompt optimizado para Grok aparecerá aquí...",
-            aiModalTitle: "🤖 Asistente de Prompts IA",
-            aiIdeaLabel: "Describe tu idea (español o inglés):",
-            aiIdeaPlaceholder: "ej. guerrero cibernético en ciudad futurista con lluvia de neón...",
-            aiTemplateLabel: "O usa un template:",
-            aiPreviewLabel: "Prompt Generado:",
-            aiGenerateBtn: "✨ Generar con IA",
-            aiApplyBtn: "✅ Aplicar a la App",
-            aiApiNote: "⚠️ Nota: La generación con IA requiere API Key (Grok/OpenAI). Sin API, usa templates predefinidos y lógica local.",
-            tplCinematic: "Cinematográfico",
-            tplMarketing: "Marketing",
-            tplAnime: "Anime",
-            tplHorror: "Terror",
-            tplFashion: "Moda",
-            tplScifi: "Ciencia Ficción",
             
             // === BOTONES ===
             btn_14mm: "14mm Ojo de Pez",
@@ -1852,65 +1620,14 @@
     let currentLang = 'en';
     let spicyModeEnabled = false;
 
-    // === AI TEMPLATES ===
-    const aiTemplates = {
-        cinematic: {
-            subject: "A mysterious figure with detailed facial features and natural skin pores and textures",
-            action: "walking through a rain-soaked urban environment with reflective surfaces and wind affecting clothing",
-            style: ["cinematic photography", "85mm lens, portrait with bokeh", "close-up shot"],
-            lighting: ["dramatic chiaroscuro lighting, high contrast", "nighttime scene, artificial lights"],
-            quality: ["8K resolution, maximum detail", "ultra realistic, photorealistic", "subsurface scattering for organic materials"],
-            negative: "blurry, low resolution, cartoon, 3d render, text, watermark"
-        },
-        marketing: {
-            subject: "Professional model with confident expression and perfect lighting and natural skin pores",
-            action: "showcasing product with clear focus and brand-safe composition and subject looking directly at camera",
-            style: ["commercial advertising style", "50mm standard lens, natural view", "medium shot, waist up"],
-            lighting: ["softbox lighting, even illumination", "midday sun, harsh shadows"],
-            quality: ["studio quality", "professional grade", "720p HD", "crystal clear, sharp focus"],
-            negative: "text, watermark, subtitles, closed captions, blurry"
-        },
-        anime: {
-            subject: "Anime character with expressive eyes and detailed costume design and individual hair strands",
-            action: "dynamic action pose with flowing hair and clothing and wind affecting clothing and hair",
-            style: ["anime style", "35mm lens, natural perspective", "wide shot, full scene context"],
-            lighting: ["neon lighting, colorful ambient glow", "volumetric lighting, god rays"],
-            quality: ["high detail, intricate details", "rich colors, vibrant palette", "HDR enhanced"],
-            negative: "realistic, photorealistic, live action, natural skin"
-        },
-        horror: {
-            subject: "Eerie figure with unsettling atmosphere and shadow details and dark atmosphere",
-            action: "emerging from darkness with subtle movement and slow dolly in toward subject",
-            style: ["cinematic photography", "low angle shot, powerful perspective", "35mm lens, natural perspective"],
-            lighting: ["dark atmosphere", "volumetric lighting, god rays", "nighttime scene, artificial lights"],
-            quality: ["film grain texture, 35mm film stock", "HDR enhanced, high dynamic range"],
-            negative: "bright, cheerful, cartoon, anime, colorful"
-        },
-        fashion: {
-            subject: "Fashion model with elegant pose and detailed clothing textures and premium texture quality",
-            action: "walking on runway with confident stride and tracking shot following subject movement",
-            style: ["commercial advertising style", "85mm lens, portrait with bokeh", "full body shot, complete figure"],
-            lighting: ["rim lighting, edge highlight separation", "softbox lighting, even illumination"],
-            quality: ["studio quality", "premium texture quality", "sharp focus, crisp edges"],
-            negative: "blurry, deformed, ugly, bad anatomy, low resolution"
-        },
-        scifi: {
-            subject: "Futuristic cyborg with metallic details and glowing elements and subsurface scattering for organic materials",
-            action: "operating advanced technology in space station with slow pan right and subject looking off-camera",
-            style: ["cyberpunk aesthetic", "Unreal Engine 5 render", "wide shot, full scene context"],
-            lighting: ["neon lighting, colorful ambient glow", "blue hour lighting, cool twilight"],
-            quality: ["8K resolution, maximum detail", "hyper detailed, micro details"],
-            negative: "natural, organic, historical, vintage, daylight"
-        }
-    };
-
-    // === LANGUAGE SWITCH ===
+    // --- LANGUAGE SWITCH ---
     function setLanguage(lang) {
         currentLang = lang;
         
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         document.getElementById('btn-es').classList.toggle('active', lang === 'es');
         
+        // Translate elements with data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if(translations[lang][key]) {
@@ -1918,6 +1635,7 @@
             }
         });
         
+        // Translate BUTTONS with data-i18n-btn
         document.querySelectorAll('[data-i18n-btn]').forEach(btn => {
             const key = btn.getAttribute('data-i18n-btn');
             if(translations[lang][key]) {
@@ -1925,20 +1643,13 @@
             }
         });
 
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if(translations[lang][key]) {
-                el.placeholder = translations[lang][key];
-            }
-        });
-
+        // Placeholders
         document.getElementById('subject').placeholder = translations[lang].placeholderSubject;
         document.getElementById('action').placeholder = translations[lang].placeholderAction;
         document.getElementById('charDNA').placeholder = translations[lang].placeholderDNA;
         document.getElementById('location').placeholder = translations[lang].placeholderLocation;
         document.getElementById('negative').placeholder = translations[lang].placeholderNegative;
         document.getElementById('result').placeholder = translations[lang].resultPlaceholder;
-        document.getElementById('aiIdea').placeholder = translations[lang].aiIdeaPlaceholder;
 
         document.querySelector('.summary-label').textContent = translations[lang].active + ' ';
         document.getElementById('langIndicator').textContent = 'EN OUTPUT';
@@ -1946,7 +1657,7 @@
         updateSummary();
     }
 
-    // === ACCORDION ===
+    // --- ACCORDION ---
     document.querySelectorAll('.panel-header').forEach(header => {
         header.addEventListener('click', () => {
             const panel = header.parentElement;
@@ -1954,7 +1665,7 @@
         });
     });
 
-    // === MULTI-SELECT BUTTONS ===
+    // --- MULTI-SELECT BUTTONS ---
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             this.classList.toggle('selected');
@@ -1962,7 +1673,7 @@
         });
     });
 
-    // === SPICY MODE ===
+    // --- SPICY MODE ---
     function toggleSpicyMode() {
         spicyModeEnabled = !spicyModeEnabled;
         document.getElementById('spicyToggle').classList.toggle('active', spicyModeEnabled);
@@ -1970,119 +1681,7 @@
         updateSummary();
     }
 
-    // === AI ASSISTANT ===
-    function showAIAssistant() {
-        document.getElementById('aiModal').style.display = 'flex';
-    }
-
-    function closeAIAssistant() {
-        document.getElementById('aiModal').style.display = 'none';
-    }
-
-    function useTemplate(templateName) {
-        const template = aiTemplates[templateName];
-        if(template) {
-            let preview = template.subject + ", " + template.action;
-            preview += "; " + template.lighting.join(", ");
-            preview += "; " + template.style.join(", ") + ", " + template.quality.join(", ");
-            preview += " --ar 16:9 --no " + template.negative;
-            
-            document.getElementById('aiPreview').value = preview;
-            autoSelectOptions(template);
-        }
-    }
-
-    function autoSelectOptions(template) {
-        document.querySelectorAll('.option-btn.selected').forEach(btn => btn.classList.remove('selected'));
-        
-        template.style.forEach(style => {
-            const btn = Array.from(document.querySelectorAll('.option-btn')).find(b => 
-                b.getAttribute('data-value') && b.getAttribute('data-value').includes(style.split(' ')[0])
-            );
-            if(btn) btn.classList.add('selected');
-        });
-        
-        template.lighting.forEach(light => {
-            const btn = Array.from(document.querySelectorAll('.option-btn')).find(b => 
-                b.getAttribute('data-value') && light.split(' ').some(word => b.getAttribute('data-value').includes(word))
-            );
-            if(btn) btn.classList.add('selected');
-        });
-        
-        template.quality.forEach(quality => {
-            const btn = Array.from(document.querySelectorAll('.option-btn')).find(b => 
-                b.getAttribute('data-value') && quality.split(' ').some(word => b.getAttribute('data-value').includes(word))
-            );
-            if(btn) btn.classList.add('selected');
-        });
-        
-        updateSummary();
-    }
-
-    function generateAIPrompt() {
-        const idea = document.getElementById('aiIdea').value.trim();
-        
-        if(!idea) {
-            alert(currentLang === 'en' ? 'Please write an idea first' : 'Por favor escribe una idea primero');
-            return;
-        }
-        
-        const localPrompt = generateLocalAIPrompt(idea);
-        document.getElementById('aiPreview').value = localPrompt;
-    }
-
-    function generateLocalAIPrompt(idea) {
-        const lowerIdea = idea.toLowerCase();
-        
-        let style = 'cinematic photography';
-        if(lowerIdea.includes('anime') || lowerIdea.includes('manga') || lowerIdea.includes('animé')) style = 'anime style';
-        else if(lowerIdea.includes('cyber') || lowerIdea.includes('futur') || lowerIdea.includes('sci-fi')) style = 'cyberpunk aesthetic';
-        else if(lowerIdea.includes('fantasy') || lowerIdea.includes('magic') || lowerIdea.includes('fantasía')) style = 'fantasy art';
-        else if(lowerIdea.includes('terror') || lowerIdea.includes('horror') || lowerIdea.includes('miedo')) style = 'cinematic photography, dark atmosphere';
-        
-        let lighting = 'natural lighting, sun position accurate';
-        if(lowerIdea.includes('noche') || lowerIdea.includes('night') || lowerIdea.includes('dark') || lowerIdea.includes('oscuro')) lighting = 'nighttime scene, artificial lights, neon lighting';
-        else if(lowerIdea.includes('atardecer') || lowerIdea.includes('sunset') || lowerIdea.includes('dusk')) lighting = 'sunset glow, golden hour lighting';
-        else if(lowerIdea.includes('amanecer') || lowerIdea.includes('dawn') || lowerIdea.includes('sunrise')) lighting = 'dawn lighting, soft warm glow';
-        
-        let quality = '720p HD, high detail, intricate details';
-        if(lowerIdea.includes('4k') || lowerIdea.includes('ultra')) quality = '4K resolution, ultra detailed, ultra realistic';
-        if(lowerIdea.includes('8k') || lowerIdea.includes('max') || lowerIdea.includes('máximo')) quality = '8K resolution, maximum detail, hyper detailed';
-        
-        let aspectRatio = '--ar 16:9';
-        if(lowerIdea.includes('tiktok') || lowerIdea.includes('reels') || lowerIdea.includes('vertical') || lowerIdea.includes('móvil')) aspectRatio = '--ar 9:16';
-        if(lowerIdea.includes('instagram') || lowerIdea.includes('square') || lowerIdea.includes('cuadrado')) aspectRatio = '--ar 1:1';
-        
-        let prompt = idea + ", " + style;
-        prompt += "; " + lighting;
-        prompt += "; subsurface scattering for organic materials, natural skin pores and textures, uncanny valley neutralization";
-        prompt += "; " + quality;
-        prompt += " " + aspectRatio + " --no No subtitles, No text, No closed captions, blurry, low resolution, deformed";
-        
-        return prompt;
-    }
-
-    function applyAIPrompt() {
-        const preview = document.getElementById('aiPreview').value;
-        
-        if(!preview) {
-            alert(currentLang === 'en' ? 'Generate a prompt first' : 'Genera un prompt primero');
-            return;
-        }
-        
-        const parts = preview.split(',');
-        if(parts.length > 0) {
-            document.getElementById('subject').value = parts[0].trim();
-        }
-        
-        document.getElementById('result').value = preview;
-        closeAIAssistant();
-        updateSummary();
-        
-        alert(currentLang === 'en' ? '✅ Prompt applied! Now you can adjust options or copy the result.' : '✅ ¡Prompt aplicado! Ahora puedes ajustar opciones o copiar el resultado.');
-    }
-
-    // === SUMMARY SYSTEM ===
+    // --- SUMMARY SYSTEM ---
     function getSelectedValues(group) {
         const selected = document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn.selected`);
         return Array.from(selected).map(btn => btn.getAttribute('data-value'));
@@ -2131,6 +1730,7 @@
             tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.7rem;">${currentLang === 'en' ? 'No options selected' : 'Sin opciones seleccionadas'}</span>`;
         }
 
+        // Panel summaries
         updatePanelSummary('sum-subject', [getText('subject'), getText('action')]);
         updatePanelSummary('sum-lens', [...getSelectedValues('focalLength'), ...getSelectedValues('specialtyLenses')]);
         updatePanelSummary('sum-shots', [...getSelectedValues('shotSize'), ...getSelectedValues('cameraAngles')]);
@@ -2168,7 +1768,7 @@
         updateSummary();
     }
 
-    // === GROK PROMPT GENERATION ===
+    // --- GROK PROMPT GENERATION ---
     function generatePrompt() {
         let layer1 = [];
         let layer2 = [];
@@ -2256,7 +1856,7 @@
         updateSummary();
     }
 
-    // === UTILS ===
+    // --- UTILS ---
     function copyPrompt() {
         const el = document.getElementById('result');
         el.select();
@@ -2310,3 +1910,4 @@
 
 </body>
 </html>
+
