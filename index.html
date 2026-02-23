@@ -2,55 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Prompt Architect | Bilingual</title>
+<title>Grok Prompt Architect | Imagine 1.0 Optimized</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
-        --bg-color: #0b0d12;
-        --panel-bg: #15181e;
-        --text-main: #e0e0e0;
-        --text-muted: #7a8599;
+        --bg-color: #0a0c10;
+        --panel-bg: #14171d;
+        --text-main: #e8e8e8;
+        --text-muted: #6b7785;
         --accent: #00d4ff;
-        --accent-glow: rgba(0, 212, 255, 0.15);
-        --border: #2a2f3a;
+        --accent-glow: rgba(0, 212, 255, 0.2);
+        --border: #2a3038;
         --success: #00ff9d;
+        --warning: #ffaa00;
+        --grok-purple: #8b5cf6;
     }
 
     * { box-sizing: border-box; }
 
     body {
         font-family: 'Segoe UI', system-ui, sans-serif;
-        background-color: var(--bg-color);
+        background: linear-gradient(135deg, #0a0c10 0%, #0f1115 100%);
         color: var(--text-main);
         margin: 0;
         padding: 0;
-        padding-bottom: 250px;
+        padding-bottom: 280px;
+        min-height: 100vh;
     }
 
-    /* --- TOP BAR (Lang + Summary) --- */
+    /* --- TOP BAR --- */
     .top-bar {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        background: rgba(21, 24, 30, 0.95);
-        backdrop-filter: blur(10px);
+        background: rgba(20, 23, 29, 0.98);
+        backdrop-filter: blur(15px);
         border-bottom: 1px solid var(--border);
-        padding: 10px 20px;
+        padding: 12px 20px;
         z-index: 1000;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        gap: 15px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
         gap: 10px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .brand-logo {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--accent), var(--grok-purple));
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #fff;
+    }
+
+    .brand-text h1 {
+        margin: 0;
+        font-size: 1.1rem;
+        background: linear-gradient(90deg, var(--accent), var(--grok-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1px;
+    }
+
+    .brand-text span {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
     }
 
     .lang-switch {
         display: flex;
-        gap: 5px;
-        background: #0b0d12;
-        padding: 4px;
+        gap: 4px;
+        background: #0a0c10;
+        padding: 3px;
         border-radius: 6px;
         border: 1px solid var(--border);
     }
@@ -59,11 +96,12 @@
         background: transparent;
         border: none;
         color: var(--text-muted);
-        padding: 4px 12px;
+        padding: 5px 14px;
         border-radius: 4px;
         cursor: pointer;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 600;
+        transition: all 0.2s;
     }
 
     .lang-btn.active {
@@ -74,79 +112,118 @@
     .summary-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 6px;
         align-items: center;
         flex: 1;
         margin-left: 20px;
         min-width: 200px;
+        max-height: 60px;
+        overflow-y: auto;
     }
 
     .summary-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         text-transform: uppercase;
         color: var(--text-muted);
-        font-weight: bold;
+        font-weight: 700;
         white-space: nowrap;
     }
 
     .summary-tag {
-        background: var(--accent-glow);
+        background: rgba(0, 212, 255, 0.1);
         border: 1px solid var(--accent);
         color: var(--accent);
-        padding: 4px 10px;
-        border-radius: 12px;
-        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-size: 0.7rem;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         animation: popIn 0.3s ease;
-        max-width: 200px;
+        max-width: 150px;
     }
 
     .summary-tag .remove {
         cursor: pointer;
-        opacity: 0.7;
+        opacity: 0.6;
         font-weight: bold;
+        font-size: 0.9rem;
     }
     .summary-tag .remove:hover { opacity: 1; color: #fff; }
+
+    .grok-badge {
+        background: linear-gradient(135deg, var(--grok-purple), #6d28d9);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
 
     @keyframes popIn {
         from { transform: scale(0.8); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
     }
 
+    /* --- INFO ALERT --- */
+    .info-alert {
+        max-width: 1200px;
+        margin: 70px auto 15px;
+        padding: 12px 20px;
+        background: rgba(0, 212, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.85rem;
+    }
+
+    .info-alert-icon {
+        font-size: 1.2rem;
+    }
+
+    .info-alert-content {
+        color: var(--text-muted);
+    }
+
+    .info-alert strong {
+        color: var(--accent);
+    }
+
     /* --- MAIN LAYOUT --- */
     .app {
         max-width: 1200px;
-        margin: 70px auto 0;
-        padding: 20px;
+        margin: 0 auto;
+        padding: 0 20px 20px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
         gap: 15px;
     }
-
-    header {
-        grid-column: 1 / -1;
-        text-align: center;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--border);
-    }
-    h1 { margin: 0; color: var(--accent); font-size: 1.5rem; letter-spacing: 2px; }
-    p { color: var(--text-muted); margin: 5px 0 0; font-size: 0.9rem; }
 
     /* --- PANELS --- */
     .panel {
         background: var(--panel-bg);
         border: 1px solid var(--border);
-        border-radius: 8px;
+        border-radius: 10px;
         overflow: hidden;
-        transition: border-color 0.2s;
+        transition: all 0.3s;
     }
-    .panel:hover { border-color: var(--text-muted); }
+
+    .panel:hover {
+        border-color: var(--text-muted);
+        transform: translateY(-2px);
+    }
+
+    .panel.critical {
+        border-color: var(--accent);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+    }
 
     .panel-header {
-        padding: 10px 15px;
+        padding: 12px 18px;
         background: rgba(255,255,255,0.02);
         cursor: pointer;
         display: flex;
@@ -154,79 +231,160 @@
         align-items: center;
         user-select: none;
     }
-    .panel-header h3 { margin: 0; font-size: 0.95rem; color: var(--text-main); }
-    .panel-summary { font-size: 0.75rem; color: var(--accent); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .panel-header::after { content: '▼'; font-size: 0.7rem; color: var(--text-muted); transition: transform 0.3s; }
-    .panel.active .panel-header::after { transform: rotate(180deg); }
-    .panel.active { border-color: var(--accent); }
+
+    .panel-header h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .panel-priority {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .priority-high {
+        background: rgba(255, 170, 0, 0.2);
+        color: var(--warning);
+    }
+
+    .panel-summary {
+        font-size: 0.7rem;
+        color: var(--accent);
+        max-width: 180px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .panel-header::after {
+        content: '▼';
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        transition: transform 0.3s;
+    }
+
+    .panel.active .panel-header::after {
+        transform: rotate(180deg);
+    }
+
+    .panel.active {
+        border-color: var(--accent);
+    }
 
     .panel-content {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
-        padding: 0 15px;
+        padding: 0 18px;
     }
+
     .panel.active .panel-content {
-        max-height: 600px;
-        padding: 15px;
+        max-height: 800px;
+        padding: 18px;
         border-top: 1px solid var(--border);
     }
 
     /* --- INPUTS --- */
-    textarea {
+    textarea, input[type="text"] {
         width: 100%;
-        background: #0b0d12;
+        background: #0a0c10;
         border: 1px solid var(--border);
         color: var(--text-main);
-        padding: 8px;
-        border-radius: 4px;
+        padding: 10px;
+        border-radius: 6px;
         margin-bottom: 10px;
         font-size: 0.85rem;
         resize: vertical;
-        min-height: 60px;
+        min-height: 65px;
+        font-family: 'Consolas', monospace;
     }
-    textarea:focus { outline: 1px solid var(--accent); }
 
-    /* --- OPTION GRIDS (MULTI-SELECT) --- */
+    textarea:focus, input:focus {
+        outline: 1px solid var(--accent);
+        border-color: var(--accent);
+    }
+
+    textarea::placeholder {
+        color: var(--text-muted);
+    }
+
+    /* --- OPTION GRIDS --- */
     .option-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 6px;
-        margin-bottom: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 7px;
+        margin-bottom: 12px;
     }
 
     .option-btn {
-        background: #1e232b;
+        background: #1a1e26;
         border: 1px solid var(--border);
         color: var(--text-muted);
-        padding: 6px 10px;
-        border-radius: 4px;
+        padding: 8px 12px;
+        border-radius: 6px;
         cursor: pointer;
         font-size: 0.8rem;
         text-align: center;
-        transition: all 0.2s;
+        transition: all 0.25s;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         user-select: none;
+        position: relative;
     }
-    .option-btn:hover { border-color: var(--text-muted); color: var(--text-main); }
-    
-    /* MULTI-SELECT STATE */
+
+    .option-btn:hover {
+        border-color: var(--text-muted);
+        color: var(--text-main);
+        background: #222831;
+    }
+
     .option-btn.selected {
-        background: var(--accent);
+        background: linear-gradient(135deg, var(--accent), #00a3cc);
         color: #000;
         border-color: var(--accent);
-        font-weight: 600;
-        box-shadow: 0 0 8px var(--accent-glow);
+        font-weight: 700;
+        box-shadow: 0 0 15px var(--accent-glow);
     }
 
     .sub-label {
         font-size: 0.7rem;
         color: var(--text-muted);
         text-transform: uppercase;
-        margin: 10px 0 5px;
+        margin: 12px 0 6px;
         display: block;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+
+    .sub-label.critical {
+        color: var(--warning);
+    }
+
+    /* --- GROK FORMULA DISPLAY --- */
+    .formula-box {
+        background: rgba(0, 212, 255, 0.05);
+        border: 1px dashed var(--accent);
+        border-radius: 6px;
+        padding: 12px;
+        margin-bottom: 15px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+
+    .formula-box code {
+        color: var(--accent);
+        font-family: 'Consolas', monospace;
+        display: block;
+        margin-top: 8px;
+        word-break: break-all;
     }
 
     /* --- FIXED OUTPUT AREA --- */
@@ -235,234 +393,514 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: var(--panel-bg);
-        border-top: 1px solid var(--accent);
-        padding: 15px 20px;
+        background: linear-gradient(180deg, var(--panel-bg) 0%, #0f1115 100%);
+        border-top: 2px solid var(--accent);
+        padding: 18px 20px;
         z-index: 1000;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+        box-shadow: 0 -6px 30px rgba(0,0,0,0.7);
     }
+
+    .output-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .output-title {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .grok-structure-hint {
+        font-size: 0.7rem;
+        color: var(--accent);
+        background: rgba(0, 212, 255, 0.1);
+        padding: 4px 10px;
+        border-radius: 12px;
+    }
+
     .output-controls {
         display: flex;
         gap: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         justify-content: center;
         flex-wrap: wrap;
     }
+
     #result {
         width: 100%;
-        height: 80px;
-        background: #0b0d12;
+        height: 100px;
+        background: #0a0c10;
         border: 1px solid var(--border);
         color: var(--success);
-        padding: 10px;
-        border-radius: 4px;
-        font-family: monospace;
-        font-size: 0.9rem;
-        resize: none;
-    }
-    .btn {
-        padding: 8px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 600;
-        text-transform: uppercase;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: 'Consolas', monospace;
         font-size: 0.85rem;
-        transition: all 0.2s;
+        resize: vertical;
+        line-height: 1.5;
     }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-primary:hover { background: #00a3cc; }
-    .btn-secondary { background: #2a2f3a; color: var(--text-main); }
-    .btn-secondary:hover { background: #3a404d; }
-    .btn-random { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
-    .btn-random:hover { border-color: var(--text-main); color: var(--text-main); }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-color); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    #result:focus {
+        outline: 1px solid var(--success);
+        border-color: var(--success);
+    }
+
+    .btn {
+        padding: 10px 22px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        transition: all 0.25s;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #00a3cc);
+        color: #000;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    }
+
+    .btn-secondary {
+        background: #2a3038;
+        color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+        background: #3a424d;
+    }
+
+    .btn-random {
+        background: transparent;
+        border: 1px solid var(--text-muted);
+        color: var(--text-muted);
+    }
+
+    .btn-random:hover {
+        border-color: var(--text-main);
+        color: var(--text-main);
+    }
+
+    .btn-grok {
+        background: linear-gradient(135deg, var(--grok-purple), #6d28d9);
+        color: #fff;
+    }
+
+    .btn-grok:hover {
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+
+    /* --- SPICY MODE SECTION --- */
+    .spicy-warning {
+        background: rgba(255, 170, 0, 0.1);
+        border: 1px solid var(--warning);
+        border-radius: 6px;
+        padding: 10px;
+        margin-bottom: 12px;
+        font-size: 0.75rem;
+        color: var(--warning);
+    }
+
+    .spicy-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .toggle-switch {
+        width: 44px;
+        height: 24px;
+        background: #2a3038;
+        border-radius: 12px;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .toggle-switch.active {
+        background: var(--warning);
+    }
+
+    .toggle-switch::after {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border-radius: 50%;
+        top: 3px;
+        left: 3px;
+        transition: transform 0.3s;
+    }
+
+    .toggle-switch.active::after {
+        transform: translateX(20px);
+    }
+
+    /* --- SCROLLBAR --- */
+    ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--bg-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .top-bar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .summary-container {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .app {
+            grid-template-columns: 1fr;
+        }
+
+        .output-controls {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR: Lang Switch + Summary -->
+<!-- TOP BAR -->
 <div class="top-bar">
+    <div class="brand">
+        <div class="brand-logo">G</div>
+        <div class="brand-text">
+            <h1>GROK PROMPT ARCHITECT</h1>
+            <span data-i18n="subtitle">Imagine 1.0 Optimized</span>
+        </div>
+    </div>
+    
+    <div class="summary-container" id="summaryBar">
+        <span class="summary-label" data-i18n="active">Active:</span>
+        <div id="summaryTags" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+    </div>
+
     <div class="lang-switch">
         <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">EN</button>
         <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">ES</button>
     </div>
-    <div class="summary-container" id="summaryBar">
-        <span class="summary-label" data-i18n="active">Active:</span>
-        <div id="summaryTags" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+</div>
+
+<!-- INFO ALERT -->
+<div class="info-alert">
+    <span class="info-alert-icon">⚡</span>
+    <div class="info-alert-content">
+        <strong data-i18n="alertTitle">Grok Protocol Active:</strong>
+        <span data-i18n="alertText">Subject + Action must be FIRST. Negative prompts auto-included. Optimal: 720p, 8s segments.</span>
     </div>
+    <span class="grok-badge">Aurora Engine</span>
 </div>
 
 <div class="app">
 
-<header>
-  <h1 data-i18n="title">PROMPT ARCHITECT</h1>
-  <p data-i18n="subtitle">Compact Dashboard Interface</p>
-</header>
-
-<!-- PANEL 1: CHARACTER -->
-<div class="panel active">
+<!-- PANEL 1: SUBJECT (CRITICAL - MUST BE FIRST) -->
+<div class="panel critical active">
     <div class="panel-header">
-        <h3 data-i18n="character">🧬 Character</h3>
-        <span class="panel-summary" id="sum-character"></span>
+        <h3>
+            🎯 <span data-i18n="subject">Subject & Action</span>
+            <span class="panel-priority priority-high" data-i18n="priorityHigh">PRIORITY 1</span>
+        </h3>
+        <span class="panel-summary" id="sum-subject"></span>
     </div>
     <div class="panel-content">
-        <textarea id="charName" placeholder="Name..." oninput="updateSummary()"></textarea>
-        <textarea id="charTraits" placeholder="Traits..." oninput="updateSummary()"></textarea>
+        <div class="formula-box">
+            <span data-i18n="formulaHint">Grok Golden Formula:</span>
+            <code>[Main Subject] + [Action] + [Optical Style] ; [Lighting] ; [Physical Dynamics]</code>
+        </div>
+        <label class="sub-label critical" data-i18n="mainSubject">Main Subject (FIRST in prompt)</label>
+        <textarea id="subject" placeholder="e.g. A cybernetic warrior with neon tattoos..." oninput="updateSummary()"></textarea>
+        
+        <label class="sub-label" data-i18n="action">Primary Action</label>
+        <textarea id="action" placeholder="e.g. walking through rain-soaked streets..." oninput="updateSummary()"></textarea>
+        
+        <label class="sub-label" data-i18n="characterDNA">Character DNA (Optional)</label>
+        <textarea id="charDNA" placeholder="Age, ethnicity, voice tone, immutable traits..." oninput="updateSummary()"></textarea>
     </div>
 </div>
 
-<!-- PANEL 2: SCENE -->
+<!-- PANEL 2: OPTICS & CAMERA -->
 <div class="panel active">
     <div class="panel-header">
-        <h3 data-i18n="scene">🎬 Scene</h3>
-        <span class="panel-summary" id="sum-scene"></span>
+        <h3>📷 <span data-i18n="optics">Optics & Camera</span></h3>
+        <span class="panel-summary" id="sum-optics"></span>
     </div>
     <div class="panel-content">
-        <textarea id="subject" placeholder="Subject..." oninput="updateSummary()"></textarea>
-        <textarea id="action" placeholder="Action..." oninput="updateSummary()"></textarea>
-        <textarea id="location" placeholder="Location..." oninput="updateSummary()"></textarea>
+        <label class="sub-label" data-i18n="lens">Lens (85mm for portraits, 35mm for wide)</label>
+        <div class="option-grid" data-group="lens">
+            <button class="option-btn" data-value="85mm lens">85mm Portrait</button>
+            <button class="option-btn" data-value="35mm lens">35mm Wide</button>
+            <button class="option-btn" data-value="50mm lens">50mm Standard</button>
+            <button class="option-btn" data-value="anamorphic lens">Anamorphic</button>
+        </div>
+
+        <label class="sub-label" data-i18n="shot">Camera Shot</label>
+        <div class="option-grid" data-group="shot">
+            <button class="option-btn" data-value="close-up shot">Close-up</button>
+            <button class="option-btn" data-value="wide angle shot">Wide</button>
+            <button class="option-btn" data-value="drone aerial shot">Drone</button>
+            <button class="option-btn" data-value="POV shot">POV</button>
+            <button class="option-btn" data-value="over the shoulder">Over Shoulder</button>
+        </div>
+
+        <label class="sub-label critical" data-i18n="eyeLines">Eye Lines (CRITICAL for Grok)</label>
+        <div class="option-grid" data-group="eyelines">
+            <button class="option-btn" data-value="diegetic eye lines, subject not looking at camera">Avoid Camera</button>
+            <button class="option-btn" data-value="subject looking directly at camera, influencer style">Influencer Style</button>
+        </div>
+
+        <label class="sub-label" data-i18n="opticalEffects">Optical Effects</label>
+        <div class="option-grid" data-group="optical">
+            <button class="option-btn" data-value="cinematic depth of field">Depth of Field</button>
+            <button class="option-btn" data-value="bokeh background blur">Bokeh</button>
+            <button class="option-btn" data-value="volumetric light rays">Volumetric Light</button>
+            <button class="option-btn" data-value="film grain texture">Film Grain</button>
+            <button class="option-btn" data-value="motion blur">Motion Blur</button>
+        </div>
     </div>
 </div>
 
-<!-- PANEL 3: STYLE -->
+<!-- PANEL 3: LIGHTING & AESTHETICS -->
 <div class="panel">
     <div class="panel-header">
-        <h3 data-i18n="style">🎨 Style</h3>
+        <h3>💡 <span data-i18n="lighting">Lighting & Aesthetics</span></h3>
+        <span class="panel-summary" id="sum-lighting"></span>
+    </div>
+    <div class="panel-content">
+        <label class="sub-label" data-i18n="timeOfDay">Time of Day</label>
+        <div class="option-grid" data-group="time">
+            <button class="option-btn" data-value="dawn lighting">Dawn</button>
+            <button class="option-btn" data-value="midday sun">Midday</button>
+            <button class="option-btn" data-value="sunset glow">Sunset</button>
+            <button class="option-btn" data-value="nighttime scene">Night</button>
+            <button class="option-btn" data-value="golden hour lighting">Golden Hour</button>
+        </div>
+
+        <label class="sub-label" data-i18n="lightingType">Lighting Type</label>
+        <div class="option-grid" data-group="lighting">
+            <button class="option-btn" data-value="dramatic chiaroscuro lighting">Chiaroscuro</button>
+            <button class="option-btn" data-value="softbox lighting">Softbox</button>
+            <button class="option-btn" data-value="rim lighting">Rim Light</button>
+            <button class="option-btn" data-value="neon lighting">Neon</button>
+            <button class="option-btn" data-value="volumetric lighting">Volumetric</button>
+            <button class="option-btn" data-value="natural lighting">Natural</button>
+        </div>
+
+        <label class="sub-label" data-i18n="mood">Mood & Atmosphere</label>
+        <div class="option-grid" data-group="mood">
+            <button class="option-btn" data-value="dark atmosphere">Dark</button>
+            <button class="option-btn" data-value="epic atmosphere">Epic</button>
+            <button class="option-btn" data-value="mysterious atmosphere">Mysterious</button>
+            <button class="option-btn" data-value="hopeful atmosphere">Hopeful</button>
+            <button class="option-btn" data-value="melancholic atmosphere">Melancholic</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 4: STYLE & RENDER -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🎨 <span data-i18n="style">Visual Style</span></h3>
         <span class="panel-summary" id="sum-style"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label" data-i18n="artStyle">Art Style</span>
+        <label class="sub-label" data-i18n="artStyle">Art Style</label>
         <div class="option-grid" data-group="style">
-            <button class="option-btn" data-value="cinematic">Cinematic</button>
-            <button class="option-btn" data-value="cyberpunk">Cyberpunk</button>
-            <button class="option-btn" data-value="ultra realistic">Realistic</button>
+            <button class="option-btn" data-value="cinematic photography">Cinematic</button>
+            <button class="option-btn" data-value="cyberpunk aesthetic">Cyberpunk</button>
+            <button class="option-btn" data-value="ultra realistic, photorealistic">Realistic</button>
             <button class="option-btn" data-value="anime style">Anime</button>
             <button class="option-btn" data-value="fantasy art">Fantasy</button>
-            <button class="option-btn" data-value="oil painting">Oil Painting</button>
+            <button class="option-btn" data-value="documentary style">Documentary</button>
         </div>
-        <span class="sub-label" data-i18n="engine">Engine</span>
+
+        <label class="sub-label" data-i18n="renderEngine">Render Engine</label>
         <div class="option-grid" data-group="engine">
-            <button class="option-btn" data-value="Unreal Engine 5">Unreal 5</button>
+            <button class="option-btn" data-value="Unreal Engine 5 render">Unreal 5</button>
             <button class="option-btn" data-value="Octane render">Octane</button>
-            <button class="option-btn" data-value="Redshift">Redshift</button>
+            <button class="option-btn" data-value="Redshift render">Redshift</button>
+        </div>
+
+        <label class="sub-label critical" data-i18n="grokTerms">Grok-Specific Terms (CRITICAL)</label>
+        <div class="option-grid" data-group="grokTerms">
+            <button class="option-btn" data-value="subsurface scattering for organic materials">Subsurface Scattering</button>
+            <button class="option-btn" data-value="natural skin pores and textures">Skin Details</button>
+            <button class="option-btn" data-value="uncanny valley neutralization">Anti-Uncanny</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 4: LIGHTING & TIME -->
+<!-- PANEL 5: ENVIRONMENT & WEATHER -->
 <div class="panel">
     <div class="panel-header">
-        <h3 data-i18n="lightTime">💡 Light & Time</h3>
-        <span class="panel-summary" id="sum-light"></span>
+        <h3>🌍 <span data-i18n="environment">Environment</span></h3>
+        <span class="panel-summary" id="sum-environment"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label" data-i18n="time">Time</span>
-        <div class="option-grid" data-group="time">
-            <button class="option-btn" data-value="dawn">Dawn</button>
-            <button class="option-btn" data-value="midday">Midday</button>
-            <button class="option-btn" data-value="sunset">Sunset</button>
-            <button class="option-btn" data-value="night">Night</button>
-        </div>
-        <span class="sub-label" data-i18n="lighting">Lighting</span>
-        <div class="option-grid" data-group="lighting">
-            <button class="option-btn" data-value="dramatic lighting">Dramatic</button>
-            <button class="option-btn" data-value="neon lighting">Neon</button>
-            <button class="option-btn" data-value="soft lighting">Soft</button>
-            <button class="option-btn" data-value="volumetric lighting">Volumetric</button>
-        </div>
-    </div>
-</div>
+        <label class="sub-label" data-i18n="location">Location</label>
+        <textarea id="location" placeholder="e.g. rain-soaked neon cityscape..." oninput="updateSummary()"></textarea>
 
-<!-- PANEL 5: CAMERA -->
-<div class="panel">
-    <div class="panel-header">
-        <h3 data-i18n="camera">📷 Camera</h3>
-        <span class="panel-summary" id="sum-camera"></span>
-    </div>
-    <div class="panel-content">
-        <span class="sub-label" data-i18n="shot">Shot</span>
-        <div class="option-grid" data-group="camera">
-            <button class="option-btn" data-value="wide angle">Wide</button>
-            <button class="option-btn" data-value="close-up">Close-up</button>
-            <button class="option-btn" data-value="drone shot">Drone</button>
-            <button class="option-btn" data-value="POV">POV</button>
-            <button class="option-btn" data-value="macro shot">Macro</button>
+        <label class="sub-label" data-i18n="biome">Biome</label>
+        <div class="option-grid" data-group="biome">
+            <button class="option-btn" data-value="forest environment">Forest</button>
+            <button class="option-btn" data-value="desert environment">Desert</button>
+            <button class="option-btn" data-value="futuristic cityscape">City</button>
+            <button class="option-btn" data-value="mountain region">Mountain</button>
+            <button class="option-btn" data-value="outer space">Space</button>
+            <button class="option-btn" data-value="interior scene">Interior</button>
         </div>
-        <span class="sub-label" data-i18n="lens">Lens</span>
-        <div class="option-grid" data-group="lens">
-            <button class="option-btn" data-value="35mm">35mm</button>
-            <button class="option-btn" data-value="85mm">85mm</button>
-            <button class="option-btn" data-value="anamorphic">Anamorphic</button>
-            <button class="option-btn" data-value="depth of field">DOF</button>
-        </div>
-    </div>
-</div>
 
-<!-- PANEL 6: ENV & WEATHER -->
-<div class="panel">
-    <div class="panel-header">
-        <h3 data-i18n="envWeather">🌍 Env & Weather</h3>
-        <span class="panel-summary" id="sum-env"></span>
-    </div>
-    <div class="panel-content">
-        <span class="sub-label" data-i18n="environment">Environment</span>
-        <div class="option-grid" data-group="environment">
-            <button class="option-btn" data-value="forest">Forest</button>
-            <button class="option-btn" data-value="desert">Desert</button>
-            <button class="option-btn" data-value="cityscape">City</button>
-            <button class="option-btn" data-value="space">Space</button>
-        </div>
-        <span class="sub-label" data-i18n="weather">Weather</span>
+        <label class="sub-label" data-i18n="weather">Weather & Physical Dynamics</label>
         <div class="option-grid" data-group="weather">
-            <button class="option-btn" data-value="rainy">Rain</button>
-            <button class="option-btn" data-value="stormy">Storm</button>
-            <button class="option-btn" data-value="foggy">Fog</button>
-            <button class="option-btn" data-value="sunny">Sunny</button>
-            <button class="option-btn" data-value="snowy">Snow</button>
+            <button class="option-btn" data-value="rainy weather, water droplets on surfaces">Rain</button>
+            <button class="option-btn" data-value="heavy storm with lightning">Storm</button>
+            <button class="option-btn" data-value="foggy atmosphere">Fog</button>
+            <button class="option-btn" data-value="snowing weather">Snow</button>
+            <button class="option-btn" data-value="wind affecting clothing and hair">Wind</button>
+            <button class="option-btn" data-value="sunny weather">Sunny</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 7: OUTPUT -->
+<!-- PANEL 6: OUTPUT SETTINGS -->
 <div class="panel">
     <div class="panel-header">
-        <h3 data-i18n="output">⚙️ Output</h3>
+        <h3>⚙️ <span data-i18n="output">Output Settings</span></h3>
         <span class="panel-summary" id="sum-output"></span>
     </div>
     <div class="panel-content">
-        <span class="sub-label" data-i18n="resolution">Resolution</span>
-        <div class="option-grid" data-group="resolution">
-            <button class="option-btn" data-value="8K">8K</button>
-            <button class="option-btn" data-value="4K">4K</button>
-            <button class="option-btn" data-value="HDR">HDR</button>
+        <div class="info-alert" style="margin-bottom: 15px; padding: 10px;">
+            <span class="info-alert-icon">📊</span>
+            <div class="info-alert-content">
+                <strong>Grok Optimal:</strong> 720p HD, 8-second segments for perfect lip-sync
+            </div>
         </div>
-        <span class="sub-label" data-i18n="ratio">Ratio</span>
+
+        <label class="sub-label" data-i18n="aspectRatio">Aspect Ratio</label>
         <div class="option-grid" data-group="ratio">
-            <button class="option-btn" data-value="--ar 16:9">16:9</button>
-            <button class="option-btn" data-value="--ar 9:16">9:16</button>
-            <button class="option-btn" data-value="--ar 1:1">1:1</button>
+            <button class="option-btn" data-value="--ar 16:9">16:9 (YouTube)</button>
+            <button class="option-btn" data-value="--ar 9:16">9:16 (TikTok/Reels)</button>
+            <button class="option-btn" data-value="--ar 1:1">1:1 (Square)</button>
+            <button class="option-btn" data-value="--ar 21:9">21:9 (Cinema)</button>
+        </div>
+
+        <label class="sub-label" data-i18n="quality">Quality Modifiers</label>
+        <div class="option-grid" data-group="quality">
+            <button class="option-btn" data-value="720p HD">720p HD (Optimal)</button>
+            <button class="option-btn" data-value="high detail">High Detail</button>
+            <button class="option-btn" data-value="HDR enhanced">HDR</button>
+        </div>
+
+        <label class="sub-label" data-i18n="duration">Duration Note</label>
+        <div class="option-grid" data-group="duration">
+            <button class="option-btn" data-value="8 second segment for lip-sync">8s (Dialogue)</button>
+            <button class="option-btn" data-value="15 second max duration">15s (Max)</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 8: NEGATIVE -->
-<div class="panel">
+<!-- PANEL 7: NEGATIVE PROMPT (AUTO-INCLUDED) -->
+<div class="panel critical">
     <div class="panel-header">
-        <h3 data-i18n="negative">⛔ Negative</h3>
+        <h3>
+            ⛔ <span data-i18n="negative">Negative Prompt</span>
+            <span class="panel-priority priority-high" data-i18n="autoIncluded">AUTO</span>
+        </h3>
         <span class="panel-summary" id="sum-negative"></span>
     </div>
     <div class="panel-content">
-        <textarea id="negative" placeholder="Custom negative..." oninput="updateSummary()"></textarea>
+        <div class="info-alert" style="margin-bottom: 15px; padding: 10px; border-color: var(--warning); background: rgba(255, 170, 0, 0.08);">
+            <span class="info-alert-icon">⚠️</span>
+            <div class="info-alert-content">
+                <strong data-i18n="negativeWarning">Grok Bias:</strong> Automatically adds [No subtitles, No text, No closed captions] to prevent burnt-in text
+            </div>
+        </div>
+
+        <label class="sub-label" data-i18n="customNegative">Custom Negative Prompts</label>
+        <textarea id="negative" placeholder="Additional elements to avoid..." oninput="updateSummary()"></textarea>
+
+        <label class="sub-label" data-i18n="quickNegative">Quick Negative Options</label>
         <div class="option-grid" data-group="negQuick">
-            <button class="option-btn" data-value="text, watermark">No Text</button>
-            <button class="option-btn" data-value="blurry, low quality">No Blur</button>
-            <button class="option-btn" data-value="ugly, deformed">No Ugly</button>
+            <button class="option-btn" data-value="blurry, low resolution">No Blur/Low Res</button>
+            <button class="option-btn" data-value="ugly, deformed hands and face">No Deformed</button>
+            <button class="option-btn" data-value="extra limbs, bad anatomy">No Bad Anatomy</button>
+            <button class="option-btn" data-value="watermark, signature">No Watermark</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 8: SPICY MODE (OPTIONAL) -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🌶️ <span data-i18n="spicyMode">Spicy Mode</span></h3>
+        <span class="panel-summary" id="sum-spicy"></span>
+    </div>
+    <div class="panel-content">
+        <div class="spicy-warning">
+            <strong>⚠️ Premium+ Required:</strong> SuperGrok subscription, age verification (18+). 
+            Artistic nudity allowed. NO deepfakes, minors, or explicit acts.
+        </div>
+
+        <div class="spicy-toggle">
+            <div class="toggle-switch" id="spicyToggle" onclick="toggleSpicyMode()"></div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="enableSpicy">Enable Spicy Mode</span>
+        </div>
+
+        <div id="spicyContent" style="display: none;">
+            <label class="sub-label" data-i18n="spicyOptions">Moderation Evasion Techniques</label>
+            <div class="option-grid" data-group="spicy">
+                <button class="option-btn" data-value="anime stickers for coverage">Anime Stickers</button>
+                <button class="option-btn" data-value="2D hearts for occlusion">2D Hearts</button>
+                <button class="option-btn" data-value="lingerie pasties">Lingerie Pasties</button>
+                <button class="option-btn" data-value="artistic nudity, tasteful">Artistic Nudity</button>
+            </div>
+
+            <label class="sub-label" data-i18n="spicyWarning">Legal Warning</label>
+            <textarea readonly style="font-size: 0.75rem; color: var(--warning);">ICO investigation 2026. Brand safety risk. Use responsibly.</textarea>
         </div>
     </div>
 </div>
@@ -471,117 +909,185 @@
 
 <!-- FIXED OUTPUT AREA -->
 <div class="output-area">
-    <div class="output-controls">
-        <button class="btn btn-random" onclick="randomize()">🎲 <span data-i18n="random">Random</span></button>
-        <button class="btn btn-primary" onclick="generatePrompt()">⚡ <span data-i18n="generate">Generate</span></button>
-        <button class="btn btn-secondary" onclick="copyPrompt()">📋 <span data-i18n="copy">Copy</span></button>
-        <button class="btn btn-secondary" onclick="clearAll()">🗑️ <span data-i18n="clear">Clear</span></button>
+    <div class="output-header">
+        <div class="output-title">
+            📝 <span data-i18n="finalPrompt">Final Prompt (Always in English)</span>
+            <span class="grok-structure-hint" data-i18n="structureHint">Subject → Action → Style ; Lighting ; Dynamics</span>
+        </div>
+        <span class="grok-badge" id="langIndicator">EN OUTPUT</span>
     </div>
-    <textarea id="result" readonly placeholder="Your prompt will appear here..."></textarea>
+
+    <div class="output-controls">
+        <button class="btn btn-random" onclick="randomize()">
+            🎲 <span data-i18n="random">Random</span>
+        </button>
+        <button class="btn btn-primary" onclick="generatePrompt()">
+            ⚡ <span data-i18n="generate">Generate</span>
+        </button>
+        <button class="btn btn-secondary" onclick="copyPrompt()">
+            📋 <span data-i18n="copy">Copy</span>
+        </button>
+        <button class="btn btn-secondary" onclick="clearAll()">
+            🗑️ <span data-i18n="clear">Clear</span>
+        </button>
+    </div>
+
+    <textarea id="result" readonly placeholder="Your Grok-optimized prompt will appear here..."></textarea>
+    
+    <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
+        <span data-i18n="creditsInfo">~180 credits per video</span>
+        <span data-i18n="optimalSettings">Optimal: 720p, 8s segments</span>
+    </div>
 </div>
 
 <script>
     // --- TRANSLATIONS ---
     const translations = {
         en: {
+            subtitle: "Imagine 1.0 Optimized",
             active: "Active:",
-            title: "PROMPT ARCHITECT",
-            subtitle: "Compact Dashboard Interface",
-            character: "🧬 Character",
-            scene: "🎬 Scene",
-            style: "🎨 Style",
+            alertTitle: "Grok Protocol Active:",
+            alertText: "Subject + Action must be FIRST. Negative prompts auto-included. Optimal: 720p, 8s segments.",
+            subject: "Subject & Action",
+            priorityHigh: "PRIORITY 1",
+            formulaHint: "Grok Golden Formula:",
+            mainSubject: "Main Subject (FIRST in prompt)",
+            action: "Primary Action",
+            characterDNA: "Character DNA (Optional)",
+            optics: "Optics & Camera",
+            lens: "Lens (85mm for portraits, 35mm for wide)",
+            shot: "Camera Shot",
+            eyeLines: "Eye Lines (CRITICAL for Grok)",
+            opticalEffects: "Optical Effects",
+            lighting: "Lighting & Aesthetics",
+            timeOfDay: "Time of Day",
+            lightingType: "Lighting Type",
+            mood: "Mood & Atmosphere",
+            style: "Visual Style",
             artStyle: "Art Style",
-            engine: "Engine",
-            lightTime: "💡 Light & Time",
-            time: "Time",
-            lighting: "Lighting",
-            camera: "📷 Camera",
-            shot: "Shot",
-            lens: "Lens",
-            envWeather: "🌍 Env & Weather",
+            renderEngine: "Render Engine",
+            grokTerms: "Grok-Specific Terms (CRITICAL)",
             environment: "Environment",
-            weather: "Weather",
-            output: "⚙️ Output",
-            resolution: "Resolution",
-            ratio: "Ratio",
-            negative: "⛔ Negative",
+            location: "Location",
+            biome: "Biome",
+            weather: "Weather & Physical Dynamics",
+            output: "Output Settings",
+            aspectRatio: "Aspect Ratio",
+            quality: "Quality Modifiers",
+            duration: "Duration Note",
+            negative: "Negative Prompt",
+            autoIncluded: "AUTO",
+            negativeWarning: "Grok Bias:",
+            customNegative: "Custom Negative Prompts",
+            quickNegative: "Quick Negative Options",
+            spicyMode: "Spicy Mode",
+            enableSpicy: "Enable Spicy Mode",
+            spicyOptions: "Moderation Evasion Techniques",
+            spicyWarning: "Legal Warning",
+            finalPrompt: "Final Prompt (Always in English)",
+            structureHint: "Subject → Action → Style ; Lighting ; Dynamics",
             random: "Random",
             generate: "Generate",
             copy: "Copy",
             clear: "Clear",
-            placeholderName: "Name...",
-            placeholderTraits: "Traits...",
-            placeholderSubject: "Subject...",
-            placeholderAction: "Action...",
-            placeholderLocation: "Location...",
-            placeholderNegative: "Custom negative...",
-            resultPlaceholder: "Your prompt will appear here..."
+            creditsInfo: "~180 credits per video",
+            optimalSettings: "Optimal: 720p, 8s segments",
+            placeholderSubject: "e.g. A cybernetic warrior with neon tattoos...",
+            placeholderAction: "e.g. walking through rain-soaked streets...",
+            placeholderDNA: "Age, ethnicity, voice tone, immutable traits...",
+            placeholderLocation: "e.g. rain-soaked neon cityscape...",
+            placeholderNegative: "Additional elements to avoid...",
+            resultPlaceholder: "Your Grok-optimized prompt will appear here..."
         },
         es: {
+            subtitle: "Optimizado para Imagine 1.0",
             active: "Activo:",
-            title: "ARQUITECTO DE PROMPTS",
-            subtitle: "Interfaz Compacta de Panel",
-            character: "🧬 Personaje",
-            scene: "🎬 Escena",
-            style: "🎨 Estilo",
+            alertTitle: "Protocolo Grok Activo:",
+            alertText: "Sujeto + Acción deben ir PRIMERO. Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s.",
+            subject: "Sujeto y Acción",
+            priorityHigh: "PRIORIDAD 1",
+            formulaHint: "Fórmula Dorada de Grok:",
+            mainSubject: "Sujeto Principal (PRIMERO en el prompt)",
+            action: "Acción Principal",
+            characterDNA: "DNA del Personaje (Opcional)",
+            optics: "Óptica y Cámara",
+            lens: "Lente (85mm para retratos, 35mm para amplio)",
+            shot: "Toma de Cámara",
+            eyeLines: "Líneas de Ojos (CRÍTICO para Grok)",
+            opticalEffects: "Efectos Ópticos",
+            lighting: "Iluminación y Estética",
+            timeOfDay: "Momento del Día",
+            lightingType: "Tipo de Iluminación",
+            mood: "Estado de Ánimo y Atmósfera",
+            style: "Estilo Visual",
             artStyle: "Estilo de Arte",
-            engine: "Motor",
-            lightTime: "💡 Luz y Tiempo",
-            time: "Tiempo",
-            lighting: "Iluminación",
-            camera: "📷 Cámara",
-            shot: "Toma",
-            lens: "Lente",
-            envWeather: "🌍 Entorno y Clima",
+            renderEngine: "Motor de Render",
+            grokTerms: "Términos Específicos de Grok (CRÍTICO)",
             environment: "Entorno",
-            weather: "Clima",
-            output: "⚙️ Salida",
-            resolution: "Resolución",
-            ratio: "Proporción",
-            negative: "⛔ Negativo",
+            location: "Ubicación",
+            biome: "Bioma",
+            weather: "Clima y Dinámicas Físicas",
+            output: "Configuración de Salida",
+            aspectRatio: "Proporción de Aspecto",
+            quality: "Modificadores de Calidad",
+            duration: "Nota de Duración",
+            negative: "Prompt Negativo",
+            autoIncluded: "AUTO",
+            negativeWarning: "Sesgo de Grok:",
+            customNegative: "Prompts Negativos Personalizados",
+            quickNegative: "Opciones Negativas Rápidas",
+            spicyMode: "Modo Spicy",
+            enableSpicy: "Activar Modo Spicy",
+            spicyOptions: "Técnicas de Evasión de Moderación",
+            spicyWarning: "Advertencia Legal",
+            finalPrompt: "Prompt Final (Siempre en Inglés)",
+            structureHint: "Sujeto → Acción → Estilo ; Iluminación ; Dinámicas",
             random: "Aleatorio",
             generate: "Generar",
             copy: "Copiar",
             clear: "Limpiar",
-            placeholderName: "Nombre...",
-            placeholderTraits: "Rasgos...",
-            placeholderSubject: "Sujeto...",
-            placeholderAction: "Acción...",
-            placeholderLocation: "Ubicación...",
-            placeholderNegative: "Negativo personalizado...",
-            resultPlaceholder: "Tu prompt aparecerá aquí..."
+            creditsInfo: "~180 créditos por video",
+            optimalSettings: "Óptimo: 720p, segmentos de 8s",
+            placeholderSubject: "ej. Un guerrero cibernético con tatuajes de neón...",
+            placeholderAction: "ej. caminando por calles empapadas de lluvia...",
+            placeholderDNA: "Edad, etnia, tono de voz, rasgos inmutables...",
+            placeholderLocation: "ej. paisaje urbano de neón empapado de lluvia...",
+            placeholderNegative: "Elementos adicionales a evitar...",
+            resultPlaceholder: "Tu prompt optimizado para Grok aparecerá aquí..."
         }
     };
 
     let currentLang = 'en';
+    let spicyModeEnabled = false;
 
     // --- LANGUAGE SWITCH ---
     function setLanguage(lang) {
         currentLang = lang;
         
-        // Update buttons
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         document.getElementById('btn-es').classList.toggle('active', lang === 'es');
         
-        // Update all text elements with data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if(translations[lang][key]) {
-                el.textContent = translations[lang][key];
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translations[lang][key];
+                } else {
+                    el.textContent = translations[lang][key];
+                }
             }
         });
 
-        // Update placeholders
-        document.getElementById('charName').placeholder = translations[lang].placeholderName;
-        document.getElementById('charTraits').placeholder = translations[lang].placeholderTraits;
+        // Specific placeholders
         document.getElementById('subject').placeholder = translations[lang].placeholderSubject;
         document.getElementById('action').placeholder = translations[lang].placeholderAction;
+        document.getElementById('charDNA').placeholder = translations[lang].placeholderDNA;
         document.getElementById('location').placeholder = translations[lang].placeholderLocation;
         document.getElementById('negative').placeholder = translations[lang].placeholderNegative;
         document.getElementById('result').placeholder = translations[lang].resultPlaceholder;
 
-        // Update summary label
         document.querySelector('.summary-label').textContent = translations[lang].active + ' ';
+        document.getElementById('langIndicator').textContent = 'EN OUTPUT';
         
         updateSummary();
     }
@@ -594,14 +1100,21 @@
         });
     });
 
-    // --- MULTI-SELECT BUTTON LOGIC ---
+    // --- MULTI-SELECT BUTTONS ---
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            // Toggle current button (no exclusive logic anymore!)
             this.classList.toggle('selected');
             updateSummary();
         });
     });
+
+    // --- SPICY MODE TOGGLE ---
+    function toggleSpicyMode() {
+        spicyModeEnabled = !spicyModeEnabled;
+        document.getElementById('spicyToggle').classList.toggle('active', spicyModeEnabled);
+        document.getElementById('spicyContent').style.display = spicyModeEnabled ? 'block' : 'none';
+        updateSummary();
+    }
 
     // --- SUMMARY SYSTEM ---
     function getSelectedValues(group) {
@@ -619,45 +1132,46 @@
         tagsContainer.innerHTML = '';
         
         const selections = [
-            { id: 'charName', label: 'Name' },
-            { id: 'charTraits', label: 'Traits' },
-            { group: 'style', label: 'Style' },
+            { id: 'subject', label: 'Subject' },
+            { id: 'action', label: 'Action' },
+            { id: 'location', label: 'Location' },
+            { group: 'lens', label: 'Lens' },
+            { group: 'shot', label: 'Shot' },
             { group: 'time', label: 'Time' },
             { group: 'lighting', label: 'Light' },
-            { group: 'camera', label: 'Camera' },
-            { group: 'environment', label: 'Env' },
-            { group: 'weather', label: 'Weather' },
-            { group: 'ratio', label: 'Ratio' }
+            { group: 'style', label: 'Style' },
+            { group: 'ratio', label: 'Ratio' },
+            { group: 'grokTerms', label: 'Grok' }
         ];
 
         let activeCount = 0;
 
         selections.forEach(sel => {
-            let values = sel.group ? getSelectedValues(sel.group) : (getText(sel.id) ? [getText(sel.id)] : []);
+            let values = sel.group ? getSelectedValues(sel.group) : (getText(sel.id) ? [getText(sel.id).substring(0, 20) + (getText(sel.id).length > 20 ? '...' : '')] : []);
             values.forEach(value => {
                 if(value) {
                     activeCount++;
                     const tag = document.createElement('div');
                     tag.className = 'summary-tag';
-                    tag.innerHTML = `<span>${value}</span><span class="remove" onclick="removeSelection('${sel.group}', '${sel.id}', '${value}')">×</span>`;
+                    tag.innerHTML = `<span>${value}</span><span class="remove" onclick="removeSelection('${sel.group}', '${sel.id}', '${value.replace(/'/g, "\\'")}')">×</span>`;
                     tagsContainer.appendChild(tag);
                 }
             });
         });
 
         if(activeCount === 0) {
-            tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.75rem;">${currentLang === 'en' ? 'No options selected yet' : 'Aún no hay opciones seleccionadas'}</span>`;
+            tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.7rem;">${currentLang === 'en' ? 'No options selected' : 'Sin opciones seleccionadas'}</span>`;
         }
 
-        // Update panel summaries
-        updatePanelSummary('sum-character', [getText('charName'), getText('charTraits')]);
-        updatePanelSummary('sum-scene', [getText('subject'), getText('location')]);
-        updatePanelSummary('sum-style', [...getSelectedValues('style'), ...getSelectedValues('engine')]);
-        updatePanelSummary('sum-light', [...getSelectedValues('time'), ...getSelectedValues('lighting')]);
-        updatePanelSummary('sum-camera', [...getSelectedValues('camera'), ...getSelectedValues('lens')]);
-        updatePanelSummary('sum-env', [...getSelectedValues('environment'), ...getSelectedValues('weather')]);
-        updatePanelSummary('sum-output', [...getSelectedValues('resolution'), ...getSelectedValues('ratio')]);
+        // Panel summaries
+        updatePanelSummary('sum-subject', [getText('subject'), getText('action')]);
+        updatePanelSummary('sum-optics', [...getSelectedValues('lens'), ...getSelectedValues('shot')]);
+        updatePanelSummary('sum-lighting', [...getSelectedValues('time'), ...getSelectedValues('lighting')]);
+        updatePanelSummary('sum-style', [...getSelectedValues('style'), ...getSelectedValues('grokTerms')]);
+        updatePanelSummary('sum-environment', [getText('location'), ...getSelectedValues('biome')]);
+        updatePanelSummary('sum-output', [...getSelectedValues('ratio'), ...getSelectedValues('quality')]);
         updatePanelSummary('sum-negative', [getText('negative')]);
+        updatePanelSummary('sum-spicy', spicyModeEnabled ? ['Spicy ON'] : []);
     }
 
     function updatePanelSummary(elementId, values) {
@@ -668,7 +1182,6 @@
 
     function removeSelection(group, id, value) {
         if(group) {
-            // Find and deselect specific button
             document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(btn => {
                 if(btn.getAttribute('data-value') === value) {
                     btn.classList.remove('selected');
@@ -681,30 +1194,88 @@
         updateSummary();
     }
 
-    // --- GENERATE PROMPT (ALWAYS IN ENGLISH) ---
+    // --- GROK PROMPT GENERATION (CRITICAL LOGIC) ---
     function generatePrompt() {
-        let parts = [];
+        let promptParts = [];
+        let styleParts = [];
+        let lightingParts = [];
+        let dynamicsParts = [];
+
+        // LAYER 1: SUBJECT + ACTION (MUST BE FIRST - logarithmic weight)
+        const subject = getText('subject');
+        const action = getText('action');
+        const charDNA = getText('charDNA');
         
-        // Text inputs (user types in any language, but we keep as-is for names)
-        ['charName', 'charTraits', 'subject', 'action', 'location'].forEach(id => {
-            const txt = getText(id);
-            if(txt) parts.push(txt);
-        });
+        if(subject) promptParts.push(subject);
+        if(action) promptParts.push(action);
+        if(charDNA) promptParts.push(charDNA);
 
-        // Selected options (ALL data-values are in English)
-        ['style', 'engine', 'time', 'lighting', 'camera', 'lens', 'environment', 'weather', 'resolution', 'ratio'].forEach(grp => {
-            const vals = getSelectedValues(grp);
-            vals.forEach(v => parts.push(v));
-        });
+        // LAYER 2: LOCATION & ENVIRONMENT
+        const location = getText('location');
+        if(location) promptParts.push(location);
 
-        // Negative
-        const neg = getText('negative');
-        const negQ = getSelectedValues('negQuick');
-        if(neg || negQ.length > 0) {
-            parts.push('--no ' + [neg, ...negQ].filter(Boolean).join(', '));
+        // LAYER 3: OPTICS & CAMERA
+        const lens = getSelectedValues('lens');
+        const shot = getSelectedValues('shot');
+        const eyelines = getSelectedValues('eyelines');
+        const optical = getSelectedValues('optical');
+        [...lens, ...shot, ...eyelines, ...optical].forEach(v => styleParts.push(v));
+
+        // LAYER 4: LIGHTING
+        const time = getSelectedValues('time');
+        const lighting = getSelectedValues('lighting');
+        const mood = getSelectedValues('mood');
+        [...time, ...lighting, ...mood].forEach(v => lightingParts.push(v));
+
+        // LAYER 5: STYLE & GROK TERMS
+        const style = getSelectedValues('style');
+        const engine = getSelectedValues('engine');
+        const grokTerms = getSelectedValues('grokTerms');
+        const biome = getSelectedValues('biome');
+        const weather = getSelectedValues('weather');
+        [...style, ...engine, ...grokTerms, ...biome, ...weather].forEach(v => dynamicsParts.push(v));
+
+        // LAYER 6: OUTPUT
+        const ratio = getSelectedValues('ratio');
+        const quality = getSelectedValues('quality');
+        const duration = getSelectedValues('duration');
+        [...ratio, ...quality, ...duration].forEach(v => dynamicsParts.push(v));
+
+        // LAYER 7: SPICY MODE
+        if(spicyModeEnabled) {
+            const spicy = getSelectedValues('spicy');
+            spicy.forEach(v => dynamicsParts.push(v));
         }
 
-        document.getElementById('result').value = parts.join(', ');
+        // BUILD PROMPT WITH GROK FORMULA
+        // [Subject]+[Action]+[Style] ; [Lighting] ; [Dynamics]
+        let finalPrompt = promptParts.join(', ');
+        
+        if(styleParts.length > 0) {
+            finalPrompt += ', ' + styleParts.join(', ');
+        }
+
+        finalPrompt += ';'; // SEMICOLON for logical layer separation
+
+        if(lightingParts.length > 0) {
+            finalPrompt += ' ' + lightingParts.join(', ') + ';';
+        }
+
+        if(dynamicsParts.length > 0) {
+            finalPrompt += ' ' + dynamicsParts.join(', ');
+        }
+
+        // CRITICAL: AUTO-ADD NEGATIVE PROMPTS (Grok bias prevention)
+        const negativeCustom = getText('negative');
+        const negativeQuick = getSelectedValues('negQuick');
+        let negativeParts = ['No subtitles', 'No text', 'No closed captions']; // ALWAYS INCLUDED
+        
+        if(negativeCustom) negativeParts.push(negativeCustom);
+        negativeQuick.forEach(v => negativeParts.push(v));
+
+        finalPrompt += ' --no ' + negativeParts.join(', ');
+
+        document.getElementById('result').value = finalPrompt;
         updateSummary();
     }
 
@@ -714,8 +1285,8 @@
         el.select();
         navigator.clipboard.writeText(el.value);
         const btn = event.target.closest('.btn');
-        const orig = btn.textContent;
-        btn.textContent = currentLang === 'en' ? '✅ Copied!' : '✅ ¡Copiado!';
+        const orig = btn.innerHTML;
+        btn.innerHTML = currentLang === 'en' ? '✅ Copied!' : '✅ ¡Copiado!';
         setTimeout(() => {
             btn.innerHTML = '📋 <span data-i18n="copy">' + (currentLang === 'en' ? 'Copy' : 'Copiar') + '</span>';
         }, 1500);
@@ -724,27 +1295,33 @@
     function clearAll() {
         document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
         document.querySelectorAll('textarea').forEach(t => t.value = '');
+        spicyModeEnabled = false;
+        document.getElementById('spicyToggle').classList.remove('active');
+        document.getElementById('spicyContent').style.display = 'none';
         updateSummary();
         document.getElementById('result').value = '';
     }
 
     function randomize() {
-        const groups = ['style', 'time', 'lighting', 'camera', 'environment', 'weather', 'ratio'];
+        const groups = ['lens', 'shot', 'time', 'lighting', 'style', 'mood', 'biome', 'weather', 'ratio'];
         groups.forEach(g => {
             const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
             if(opts.length) {
-                // Clear previous
                 opts.forEach(o => o.classList.remove('selected'));
-                // Select 1-3 random options
-                const count = Math.floor(Math.random() * 3) + 1;
+                const count = Math.floor(Math.random() * 2) + 1;
                 for(let i = 0; i < count; i++) {
                     const random = opts[Math.floor(Math.random() * opts.length)];
                     random.classList.add('selected');
                 }
             }
         });
-        document.getElementById('charName').value = 'Cyber Entity';
-        document.getElementById('subject').value = 'Lone figure';
+
+        const subjects = ['A cybernetic warrior', 'A mysterious stranger', 'A futuristic athlete', 'An ethereal being'];
+        const actions = ['walking through neon streets', 'standing in dramatic pose', 'running through the rain', 'gazing into the distance'];
+        
+        document.getElementById('subject').value = subjects[Math.floor(Math.random() * subjects.length)];
+        document.getElementById('action').value = actions[Math.floor(Math.random() * actions.length)];
+        
         updateSummary();
         generatePrompt();
     }
