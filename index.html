@@ -2,539 +2,592 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Prompt Architect | AI Command Interface</title>
+<title>Prompt Architect | Compact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
-        --bg-color: #0f1115;
-        --panel-bg: #1a1d24;
+        --bg-color: #0b0d12;
+        --panel-bg: #15181e;
         --text-main: #e0e0e0;
-        --text-muted: #8b9bb4;
+        --text-muted: #7a8599;
         --accent: #00d4ff;
-        --accent-hover: #00a3cc;
-        --border: #2d3340;
+        --accent-glow: rgba(0, 212, 255, 0.15);
+        --border: #2a2f3a;
+        --success: #00ff9d;
     }
 
+    * { box-sizing: border-box; }
+
     body {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-family: 'Segoe UI', system-ui, sans-serif;
         background-color: var(--bg-color);
         color: var(--text-main);
         margin: 0;
-        padding: 20px;
-        line-height: 1.6;
+        padding: 0;
+        padding-bottom: 250px; /* Space for fixed output */
     }
 
-    .app {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    header {
-        text-align: center;
-        margin-bottom: 30px;
+    /* --- STICKY SUMMARY BAR --- */
+    .sticky-summary {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(21, 24, 30, 0.95);
+        backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border);
-        padding-bottom: 20px;
-    }
-
-    h1 { margin: 0; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
-    h2 { margin: 0; font-size: 1.1rem; color: var(--text-main); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-    p { color: var(--text-muted); margin-top: 5px; }
-
-    /* ACCORDION STYLES */
-    .accordion-item {
-        background: var(--panel-bg);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        margin-bottom: 10px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .accordion-header {
-        padding: 15px 20px;
-        background: rgba(255,255,255,0.03);
-        cursor: pointer;
-        user-select: none;
-    }
-    
-    .accordion-header:hover { background: rgba(255,255,255,0.05); }
-    .accordion-header::after { content: '+'; font-size: 1.5rem; color: var(--accent); }
-    .accordion-item.active .accordion-header::after { content: '-'; }
-    
-    .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-        padding: 0 20px;
-    }
-
-    .accordion-item.active .accordion-content {
-        padding: 20px;
-        max-height: 2000px; /* Arbitrary large height */
-        border-top: 1px solid var(--border);
-    }
-
-    /* INPUTS & TEXTAREAS */
-    textarea, input[type="text"] {
-        width: 100%;
-        background: #0f1115;
-        border: 1px solid var(--border);
-        color: var(--text-main);
-        padding: 10px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-        font-family: monospace;
-    }
-    textarea:focus { outline: 1px solid var(--accent); }
-
-    /* BUTTON GRIDS */
-    .options {
+        padding: 10px 20px;
+        z-index: 1000;
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-bottom: 15px;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
-    .option {
-        background: #252a33;
-        border: 1px solid var(--border);
+    .summary-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
         color: var(--text-muted);
-        padding: 8px 16px;
-        border-radius: 20px;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .summary-tag {
+        background: var(--accent-glow);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        animation: popIn 0.3s ease;
+    }
+
+    .summary-tag .remove {
         cursor: pointer;
-        font-size: 0.9rem;
-        transition: all 0.2s;
+        opacity: 0.7;
+        font-weight: bold;
+    }
+    .summary-tag .remove:hover { opacity: 1; color: #fff; }
+
+    @keyframes popIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    /* --- MAIN LAYOUT --- */
+    .app {
+        max-width: 1200px;
+        margin: 60px auto 0;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 15px;
+    }
+
+    header {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+    }
+    h1 { margin: 0; color: var(--accent); font-size: 1.5rem; letter-spacing: 2px; }
+    p { color: var(--text-muted); margin: 5px 0 0; font-size: 0.9rem; }
+
+    /* --- COMPACT PANELS --- */
+    .panel {
+        background: var(--panel-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: border-color 0.2s;
+    }
+    .panel:hover { border-color: var(--text-muted); }
+
+    .panel-header {
+        padding: 10px 15px;
+        background: rgba(255,255,255,0.02);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         user-select: none;
     }
+    .panel-header h3 { margin: 0; font-size: 0.95rem; color: var(--text-main); }
+    .panel-summary { font-size: 0.75rem; color: var(--accent); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .panel-header::after { content: '▼'; font-size: 0.7rem; color: var(--text-muted); transition: transform 0.3s; }
+    .panel.active .panel-header::after { transform: rotate(180deg); }
+    .panel.active { border-color: var(--accent); }
 
-    .option:hover { border-color: var(--accent); color: var(--text-main); }
-    
-    /* SELECTED STATE */
-    .option.selected {
+    .panel-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 15px;
+    }
+    .panel.active .panel-content {
+        max-height: 500px;
+        padding: 15px;
+        border-top: 1px solid var(--border);
+    }
+
+    /* --- INPUTS --- */
+    textarea {
+        width: 100%;
+        background: #0b0d12;
+        border: 1px solid var(--border);
+        color: var(--text-main);
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        font-size: 0.85rem;
+        resize: vertical;
+        min-height: 60px;
+    }
+    textarea:focus { outline: 1px solid var(--accent); }
+
+    /* --- OPTION GRIDS --- */
+    .option-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .option-btn {
+        background: #1e232b;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        text-align: center;
+        transition: all 0.2s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .option-btn:hover { border-color: var(--text-muted); color: var(--text-main); }
+    .option-btn.selected {
         background: var(--accent);
         color: #000;
         border-color: var(--accent);
-        font-weight: bold;
-        box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        font-weight: 600;
     }
 
-    .option-group { margin-bottom: 20px; }
-    .option-group label { display: block; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .sub-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin: 10px 0 5px;
+        display: block;
+    }
 
-    /* ACTION BUTTONS */
-    .action-area {
-        position: sticky;
-        bottom: 20px;
-        background: var(--bg-color);
-        padding: 20px 0;
-        border-top: 1px solid var(--border);
-        margin-top: 30px;
+    /* --- FIXED OUTPUT AREA --- */
+    .output-area {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--panel-bg);
+        border-top: 1px solid var(--accent);
+        padding: 15px 20px;
+        z-index: 1000;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    }
+    .output-controls {
         display: flex;
         gap: 10px;
+        margin-bottom: 10px;
         justify-content: center;
-        z-index: 100;
     }
-
-    .btn-main {
-        background: var(--accent);
-        color: #000;
-        border: none;
-        padding: 12px 30px;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 4px;
-        cursor: pointer;
-        text-transform: uppercase;
-    }
-    .btn-main:hover { background: var(--accent-hover); }
-
-    .btn-secondary {
-        background: transparent;
-        border: 1px solid var(--text-muted);
-        color: var(--text-muted);
-        padding: 12px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .btn-secondary:hover { border-color: var(--text-main); color: var(--text-main); }
-
     #result {
         width: 100%;
-        height: 150px;
-        margin-top: 20px;
-        border-color: var(--accent);
-        font-size: 1rem;
+        height: 80px;
+        background: #0b0d12;
+        border: 1px solid var(--border);
+        color: var(--success);
+        padding: 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        resize: none;
     }
+    .btn {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #00a3cc; }
+    .btn-secondary { background: #2a2f3a; color: var(--text-main); }
+    .btn-secondary:hover { background: #3a404d; }
+    .btn-random { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
+    .btn-random:hover { border-color: var(--text-main); color: var(--text-main); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-color); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 </style>
 </head>
 <body>
 
+<!-- STICKY SUMMARY BAR -->
+<div class="sticky-summary" id="summaryBar">
+    <span class="summary-label">Active:</span>
+    <div id="summaryTags" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+</div>
+
 <div class="app">
 
 <header>
-  <h1>Prompt Architect</h1>
-  <p>Futuristic AI Prompt Engineering System</p>
+  <h1>PROMPT ARCHITECT</h1>
+  <p>Compact Dashboard Interface</p>
 </header>
 
-<!-- CHARACTER DNA -->
-<div class="accordion-item active">
-    <div class="accordion-header"><h2>Character DNA / Identidad</h2></div>
-    <div class="accordion-content">
-        <textarea id="charName" placeholder="Character Name (e.g. Cyberpunk Samurai)..."></textarea>
-        <textarea id="charTraits" placeholder="Traits / Physical Details (e.g. neon tattoos, robotic arm)..."></textarea>
+<!-- PANEL 1: CHARACTER -->
+<div class="panel active">
+    <div class="panel-header">
+        <h3>🧬 Character</h3>
+        <span class="panel-summary" id="sum-character"></span>
+    </div>
+    <div class="panel-content">
+        <textarea id="charName" placeholder="Name..." oninput="updateSummary()"></textarea>
+        <textarea id="charTraits" placeholder="Traits..." oninput="updateSummary()"></textarea>
     </div>
 </div>
 
-<!-- BASE SCENE -->
-<div class="accordion-item active">
-    <div class="accordion-header"><h2>Base Scene</h2></div>
-    <div class="accordion-content">
-        <textarea id="subject" placeholder="Subject..."></textarea>
-        <textarea id="action" placeholder="Action..."></textarea>
-        <textarea id="location" placeholder="Location / Context..."></textarea>
+<!-- PANEL 2: SCENE -->
+<div class="panel active">
+    <div class="panel-header">
+        <h3>🎬 Scene</h3>
+        <span class="panel-summary" id="sum-scene"></span>
+    </div>
+    <div class="panel-content">
+        <textarea id="subject" placeholder="Subject..." oninput="updateSummary()"></textarea>
+        <textarea id="action" placeholder="Action..." oninput="updateSummary()"></textarea>
+        <textarea id="location" placeholder="Location..." oninput="updateSummary()"></textarea>
     </div>
 </div>
 
-<!-- NARRATIVE MODE -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Intention / Narrative</h2></div>
-    <div class="accordion-content">
-        <div class="options" data-group="narrative">
-            <button class="option" data-value="epic cinematic narrative">Epic Cinematic</button>
-            <button class="option" data-value="intense suspense story">Intense Suspense</button>
-            <button class="option" data-value="romantic emotional scene">Romantic</button>
-            <button class="option" data-value="high action sequence">High Action</button>
-            <button class="option" data-value="mystery thriller atmosphere">Mystery</button>
+<!-- PANEL 3: STYLE -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🎨 Style</h3>
+        <span class="panel-summary" id="sum-style"></span>
+    </div>
+    <div class="panel-content">
+        <span class="sub-label">Art Style</span>
+        <div class="option-grid" data-group="style">
+            <button class="option-btn" data-value="cinematic">Cinematic</button>
+            <button class="option-btn" data-value="cyberpunk">Cyberpunk</button>
+            <button class="option-btn" data-value="ultra realistic">Realistic</button>
+            <button class="option-btn" data-value="anime style">Anime</button>
+            <button class="option-btn" data-value="fantasy art">Fantasy</button>
+            <button class="option-btn" data-value="oil painting">Oil Painting</button>
         </div>
-    </div>
-</div>
-
-<!-- TIME OF DAY -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Time of Day</h2></div>
-    <div class="accordion-content">
-        <div class="options" data-group="timeOfDay">
-            <button class="option" data-value="dawn lighting">Dawn</button>
-            <button class="option" data-value="midday sun">Midday</button>
-            <button class="option" data-value="sunset glow">Sunset</button>
-            <button class="option" data-value="nighttime scene">Night</button>
-        </div>
-    </div>
-</div>
-
-<!-- WEATHER -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Weather & Atmosphere</h2></div>
-    <div class="accordion-content">
-        <div class="option-group">
-            <label>Quick Weather</label>
-            <div class="options" data-group="weather">
-                <button class="option" data-value="rainy weather">Rain</button>
-                <button class="option" data-value="heavy storm">Storm</button>
-                <button class="option" data-value="snowing weather">Snow</button>
-                <button class="option" data-value="foggy atmosphere">Fog</button>
-                <button class="option" data-value="sunny weather">Sunny</button>
-                <button class="option" data-value="overcast sky">Overcast</button>
-            </div>
-        </div>
-        <div class="option-group">
-            <label>Custom Weather</label>
-            <textarea id="customWeather" placeholder="Describe custom weather..."></textarea>
+        <span class="sub-label">Engine</span>
+        <div class="option-grid" data-group="engine">
+            <button class="option-btn" data-value="Unreal Engine 5">Unreal 5</button>
+            <button class="option-btn" data-value="Octane render">Octane</button>
+            <button class="option-btn" data-value="Redshift">Redshift</button>
         </div>
     </div>
 </div>
 
-<!-- ENVIRONMENT -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Environment / Biome</h2></div>
-    <div class="accordion-content">
-        <div class="options" data-group="environment">
-            <button class="option" data-value="forest environment">Forest</button>
-            <button class="option" data-value="desert environment">Desert</button>
-            <button class="option" data-value="futuristic cityscape">Cityscape</button>
-            <button class="option" data-value="mountain region">Mountain</button>
-            <button class="option" data-value="outer space scene">Outer Space</button>
+<!-- PANEL 4: LIGHTING & TIME -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>💡 Light & Time</h3>
+        <span class="panel-summary" id="sum-light"></span>
+    </div>
+    <div class="panel-content">
+        <span class="sub-label">Time</span>
+        <div class="option-grid" data-group="time">
+            <button class="option-btn" data-value="dawn">Dawn</button>
+            <button class="option-btn" data-value="midday">Midday</button>
+            <button class="option-btn" data-value="sunset">Sunset</button>
+            <button class="option-btn" data-value="night">Night</button>
+        </div>
+        <span class="sub-label">Lighting</span>
+        <div class="option-grid" data-group="lighting">
+            <button class="option-btn" data-value="dramatic lighting">Dramatic</button>
+            <button class="option-btn" data-value="neon lighting">Neon</button>
+            <button class="option-btn" data-value="soft lighting">Soft</button>
+            <button class="option-btn" data-value="volumetric lighting">Volumetric</button>
         </div>
     </div>
 </div>
 
-<!-- VISUAL STYLE -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Visual Style</h2></div>
-    <div class="accordion-content">
-        <div class="option-group">
-            <label>Style</label>
-            <div class="options" data-group="style">
-                <button class="option" data-value="cinematic photography">Cinematic</button>
-                <button class="option" data-value="cyberpunk style">Cyberpunk</button>
-                <button class="option" data-value="ultra realistic">Ultra Realistic</button>
-                <button class="option" data-value="anime style">Anime</button>
-                <button class="option" data-value="fantasy art">Fantasy</button>
-            </div>
+<!-- PANEL 5: CAMERA -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>📷 Camera</h3>
+        <span class="panel-summary" id="sum-camera"></span>
+    </div>
+    <div class="panel-content">
+        <span class="sub-label">Shot</span>
+        <div class="option-grid" data-group="camera">
+            <button class="option-btn" data-value="wide angle">Wide</button>
+            <button class="option-btn" data-value="close-up">Close-up</button>
+            <button class="option-btn" data-value="drone shot">Drone</button>
+            <button class="option-btn" data-value="POV">POV</button>
+            <button class="option-btn" data-value="macro shot">Macro</button>
         </div>
-        <div class="option-group">
-            <label>Render Engine</label>
-            <div class="options" data-group="engine">
-                <button class="option" data-value="Unreal Engine 5 render">Unreal 5</button>
-                <button class="option" data-value="Octane render">Octane</button>
-                <button class="option" data-value="Redshift render">Redshift</button>
-            </div>
+        <span class="sub-label">Lens</span>
+        <div class="option-grid" data-group="lens">
+            <button class="option-btn" data-value="35mm">35mm</button>
+            <button class="option-btn" data-value="85mm">85mm</button>
+            <button class="option-btn" data-value="anamorphic">Anamorphic</button>
+            <button class="option-btn" data-value="depth of field">DOF</button>
         </div>
     </div>
 </div>
 
-<!-- CINEMATOGRAPHY -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Cinematography</h2></div>
-    <div class="accordion-content">
-        <div class="option-group">
-            <label>Camera Shot</label>
-            <div class="options" data-group="camera">
-                <button class="option" data-value="wide angle shot">Wide</button>
-                <button class="option" data-value="close-up shot">Close-up</button>
-                <button class="option" data-value="low angle shot">Low Angle</button>
-                <button class="option" data-value="drone aerial shot">Drone</button>
-                <button class="option" data-value="POV shot">POV</button>
-            </div>
+<!-- PANEL 6: ENV & WEATHER -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🌍 Env & Weather</h3>
+        <span class="panel-summary" id="sum-env"></span>
+    </div>
+    <div class="panel-content">
+        <span class="sub-label">Environment</span>
+        <div class="option-grid" data-group="environment">
+            <button class="option-btn" data-value="forest">Forest</button>
+            <button class="option-btn" data-value="desert">Desert</button>
+            <button class="option-btn" data-value="cityscape">City</button>
+            <button class="option-btn" data-value="space">Space</button>
         </div>
-        <div class="option-group">
-            <label>Lens & Optics</label>
-            <div class="options" data-group="lens">
-                <button class="option" data-value="35mm lens">35mm</button>
-                <button class="option" data-value="85mm lens">85mm</button>
-                <button class="option" data-value="anamorphic lens">Anamorphic</button>
-                <button class="option" data-value="cinematic depth of field">DOF</button>
-                <button class="option" data-value="bokeh background blur">Bokeh</button>
-                <button class="option" data-value="volumetric light rays">Volumetric Light</button>
-            </div>
+        <span class="sub-label">Weather</span>
+        <div class="option-grid" data-group="weather">
+            <button class="option-btn" data-value="rainy">Rain</button>
+            <button class="option-btn" data-value="stormy">Storm</button>
+            <button class="option-btn" data-value="foggy">Fog</button>
+            <button class="option-btn" data-value="sunny">Sunny</button>
         </div>
     </div>
 </div>
 
-<!-- LIGHTING & MOOD -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Lighting & Mood</h2></div>
-    <div class="accordion-content">
-        <div class="option-group">
-            <label>Lighting Type</label>
-            <div class="options" data-group="lighting">
-                <button class="option" data-value="dramatic lighting">Dramatic</button>
-                <button class="option" data-value="neon lighting">Neon</button>
-                <button class="option" data-value="soft cinematic lighting">Soft</button>
-                <button class="option" data-value="golden hour lighting">Golden Hour</button>
-            </div>
+<!-- PANEL 7: OUTPUT -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>⚙️ Output</h3>
+        <span class="panel-summary" id="sum-output"></span>
+    </div>
+    <div class="panel-content">
+        <span class="sub-label">Resolution</span>
+        <div class="option-grid" data-group="resolution">
+            <button class="option-btn" data-value="8K">8K</button>
+            <button class="option-btn" data-value="4K">4K</button>
+            <button class="option-btn" data-value="HDR">HDR</button>
         </div>
-        <div class="option-group">
-            <label>Mood</label>
-            <div class="options" data-group="mood">
-                <button class="option" data-value="dark atmosphere">Dark</button>
-                <button class="option" data-value="epic atmosphere">Epic</button>
-                <button class="option" data-value="mysterious atmosphere">Mysterious</button>
-                <button class="option" data-value="hopeful atmosphere">Hopeful</button>
-            </div>
+        <span class="sub-label">Ratio</span>
+        <div class="option-grid" data-group="ratio">
+            <button class="option-btn" data-value="--ar 16:9">16:9</button>
+            <button class="option-btn" data-value="--ar 9:16">9:16</button>
+            <button class="option-btn" data-value="--ar 1:1">1:1</button>
         </div>
     </div>
 </div>
 
-<!-- OUTPUT SETTINGS -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Output Settings</h2></div>
-    <div class="accordion-content">
-        <div class="option-group">
-            <label>Resolution & Ratio</label>
-            <div class="options" data-group="resolution">
-                <button class="option" data-value="8K resolution">8K</button>
-                <button class="option" data-value="4K resolution">4K</button>
-                <button class="option" data-value="HDR">HDR</button>
-            </div>
-            <div class="options" data-group="ratio">
-                <button class="option" data-value="--ar 16:9">16:9</button>
-                <button class="option" data-value="--ar 9:16">9:16</button>
-                <button class="option" data-value="--ar 1:1">1:1</button>
-            </div>
+<!-- PANEL 8: NEGATIVE -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>⛔ Negative</h3>
+        <span class="panel-summary" id="sum-negative"></span>
+    </div>
+    <div class="panel-content">
+        <textarea id="negative" placeholder="Custom negative..." oninput="updateSummary()"></textarea>
+        <div class="option-grid" data-group="negQuick">
+            <button class="option-btn" data-value="text, watermark">No Text</button>
+            <button class="option-btn" data-value="blurry, low quality">No Blur</button>
+            <button class="option-btn" data-value="ugly, deformed">No Ugly</button>
         </div>
     </div>
 </div>
 
-<!-- NEGATIVE PROMPT -->
-<div class="accordion-item">
-    <div class="accordion-header"><h2>Negative Prompt</h2></div>
-    <div class="accordion-content">
-        <textarea id="negative" placeholder="Elements to avoid (e.g. text, watermark, bad hands)..."></textarea>
-        <div class="options" data-group="negativeQuick">
-            <button class="option" data-value="text, watermark">No Text/Watermark</button>
-            <button class="option" data-value="low resolution, blurry">No Low Res</button>
-            <button class="option" data-value="ugly, deformed hands">No Bad Hands</button>
-        </div>
+</div>
+
+<!-- FIXED OUTPUT AREA -->
+<div class="output-area">
+    <div class="output-controls">
+        <button class="btn btn-random" onclick="randomize()">🎲 Random</button>
+        <button class="btn btn-primary" onclick="generatePrompt()">⚡ Generate</button>
+        <button class="btn btn-secondary" onclick="copyPrompt()">📋 Copy</button>
+        <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear</button>
     </div>
-</div>
-
-<!-- ACTION AREA -->
-<div class="action-area">
-    <button class="btn-secondary" onclick="randomizePrompt()">🎲 Randomize</button>
-    <button class="btn-main" onclick="generatePrompt()">⚡ Generate Prompt</button>
-</div>
-
-<textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
-<button class="btn-secondary" style="width:100%; margin-top:10px;" onclick="copyPrompt()">📋 Copy to Clipboard</button>
-
+    <textarea id="result" readonly placeholder="Your prompt will appear here..."></textarea>
 </div>
 
 <script>
-    // 1. ACCORDION LOGIC
-    const accordions = document.querySelectorAll('.accordion-header');
-    accordions.forEach(acc => {
-        acc.addEventListener('click', function() {
-            const item = this.parentElement;
-            item.classList.toggle('active');
+    // --- ACCORDION ---
+    document.querySelectorAll('.panel-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const panel = header.parentElement;
+            panel.classList.toggle('active');
         });
     });
 
-    // 2. BUTTON SELECTION LOGIC (Exclusive within groups)
-    const optionButtons = document.querySelectorAll('.option');
-    
-    optionButtons.forEach(btn => {
+    // --- BUTTON SELECTION ---
+    document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const group = this.parentElement.getAttribute('data-group');
-            
-            // Remove 'selected' from all buttons in the same group
-            const siblings = document.querySelectorAll(`.options[data-group="${group}"] .option`);
-            siblings.forEach(sib => sib.classList.remove('selected'));
-            
-            // Toggle current button
-            this.classList.add('selected');
+            // Toggle selection
+            if(this.classList.contains('selected')) {
+                this.classList.remove('selected');
+            } else {
+                // Remove siblings
+                document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+            }
+            updateSummary();
         });
     });
 
-    // Helper to get value of selected button in a group
-    function getSelectedValue(groupName) {
-        const selected = document.querySelector(`.options[data-group="${groupName}"] .option.selected`);
-        return selected ? selected.getAttribute('data-value') : null;
+    // --- SUMMARY SYSTEM ---
+    function getSelected(group) {
+        const el = document.querySelector(`.option-grid[data-group="${group}"] .option-btn.selected`);
+        return el ? el.getAttribute('data-value') : null;
     }
 
-    // Helper to get text from textarea if not empty
     function getText(id) {
         const el = document.getElementById(id);
         return el.value.trim();
     }
 
-    // 3. GENERATE PROMPT LOGIC
+    function updateSummary() {
+        const tagsContainer = document.getElementById('summaryTags');
+        tagsContainer.innerHTML = '';
+        
+        const selections = [
+            { id: 'charName', label: 'Name' },
+            { id: 'charTraits', label: 'Traits' },
+            { group: 'style', label: 'Style' },
+            { group: 'time', label: 'Time' },
+            { group: 'lighting', label: 'Light' },
+            { group: 'camera', label: 'Camera' },
+            { group: 'environment', label: 'Env' },
+            { group: 'ratio', label: 'Ratio' }
+        ];
+
+        let activeCount = 0;
+
+        selections.forEach(sel => {
+            let value = sel.group ? getSelected(sel.group) : getText(sel.id);
+            if(value) {
+                activeCount++;
+                const tag = document.createElement('div');
+                tag.className = 'summary-tag';
+                tag.innerHTML = `<span>${value}</span><span class="remove" onclick="clearSelection('${sel.group}', '${sel.id}')">×</span>`;
+                tagsContainer.appendChild(tag);
+            }
+        });
+
+        if(activeCount === 0) {
+            tagsContainer.innerHTML = '<span style="color:var(--text-muted); font-size:0.75rem;">No options selected yet</span>';
+        }
+
+        // Update panel summaries
+        updatePanelSummary('sum-character', [getText('charName'), getText('charTraits')]);
+        updatePanelSummary('sum-scene', [getText('subject'), getText('location')]);
+        updatePanelSummary('sum-style', [getSelected('style'), getSelected('engine')]);
+        updatePanelSummary('sum-light', [getSelected('time'), getSelected('lighting')]);
+        updatePanelSummary('sum-camera', [getSelected('camera'), getSelected('lens')]);
+        updatePanelSummary('sum-env', [getSelected('environment'), getSelected('weather')]);
+        updatePanelSummary('sum-output', [getSelected('resolution'), getSelected('ratio')]);
+        updatePanelSummary('sum-negative', [getText('negative')]);
+    }
+
+    function updatePanelSummary(elementId, values) {
+        const el = document.getElementById(elementId);
+        const filtered = values.filter(v => v);
+        el.textContent = filtered.length > 0 ? filtered.join(' • ') : '';
+    }
+
+    function clearSelection(group, id) {
+        if(group) {
+            document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(b => b.classList.remove('selected'));
+        }
+        if(id) {
+            document.getElementById(id).value = '';
+        }
+        updateSummary();
+    }
+
+    // --- GENERATE ---
     function generatePrompt() {
         let parts = [];
-
-        // Character
-        const name = getText('charName');
-        const traits = getText('charTraits');
-        if(name) parts.push(name);
-        if(traits) parts.push(traits);
-
-        // Base Scene
-        const subject = getText('subject');
-        const action = getText('action');
-        const location = getText('location');
-        if(subject) parts.push(subject);
-        if(action) parts.push(action + " in " + location); // Simple combination logic
-        else if(location) parts.push(location);
-
-        // Narrative & Time
-        const narrative = getSelectedValue('narrative');
-        const time = getSelectedValue('timeOfDay');
-        if(narrative) parts.push(narrative);
-        if(time) parts.push(time);
-
-        // Weather
-        const weather = getSelectedValue('weather');
-        const customWeather = getText('customWeather');
-        if(weather) parts.push(weather);
-        if(customWeather) parts.push(customWeather);
-
-        // Environment
-        const env = getSelectedValue('environment');
-        if(env) parts.push(env);
-
-        // Style & Engine
-        const style = getSelectedValue('style');
-        const engine = getSelectedValue('engine');
-        if(style) parts.push(style);
-        if(engine) parts.push(engine);
-
-        // Cinematography
-        const camera = getSelectedValue('camera');
-        const lens = getSelectedValue('lens');
-        if(camera) parts.push(camera);
-        if(lens) parts.push(lens);
-
-        // Lighting & Mood
-        const lighting = getSelectedValue('lighting');
-        const mood = getSelectedValue('mood');
-        if(lighting) parts.push(lighting);
-        if(mood) parts.push(mood);
-
-        // Output
-        const res = getSelectedValue('resolution');
-        const ratio = getSelectedValue('ratio');
-        if(res) parts.push(res);
-        if(ratio) parts.push(ratio);
-
-        // Join parts with commas
-        let finalPrompt = parts.join(", ");
-
-        // Negative Prompt Handling
-        const negative = getText('negative');
-        const negQuick = getSelectedValue('negativeQuick');
-        let finalNegative = [];
-        if(negative) finalNegative.push(negative);
-        if(negQuick) finalNegative.push(negQuick);
         
-        // Append negative if exists (format depends on AI, assuming Midjourney style --no or generic)
-        if(finalNegative.length > 0) {
-            finalPrompt += " --no " + finalNegative.join(", ");
-        }
-
-        document.getElementById('result').value = finalPrompt;
-    }
-
-    // 4. COPY FUNCTION
-    function copyPrompt() {
-        const copyText = document.getElementById("result");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); 
-        navigator.clipboard.writeText(copyText.value).then(() => {
-            alert("Prompt copied to clipboard!");
+        // Text inputs
+        ['charName', 'charTraits', 'subject', 'action', 'location'].forEach(id => {
+            const txt = getText(id);
+            if(txt) parts.push(txt);
         });
-    }
 
-    // 5. RANDOMIZE FUNCTION (Bonus)
-    function randomizePrompt() {
-        // Helper to pick random from group
-        function pickRandom(groupName) {
-            const options = document.querySelectorAll(`.options[data-group="${groupName}"] .option`);
-            if(options.length > 0) {
-                const random = options[Math.floor(Math.random() * options.length)];
-                // Clear others
-                options.forEach(o => o.classList.remove('selected'));
-                random.classList.add('selected');
-            }
+        // Selected options
+        ['style', 'engine', 'time', 'lighting', 'camera', 'lens', 'environment', 'weather', 'resolution', 'ratio'].forEach(grp => {
+            const val = getSelected(grp);
+            if(val) parts.push(val);
+        });
+
+        // Negative
+        const neg = getText('negative');
+        const negQ = getSelected('negQuick');
+        if(neg || negQ) {
+            parts.push('--no ' + [neg, negQ].filter(Boolean).join(', '));
         }
 
-        // Randomize some key groups
-        pickRandom('style');
-        pickRandom('lighting');
-        pickRandom('camera');
-        pickRandom('timeOfDay');
-        pickRandom('environment');
-        
-        // Fill some text areas with random words (Optional simple version)
-        document.getElementById('charName').value = "Cybernetic Entity";
-        document.getElementById('subject').value = "A lone figure standing";
-        
-        // Auto generate after randomizing
-        generatePrompt();
-        
-        // Open all accordions to see changes
-        document.querySelectorAll('.accordion-item').forEach(item => item.classList.add('active'));
+        document.getElementById('result').value = parts.join(', ');
+        updateSummary();
     }
+
+    // --- UTILS ---
+    function copyPrompt() {
+        const el = document.getElementById('result');
+        el.select();
+        navigator.clipboard.writeText(el.value);
+        const btn = event.target;
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => btn.textContent = orig, 1500);
+    }
+
+    function clearAll() {
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        document.querySelectorAll('textarea').forEach(t => t.value = '');
+        updateSummary();
+        document.getElementById('result').value = '';
+    }
+
+    function randomize() {
+        const groups = ['style', 'time', 'lighting', 'camera', 'environment', 'ratio'];
+        groups.forEach(g => {
+            const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
+            if(opts.length) {
+                opts.forEach(o => o.classList.remove('selected'));
+                opts[Math.floor(Math.random() * opts.length)].classList.add('selected');
+            }
+        });
+        document.getElementById('charName').value = 'Cyber Entity';
+        document.getElementById('subject').value = 'Lone figure';
+        updateSummary();
+        generatePrompt();
+    }
+
+    // Init
+    updateSummary();
 </script>
 
 </body>
