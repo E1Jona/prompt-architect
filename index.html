@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Grok Prompt Architect | Imagine 1.0 Optimized</title>
+<title>Grok Prompt Architect v4.0 | Imagine Optimized</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
@@ -16,6 +16,7 @@
         --success: #00ff9d;
         --warning: #ffaa00;
         --grok-purple: #8b5cf6;
+        --danger: #ff4757;
     }
 
     * { box-sizing: border-box; }
@@ -26,7 +27,7 @@
         color: var(--text-main);
         margin: 0;
         padding: 0;
-        padding-bottom: 280px;
+        padding-bottom: 300px;
         min-height: 100vh;
     }
 
@@ -38,7 +39,7 @@
         right: 0;
         background: rgba(20, 23, 29, 0.98);
         backdrop-filter: blur(15px);
-        border-bottom: 1px solid var(--border);
+        border-bottom: 2px solid var(--accent);
         padding: 12px 20px;
         z-index: 1000;
         display: flex;
@@ -56,16 +57,17 @@
     }
 
     .brand-logo {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         background: linear-gradient(135deg, var(--accent), var(--grok-purple));
-        border-radius: 6px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: #fff;
+        box-shadow: 0 0 15px var(--accent-glow);
     }
 
     .brand-text h1 {
@@ -78,9 +80,10 @@
     }
 
     .brand-text span {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--text-muted);
         text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .lang-switch {
@@ -117,7 +120,7 @@
         flex: 1;
         margin-left: 20px;
         min-width: 200px;
-        max-height: 60px;
+        max-height: 70px;
         overflow-y: auto;
     }
 
@@ -135,19 +138,19 @@
         color: var(--accent);
         padding: 3px 8px;
         border-radius: 10px;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         display: flex;
         align-items: center;
         gap: 5px;
         animation: popIn 0.3s ease;
-        max-width: 150px;
+        max-width: 140px;
     }
 
     .summary-tag .remove {
         cursor: pointer;
         opacity: 0.6;
         font-weight: bold;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     .summary-tag .remove:hover { opacity: 1; color: #fff; }
 
@@ -162,6 +165,16 @@
         letter-spacing: 0.5px;
     }
 
+    .version-badge {
+        background: var(--accent);
+        color: #000;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.6rem;
+        font-weight: 700;
+        margin-left: 5px;
+    }
+
     @keyframes popIn {
         from { transform: scale(0.8); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
@@ -169,37 +182,50 @@
 
     /* --- INFO ALERT --- */
     .info-alert {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 70px auto 15px;
-        padding: 12px 20px;
+        padding: 14px 24px;
         background: rgba(0, 212, 255, 0.08);
         border: 1px solid rgba(0, 212, 255, 0.3);
-        border-radius: 8px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 15px;
         font-size: 0.85rem;
     }
 
     .info-alert-icon {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        flex-shrink: 0;
     }
 
     .info-alert-content {
         color: var(--text-muted);
+        line-height: 1.5;
     }
 
     .info-alert strong {
         color: var(--accent);
     }
 
+    .formula-display {
+        background: rgba(0, 212, 255, 0.05);
+        border: 1px dashed var(--accent);
+        border-radius: 6px;
+        padding: 8px 12px;
+        margin-top: 8px;
+        font-family: 'Consolas', monospace;
+        font-size: 0.75rem;
+        color: var(--accent);
+    }
+
     /* --- MAIN LAYOUT --- */
     .app {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 20px 20px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
         gap: 15px;
     }
 
@@ -223,7 +249,7 @@
     }
 
     .panel-header {
-        padding: 12px 18px;
+        padding: 14px 18px;
         background: rgba(255,255,255,0.02);
         cursor: pointer;
         display: flex;
@@ -252,6 +278,11 @@
     .priority-high {
         background: rgba(255, 170, 0, 0.2);
         color: var(--warning);
+    }
+
+    .priority-critical {
+        background: rgba(255, 71, 87, 0.2);
+        color: var(--danger);
     }
 
     .panel-summary {
@@ -286,7 +317,7 @@
     }
 
     .panel.active .panel-content {
-        max-height: 800px;
+        max-height: 1000px;
         padding: 18px;
         border-top: 1px solid var(--border);
     }
@@ -318,7 +349,7 @@
     /* --- OPTION GRIDS --- */
     .option-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 7px;
         margin-bottom: 12px;
     }
@@ -330,7 +361,7 @@
         padding: 8px 12px;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         text-align: center;
         transition: all 0.25s;
         white-space: nowrap;
@@ -368,23 +399,8 @@
         color: var(--warning);
     }
 
-    /* --- GROK FORMULA DISPLAY --- */
-    .formula-box {
-        background: rgba(0, 212, 255, 0.05);
-        border: 1px dashed var(--accent);
-        border-radius: 6px;
-        padding: 12px;
-        margin-bottom: 15px;
-        font-size: 0.75rem;
-        color: var(--text-muted);
-    }
-
-    .formula-box code {
-        color: var(--accent);
-        font-family: 'Consolas', monospace;
-        display: block;
-        margin-top: 8px;
-        word-break: break-all;
+    .sub-label.danger {
+        color: var(--danger);
     }
 
     /* --- FIXED OUTPUT AREA --- */
@@ -420,11 +436,12 @@
     }
 
     .grok-structure-hint {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--accent);
         background: rgba(0, 212, 255, 0.1);
         padding: 4px 10px;
         border-radius: 12px;
+        font-family: 'Consolas', monospace;
     }
 
     .output-controls {
@@ -437,7 +454,7 @@
 
     #result {
         width: 100%;
-        height: 100px;
+        height: 110px;
         background: #0a0c10;
         border: 1px solid var(--border);
         color: var(--success);
@@ -509,7 +526,7 @@
         box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
     }
 
-    /* --- SPICY MODE SECTION --- */
+    /* --- SPICY MODE --- */
     .spicy-warning {
         background: rgba(255, 170, 0, 0.1);
         border: 1px solid var(--warning);
@@ -610,8 +627,8 @@
     <div class="brand">
         <div class="brand-logo">G</div>
         <div class="brand-text">
-            <h1>GROK PROMPT ARCHITECT</h1>
-            <span data-i18n="subtitle">Imagine 1.0 Optimized</span>
+            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.0</span></h1>
+            <span data-i18n="subtitle">Imagine 1.0 | Aurora Engine</span>
         </div>
     </div>
     
@@ -631,103 +648,174 @@
     <span class="info-alert-icon">⚡</span>
     <div class="info-alert-content">
         <strong data-i18n="alertTitle">Grok Protocol Active:</strong>
-        <span data-i18n="alertText">Subject + Action must be FIRST. Negative prompts auto-included. Optimal: 720p, 8s segments.</span>
+        <span data-i18n="alertText">Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.</span>
+        <div class="formula-display">[Subject]+[Action]+[Optics]; [Lighting]; [Physics]+[Details]</div>
     </div>
-    <span class="grok-badge">Aurora Engine</span>
+    <span class="grok-badge">Aurora MoE</span>
 </div>
 
 <div class="app">
 
-<!-- PANEL 1: SUBJECT (CRITICAL - MUST BE FIRST) -->
+<!-- PANEL 1: SUBJECT (CRITICAL - PRIORITY 1) -->
 <div class="panel critical active">
     <div class="panel-header">
         <h3>
             🎯 <span data-i18n="subject">Subject & Action</span>
-            <span class="panel-priority priority-high" data-i18n="priorityHigh">PRIORITY 1</span>
+            <span class="panel-priority priority-critical" data-i18n="priorityCritical">LAYER 1</span>
         </h3>
         <span class="panel-summary" id="sum-subject"></span>
     </div>
     <div class="panel-content">
-        <div class="formula-box">
-            <span data-i18n="formulaHint">Grok Golden Formula:</span>
-            <code>[Main Subject] + [Action] + [Optical Style] ; [Lighting] ; [Physical Dynamics]</code>
+        <div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--warning);">
+            <strong>⚠️ CRITICAL:</strong> <span data-i18n="subjectWarning">These tokens have LOGARITHMIC WEIGHT. Must be FIRST in prompt for Grok Aurora engine.</span>
         </div>
+        
         <label class="sub-label critical" data-i18n="mainSubject">Main Subject (FIRST in prompt)</label>
-        <textarea id="subject" placeholder="e.g. A cybernetic warrior with neon tattoos..." oninput="updateSummary()"></textarea>
+        <textarea id="subject" placeholder="e.g. A cybernetic warrior with neon tattoos and natural skin pores..." oninput="updateSummary()"></textarea>
         
         <label class="sub-label" data-i18n="action">Primary Action</label>
-        <textarea id="action" placeholder="e.g. walking through rain-soaked streets..." oninput="updateSummary()"></textarea>
+        <textarea id="action" placeholder="e.g. walking through rain-soaked neon streets with wind affecting clothing..." oninput="updateSummary()"></textarea>
         
-        <label class="sub-label" data-i18n="characterDNA">Character DNA (Optional)</label>
-        <textarea id="charDNA" placeholder="Age, ethnicity, voice tone, immutable traits..." oninput="updateSummary()"></textarea>
+        <label class="sub-label" data-i18n="characterDNA">Character DNA (Immutable Traits)</label>
+        <textarea id="charDNA" placeholder="Age, ethnicity, voice tone, exact features for consistency..." oninput="updateSummary()"></textarea>
     </div>
 </div>
 
-<!-- PANEL 2: OPTICS & CAMERA -->
-<div class="panel active">
-    <div class="panel-header">
-        <h3>📷 <span data-i18n="optics">Optics & Camera</span></h3>
-        <span class="panel-summary" id="sum-optics"></span>
-    </div>
-    <div class="panel-content">
-        <label class="sub-label" data-i18n="lens">Lens (85mm for portraits, 35mm for wide)</label>
-        <div class="option-grid" data-group="lens">
-            <button class="option-btn" data-value="85mm lens">85mm Portrait</button>
-            <button class="option-btn" data-value="35mm lens">35mm Wide</button>
-            <button class="option-btn" data-value="50mm lens">50mm Standard</button>
-            <button class="option-btn" data-value="anamorphic lens">Anamorphic</button>
-        </div>
-
-        <label class="sub-label" data-i18n="shot">Camera Shot</label>
-        <div class="option-grid" data-group="shot">
-            <button class="option-btn" data-value="close-up shot">Close-up</button>
-            <button class="option-btn" data-value="wide angle shot">Wide</button>
-            <button class="option-btn" data-value="drone aerial shot">Drone</button>
-            <button class="option-btn" data-value="POV shot">POV</button>
-            <button class="option-btn" data-value="over the shoulder">Over Shoulder</button>
-        </div>
-
-        <label class="sub-label critical" data-i18n="eyeLines">Eye Lines (CRITICAL for Grok)</label>
-        <div class="option-grid" data-group="eyelines">
-            <button class="option-btn" data-value="diegetic eye lines, subject not looking at camera">Avoid Camera</button>
-            <button class="option-btn" data-value="subject looking directly at camera, influencer style">Influencer Style</button>
-        </div>
-
-        <label class="sub-label" data-i18n="opticalEffects">Optical Effects</label>
-        <div class="option-grid" data-group="optical">
-            <button class="option-btn" data-value="cinematic depth of field">Depth of Field</button>
-            <button class="option-btn" data-value="bokeh background blur">Bokeh</button>
-            <button class="option-btn" data-value="volumetric light rays">Volumetric Light</button>
-            <button class="option-btn" data-value="film grain texture">Film Grain</button>
-            <button class="option-btn" data-value="motion blur">Motion Blur</button>
-        </div>
-    </div>
-</div>
-
-<!-- PANEL 3: LIGHTING & AESTHETICS -->
+<!-- PANEL 2: LENS LIBRARY -->
 <div class="panel">
     <div class="panel-header">
-        <h3>💡 <span data-i18n="lighting">Lighting & Aesthetics</span></h3>
+        <h3>📷 <span data-i18n="lensLibrary">Lens Library</span></h3>
+        <span class="panel-summary" id="sum-lens"></span>
+    </div>
+    <div class="panel-content">
+        <label class="sub-label" data-i18n="focalLength">Focal Length</label>
+        <div class="option-grid" data-group="focalLength">
+            <button class="option-btn" data-value="14mm fisheye lens, extreme wide distortion">14mm Fisheye</button>
+            <button class="option-btn" data-value="24mm wide angle lens, environmental context">24mm Wide</button>
+            <button class="option-btn" data-value="35mm lens, natural perspective">35mm Standard</button>
+            <button class="option-btn" data-value="50mm standard lens, natural view">50mm Normal</button>
+            <button class="option-btn" data-value="85mm lens, portrait with bokeh">85mm Portrait</button>
+            <button class="option-btn" data-value="135mm telephoto lens, compressed background">135mm Tele</button>
+            <button class="option-btn" data-value="200mm super telephoto, extreme compression">200mm Super</button>
+        </div>
+
+        <label class="sub-label" data-i18n="specialtyLenses">Specialty Lenses</label>
+        <div class="option-grid" data-group="specialtyLenses">
+            <button class="option-btn" data-value="anamorphic lens, cinematic flares">Anamorphic</button>
+            <button class="option-btn" data-value="tilt-shift lens, miniature effect">Tilt-Shift</button>
+            <button class="option-btn" data-value="macro lens, extreme detail">Macro</button>
+            <button class="option-btn" data-value="soft focus lens, dreamy glow">Soft Focus</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 3: CAMERA SHOTS & ANGLES -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🎬 <span data-i18n="cameraShots">Camera Shots</span></h3>
+        <span class="panel-summary" id="sum-shots"></span>
+    </div>
+    <div class="panel-content">
+        <label class="sub-label" data-i18n="shotSize">Shot Size</label>
+        <div class="option-grid" data-group="shotSize">
+            <button class="option-btn" data-value="extreme close-up shot, eye or mouth detail">Extreme CU</button>
+            <button class="option-btn" data-value="close-up shot, facial details">Close-Up</button>
+            <button class="option-btn" data-value="medium shot, waist up">Medium Shot</button>
+            <button class="option-btn" data-value="full body shot, complete figure">Full Body</button>
+            <button class="option-btn" data-value="wide shot, full scene context">Wide Shot</button>
+            <button class="option-btn" data-value="extreme wide shot, establishing shot">Extreme Wide</button>
+        </div>
+
+        <label class="sub-label" data-i18n="cameraAngles">Camera Angles</label>
+        <div class="option-grid" data-group="cameraAngles">
+            <button class="option-btn" data-value="eye level shot, neutral perspective">Eye Level</button>
+            <button class="option-btn" data-value="low angle shot, powerful perspective">Low Angle</button>
+            <button class="option-btn" data-value="high angle shot, vulnerable perspective">High Angle</button>
+            <button class="option-btn" data-value="worm's eye view, extreme low angle">Worm's Eye</button>
+            <button class="option-btn" data-value="bird's eye view, drone top down">Bird's Eye</button>
+            <button class="option-btn" data-value="over the shoulder shot, conversation view">Over Shoulder</button>
+            <button class="option-btn" data-value="POV shot, first person perspective">POV</button>
+            <button class="option-btn" data-value="dutch angle tilt, uneasy atmosphere">Dutch Angle</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 4: CAMERA MOVEMENT (VIDEO) -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🎥 <span data-i18n="cameraMovement">Camera Movement</span></h3>
+        <span class="panel-summary" id="sum-movement"></span>
+    </div>
+    <div class="panel-content">
+        <label class="sub-label critical" data-i18n="movementNote">Critical for Grok Video - 8s segments max</label>
+        <div class="option-grid" data-group="cameraMovement">
+            <button class="option-btn" data-value="slow dolly in toward subject">Dolly In</button>
+            <button class="option-btn" data-value="slow dolly out from subject">Dolly Out</button>
+            <button class="option-btn" data-value="tracking shot following subject movement">Tracking</button>
+            <button class="option-btn" data-value="slow pan left">Pan Left</button>
+            <button class="option-btn" data-value="slow pan right">Pan Right</button>
+            <button class="option-btn" data-value="tilt up to reveal">Tilt Up</button>
+            <button class="option-btn" data-value="tilt down to ground">Tilt Down</button>
+            <button class="option-btn" data-value="360 degree orbit shot around subject">360° Orbit</button>
+            <button class="option-btn" data-value="crane shot ascending">Crane Up</button>
+            <button class="option-btn" data-value="crane shot descending">Crane Down</button>
+            <button class="option-btn" data-value="handheld camera shake, documentary style">Handheld</button>
+            <button class="option-btn" data-value="steadicam smooth motion, gliding">Steadicam</button>
+            <button class="option-btn" data-value="slow zoom in">Slow Zoom</button>
+            <button class="option-btn" data-value="snap zoom, dramatic emphasis">Snap Zoom</button>
+            <button class="option-btn" data-value="rack focus from foreground to background">Rack Focus</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 5: EYE LINES (GROK CRITICAL) -->
+<div class="panel critical">
+    <div class="panel-header">
+        <h3>
+            👁️ <span data-i18n="eyeLines">Eye Lines</span>
+            <span class="panel-priority priority-high" data-i18n="grokCritical">GROK</span>
+        </h3>
+        <span class="panel-summary" id="sum-eyelines"></span>
+    </div>
+    <div class="panel-content">
+        <div style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--text-muted);">
+            <strong data-i18n="eyeLinesInfo">Grok breaks fourth wall by default. Specify eye lines to avoid uncanny valley.</strong>
+        </div>
+        <div class="option-grid" data-group="eyeLines">
+            <button class="option-btn" data-value="diegetic eye lines, subject not looking at camera">Avoid Camera</button>
+            <button class="option-btn" data-value="subject looking directly at camera, influencer style">Influencer</button>
+            <button class="option-btn" data-value="subject looking off-camera, natural gaze">Off-Camera</button>
+            <button class="option-btn" data-value="eyes closed, emotional moment">Eyes Closed</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 6: LIGHTING -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>💡 <span data-i18n="lighting">Lighting</span></h3>
         <span class="panel-summary" id="sum-lighting"></span>
     </div>
     <div class="panel-content">
         <label class="sub-label" data-i18n="timeOfDay">Time of Day</label>
-        <div class="option-grid" data-group="time">
-            <button class="option-btn" data-value="dawn lighting">Dawn</button>
-            <button class="option-btn" data-value="midday sun">Midday</button>
-            <button class="option-btn" data-value="sunset glow">Sunset</button>
-            <button class="option-btn" data-value="nighttime scene">Night</button>
-            <button class="option-btn" data-value="golden hour lighting">Golden Hour</button>
+        <div class="option-grid" data-group="timeOfDay">
+            <button class="option-btn" data-value="dawn lighting, soft warm glow">Dawn</button>
+            <button class="option-btn" data-value="midday sun, harsh shadows">Midday</button>
+            <button class="option-btn" data-value="sunset glow, golden hour">Sunset</button>
+            <button class="option-btn" data-value="nighttime scene, artificial lights">Night</button>
+            <button class="option-btn" data-value="blue hour lighting, cool twilight">Blue Hour</button>
         </div>
 
         <label class="sub-label" data-i18n="lightingType">Lighting Type</label>
-        <div class="option-grid" data-group="lighting">
-            <button class="option-btn" data-value="dramatic chiaroscuro lighting">Chiaroscuro</button>
-            <button class="option-btn" data-value="softbox lighting">Softbox</button>
-            <button class="option-btn" data-value="rim lighting">Rim Light</button>
-            <button class="option-btn" data-value="neon lighting">Neon</button>
-            <button class="option-btn" data-value="volumetric lighting">Volumetric</button>
-            <button class="option-btn" data-value="natural lighting">Natural</button>
+        <div class="option-grid" data-group="lightingType">
+            <button class="option-btn" data-value="dramatic chiaroscuro lighting, high contrast">Chiaroscuro</button>
+            <button class="option-btn" data-value="softbox lighting, even illumination">Softbox</button>
+            <button class="option-btn" data-value="rim lighting, edge highlight separation">Rim Light</button>
+            <button class="option-btn" data-value="neon lighting, colorful ambient glow">Neon</button>
+            <button class="option-btn" data-value="volumetric lighting, god rays">Volumetric</button>
+            <button class="option-btn" data-value="natural lighting, sun position accurate">Natural</button>
+            <button class="option-btn" data-value="practical lights in scene, motivated sources">Practical</button>
+            <button class="option-btn" data-value="motivated lighting from visible sources">Motivated</button>
         </div>
 
         <label class="sub-label" data-i18n="mood">Mood & Atmosphere</label>
@@ -737,29 +825,54 @@
             <button class="option-btn" data-value="mysterious atmosphere">Mysterious</button>
             <button class="option-btn" data-value="hopeful atmosphere">Hopeful</button>
             <button class="option-btn" data-value="melancholic atmosphere">Melancholic</button>
+            <button class="option-btn" data-value="tense atmosphere">Tense</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 4: STYLE & RENDER -->
+<!-- PANEL 7: OPTICAL EFFECTS -->
 <div class="panel">
     <div class="panel-header">
-        <h3>🎨 <span data-i18n="style">Visual Style</span></h3>
+        <h3>🎞️ <span data-i18n="opticalEffects">Optical Effects</span></h3>
+        <span class="panel-summary" id="sum-optical"></span>
+    </div>
+    <div class="panel-content">
+        <div class="option-grid" data-group="opticalEffects">
+            <button class="option-btn" data-value="cinematic depth of field, shallow focus">Depth of Field</button>
+            <button class="option-btn" data-value="bokeh background blur, creamy out of focus">Bokeh</button>
+            <button class="option-btn" data-value="film grain texture, 35mm film stock">Film Grain</button>
+            <button class="option-btn" data-value="motion blur effect, natural movement">Motion Blur</button>
+            <button class="option-btn" data-value="lens flare effect, anamorphic streaks">Lens Flare</button>
+            <button class="option-btn" data-value="slight chromatic aberration, realistic lens">Chromatic Aberration</button>
+            <button class="option-btn" data-value="subtle vignette, focus attention center">Vignette</button>
+            <button class="option-btn" data-value="bloom effect, highlight glow">Bloom</button>
+            <button class="option-btn" data-value="teal and orange color grading, cinematic">Teal & Orange</button>
+            <button class="option-btn" data-value="HDR enhanced, high dynamic range">HDR</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 8: STYLE & RENDER -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🎨 <span data-i18n="visualStyle">Visual Style</span></h3>
         <span class="panel-summary" id="sum-style"></span>
     </div>
     <div class="panel-content">
         <label class="sub-label" data-i18n="artStyle">Art Style</label>
-        <div class="option-grid" data-group="style">
+        <div class="option-grid" data-group="artStyle">
             <button class="option-btn" data-value="cinematic photography">Cinematic</button>
             <button class="option-btn" data-value="cyberpunk aesthetic">Cyberpunk</button>
             <button class="option-btn" data-value="ultra realistic, photorealistic">Realistic</button>
             <button class="option-btn" data-value="anime style">Anime</button>
             <button class="option-btn" data-value="fantasy art">Fantasy</button>
             <button class="option-btn" data-value="documentary style">Documentary</button>
+            <button class="option-btn" data-value="music video aesthetic">Music Video</button>
+            <button class="option-btn" data-value="commercial advertising style">Commercial</button>
         </div>
 
         <label class="sub-label" data-i18n="renderEngine">Render Engine</label>
-        <div class="option-grid" data-group="engine">
+        <div class="option-grid" data-group="renderEngine">
             <button class="option-btn" data-value="Unreal Engine 5 render">Unreal 5</button>
             <button class="option-btn" data-value="Octane render">Octane</button>
             <button class="option-btn" data-value="Redshift render">Redshift</button>
@@ -770,19 +883,20 @@
             <button class="option-btn" data-value="subsurface scattering for organic materials">Subsurface Scattering</button>
             <button class="option-btn" data-value="natural skin pores and textures">Skin Details</button>
             <button class="option-btn" data-value="uncanny valley neutralization">Anti-Uncanny</button>
+            <button class="option-btn" data-value="individual hair strands, realistic">Hair Details</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 5: ENVIRONMENT & WEATHER -->
+<!-- PANEL 9: ENVIRONMENT & PHYSICS -->
 <div class="panel">
     <div class="panel-header">
-        <h3>🌍 <span data-i18n="environment">Environment</span></h3>
+        <h3>🌍 <span data-i18n="environment">Environment & Physics</span></h3>
         <span class="panel-summary" id="sum-environment"></span>
     </div>
     <div class="panel-content">
         <label class="sub-label" data-i18n="location">Location</label>
-        <textarea id="location" placeholder="e.g. rain-soaked neon cityscape..." oninput="updateSummary()"></textarea>
+        <textarea id="location" placeholder="e.g. rain-soaked neon cityscape with reflections..." oninput="updateSummary()"></textarea>
 
         <label class="sub-label" data-i18n="biome">Biome</label>
         <div class="option-grid" data-group="biome">
@@ -792,21 +906,43 @@
             <button class="option-btn" data-value="mountain region">Mountain</button>
             <button class="option-btn" data-value="outer space">Space</button>
             <button class="option-btn" data-value="interior scene">Interior</button>
+            <button class="option-btn" data-value="underwater environment">Underwater</button>
         </div>
 
-        <label class="sub-label" data-i18n="weather">Weather & Physical Dynamics</label>
-        <div class="option-grid" data-group="weather">
+        <label class="sub-label critical" data-i18n="physicalDynamics">Physical Dynamics (LAYER 4)</label>
+        <div class="option-grid" data-group="physicalDynamics">
+            <button class="option-btn" data-value="wind affecting clothing and hair, realistic physics">Wind</button>
             <button class="option-btn" data-value="rainy weather, water droplets on surfaces">Rain</button>
-            <button class="option-btn" data-value="heavy storm with lightning">Storm</button>
-            <button class="option-btn" data-value="foggy atmosphere">Fog</button>
-            <button class="option-btn" data-value="snowing weather">Snow</button>
-            <button class="option-btn" data-value="wind affecting clothing and hair">Wind</button>
-            <button class="option-btn" data-value="sunny weather">Sunny</button>
+            <button class="option-btn" data-value="foggy atmosphere, volumetric mist">Fog</button>
+            <button class="option-btn" data-value="smoke particles, atmospheric haze">Smoke</button>
+            <button class="option-btn" data-value="fire embers, heat distortion">Fire</button>
+            <button class="option-btn" data-value="water splashes, fluid dynamics">Water</button>
+            <button class="option-btn" data-value="dust particles in light rays">Dust</button>
+            <button class="option-btn" data-value="snowing weather, snowflakes falling">Snow</button>
+            <button class="option-btn" data-value="fabric flowing in wind, realistic cloth simulation">Fabric</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 6: OUTPUT SETTINGS -->
+<!-- PANEL 10: COMPOSITION -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>📐 <span data-i18n="composition">Composition</span></h3>
+        <span class="panel-summary" id="sum-composition"></span>
+    </div>
+    <div class="panel-content">
+        <div class="option-grid" data-group="composition">
+            <button class="option-btn" data-value="rule of thirds composition">Rule of Thirds</button>
+            <button class="option-btn" data-value="centered composition, symmetrical">Centered</button>
+            <button class="option-btn" data-value="leading lines guiding to subject">Leading Lines</button>
+            <button class="option-btn" data-value="frame within frame composition">Frame Within</button>
+            <button class="option-btn" data-value="negative space, minimalist composition">Negative Space</button>
+            <button class="option-btn" data-value="golden ratio composition">Golden Ratio</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 11: OUTPUT SETTINGS -->
 <div class="panel">
     <div class="panel-header">
         <h3>⚙️ <span data-i18n="output">Output Settings</span></h3>
@@ -816,26 +952,27 @@
         <div class="info-alert" style="margin-bottom: 15px; padding: 10px;">
             <span class="info-alert-icon">📊</span>
             <div class="info-alert-content">
-                <strong>Grok Optimal:</strong> 720p HD, 8-second segments for perfect lip-sync
+                <strong>Grok Optimal:</strong> 720p HD, 8-second segments for perfect lip-sync, ~180 credits/video
             </div>
         </div>
 
         <label class="sub-label" data-i18n="aspectRatio">Aspect Ratio</label>
-        <div class="option-grid" data-group="ratio">
+        <div class="option-grid" data-group="aspectRatio">
             <button class="option-btn" data-value="--ar 16:9">16:9 (YouTube)</button>
             <button class="option-btn" data-value="--ar 9:16">9:16 (TikTok/Reels)</button>
             <button class="option-btn" data-value="--ar 1:1">1:1 (Square)</button>
             <button class="option-btn" data-value="--ar 21:9">21:9 (Cinema)</button>
+            <button class="option-btn" data-value="--ar 4:3">4:3 (Classic)</button>
         </div>
 
-        <label class="sub-label" data-i18n="quality">Quality Modifiers</label>
+        <label class="sub-label" data-i18n="quality">Quality</label>
         <div class="option-grid" data-group="quality">
             <button class="option-btn" data-value="720p HD">720p HD (Optimal)</button>
             <button class="option-btn" data-value="high detail">High Detail</button>
             <button class="option-btn" data-value="HDR enhanced">HDR</button>
         </div>
 
-        <label class="sub-label" data-i18n="duration">Duration Note</label>
+        <label class="sub-label" data-i18n="duration">Duration</label>
         <div class="option-grid" data-group="duration">
             <button class="option-btn" data-value="8 second segment for lip-sync">8s (Dialogue)</button>
             <button class="option-btn" data-value="15 second max duration">15s (Max)</button>
@@ -843,12 +980,31 @@
     </div>
 </div>
 
-<!-- PANEL 7: NEGATIVE PROMPT (AUTO-INCLUDED) -->
+<!-- PANEL 12: AUDIO (LAYER 5) -->
+<div class="panel">
+    <div class="panel-header">
+        <h3>🔊 <span data-i18n="audio">Audio Composition</span></h3>
+        <span class="panel-summary" id="sum-audio"></span>
+    </div>
+    <div class="panel-content">
+        <div class="option-grid" data-group="audio">
+            <button class="option-btn" data-value="soft ambient soundtrack, atmospheric">Ambient</button>
+            <button class="option-btn" data-value="epic orchestral music, cinematic score">Orchestral</button>
+            <button class="option-btn" data-value="dialogue heavy scene, clear speech">Dialogue</button>
+            <button class="option-btn" data-value="dramatic sound effects, impactful">Sound FX</button>
+            <button class="option-btn" data-value="moment of silence, tension building">Silence</button>
+            <button class="option-btn" data-value="voice over narration, documentary style">Voice Over</button>
+            <button class="option-btn" data-value="music swell, emotional crescendo">Music Swell</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 13: NEGATIVE PROMPT (AUTO) -->
 <div class="panel critical">
     <div class="panel-header">
         <h3>
             ⛔ <span data-i18n="negative">Negative Prompt</span>
-            <span class="panel-priority priority-high" data-i18n="autoIncluded">AUTO</span>
+            <span class="panel-priority priority-critical" data-i18n="autoIncluded">AUTO</span>
         </h3>
         <span class="panel-summary" id="sum-negative"></span>
     </div>
@@ -856,24 +1012,25 @@
         <div class="info-alert" style="margin-bottom: 15px; padding: 10px; border-color: var(--warning); background: rgba(255, 170, 0, 0.08);">
             <span class="info-alert-icon">⚠️</span>
             <div class="info-alert-content">
-                <strong data-i18n="negativeWarning">Grok Bias:</strong> Automatically adds [No subtitles, No text, No closed captions] to prevent burnt-in text
+                <strong data-i18n="negativeWarning">Grok Bias:</strong> Automatically adds [No subtitles, No text, No closed captions] to prevent burnt-in text artifacts
             </div>
         </div>
 
-        <label class="sub-label" data-i18n="customNegative">Custom Negative Prompts</label>
+        <label class="sub-label" data-i18n="customNegative">Custom Negative</label>
         <textarea id="negative" placeholder="Additional elements to avoid..." oninput="updateSummary()"></textarea>
 
-        <label class="sub-label" data-i18n="quickNegative">Quick Negative Options</label>
+        <label class="sub-label" data-i18n="quickNegative">Quick Negative</label>
         <div class="option-grid" data-group="negQuick">
-            <button class="option-btn" data-value="blurry, low resolution">No Blur/Low Res</button>
+            <button class="option-btn" data-value="blurry, low resolution">No Blur</button>
             <button class="option-btn" data-value="ugly, deformed hands and face">No Deformed</button>
             <button class="option-btn" data-value="extra limbs, bad anatomy">No Bad Anatomy</button>
             <button class="option-btn" data-value="watermark, signature">No Watermark</button>
+            <button class="option-btn" data-value="cartoon, 3d render">No Cartoon</button>
         </div>
     </div>
 </div>
 
-<!-- PANEL 8: SPICY MODE (OPTIONAL) -->
+<!-- PANEL 14: SPICY MODE -->
 <div class="panel">
     <div class="panel-header">
         <h3>🌶️ <span data-i18n="spicyMode">Spicy Mode</span></h3>
@@ -891,7 +1048,7 @@
         </div>
 
         <div id="spicyContent" style="display: none;">
-            <label class="sub-label" data-i18n="spicyOptions">Moderation Evasion Techniques</label>
+            <label class="sub-label danger" data-i18n="spicyOptions">Moderation Techniques</label>
             <div class="option-grid" data-group="spicy">
                 <button class="option-btn" data-value="anime stickers for coverage">Anime Stickers</button>
                 <button class="option-btn" data-value="2D hearts for occlusion">2D Hearts</button>
@@ -899,8 +1056,8 @@
                 <button class="option-btn" data-value="artistic nudity, tasteful">Artistic Nudity</button>
             </div>
 
-            <label class="sub-label" data-i18n="spicyWarning">Legal Warning</label>
-            <textarea readonly style="font-size: 0.75rem; color: var(--warning);">ICO investigation 2026. Brand safety risk. Use responsibly.</textarea>
+            <label class="sub-label danger" data-i18n="spicyWarning">Legal Warning</label>
+            <textarea readonly style="font-size: 0.75rem; color: var(--warning);">ICO investigation 2026. Brand safety risk. Use responsibly. No deepfakes or minors.</textarea>
         </div>
     </div>
 </div>
@@ -912,7 +1069,7 @@
     <div class="output-header">
         <div class="output-title">
             📝 <span data-i18n="finalPrompt">Final Prompt (Always in English)</span>
-            <span class="grok-structure-hint" data-i18n="structureHint">Subject → Action → Style ; Lighting ; Dynamics</span>
+            <span class="grok-structure-hint" data-i18n="structureHint">Subject→Action→Optics; Lighting; Physics</span>
         </div>
         <span class="grok-badge" id="langIndicator">EN OUTPUT</span>
     </div>
@@ -936,7 +1093,7 @@
     
     <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
         <span data-i18n="creditsInfo">~180 credits per video</span>
-        <span data-i18n="optimalSettings">Optimal: 720p, 8s segments</span>
+        <span data-i18n="optimalSettings">Optimal: 720p, 8s segments | P50: 15-20s latency</span>
     </div>
 </div>
 
@@ -944,114 +1101,132 @@
     // --- TRANSLATIONS ---
     const translations = {
         en: {
-            subtitle: "Imagine 1.0 Optimized",
+            subtitle: "Imagine 1.0 | Aurora Engine",
             active: "Active:",
             alertTitle: "Grok Protocol Active:",
-            alertText: "Subject + Action must be FIRST. Negative prompts auto-included. Optimal: 720p, 8s segments.",
+            alertText: "Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.",
             subject: "Subject & Action",
-            priorityHigh: "PRIORITY 1",
-            formulaHint: "Grok Golden Formula:",
+            priorityCritical: "LAYER 1",
+            subjectWarning: "These tokens have LOGARITHMIC WEIGHT. Must be FIRST in prompt for Grok Aurora engine.",
             mainSubject: "Main Subject (FIRST in prompt)",
             action: "Primary Action",
-            characterDNA: "Character DNA (Optional)",
-            optics: "Optics & Camera",
-            lens: "Lens (85mm for portraits, 35mm for wide)",
-            shot: "Camera Shot",
-            eyeLines: "Eye Lines (CRITICAL for Grok)",
-            opticalEffects: "Optical Effects",
-            lighting: "Lighting & Aesthetics",
+            characterDNA: "Character DNA (Immutable Traits)",
+            lensLibrary: "Lens Library",
+            focalLength: "Focal Length",
+            specialtyLenses: "Specialty Lenses",
+            cameraShots: "Camera Shots",
+            shotSize: "Shot Size",
+            cameraAngles: "Camera Angles",
+            cameraMovement: "Camera Movement",
+            movementNote: "Critical for Grok Video - 8s segments max",
+            eyeLines: "Eye Lines",
+            grokCritical: "GROK",
+            eyeLinesInfo: "Grok breaks fourth wall by default. Specify eye lines to avoid uncanny valley.",
+            lighting: "Lighting",
             timeOfDay: "Time of Day",
             lightingType: "Lighting Type",
             mood: "Mood & Atmosphere",
-            style: "Visual Style",
+            opticalEffects: "Optical Effects",
+            visualStyle: "Visual Style",
             artStyle: "Art Style",
             renderEngine: "Render Engine",
             grokTerms: "Grok-Specific Terms (CRITICAL)",
-            environment: "Environment",
+            environment: "Environment & Physics",
             location: "Location",
             biome: "Biome",
-            weather: "Weather & Physical Dynamics",
+            physicalDynamics: "Physical Dynamics (LAYER 4)",
+            composition: "Composition",
             output: "Output Settings",
             aspectRatio: "Aspect Ratio",
-            quality: "Quality Modifiers",
-            duration: "Duration Note",
+            quality: "Quality",
+            duration: "Duration",
+            audio: "Audio Composition",
             negative: "Negative Prompt",
             autoIncluded: "AUTO",
             negativeWarning: "Grok Bias:",
-            customNegative: "Custom Negative Prompts",
-            quickNegative: "Quick Negative Options",
+            customNegative: "Custom Negative",
+            quickNegative: "Quick Negative",
             spicyMode: "Spicy Mode",
             enableSpicy: "Enable Spicy Mode",
-            spicyOptions: "Moderation Evasion Techniques",
+            spicyOptions: "Moderation Techniques",
             spicyWarning: "Legal Warning",
             finalPrompt: "Final Prompt (Always in English)",
-            structureHint: "Subject → Action → Style ; Lighting ; Dynamics",
+            structureHint: "Subject→Action→Optics; Lighting; Physics",
             random: "Random",
             generate: "Generate",
             copy: "Copy",
             clear: "Clear",
             creditsInfo: "~180 credits per video",
-            optimalSettings: "Optimal: 720p, 8s segments",
-            placeholderSubject: "e.g. A cybernetic warrior with neon tattoos...",
-            placeholderAction: "e.g. walking through rain-soaked streets...",
-            placeholderDNA: "Age, ethnicity, voice tone, immutable traits...",
-            placeholderLocation: "e.g. rain-soaked neon cityscape...",
+            optimalSettings: "Optimal: 720p, 8s segments | P50: 15-20s latency",
+            placeholderSubject: "e.g. A cybernetic warrior with neon tattoos and natural skin pores...",
+            placeholderAction: "e.g. walking through rain-soaked neon streets with wind affecting clothing...",
+            placeholderDNA: "Age, ethnicity, voice tone, exact features for consistency...",
+            placeholderLocation: "e.g. rain-soaked neon cityscape with reflections...",
             placeholderNegative: "Additional elements to avoid...",
             resultPlaceholder: "Your Grok-optimized prompt will appear here..."
         },
         es: {
-            subtitle: "Optimizado para Imagine 1.0",
+            subtitle: "Imagine 1.0 | Motor Aurora",
             active: "Activo:",
             alertTitle: "Protocolo Grok Activo:",
-            alertText: "Sujeto + Acción deben ir PRIMERO. Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s.",
+            alertText: "Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.",
             subject: "Sujeto y Acción",
-            priorityHigh: "PRIORIDAD 1",
-            formulaHint: "Fórmula Dorada de Grok:",
+            priorityCritical: "CAPA 1",
+            subjectWarning: "Estos tokens tienen PESO LOGARÍTMICO. Deben ir PRIMERO en el prompt para el motor Aurora de Grok.",
             mainSubject: "Sujeto Principal (PRIMERO en el prompt)",
             action: "Acción Principal",
-            characterDNA: "DNA del Personaje (Opcional)",
-            optics: "Óptica y Cámara",
-            lens: "Lente (85mm para retratos, 35mm para amplio)",
-            shot: "Toma de Cámara",
-            eyeLines: "Líneas de Ojos (CRÍTICO para Grok)",
-            opticalEffects: "Efectos Ópticos",
-            lighting: "Iluminación y Estética",
+            characterDNA: "DNA del Personaje (Rasgos Inmutables)",
+            lensLibrary: "Librería de Lentes",
+            focalLength: "Distancia Focal",
+            specialtyLenses: "Lentes Especiales",
+            cameraShots: "Tomas de Cámara",
+            shotSize: "Tamaño de Toma",
+            cameraAngles: "Ángulos de Cámara",
+            cameraMovement: "Movimiento de Cámara",
+            movementNote: "Crítico para Video Grok - máx 8s segmentos",
+            eyeLines: "Líneas de Ojos",
+            grokCritical: "GROK",
+            eyeLinesInfo: "Grok rompe la cuarta pared por defecto. Especifica líneas de ojos para evitar uncanny valley.",
+            lighting: "Iluminación",
             timeOfDay: "Momento del Día",
             lightingType: "Tipo de Iluminación",
             mood: "Estado de Ánimo y Atmósfera",
-            style: "Estilo Visual",
+            opticalEffects: "Efectos Ópticos",
+            visualStyle: "Estilo Visual",
             artStyle: "Estilo de Arte",
             renderEngine: "Motor de Render",
             grokTerms: "Términos Específicos de Grok (CRÍTICO)",
-            environment: "Entorno",
+            environment: "Entorno y Física",
             location: "Ubicación",
             biome: "Bioma",
-            weather: "Clima y Dinámicas Físicas",
+            physicalDynamics: "Dinámicas Físicas (CAPA 4)",
+            composition: "Composición",
             output: "Configuración de Salida",
             aspectRatio: "Proporción de Aspecto",
-            quality: "Modificadores de Calidad",
-            duration: "Nota de Duración",
+            quality: "Calidad",
+            duration: "Duración",
+            audio: "Composición de Audio",
             negative: "Prompt Negativo",
             autoIncluded: "AUTO",
             negativeWarning: "Sesgo de Grok:",
-            customNegative: "Prompts Negativos Personalizados",
-            quickNegative: "Opciones Negativas Rápidas",
+            customNegative: "Negativo Personalizado",
+            quickNegative: "Negativo Rápido",
             spicyMode: "Modo Spicy",
             enableSpicy: "Activar Modo Spicy",
-            spicyOptions: "Técnicas de Evasión de Moderación",
+            spicyOptions: "Técnicas de Moderación",
             spicyWarning: "Advertencia Legal",
             finalPrompt: "Prompt Final (Siempre en Inglés)",
-            structureHint: "Sujeto → Acción → Estilo ; Iluminación ; Dinámicas",
+            structureHint: "Sujeto→Acción→Óptica; Iluminación; Física",
             random: "Aleatorio",
             generate: "Generar",
             copy: "Copiar",
             clear: "Limpiar",
             creditsInfo: "~180 créditos por video",
-            optimalSettings: "Óptimo: 720p, segmentos de 8s",
-            placeholderSubject: "ej. Un guerrero cibernético con tatuajes de neón...",
-            placeholderAction: "ej. caminando por calles empapadas de lluvia...",
-            placeholderDNA: "Edad, etnia, tono de voz, rasgos inmutables...",
-            placeholderLocation: "ej. paisaje urbano de neón empapado de lluvia...",
+            optimalSettings: "Óptimo: 720p, 8s segmentos | P50: 15-20s latencia",
+            placeholderSubject: "ej. Un guerrero cibernético con tatuajes de neón y poros naturales...",
+            placeholderAction: "ej. caminando por calles de neón empapadas con viento afectando la ropa...",
+            placeholderDNA: "Edad, etnia, tono de voz, rasgos exactos para consistencia...",
+            placeholderLocation: "ej. paisaje urbano de neón empapado con reflejos...",
             placeholderNegative: "Elementos adicionales a evitar...",
             resultPlaceholder: "Tu prompt optimizado para Grok aparecerá aquí..."
         }
@@ -1070,15 +1245,11 @@
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if(translations[lang][key]) {
-                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = translations[lang][key];
-                } else {
-                    el.textContent = translations[lang][key];
-                }
+                el.textContent = translations[lang][key];
             }
         });
 
-        // Specific placeholders
+        // Placeholders
         document.getElementById('subject').placeholder = translations[lang].placeholderSubject;
         document.getElementById('action').placeholder = translations[lang].placeholderAction;
         document.getElementById('charDNA').placeholder = translations[lang].placeholderDNA;
@@ -1108,7 +1279,7 @@
         });
     });
 
-    // --- SPICY MODE TOGGLE ---
+    // --- SPICY MODE ---
     function toggleSpicyMode() {
         spicyModeEnabled = !spicyModeEnabled;
         document.getElementById('spicyToggle').classList.toggle('active', spicyModeEnabled);
@@ -1135,12 +1306,12 @@
             { id: 'subject', label: 'Subject' },
             { id: 'action', label: 'Action' },
             { id: 'location', label: 'Location' },
-            { group: 'lens', label: 'Lens' },
-            { group: 'shot', label: 'Shot' },
-            { group: 'time', label: 'Time' },
-            { group: 'lighting', label: 'Light' },
-            { group: 'style', label: 'Style' },
-            { group: 'ratio', label: 'Ratio' },
+            { group: 'focalLength', label: 'Lens' },
+            { group: 'shotSize', label: 'Shot' },
+            { group: 'timeOfDay', label: 'Time' },
+            { group: 'lightingType', label: 'Light' },
+            { group: 'artStyle', label: 'Style' },
+            { group: 'aspectRatio', label: 'Ratio' },
             { group: 'grokTerms', label: 'Grok' }
         ];
 
@@ -1153,7 +1324,8 @@
                     activeCount++;
                     const tag = document.createElement('div');
                     tag.className = 'summary-tag';
-                    tag.innerHTML = `<span>${value}</span><span class="remove" onclick="removeSelection('${sel.group}', '${sel.id}', '${value.replace(/'/g, "\\'")}')">×</span>`;
+                    const safeValue = value.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                    tag.innerHTML = `<span>${value}</span><span class="remove" onclick="removeSelection('${sel.group}', '${sel.id}', '${safeValue}')">×</span>`;
                     tagsContainer.appendChild(tag);
                 }
             });
@@ -1165,11 +1337,17 @@
 
         // Panel summaries
         updatePanelSummary('sum-subject', [getText('subject'), getText('action')]);
-        updatePanelSummary('sum-optics', [...getSelectedValues('lens'), ...getSelectedValues('shot')]);
-        updatePanelSummary('sum-lighting', [...getSelectedValues('time'), ...getSelectedValues('lighting')]);
-        updatePanelSummary('sum-style', [...getSelectedValues('style'), ...getSelectedValues('grokTerms')]);
-        updatePanelSummary('sum-environment', [getText('location'), ...getSelectedValues('biome')]);
-        updatePanelSummary('sum-output', [...getSelectedValues('ratio'), ...getSelectedValues('quality')]);
+        updatePanelSummary('sum-lens', [...getSelectedValues('focalLength'), ...getSelectedValues('specialtyLenses')]);
+        updatePanelSummary('sum-shots', [...getSelectedValues('shotSize'), ...getSelectedValues('cameraAngles')]);
+        updatePanelSummary('sum-movement', getSelectedValues('cameraMovement'));
+        updatePanelSummary('sum-eyelines', getSelectedValues('eyeLines'));
+        updatePanelSummary('sum-lighting', [...getSelectedValues('timeOfDay'), ...getSelectedValues('lightingType')]);
+        updatePanelSummary('sum-optical', getSelectedValues('opticalEffects'));
+        updatePanelSummary('sum-style', [...getSelectedValues('artStyle'), ...getSelectedValues('grokTerms')]);
+        updatePanelSummary('sum-environment', [getText('location'), ...getSelectedValues('physicalDynamics')]);
+        updatePanelSummary('sum-composition', getSelectedValues('composition'));
+        updatePanelSummary('sum-output', [...getSelectedValues('aspectRatio'), ...getSelectedValues('quality')]);
+        updatePanelSummary('sum-audio', getSelectedValues('audio'));
         updatePanelSummary('sum-negative', [getText('negative')]);
         updatePanelSummary('sum-spicy', spicyModeEnabled ? ['Spicy ON'] : []);
     }
@@ -1194,78 +1372,84 @@
         updateSummary();
     }
 
-    // --- GROK PROMPT GENERATION (CRITICAL LOGIC) ---
+    // --- GROK PROMPT GENERATION (5 LAYERS) ---
     function generatePrompt() {
-        let promptParts = [];
-        let styleParts = [];
-        let lightingParts = [];
-        let dynamicsParts = [];
+        let layer1 = []; // Subject + Action + Optics
+        let layer2 = []; // Lighting
+        let layer3 = []; // Physics + Details
+        let layer4 = []; // Audio
+        let layer5 = []; // Output
 
-        // LAYER 1: SUBJECT + ACTION (MUST BE FIRST - logarithmic weight)
+        // LAYER 1: SUBJECT + ACTION (LOGARITHMIC WEIGHT - MUST BE FIRST)
         const subject = getText('subject');
         const action = getText('action');
         const charDNA = getText('charDNA');
         
-        if(subject) promptParts.push(subject);
-        if(action) promptParts.push(action);
-        if(charDNA) promptParts.push(charDNA);
+        if(subject) layer1.push(subject);
+        if(action) layer1.push(action);
+        if(charDNA) layer1.push(charDNA);
 
-        // LAYER 2: LOCATION & ENVIRONMENT
-        const location = getText('location');
-        if(location) promptParts.push(location);
+        // Optics (Lens, Shots, Angles, Movement, Eye Lines)
+        const focalLength = getSelectedValues('focalLength');
+        const specialtyLenses = getSelectedValues('specialtyLenses');
+        const shotSize = getSelectedValues('shotSize');
+        const cameraAngles = getSelectedValues('cameraAngles');
+        const cameraMovement = getSelectedValues('cameraMovement');
+        const eyeLines = getSelectedValues('eyeLines');
+        
+        [...focalLength, ...specialtyLenses, ...shotSize, ...cameraAngles, ...cameraMovement, ...eyeLines].forEach(v => layer1.push(v));
 
-        // LAYER 3: OPTICS & CAMERA
-        const lens = getSelectedValues('lens');
-        const shot = getSelectedValues('shot');
-        const eyelines = getSelectedValues('eyelines');
-        const optical = getSelectedValues('optical');
-        [...lens, ...shot, ...eyelines, ...optical].forEach(v => styleParts.push(v));
-
-        // LAYER 4: LIGHTING
-        const time = getSelectedValues('time');
-        const lighting = getSelectedValues('lighting');
+        // LAYER 2: LIGHTING
+        const timeOfDay = getSelectedValues('timeOfDay');
+        const lightingType = getSelectedValues('lightingType');
         const mood = getSelectedValues('mood');
-        [...time, ...lighting, ...mood].forEach(v => lightingParts.push(v));
+        [...timeOfDay, ...lightingType, ...mood].forEach(v => layer2.push(v));
 
-        // LAYER 5: STYLE & GROK TERMS
-        const style = getSelectedValues('style');
-        const engine = getSelectedValues('engine');
+        // LAYER 3: STYLE + PHYSICS + COMPOSITION
+        const artStyle = getSelectedValues('artStyle');
+        const renderEngine = getSelectedValues('renderEngine');
         const grokTerms = getSelectedValues('grokTerms');
+        const opticalEffects = getSelectedValues('opticalEffects');
         const biome = getSelectedValues('biome');
-        const weather = getSelectedValues('weather');
-        [...style, ...engine, ...grokTerms, ...biome, ...weather].forEach(v => dynamicsParts.push(v));
+        const physicalDynamics = getSelectedValues('physicalDynamics');
+        const composition = getSelectedValues('composition');
+        const location = getText('location');
+        
+        [...artStyle, ...renderEngine, ...grokTerms, ...opticalEffects, ...biome, ...physicalDynamics, ...composition].forEach(v => layer3.push(v));
+        if(location) layer3.push(location);
 
-        // LAYER 6: OUTPUT
-        const ratio = getSelectedValues('ratio');
+        // LAYER 4: AUDIO
+        const audio = getSelectedValues('audio');
+        audio.forEach(v => layer4.push(v));
+
+        // LAYER 5: OUTPUT
+        const aspectRatio = getSelectedValues('aspectRatio');
         const quality = getSelectedValues('quality');
         const duration = getSelectedValues('duration');
-        [...ratio, ...quality, ...duration].forEach(v => dynamicsParts.push(v));
+        [...aspectRatio, ...quality, ...duration].forEach(v => layer5.push(v));
 
-        // LAYER 7: SPICY MODE
+        // SPICY MODE
         if(spicyModeEnabled) {
             const spicy = getSelectedValues('spicy');
-            spicy.forEach(v => dynamicsParts.push(v));
+            spicy.forEach(v => layer3.push(v));
         }
 
-        // BUILD PROMPT WITH GROK FORMULA
-        // [Subject]+[Action]+[Style] ; [Lighting] ; [Dynamics]
-        let finalPrompt = promptParts.join(', ');
+        // BUILD PROMPT WITH GROK 5-LAYER FORMULA
+        let finalPrompt = layer1.join(', ');
         
-        if(styleParts.length > 0) {
-            finalPrompt += ', ' + styleParts.join(', ');
+        if(layer2.length > 0) {
+            finalPrompt += '; ' + layer2.join(', ');
+        }
+        
+        if(layer3.length > 0) {
+            finalPrompt += '; ' + layer3.join(', ');
+        }
+        
+        if(layer4.length > 0) {
+            finalPrompt += '; ' + layer4.join(', ');
         }
 
-        finalPrompt += ';'; // SEMICOLON for logical layer separation
-
-        if(lightingParts.length > 0) {
-            finalPrompt += ' ' + lightingParts.join(', ') + ';';
-        }
-
-        if(dynamicsParts.length > 0) {
-            finalPrompt += ' ' + dynamicsParts.join(', ');
-        }
-
-        // CRITICAL: AUTO-ADD NEGATIVE PROMPTS (Grok bias prevention)
+        // AUTO NEGATIVE (CRITICAL FOR GROK)
         const negativeCustom = getText('negative');
         const negativeQuick = getSelectedValues('negQuick');
         let negativeParts = ['No subtitles', 'No text', 'No closed captions']; // ALWAYS INCLUDED
@@ -1303,7 +1487,7 @@
     }
 
     function randomize() {
-        const groups = ['lens', 'shot', 'time', 'lighting', 'style', 'mood', 'biome', 'weather', 'ratio'];
+        const groups = ['focalLength', 'shotSize', 'cameraAngles', 'cameraMovement', 'timeOfDay', 'lightingType', 'artStyle', 'physicalDynamics', 'aspectRatio'];
         groups.forEach(g => {
             const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
             if(opts.length) {
