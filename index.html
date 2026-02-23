@@ -4,7 +4,169 @@
 <meta charset="UTF-8">
 <title>Prompt Architect | AI Command Interface</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
+<style>
+    :root {
+        --bg-color: #0f1115;
+        --panel-bg: #1a1d24;
+        --text-main: #e0e0e0;
+        --text-muted: #8b9bb4;
+        --accent: #00d4ff;
+        --accent-hover: #00a3cc;
+        --border: #2d3340;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+    }
+
+    .app {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 20px;
+    }
+
+    h1 { margin: 0; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+    h2 { margin: 0; font-size: 1.1rem; color: var(--text-main); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    p { color: var(--text-muted); margin-top: 5px; }
+
+    /* ACCORDION STYLES */
+    .accordion-item {
+        background: var(--panel-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .accordion-header {
+        padding: 15px 20px;
+        background: rgba(255,255,255,0.03);
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    .accordion-header:hover { background: rgba(255,255,255,0.05); }
+    .accordion-header::after { content: '+'; font-size: 1.5rem; color: var(--accent); }
+    .accordion-item.active .accordion-header::after { content: '-'; }
+    
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        padding: 0 20px;
+    }
+
+    .accordion-item.active .accordion-content {
+        padding: 20px;
+        max-height: 2000px; /* Arbitrary large height */
+        border-top: 1px solid var(--border);
+    }
+
+    /* INPUTS & TEXTAREAS */
+    textarea, input[type="text"] {
+        width: 100%;
+        background: #0f1115;
+        border: 1px solid var(--border);
+        color: var(--text-main);
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        font-family: monospace;
+    }
+    textarea:focus { outline: 1px solid var(--accent); }
+
+    /* BUTTON GRIDS */
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .option {
+        background: #252a33;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+        user-select: none;
+    }
+
+    .option:hover { border-color: var(--accent); color: var(--text-main); }
+    
+    /* SELECTED STATE */
+    .option.selected {
+        background: var(--accent);
+        color: #000;
+        border-color: var(--accent);
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+
+    .option-group { margin-bottom: 20px; }
+    .option-group label { display: block; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ACTION BUTTONS */
+    .action-area {
+        position: sticky;
+        bottom: 20px;
+        background: var(--bg-color);
+        padding: 20px 0;
+        border-top: 1px solid var(--border);
+        margin-top: 30px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        z-index: 100;
+    }
+
+    .btn-main {
+        background: var(--accent);
+        color: #000;
+        border: none;
+        padding: 12px 30px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+    .btn-main:hover { background: var(--accent-hover); }
+
+    .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--text-muted);
+        color: var(--text-muted);
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: var(--text-main); color: var(--text-main); }
+
+    #result {
+        width: 100%;
+        height: 150px;
+        margin-top: 20px;
+        border-color: var(--accent);
+        font-size: 1rem;
+    }
+</style>
 </head>
 <body>
 
@@ -16,253 +178,364 @@
 </header>
 
 <!-- CHARACTER DNA -->
-<section class="panel">
-<h2>Character DNA / Identidad</h2>
-<textarea id="charName" placeholder="Character Name..."></textarea>
-<textarea id="charTraits" placeholder="Character Traits / Physical Details..."></textarea>
-</section>
+<div class="accordion-item active">
+    <div class="accordion-header"><h2>Character DNA / Identidad</h2></div>
+    <div class="accordion-content">
+        <textarea id="charName" placeholder="Character Name (e.g. Cyberpunk Samurai)..."></textarea>
+        <textarea id="charTraits" placeholder="Traits / Physical Details (e.g. neon tattoos, robotic arm)..."></textarea>
+    </div>
+</div>
 
 <!-- BASE SCENE -->
-<section class="panel">
-<h2>Base Scene</h2>
-<textarea id="subject" placeholder="Subject..."></textarea>
-<textarea id="action" placeholder="Action..."></textarea>
-<textarea id="location" placeholder="Location / Context..."></textarea>
-</section>
+<div class="accordion-item active">
+    <div class="accordion-header"><h2>Base Scene</h2></div>
+    <div class="accordion-content">
+        <textarea id="subject" placeholder="Subject..."></textarea>
+        <textarea id="action" placeholder="Action..."></textarea>
+        <textarea id="location" placeholder="Location / Context..."></textarea>
+    </div>
+</div>
 
 <!-- NARRATIVE MODE -->
-<section class="panel">
-<h2>Intention / Narrative</h2>
-<div class="options" data-group="narrative">
-<button class="option" data-value="epic cinematic narrative">Epic Cinematic</button>
-<button class="option" data-value="intense suspense story">Intense Suspense</button>
-<button class="option" data-value="romantic emotional scene">Romantic</button>
-<button class="option" data-value="high action sequence">High Action</button>
-<button class="option" data-value="mystery thriller atmosphere">Mystery</button>
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Intention / Narrative</h2></div>
+    <div class="accordion-content">
+        <div class="options" data-group="narrative">
+            <button class="option" data-value="epic cinematic narrative">Epic Cinematic</button>
+            <button class="option" data-value="intense suspense story">Intense Suspense</button>
+            <button class="option" data-value="romantic emotional scene">Romantic</button>
+            <button class="option" data-value="high action sequence">High Action</button>
+            <button class="option" data-value="mystery thriller atmosphere">Mystery</button>
+        </div>
+    </div>
 </div>
-</section>
 
 <!-- TIME OF DAY -->
-<section class="panel">
-<h2>Time of Day</h2>
-<div class="options" data-group="timeOfDay">
-<button class="option" data-value="dawn lighting">Dawn</button>
-<button class="option" data-value="midday sun">Midday</button>
-<button class="option" data-value="sunset glow">Sunset</button>
-<button class="option" data-value="nighttime scene">Night</button>
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Time of Day</h2></div>
+    <div class="accordion-content">
+        <div class="options" data-group="timeOfDay">
+            <button class="option" data-value="dawn lighting">Dawn</button>
+            <button class="option" data-value="midday sun">Midday</button>
+            <button class="option" data-value="sunset glow">Sunset</button>
+            <button class="option" data-value="nighttime scene">Night</button>
+        </div>
+    </div>
 </div>
-</section>
 
 <!-- WEATHER -->
-<section class="panel">
-<h2>Weather & Atmosphere</h2>
-
-<div class="option-group">
-<label>Quick Weather</label>
-<div class="options" data-group="weather">
-<button class="option" data-value="rainy weather">Rain</button>
-<button class="option" data-value="heavy storm">Storm</button>
-<button class="option" data-value="snowing weather">Snow</button>
-<button class="option" data-value="foggy atmosphere">Fog</button>
-<button class="option" data-value="sunny weather">Sunny</button>
-<button class="option" data-value="overcast sky">Overcast</button>
-<button class="option" data-value="night mist">Night Mist</button>
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Weather & Atmosphere</h2></div>
+    <div class="accordion-content">
+        <div class="option-group">
+            <label>Quick Weather</label>
+            <div class="options" data-group="weather">
+                <button class="option" data-value="rainy weather">Rain</button>
+                <button class="option" data-value="heavy storm">Storm</button>
+                <button class="option" data-value="snowing weather">Snow</button>
+                <button class="option" data-value="foggy atmosphere">Fog</button>
+                <button class="option" data-value="sunny weather">Sunny</button>
+                <button class="option" data-value="overcast sky">Overcast</button>
+            </div>
+        </div>
+        <div class="option-group">
+            <label>Custom Weather</label>
+            <textarea id="customWeather" placeholder="Describe custom weather..."></textarea>
+        </div>
+    </div>
 </div>
-</div>
-
-<div class="option-group">
-<label>Custom Weather</label>
-<textarea id="customWeather" placeholder="Describe custom weather..."></textarea>
-</div>
-
-</section>
 
 <!-- ENVIRONMENT -->
-<section class="panel">
-<h2>Environment / Biome</h2>
-<div class="options" data-group="environment">
-<button class="option" data-value="forest environment">Forest</button>
-<button class="option" data-value="desert environment">Desert</button>
-<button class="option" data-value="futuristic cityscape">Cityscape</button>
-<button class="option" data-value="mountain region">Mountain</button>
-<button class="option" data-value="outer space scene">Outer Space</button>
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Environment / Biome</h2></div>
+    <div class="accordion-content">
+        <div class="options" data-group="environment">
+            <button class="option" data-value="forest environment">Forest</button>
+            <button class="option" data-value="desert environment">Desert</button>
+            <button class="option" data-value="futuristic cityscape">Cityscape</button>
+            <button class="option" data-value="mountain region">Mountain</button>
+            <button class="option" data-value="outer space scene">Outer Space</button>
+        </div>
+    </div>
 </div>
-</section>
 
 <!-- VISUAL STYLE -->
-<section class="panel">
-<h2>Visual Style</h2>
-
-<div class="option-group">
-<label>Style</label>
-<div class="options" data-group="style">
-<button class="option" data-value="cinematic">Cinematic</button>
-<button class="option" data-value="cyberpunk">Cyberpunk</button>
-<button class="option" data-value="ultra realistic">Ultra Realistic</button>
-<button class="option" data-value="anime style">Anime</button>
-<button class="option" data-value="fantasy art">Fantasy</button>
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Visual Style</h2></div>
+    <div class="accordion-content">
+        <div class="option-group">
+            <label>Style</label>
+            <div class="options" data-group="style">
+                <button class="option" data-value="cinematic photography">Cinematic</button>
+                <button class="option" data-value="cyberpunk style">Cyberpunk</button>
+                <button class="option" data-value="ultra realistic">Ultra Realistic</button>
+                <button class="option" data-value="anime style">Anime</button>
+                <button class="option" data-value="fantasy art">Fantasy</button>
+            </div>
+        </div>
+        <div class="option-group">
+            <label>Render Engine</label>
+            <div class="options" data-group="engine">
+                <button class="option" data-value="Unreal Engine 5 render">Unreal 5</button>
+                <button class="option" data-value="Octane render">Octane</button>
+                <button class="option" data-value="Redshift render">Redshift</button>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-
-<div class="option-group">
-<label>Render Engine</label>
-<div class="options" data-group="engine">
-<button class="option" data-value="Unreal Engine render">Unreal</button>
-<button class="option" data-value="Octane render">Octane</button>
-<button class="option" data-value="Redshift render">Redshift</button>
-</div>
-</div>
-
-</section>
-
-<!-- RENDER ENHANCERS -->
-<section class="panel">
-<h2>Render & Detail Enhancers</h2>
-<div class="options" data-group="renderEnhance">
-<button class="option" data-value="high detail">High Detail</button>
-<button class="option" data-value="ultra realistic">Ultra Realistic Boost</button>
-<button class="option" data-value="hdr enhanced">HDR Enhanced</button>
-<button class="option" data-value="film look">Film Look</button>
-</div>
-</section>
 
 <!-- CINEMATOGRAPHY -->
-<section class="panel">
-<h2>Cinematography</h2>
-
-<div class="option-group">
-<label>Camera Shot</label>
-<div class="options" data-group="camera">
-<button class="option" data-value="wide angle shot">Wide</button>
-<button class="option" data-value="close-up shot">Close-up</button>
-<button class="option" data-value="low angle shot">Low Angle</button>
-<button class="option" data-value="high angle shot">High Angle</button>
-<button class="option" data-value="drone aerial shot">Drone</button>
-<button class="option" data-value="over the shoulder shot">Over Shoulder</button>
-<button class="option" data-value="POV shot">POV</button>
-<button class="option" data-value="full body shot">Full Body</button>
-</div>
-</div>
-
-<div class="option-group">
-<label>Lens</label>
-<div class="options" data-group="lens">
-<button class="option" data-value="24mm wide angle lens">24mm</button>
-<button class="option" data-value="35mm lens">35mm</button>
-<button class="option" data-value="50mm lens">50mm</button>
-<button class="option" data-value="85mm lens">85mm</button>
-<button class="option" data-value="telephoto lens">Telephoto</button>
-<button class="option" data-value="anamorphic lens">Anamorphic</button>
-</div>
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Cinematography</h2></div>
+    <div class="accordion-content">
+        <div class="option-group">
+            <label>Camera Shot</label>
+            <div class="options" data-group="camera">
+                <button class="option" data-value="wide angle shot">Wide</button>
+                <button class="option" data-value="close-up shot">Close-up</button>
+                <button class="option" data-value="low angle shot">Low Angle</button>
+                <button class="option" data-value="drone aerial shot">Drone</button>
+                <button class="option" data-value="POV shot">POV</button>
+            </div>
+        </div>
+        <div class="option-group">
+            <label>Lens & Optics</label>
+            <div class="options" data-group="lens">
+                <button class="option" data-value="35mm lens">35mm</button>
+                <button class="option" data-value="85mm lens">85mm</button>
+                <button class="option" data-value="anamorphic lens">Anamorphic</button>
+                <button class="option" data-value="cinematic depth of field">DOF</button>
+                <button class="option" data-value="bokeh background blur">Bokeh</button>
+                <button class="option" data-value="volumetric light rays">Volumetric Light</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="option-group">
-<label>Optical Effects</label>
-<div class="options" data-group="optical">
-<button class="option" data-value="cinematic depth of field">Depth of Field</button>
-<button class="option" data-value="bokeh background blur">Bokeh</button>
-<button class="option" data-value="lens flare effect">Lens Flare</button>
-<button class="option" data-value="volumetric light rays">Volumetric Light</button>
-<button class="option" data-value="film grain texture">Film Grain</button>
-<button class="option" data-value="motion blur effect">Motion Blur</button>
-</div>
-</div>
-
-</section>
-
-<!-- FOCUS CONTROL -->
-<section class="panel">
-<h2>Focus & Depth Control</h2>
-<div class="options" data-group="focus">
-<button class="option" data-value="shallow depth of field">Shallow DOF</button>
-<button class="option" data-value="deep focus">Deep Focus</button>
-<button class="option" data-value="soft focus">Soft Focus</button>
-<button class="option" data-value="sharp focus">Sharp Focus</button>
-</div>
-</section>
-
-<!-- AUDIO DESIGN -->
-<section class="panel">
-<h2>Audio / Sound Design (Video)</h2>
-<div class="options" data-group="audio">
-<button class="option" data-value="soft ambient soundtrack">Ambient Soundtrack</button>
-<button class="option" data-value="epic orchestral music">Epic Orchestral</button>
-<button class="option" data-value="dialogue heavy scene">Dialogue Scene</button>
-<button class="option" data-value="dramatic sound effects">Dramatic Sound FX</button>
-</div>
-</section>
-
-<!-- LIGHTING -->
-<section class="panel">
-<h2>Lighting & Atmosphere</h2>
-
-<div class="option-group">
-<label>Lighting</label>
-<div class="options" data-group="lighting">
-<button class="option" data-value="dramatic lighting">Dramatic</button>
-<button class="option" data-value="volumetric lighting">Volumetric</button>
-<button class="option" data-value="neon lighting">Neon</button>
-<button class="option" data-value="soft cinematic lighting">Soft</button>
-</div>
+<!-- LIGHTING & MOOD -->
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Lighting & Mood</h2></div>
+    <div class="accordion-content">
+        <div class="option-group">
+            <label>Lighting Type</label>
+            <div class="options" data-group="lighting">
+                <button class="option" data-value="dramatic lighting">Dramatic</button>
+                <button class="option" data-value="neon lighting">Neon</button>
+                <button class="option" data-value="soft cinematic lighting">Soft</button>
+                <button class="option" data-value="golden hour lighting">Golden Hour</button>
+            </div>
+        </div>
+        <div class="option-group">
+            <label>Mood</label>
+            <div class="options" data-group="mood">
+                <button class="option" data-value="dark atmosphere">Dark</button>
+                <button class="option" data-value="epic atmosphere">Epic</button>
+                <button class="option" data-value="mysterious atmosphere">Mysterious</button>
+                <button class="option" data-value="hopeful atmosphere">Hopeful</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="option-group">
-<label>Mood</label>
-<div class="options" data-group="mood">
-<button class="option" data-value="dark atmosphere">Dark</button>
-<button class="option" data-value="epic atmosphere">Epic</button>
-<button class="option" data-value="mysterious atmosphere">Mysterious</button>
-</div>
-</div>
-
-</section>
-
-<!-- OUTPUT -->
-<section class="panel">
-<h2>Output Settings</h2>
-
-<div class="option-group">
-<label>Resolution</label>
-<div class="options" data-group="resolution">
-<button class="option" data-value="8K resolution">8K</button>
-<button class="option" data-value="4K resolution">4K</button>
-<button class="option" data-value="HDR">HDR</button>
-</div>
+<!-- OUTPUT SETTINGS -->
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Output Settings</h2></div>
+    <div class="accordion-content">
+        <div class="option-group">
+            <label>Resolution & Ratio</label>
+            <div class="options" data-group="resolution">
+                <button class="option" data-value="8K resolution">8K</button>
+                <button class="option" data-value="4K resolution">4K</button>
+                <button class="option" data-value="HDR">HDR</button>
+            </div>
+            <div class="options" data-group="ratio">
+                <button class="option" data-value="--ar 16:9">16:9</button>
+                <button class="option" data-value="--ar 9:16">9:16</button>
+                <button class="option" data-value="--ar 1:1">1:1</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="option-group">
-<label>Aspect Ratio</label>
-<div class="options" data-group="ratio">
-<button class="option" data-value="16:9 aspect ratio">16:9</button>
-<button class="option" data-value="9:16 aspect ratio">9:16</button>
-<button class="option" data-value="1:1 aspect ratio">1:1</button>
+<!-- NEGATIVE PROMPT -->
+<div class="accordion-item">
+    <div class="accordion-header"><h2>Negative Prompt</h2></div>
+    <div class="accordion-content">
+        <textarea id="negative" placeholder="Elements to avoid (e.g. text, watermark, bad hands)..."></textarea>
+        <div class="options" data-group="negativeQuick">
+            <button class="option" data-value="text, watermark">No Text/Watermark</button>
+            <button class="option" data-value="low resolution, blurry">No Low Res</button>
+            <button class="option" data-value="ugly, deformed hands">No Bad Hands</button>
+        </div>
+    </div>
 </div>
+
+<!-- ACTION AREA -->
+<div class="action-area">
+    <button class="btn-secondary" onclick="randomizePrompt()">🎲 Randomize</button>
+    <button class="btn-main" onclick="generatePrompt()">⚡ Generate Prompt</button>
 </div>
 
-</section>
-
-<!-- NEGATIVE -->
-<section class="panel">
-<h2>Negative Prompt</h2>
-<textarea id="negative" placeholder="Elements to avoid..."></textarea>
-</section>
-
-<section class="panel">
-<h2>Quick Negative Suggestions</h2>
-<div class="options" data-group="negativeQuick">
-<button class="option" data-value="text watermark">Text / Watermark</button>
-<button class="option" data-value="low resolution">Low Resolution</button>
-<button class="option" data-value="blurry image">Blurry</button>
-<button class="option" data-value="unwanted background elements">Unwanted Background</button>
-</div>
-</section>
-
-<button class="generate" onclick="generatePrompt()">GENERATE PROMPT</button>
 <textarea id="result" readonly placeholder="Final prompt will appear here..."></textarea>
-<button class="copy" onclick="copyPrompt()">COPY</button>
+<button class="btn-secondary" style="width:100%; margin-top:10px;" onclick="copyPrompt()">📋 Copy to Clipboard</button>
 
 </div>
 
-<script src="app.js"></script>
+<script>
+    // 1. ACCORDION LOGIC
+    const accordions = document.querySelectorAll('.accordion-header');
+    accordions.forEach(acc => {
+        acc.addEventListener('click', function() {
+            const item = this.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // 2. BUTTON SELECTION LOGIC (Exclusive within groups)
+    const optionButtons = document.querySelectorAll('.option');
+    
+    optionButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const group = this.parentElement.getAttribute('data-group');
+            
+            // Remove 'selected' from all buttons in the same group
+            const siblings = document.querySelectorAll(`.options[data-group="${group}"] .option`);
+            siblings.forEach(sib => sib.classList.remove('selected'));
+            
+            // Toggle current button
+            this.classList.add('selected');
+        });
+    });
+
+    // Helper to get value of selected button in a group
+    function getSelectedValue(groupName) {
+        const selected = document.querySelector(`.options[data-group="${groupName}"] .option.selected`);
+        return selected ? selected.getAttribute('data-value') : null;
+    }
+
+    // Helper to get text from textarea if not empty
+    function getText(id) {
+        const el = document.getElementById(id);
+        return el.value.trim();
+    }
+
+    // 3. GENERATE PROMPT LOGIC
+    function generatePrompt() {
+        let parts = [];
+
+        // Character
+        const name = getText('charName');
+        const traits = getText('charTraits');
+        if(name) parts.push(name);
+        if(traits) parts.push(traits);
+
+        // Base Scene
+        const subject = getText('subject');
+        const action = getText('action');
+        const location = getText('location');
+        if(subject) parts.push(subject);
+        if(action) parts.push(action + " in " + location); // Simple combination logic
+        else if(location) parts.push(location);
+
+        // Narrative & Time
+        const narrative = getSelectedValue('narrative');
+        const time = getSelectedValue('timeOfDay');
+        if(narrative) parts.push(narrative);
+        if(time) parts.push(time);
+
+        // Weather
+        const weather = getSelectedValue('weather');
+        const customWeather = getText('customWeather');
+        if(weather) parts.push(weather);
+        if(customWeather) parts.push(customWeather);
+
+        // Environment
+        const env = getSelectedValue('environment');
+        if(env) parts.push(env);
+
+        // Style & Engine
+        const style = getSelectedValue('style');
+        const engine = getSelectedValue('engine');
+        if(style) parts.push(style);
+        if(engine) parts.push(engine);
+
+        // Cinematography
+        const camera = getSelectedValue('camera');
+        const lens = getSelectedValue('lens');
+        if(camera) parts.push(camera);
+        if(lens) parts.push(lens);
+
+        // Lighting & Mood
+        const lighting = getSelectedValue('lighting');
+        const mood = getSelectedValue('mood');
+        if(lighting) parts.push(lighting);
+        if(mood) parts.push(mood);
+
+        // Output
+        const res = getSelectedValue('resolution');
+        const ratio = getSelectedValue('ratio');
+        if(res) parts.push(res);
+        if(ratio) parts.push(ratio);
+
+        // Join parts with commas
+        let finalPrompt = parts.join(", ");
+
+        // Negative Prompt Handling
+        const negative = getText('negative');
+        const negQuick = getSelectedValue('negativeQuick');
+        let finalNegative = [];
+        if(negative) finalNegative.push(negative);
+        if(negQuick) finalNegative.push(negQuick);
+        
+        // Append negative if exists (format depends on AI, assuming Midjourney style --no or generic)
+        if(finalNegative.length > 0) {
+            finalPrompt += " --no " + finalNegative.join(", ");
+        }
+
+        document.getElementById('result').value = finalPrompt;
+    }
+
+    // 4. COPY FUNCTION
+    function copyPrompt() {
+        const copyText = document.getElementById("result");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); 
+        navigator.clipboard.writeText(copyText.value).then(() => {
+            alert("Prompt copied to clipboard!");
+        });
+    }
+
+    // 5. RANDOMIZE FUNCTION (Bonus)
+    function randomizePrompt() {
+        // Helper to pick random from group
+        function pickRandom(groupName) {
+            const options = document.querySelectorAll(`.options[data-group="${groupName}"] .option`);
+            if(options.length > 0) {
+                const random = options[Math.floor(Math.random() * options.length)];
+                // Clear others
+                options.forEach(o => o.classList.remove('selected'));
+                random.classList.add('selected');
+            }
+        }
+
+        // Randomize some key groups
+        pickRandom('style');
+        pickRandom('lighting');
+        pickRandom('camera');
+        pickRandom('timeOfDay');
+        pickRandom('environment');
+        
+        // Fill some text areas with random words (Optional simple version)
+        document.getElementById('charName').value = "Cybernetic Entity";
+        document.getElementById('subject').value = "A lone figure standing";
+        
+        // Auto generate after randomizing
+        generatePrompt();
+        
+        // Open all accordions to see changes
+        document.querySelectorAll('.accordion-item').forEach(item => item.classList.add('active'));
+    }
+</script>
+
 </body>
 </html>
