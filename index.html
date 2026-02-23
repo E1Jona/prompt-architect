@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Grok Prompt Architect v4.0 | Imagine Optimized</title>
+<title>Grok Prompt Architect v4.1 | Imagine Optimized</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
@@ -17,6 +17,7 @@
         --warning: #ffaa00;
         --grok-purple: #8b5cf6;
         --danger: #ff4757;
+        --gold: #ffd700;
     }
 
     * { box-sizing: border-box; }
@@ -166,7 +167,7 @@
     }
 
     .version-badge {
-        background: var(--accent);
+        background: var(--gold);
         color: #000;
         padding: 2px 6px;
         border-radius: 4px;
@@ -248,6 +249,11 @@
         box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
     }
 
+    .panel.premium {
+        border-color: var(--gold);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+
     .panel-header {
         padding: 14px 18px;
         background: rgba(255,255,255,0.02);
@@ -283,6 +289,11 @@
     .priority-critical {
         background: rgba(255, 71, 87, 0.2);
         color: var(--danger);
+    }
+
+    .priority-premium {
+        background: rgba(255, 215, 0, 0.2);
+        color: var(--gold);
     }
 
     .panel-summary {
@@ -385,6 +396,18 @@
         box-shadow: 0 0 15px var(--accent-glow);
     }
 
+    .option-btn.premium {
+        border-color: var(--gold);
+        color: var(--gold);
+    }
+
+    .option-btn.premium.selected {
+        background: linear-gradient(135deg, var(--gold), #ffaa00);
+        color: #000;
+        border-color: var(--gold);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
     .sub-label {
         font-size: 0.7rem;
         color: var(--text-muted);
@@ -401,6 +424,10 @@
 
     .sub-label.danger {
         color: var(--danger);
+    }
+
+    .sub-label.premium {
+        color: var(--gold);
     }
 
     /* --- FIXED OUTPUT AREA --- */
@@ -526,6 +553,15 @@
         box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
     }
 
+    .btn-premium {
+        background: linear-gradient(135deg, var(--gold), #ffaa00);
+        color: #000;
+    }
+
+    .btn-premium:hover {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
     /* --- SPICY MODE --- */
     .spicy-warning {
         background: rgba(255, 170, 0, 0.1);
@@ -627,7 +663,7 @@
     <div class="brand">
         <div class="brand-logo">G</div>
         <div class="brand-text">
-            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.0</span></h1>
+            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.1</span></h1>
             <span data-i18n="subtitle">Imagine 1.0 | Aurora Engine</span>
         </div>
     </div>
@@ -649,7 +685,7 @@
     <div class="info-alert-content">
         <strong data-i18n="alertTitle">Grok Protocol Active:</strong>
         <span data-i18n="alertText">Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.</span>
-        <div class="formula-display">[Subject]+[Action]+[Optics]; [Lighting]; [Physics]+[Details]</div>
+        <div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Detalles]</div>
     </div>
     <span class="grok-badge">Aurora MoE</span>
 </div>
@@ -942,7 +978,51 @@
     </div>
 </div>
 
-<!-- PANEL 11: OUTPUT SETTINGS -->
+<!-- PANEL 11: QUALITY & RESOLUTION (PREMIUM) -->
+<div class="panel premium">
+    <div class="panel-header">
+        <h3>
+            💎 <span data-i18n="qualityPanel">Quality & Resolution</span>
+            <span class="panel-priority priority-premium" data-i18n="premium">PREMIUM</span>
+        </h3>
+        <span class="panel-summary" id="sum-quality"></span>
+    </div>
+    <div class="panel-content">
+        <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--gold);">
+            <strong>⚠️ NOTE:</strong> <span data-i18n="qualityNote">Grok native output is 720p HD. 4K/8K keywords enhance detail but require upscaling in post-production for actual higher resolution.</span>
+        </div>
+
+        <label class="sub-label premium" data-i18n="resolution">Resolution Modifiers</label>
+        <div class="option-grid" data-group="resolution">
+            <button class="option-btn premium" data-value="720p HD">720p HD (Native)</button>
+            <button class="option-btn premium" data-value="4K resolution, ultra detailed">4K Enhanced</button>
+            <button class="option-btn premium" data-value="8K resolution, maximum detail">8K Maximum</button>
+        </div>
+
+        <label class="sub-label premium" data-i18n="qualityModifiers">Quality Modifiers</label>
+        <div class="option-grid" data-group="qualityModifiers">
+            <button class="option-btn premium" data-value="ultra realistic, photorealistic">Ultra Realistic</button>
+            <button class="option-btn premium" data-value="high detail, intricate details">High Detail</button>
+            <button class="option-btn premium" data-value="masterpiece quality">Masterpiece</button>
+            <button class="option-btn premium" data-value="award winning photography">Award Winning</button>
+            <button class="option-btn premium" data-value="professional grade">Professional</button>
+            <button class="option-btn premium" data-value="studio quality">Studio Quality</button>
+            <button class="option-btn premium" data-value="crystal clear, sharp focus">Crystal Clear</button>
+            <button class="option-btn premium" data-value="HDR enhanced, high dynamic range">HDR Enhanced</button>
+        </div>
+
+        <label class="sub-label premium" data-i18n="detailEnhancers">Detail Enhancers</label>
+        <div class="option-grid" data-group="detailEnhancers">
+            <button class="option-btn premium" data-value="intricate details, fine textures">Intricate Details</button>
+            <button class="option-btn premium" data-value="hyper detailed, micro details">Hyper Detailed</button>
+            <button class="option-btn premium" data-value="sharp focus, crisp edges">Sharp Focus</button>
+            <button class="option-btn premium" data-value="rich colors, vibrant palette">Rich Colors</button>
+            <button class="option-btn premium" data-value="premium texture quality">Premium Textures</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 12: OUTPUT SETTINGS -->
 <div class="panel">
     <div class="panel-header">
         <h3>⚙️ <span data-i18n="output">Output Settings</span></h3>
@@ -965,13 +1045,6 @@
             <button class="option-btn" data-value="--ar 4:3">4:3 (Classic)</button>
         </div>
 
-        <label class="sub-label" data-i18n="quality">Quality</label>
-        <div class="option-grid" data-group="quality">
-            <button class="option-btn" data-value="720p HD">720p HD (Optimal)</button>
-            <button class="option-btn" data-value="high detail">High Detail</button>
-            <button class="option-btn" data-value="HDR enhanced">HDR</button>
-        </div>
-
         <label class="sub-label" data-i18n="duration">Duration</label>
         <div class="option-grid" data-group="duration">
             <button class="option-btn" data-value="8 second segment for lip-sync">8s (Dialogue)</button>
@@ -980,7 +1053,7 @@
     </div>
 </div>
 
-<!-- PANEL 12: AUDIO (LAYER 5) -->
+<!-- PANEL 13: AUDIO (LAYER 5) -->
 <div class="panel">
     <div class="panel-header">
         <h3>🔊 <span data-i18n="audio">Audio Composition</span></h3>
@@ -999,7 +1072,7 @@
     </div>
 </div>
 
-<!-- PANEL 13: NEGATIVE PROMPT (AUTO) -->
+<!-- PANEL 14: NEGATIVE PROMPT (AUTO) -->
 <div class="panel critical">
     <div class="panel-header">
         <h3>
@@ -1030,7 +1103,7 @@
     </div>
 </div>
 
-<!-- PANEL 14: SPICY MODE -->
+<!-- PANEL 15: SPICY MODE -->
 <div class="panel">
     <div class="panel-header">
         <h3>🌶️ <span data-i18n="spicyMode">Spicy Mode</span></h3>
@@ -1136,9 +1209,14 @@
             biome: "Biome",
             physicalDynamics: "Physical Dynamics (LAYER 4)",
             composition: "Composition",
+            qualityPanel: "Quality & Resolution",
+            premium: "PREMIUM",
+            qualityNote: "Grok native output is 720p HD. 4K/8K keywords enhance detail but require upscaling in post-production for actual higher resolution.",
+            resolution: "Resolution Modifiers",
+            qualityModifiers: "Quality Modifiers",
+            detailEnhancers: "Detail Enhancers",
             output: "Output Settings",
             aspectRatio: "Aspect Ratio",
-            quality: "Quality",
             duration: "Duration",
             audio: "Audio Composition",
             negative: "Negative Prompt",
@@ -1201,9 +1279,14 @@
             biome: "Bioma",
             physicalDynamics: "Dinámicas Físicas (CAPA 4)",
             composition: "Composición",
+            qualityPanel: "Calidad y Resolución",
+            premium: "PREMIUM",
+            qualityNote: "La salida nativa de Grok es 720p HD. Las palabras clave 4K/8K mejoran el detalle pero requieren upscaling en post-producción para resolución real mayor.",
+            resolution: "Modificadores de Resolución",
+            qualityModifiers: "Modificadores de Calidad",
+            detailEnhancers: "Mejoradores de Detalle",
             output: "Configuración de Salida",
             aspectRatio: "Proporción de Aspecto",
-            quality: "Calidad",
             duration: "Duración",
             audio: "Composición de Audio",
             negative: "Prompt Negativo",
@@ -1311,7 +1394,8 @@
             { group: 'timeOfDay', label: 'Time' },
             { group: 'lightingType', label: 'Light' },
             { group: 'artStyle', label: 'Style' },
-            { group: 'aspectRatio', label: 'Ratio' },
+            { group: 'resolution', label: 'Res' },
+            { group: 'qualityModifiers', label: 'Quality' },
             { group: 'grokTerms', label: 'Grok' }
         ];
 
@@ -1346,7 +1430,8 @@
         updatePanelSummary('sum-style', [...getSelectedValues('artStyle'), ...getSelectedValues('grokTerms')]);
         updatePanelSummary('sum-environment', [getText('location'), ...getSelectedValues('physicalDynamics')]);
         updatePanelSummary('sum-composition', getSelectedValues('composition'));
-        updatePanelSummary('sum-output', [...getSelectedValues('aspectRatio'), ...getSelectedValues('quality')]);
+        updatePanelSummary('sum-quality', [...getSelectedValues('resolution'), ...getSelectedValues('qualityModifiers'), ...getSelectedValues('detailEnhancers')]);
+        updatePanelSummary('sum-output', [...getSelectedValues('aspectRatio'), ...getSelectedValues('duration')]);
         updatePanelSummary('sum-audio', getSelectedValues('audio'));
         updatePanelSummary('sum-negative', [getText('negative')]);
         updatePanelSummary('sum-spicy', spicyModeEnabled ? ['Spicy ON'] : []);
@@ -1372,11 +1457,11 @@
         updateSummary();
     }
 
-    // --- GROK PROMPT GENERATION (5 LAYERS) ---
+    // --- GROK PROMPT GENERATION (5 LAYERS + QUALITY) ---
     function generatePrompt() {
         let layer1 = []; // Subject + Action + Optics
         let layer2 = []; // Lighting
-        let layer3 = []; // Physics + Details
+        let layer3 = []; // Physics + Details + Quality
         let layer4 = []; // Audio
         let layer5 = []; // Output
 
@@ -1405,7 +1490,7 @@
         const mood = getSelectedValues('mood');
         [...timeOfDay, ...lightingType, ...mood].forEach(v => layer2.push(v));
 
-        // LAYER 3: STYLE + PHYSICS + COMPOSITION
+        // LAYER 3: STYLE + PHYSICS + COMPOSITION + QUALITY
         const artStyle = getSelectedValues('artStyle');
         const renderEngine = getSelectedValues('renderEngine');
         const grokTerms = getSelectedValues('grokTerms');
@@ -1415,7 +1500,12 @@
         const composition = getSelectedValues('composition');
         const location = getText('location');
         
-        [...artStyle, ...renderEngine, ...grokTerms, ...opticalEffects, ...biome, ...physicalDynamics, ...composition].forEach(v => layer3.push(v));
+        // QUALITY MODIFIERS (NEW)
+        const resolution = getSelectedValues('resolution');
+        const qualityModifiers = getSelectedValues('qualityModifiers');
+        const detailEnhancers = getSelectedValues('detailEnhancers');
+        
+        [...artStyle, ...renderEngine, ...grokTerms, ...opticalEffects, ...biome, ...physicalDynamics, ...composition, ...resolution, ...qualityModifiers, ...detailEnhancers].forEach(v => layer3.push(v));
         if(location) layer3.push(location);
 
         // LAYER 4: AUDIO
@@ -1424,9 +1514,8 @@
 
         // LAYER 5: OUTPUT
         const aspectRatio = getSelectedValues('aspectRatio');
-        const quality = getSelectedValues('quality');
         const duration = getSelectedValues('duration');
-        [...aspectRatio, ...quality, ...duration].forEach(v => layer5.push(v));
+        [...aspectRatio, ...duration].forEach(v => layer5.push(v));
 
         // SPICY MODE
         if(spicyModeEnabled) {
@@ -1447,6 +1536,11 @@
         
         if(layer4.length > 0) {
             finalPrompt += '; ' + layer4.join(', ');
+        }
+
+        // OUTPUT PARAMETERS
+        if(layer5.length > 0) {
+            finalPrompt += ' ' + layer5.join(', ');
         }
 
         // AUTO NEGATIVE (CRITICAL FOR GROK)
@@ -1487,7 +1581,7 @@
     }
 
     function randomize() {
-        const groups = ['focalLength', 'shotSize', 'cameraAngles', 'cameraMovement', 'timeOfDay', 'lightingType', 'artStyle', 'physicalDynamics', 'aspectRatio'];
+        const groups = ['focalLength', 'shotSize', 'cameraAngles', 'cameraMovement', 'timeOfDay', 'lightingType', 'artStyle', 'physicalDynamics', 'resolution', 'qualityModifiers', 'aspectRatio'];
         groups.forEach(g => {
             const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
             if(opts.length) {
