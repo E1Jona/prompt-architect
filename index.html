@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Grok Prompt Architect v4.2 | Imagine Optimized</title>
+<title>Grok Prompt Architect v4.4 | Audio Enhanced</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
@@ -18,6 +18,7 @@
         --grok-purple: #8b5cf6;
         --danger: #ff4757;
         --gold: #ffd700;
+        --audio-blue: #00b8ff;
     }
 
     * { box-sizing: border-box; }
@@ -249,6 +250,11 @@
         box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
     }
 
+    .panel.audio {
+        border-color: var(--audio-blue);
+        box-shadow: 0 0 15px rgba(0, 184, 255, 0.1);
+    }
+
     .panel.premium {
         border-color: var(--gold);
         box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
@@ -294,6 +300,11 @@
     .priority-premium {
         background: rgba(255, 215, 0, 0.2);
         color: var(--gold);
+    }
+
+    .priority-audio {
+        background: rgba(0, 184, 255, 0.2);
+        color: var(--audio-blue);
     }
 
     .panel-summary {
@@ -396,6 +407,18 @@
         box-shadow: 0 0 15px var(--accent-glow);
     }
 
+    .option-btn.audio {
+        border-color: var(--audio-blue);
+        color: var(--audio-blue);
+    }
+
+    .option-btn.audio.selected {
+        background: linear-gradient(135deg, var(--audio-blue), #0088cc);
+        color: #000;
+        border-color: var(--audio-blue);
+        box-shadow: 0 0 15px rgba(0, 184, 255, 0.4);
+    }
+
     .option-btn.premium {
         border-color: var(--gold);
         color: var(--gold);
@@ -428,6 +451,10 @@
 
     .sub-label.premium {
         color: var(--gold);
+    }
+
+    .sub-label.audio {
+        color: var(--audio-blue);
     }
 
     /* --- FIXED OUTPUT AREA --- */
@@ -663,8 +690,8 @@
     <div class="brand">
         <div class="brand-logo">G</div>
         <div class="brand-text">
-            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.2</span></h1>
-            <span data-i18n="subtitle">Imagine 1.0 | Aurora Engine</span>
+            <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.4</span></h1>
+            <span data-i18n="subtitle">Imagine 1.0 | Audio Enhanced</span>
         </div>
     </div>
     
@@ -1022,7 +1049,64 @@
     </div>
 </div>
 
-<!-- PANEL 12: OUTPUT SETTINGS -->
+<!-- PANEL 12: AUDIO ENHANCED (LAYER 5) -->
+<div class="panel audio">
+    <div class="panel-header">
+        <h3>
+            🔊 <span data-i18n="audio">Audio Composition</span>
+            <span class="panel-priority priority-audio" data-i18n="audioCritical">LAYER 5</span>
+        </h3>
+        <span class="panel-summary" id="sum-audio"></span>
+    </div>
+    <div class="panel-content">
+        <div style="background: rgba(0, 184, 255, 0.1); border: 1px solid var(--audio-blue); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--audio-blue);">
+            <strong>⚠️ AUDIO QUALITY NOTE:</strong> <span data-i18n="audioWarning">Grok native audio mixes all elements (music + SFX + dialogue) which causes distortion. For clean audio: select ONE type only, then process in Adobe Podcast for HD quality.</span>
+        </div>
+
+        <label class="sub-label audio" data-i18n="audioType">Audio Type (Select ONE for clean output)</label>
+        <div class="option-grid" data-group="audioType">
+            <button class="option-btn audio" data-value="music only, no dialogue" data-i18n-btn="btn_musicOnly">Music Only</button>
+            <button class="option-btn audio" data-value="sound effects only, no music" data-i18n-btn="btn_sfxOnly">SFX Only</button>
+            <button class="option-btn audio" data-value="dialogue only, clear speech" data-i18n-btn="btn_dialogueOnly">Dialogue Only</button>
+            <button class="option-btn audio" data-value="ambient soundscape only" data-i18n-btn="btn_ambientOnly">Ambient Only</button>
+            <button class="option-btn audio" data-value="silence, no audio track" data-i18n-btn="btn_silenceOnly">Silence</button>
+        </div>
+
+        <label class="sub-label audio" data-i18n="musicGenre">Music Genre (if Music selected)</label>
+        <div class="option-grid" data-group="musicGenre">
+            <button class="option-btn audio" data-value="epic orchestral music, cinematic score" data-i18n-btn="btn_orchestral">Orchestral</button>
+            <button class="option-btn audio" data-value="soft ambient soundtrack, atmospheric" data-i18n-btn="btn_ambient">Ambient</button>
+            <button class="option-btn audio" data-value="electronic synthwave music" data-i18n-btn="btn_synthwave">Synthwave</button>
+            <button class="option-btn audio" data-value="dramatic trailer music" data-i18n-btn="btn_trailer">Trailer</button>
+            <button class="option-btn audio" data-value="lo-fi hip hop beats" data-i18n-btn="btn_lofi">Lo-Fi</button>
+            <button class="option-btn audio" data-value="upbeat pop music" data-i18n-btn="btn_pop">Pop</button>
+        </div>
+
+        <label class="sub-label audio" data-i18n="sfxType">Sound Effects (if SFX selected)</label>
+        <div class="option-grid" data-group="sfxType">
+            <button class="option-btn audio" data-value="dramatic sound effects, impactful" data-i18n-btn="btn_dramaticSFX">Dramatic</button>
+            <button class="option-btn audio" data-value="nature sound effects, birds wind water" data-i18n-btn="btn_natureSFX">Nature</button>
+            <button class="option-btn audio" data-value="urban sound effects, traffic city" data-i18n-btn="btn_urbanSFX">Urban</button>
+            <button class="option-btn audio" data-value="sci-fi sound effects, futuristic" data-i18n-btn="btn_scifiSFX">Sci-Fi</button>
+            <button class="option-btn audio" data-value="combat sound effects, weapons" data-i18n-btn="btn_combatSFX">Combat</button>
+        </div>
+
+        <label class="sub-label audio" data-i18n="audioQuality">Audio Quality Modifiers</label>
+        <div class="option-grid" data-group="audioQuality">
+            <button class="option-btn audio" data-value="HD audio quality, 48kHz sample rate" data-i18n-btn="btn_hdAudio">HD Audio</button>
+            <button class="option-btn audio" data-value="studio quality audio, mastered" data-i18n-btn="btn_studioAudio">Studio Quality</button>
+            <button class="option-btn audio" data-value="clear dialogue, noise reduced" data-i18n-btn="btn_clearDialogue">Clear Dialogue</button>
+            <button class="option-btn audio" data-value="no audio distortion, clean mix" data-i18n-btn="btn_noDistortion">No Distortion</button>
+        </div>
+
+        <label class="sub-label audio" data-i18n="postProduction">Post-Production (MANDATORY)</label>
+        <div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 12px; font-size: 0.8rem; color: var(--warning);">
+            <strong data-i18n="postProdNote">📌 Per PDF Grok: After generation, process audio in Adobe Podcast for lip-sync and noise cleanup. Segment dialogue scenes at 8s max for perfect sync.</strong>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL 13: OUTPUT SETTINGS -->
 <div class="panel">
     <div class="panel-header">
         <h3>⚙️ <span data-i18n="output">Output Settings</span></h3>
@@ -1049,25 +1133,6 @@
         <div class="option-grid" data-group="duration">
             <button class="option-btn" data-value="8 second segment for lip-sync" data-i18n-btn="btn_8s">8s (Dialogue)</button>
             <button class="option-btn" data-value="15 second max duration" data-i18n-btn="btn_15s">15s (Max)</button>
-        </div>
-    </div>
-</div>
-
-<!-- PANEL 13: AUDIO -->
-<div class="panel">
-    <div class="panel-header">
-        <h3>🔊 <span data-i18n="audio">Audio Composition</span></h3>
-        <span class="panel-summary" id="sum-audio"></span>
-    </div>
-    <div class="panel-content">
-        <div class="option-grid" data-group="audio">
-            <button class="option-btn" data-value="soft ambient soundtrack, atmospheric" data-i18n-btn="btn_ambient">Ambient</button>
-            <button class="option-btn" data-value="epic orchestral music, cinematic score" data-i18n-btn="btn_orchestral">Orchestral</button>
-            <button class="option-btn" data-value="dialogue heavy scene, clear speech" data-i18n-btn="btn_dialogue">Dialogue</button>
-            <button class="option-btn" data-value="dramatic sound effects, impactful" data-i18n-btn="btn_soundfx">Sound FX</button>
-            <button class="option-btn" data-value="moment of silence, tension building" data-i18n-btn="btn_silence">Silence</button>
-            <button class="option-btn" data-value="voice over narration, documentary style" data-i18n-btn="btn_voiceover">Voice Over</button>
-            <button class="option-btn" data-value="music swell, emotional crescendo" data-i18n-btn="btn_musicswell">Music Swell</button>
         </div>
     </div>
 </div>
@@ -1171,10 +1236,10 @@
 </div>
 
 <script>
-    // --- TRANSLATIONS ---
+    // === TRANSLATIONS ===
     const translations = {
         en: {
-            subtitle: "Imagine 1.0 | Aurora Engine",
+            subtitle: "Imagine 1.0 | Audio Enhanced",
             active: "Active:",
             alertTitle: "Grok Protocol Active:",
             alertText: "Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.",
@@ -1215,10 +1280,18 @@
             resolution: "Resolution Modifiers",
             qualityModifiers: "Quality Modifiers",
             detailEnhancers: "Detail Enhancers",
+            audio: "Audio Composition",
+            audioCritical: "LAYER 5",
+            audioWarning: "Grok native audio mixes all elements (music + SFX + dialogue) which causes distortion. For clean audio: select ONE type only, then process in Adobe Podcast for HD quality.",
+            audioType: "Audio Type (Select ONE for clean output)",
+            musicGenre: "Music Genre (if Music selected)",
+            sfxType: "Sound Effects (if SFX selected)",
+            audioQuality: "Audio Quality Modifiers",
+            postProduction: "Post-Production (MANDATORY)",
+            postProdNote: "📌 Per PDF Grok: After generation, process audio in Adobe Podcast for lip-sync and noise cleanup. Segment dialogue scenes at 8s max for perfect sync.",
             output: "Output Settings",
             aspectRatio: "Aspect Ratio",
             duration: "Duration",
-            audio: "Audio Composition",
             negative: "Negative Prompt",
             autoIncluded: "AUTO",
             negativeWarning: "Grok Bias:",
@@ -1370,6 +1443,26 @@
             btn_sharpfocus: "Sharp Focus",
             btn_richcolors: "Rich Colors",
             btn_premiumtextures: "Premium Textures",
+            btn_musicOnly: "Music Only",
+            btn_sfxOnly: "SFX Only",
+            btn_dialogueOnly: "Dialogue Only",
+            btn_ambientOnly: "Ambient Only",
+            btn_silenceOnly: "Silence",
+            btn_orchestral: "Orchestral",
+            btn_ambient: "Ambient",
+            btn_synthwave: "Synthwave",
+            btn_trailer: "Trailer",
+            btn_lofi: "Lo-Fi",
+            btn_pop: "Pop",
+            btn_dramaticSFX: "Dramatic",
+            btn_natureSFX: "Nature",
+            btn_urbanSFX: "Urban",
+            btn_scifiSFX: "Sci-Fi",
+            btn_combatSFX: "Combat",
+            btn_hdAudio: "HD Audio",
+            btn_studioAudio: "Studio Quality",
+            btn_clearDialogue: "Clear Dialogue",
+            btn_noDistortion: "No Distortion",
             btn_169: "16:9 (YouTube)",
             btn_916: "9:16 (TikTok/Reels)",
             btn_11: "1:1 (Square)",
@@ -1377,13 +1470,6 @@
             btn_43: "4:3 (Classic)",
             btn_8s: "8s (Dialogue)",
             btn_15s: "15s (Max)",
-            btn_ambient: "Ambient",
-            btn_orchestral: "Orchestral",
-            btn_dialogue: "Dialogue",
-            btn_soundfx: "Sound FX",
-            btn_silence: "Silence",
-            btn_voiceover: "Voice Over",
-            btn_musicswell: "Music Swell",
             btn_noblur: "No Blur",
             btn_nodeformed: "No Deformed",
             btn_nobadanatomy: "No Bad Anatomy",
@@ -1395,7 +1481,7 @@
             btn_artisticnudity: "Artistic Nudity"
         },
         es: {
-            subtitle: "Imagine 1.0 | Motor Aurora",
+            subtitle: "Imagine 1.0 | Audio Mejorado",
             active: "Activo:",
             alertTitle: "Protocolo Grok Activo:",
             alertText: "Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.",
@@ -1436,10 +1522,18 @@
             resolution: "Modificadores de Resolución",
             qualityModifiers: "Modificadores de Calidad",
             detailEnhancers: "Mejoradores de Detalle",
+            audio: "Composición de Audio",
+            audioCritical: "CAPA 5",
+            audioWarning: "El audio nativo de Grok mezcla todos los elementos (música + SFX + diálogo) lo que causa distorsión. Para audio limpio: selecciona UN tipo solo, luego procesa en Adobe Podcast para calidad HD.",
+            audioType: "Tipo de Audio (Selecciona UNO para salida limpia)",
+            musicGenre: "Género Musical (si seleccionaste Música)",
+            sfxType: "Efectos de Sonido (si seleccionaste SFX)",
+            audioQuality: "Modificadores de Calidad de Audio",
+            postProduction: "Post-Producción (OBLIGATORIO)",
+            postProdNote: "📌 Según PDF Grok: Después de generar, procesa el audio en Adobe Podcast para lip-sync y limpieza de ruido. Segmenta escenas de diálogo a 8s máx para sync perfecto.",
             output: "Configuración de Salida",
             aspectRatio: "Proporción de Aspecto",
             duration: "Duración",
-            audio: "Composición de Audio",
             negative: "Prompt Negativo",
             autoIncluded: "AUTO",
             negativeWarning: "Sesgo de Grok:",
@@ -1591,6 +1685,26 @@
             btn_sharpfocus: "Enfoque Nítido",
             btn_richcolors: "Colores Ricos",
             btn_premiumtextures: "Texturas Premium",
+            btn_musicOnly: "Solo Música",
+            btn_sfxOnly: "Solo SFX",
+            btn_dialogueOnly: "Solo Diálogo",
+            btn_ambientOnly: "Solo Ambiente",
+            btn_silenceOnly: "Silencio",
+            btn_orchestral: "Orquestal",
+            btn_ambient: "Ambiente",
+            btn_synthwave: "Synthwave",
+            btn_trailer: "Trailer",
+            btn_lofi: "Lo-Fi",
+            btn_pop: "Pop",
+            btn_dramaticSFX: "Dramáticos",
+            btn_natureSFX: "Naturaleza",
+            btn_urbanSFX: "Urbano",
+            btn_scifiSFX: "Sci-Fi",
+            btn_combatSFX: "Combate",
+            btn_hdAudio: "Audio HD",
+            btn_studioAudio: "Calidad Estudio",
+            btn_clearDialogue: "Diálogo Claro",
+            btn_noDistortion: "Sin Distorsión",
             btn_169: "16:9 (YouTube)",
             btn_916: "9:16 (TikTok/Reels)",
             btn_11: "1:1 (Cuadrado)",
@@ -1598,13 +1712,6 @@
             btn_43: "4:3 (Clásico)",
             btn_8s: "8s (Diálogo)",
             btn_15s: "15s (Máx)",
-            btn_ambient: "Ambiente",
-            btn_orchestral: "Orquestal",
-            btn_dialogue: "Diálogo",
-            btn_soundfx: "Efectos Sonoros",
-            btn_silence: "Silencio",
-            btn_voiceover: "Narración",
-            btn_musicswell: "Crescendo Musical",
             btn_noblur: "Sin Blur",
             btn_nodeformed: "Sin Deformaciones",
             btn_nobadanatomy: "Sin Anatomía",
@@ -1620,14 +1727,13 @@
     let currentLang = 'en';
     let spicyModeEnabled = false;
 
-    // --- LANGUAGE SWITCH ---
+    // === LANGUAGE SWITCH ===
     function setLanguage(lang) {
         currentLang = lang;
         
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         document.getElementById('btn-es').classList.toggle('active', lang === 'es');
         
-        // Translate elements with data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if(translations[lang][key]) {
@@ -1635,7 +1741,6 @@
             }
         });
         
-        // Translate BUTTONS with data-i18n-btn
         document.querySelectorAll('[data-i18n-btn]').forEach(btn => {
             const key = btn.getAttribute('data-i18n-btn');
             if(translations[lang][key]) {
@@ -1643,7 +1748,6 @@
             }
         });
 
-        // Placeholders
         document.getElementById('subject').placeholder = translations[lang].placeholderSubject;
         document.getElementById('action').placeholder = translations[lang].placeholderAction;
         document.getElementById('charDNA').placeholder = translations[lang].placeholderDNA;
@@ -1657,7 +1761,7 @@
         updateSummary();
     }
 
-    // --- ACCORDION ---
+    // === ACCORDION ===
     document.querySelectorAll('.panel-header').forEach(header => {
         header.addEventListener('click', () => {
             const panel = header.parentElement;
@@ -1665,7 +1769,7 @@
         });
     });
 
-    // --- MULTI-SELECT BUTTONS ---
+    // === MULTI-SELECT BUTTONS ===
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             this.classList.toggle('selected');
@@ -1673,7 +1777,7 @@
         });
     });
 
-    // --- SPICY MODE ---
+    // === SPICY MODE ===
     function toggleSpicyMode() {
         spicyModeEnabled = !spicyModeEnabled;
         document.getElementById('spicyToggle').classList.toggle('active', spicyModeEnabled);
@@ -1681,7 +1785,7 @@
         updateSummary();
     }
 
-    // --- SUMMARY SYSTEM ---
+    // === SUMMARY SYSTEM ===
     function getSelectedValues(group) {
         const selected = document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn.selected`);
         return Array.from(selected).map(btn => btn.getAttribute('data-value'));
@@ -1707,6 +1811,7 @@
             { group: 'artStyle', label: 'Style' },
             { group: 'resolution', label: 'Res' },
             { group: 'qualityModifiers', label: 'Quality' },
+            { group: 'audioType', label: 'Audio' },
             { group: 'grokTerms', label: 'Grok' }
         ];
 
@@ -1730,7 +1835,6 @@
             tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.7rem;">${currentLang === 'en' ? 'No options selected' : 'Sin opciones seleccionadas'}</span>`;
         }
 
-        // Panel summaries
         updatePanelSummary('sum-subject', [getText('subject'), getText('action')]);
         updatePanelSummary('sum-lens', [...getSelectedValues('focalLength'), ...getSelectedValues('specialtyLenses')]);
         updatePanelSummary('sum-shots', [...getSelectedValues('shotSize'), ...getSelectedValues('cameraAngles')]);
@@ -1742,8 +1846,8 @@
         updatePanelSummary('sum-environment', [getText('location'), ...getSelectedValues('physicalDynamics')]);
         updatePanelSummary('sum-composition', getSelectedValues('composition'));
         updatePanelSummary('sum-quality', [...getSelectedValues('resolution'), ...getSelectedValues('qualityModifiers'), ...getSelectedValues('detailEnhancers')]);
+        updatePanelSummary('sum-audio', [...getSelectedValues('audioType'), ...getSelectedValues('musicGenre'), ...getSelectedValues('audioQuality')]);
         updatePanelSummary('sum-output', [...getSelectedValues('aspectRatio'), ...getSelectedValues('duration')]);
-        updatePanelSummary('sum-audio', getSelectedValues('audio'));
         updatePanelSummary('sum-negative', [getText('negative')]);
         updatePanelSummary('sum-spicy', spicyModeEnabled ? ['Spicy ON'] : []);
     }
@@ -1768,7 +1872,7 @@
         updateSummary();
     }
 
-    // --- GROK PROMPT GENERATION ---
+    // === GROK PROMPT GENERATION ===
     function generatePrompt() {
         let layer1 = [];
         let layer2 = [];
@@ -1813,8 +1917,13 @@
         [...artStyle, ...renderEngine, ...grokTerms, ...opticalEffects, ...biome, ...physicalDynamics, ...composition, ...resolution, ...qualityModifiers, ...detailEnhancers].forEach(v => layer3.push(v));
         if(location) layer3.push(location);
 
-        const audio = getSelectedValues('audio');
-        audio.forEach(v => layer4.push(v));
+        // AUDIO (LAYER 5)
+        const audioType = getSelectedValues('audioType');
+        const musicGenre = getSelectedValues('musicGenre');
+        const sfxType = getSelectedValues('sfxType');
+        const audioQuality = getSelectedValues('audioQuality');
+        
+        [...audioType, ...musicGenre, ...sfxType, ...audioQuality].forEach(v => layer4.push(v));
 
         const aspectRatio = getSelectedValues('aspectRatio');
         const duration = getSelectedValues('duration');
@@ -1856,7 +1965,7 @@
         updateSummary();
     }
 
-    // --- UTILS ---
+    // === UTILS ===
     function copyPrompt() {
         const el = document.getElementById('result');
         el.select();
@@ -1880,7 +1989,7 @@
     }
 
     function randomize() {
-        const groups = ['focalLength', 'shotSize', 'cameraAngles', 'cameraMovement', 'timeOfDay', 'lightingType', 'artStyle', 'physicalDynamics', 'resolution', 'qualityModifiers', 'aspectRatio'];
+        const groups = ['focalLength', 'shotSize', 'cameraAngles', 'cameraMovement', 'timeOfDay', 'lightingType', 'artStyle', 'physicalDynamics', 'resolution', 'qualityModifiers', 'aspectRatio', 'audioType'];
         groups.forEach(g => {
             const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
             if(opts.length) {
@@ -1910,4 +2019,3 @@
 
 </body>
 </html>
-
