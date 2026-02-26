@@ -1529,7 +1529,7 @@ tab_experimental: "Experimental"
 }
 };
 
-// Add button translations (from original file - keeping all)
+// Add button translations
 const buttonTranslations = {
 en: {
 btn_14mm: "14mm Fisheye", btn_24mm: "24mm Wide", btn_35mm: "35mm Standard", btn_50mm: "50mm Normal", btn_85mm: "85mm Portrait", btn_135mm: "135mm Tele", btn_200mm: "200mm Super", btn_anamorphic: "Anamorphic", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Soft Focus", btn_extremecu: "Extreme CU", btn_closeup: "Close-Up", btn_mediumshot: "Medium Shot", btn_fullbody: "Full Body", btn_wideshot: "Wide Shot", btn_extremewide: "Extreme Wide", btn_eyelevel: "Eye Level", btn_lowangle: "Low Angle", btn_highangle: "High Angle", btn_wormseye: "Worm's Eye", btn_birdseye: "Bird's Eye", btn_overshoulder: "Over Shoulder", btn_pov: "POV", btn_dutchangle: "Dutch Angle", btn_dollyin: "Dolly In", btn_dollyout: "Dolly Out", btn_tracking: "Tracking", btn_panleft: "Pan Left", btn_panright: "Pan Right", btn_tiltup: "Tilt Up", btn_tiltdown: "Tilt Down", btn_orbit: "360° Orbit", btn_craneup: "Crane Up", btn_cranedown: "Crane Down", btn_handheld: "Handheld", btn_steadicam: "Steadicam", btn_slowzoom: "Slow Zoom", btn_snapzoom: "Snap Zoom", btn_rackfocus: "Rack Focus", btn_avoidcamera: "Avoid Camera", btn_influencer: "Influencer", btn_offcamera: "Off-Camera", btn_eyesclosed: "Eyes Closed", btn_dawn: "Dawn", btn_midday: "Midday", btn_sunset: "Sunset", btn_night: "Night", btn_bluehour: "Blue Hour", btn_chiaroscuro: "Chiaroscuro", btn_softbox: "Softbox", btn_rimlight: "Rim Light", btn_neon: "Neon", btn_volumetric: "Volumetric", btn_natural: "Natural", btn_practical: "Practical", btn_motivated: "Motivated", btn_dark: "Dark", btn_epic: "Epic", btn_mysterious: "Mysterious", btn_hopeful: "Hopeful", btn_melancholic: "Melancholic", btn_tense: "Tense", btn_dof: "Depth of Field", btn_bokeh: "Bokeh", btn_filmgrain: "Film Grain", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Chromatic Aberration", btn_vignette: "Vignette", btn_bloom: "Bloom", btn_tealorange: "Teal & Orange", btn_hdr: "HDR", btn_cinematic: "Cinematic", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realistic", btn_anime: "Anime", btn_fantasy: "Fantasy", btn_documentary: "Documentary", btn_musicvideo: "Music Video", btn_commercial: "Commercial", btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift", btn_subsurface: "Subsurface Scattering", btn_skindetails: "Skin Details", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Hair Details", btn_forest: "Forest", btn_desert: "Desert", btn_city: "City", btn_mountain: "Mountain", btn_space: "Space", btn_interior: "Interior", btn_underwater: "Underwater", btn_wind: "Wind", btn_rain: "Rain", btn_fog: "Fog", btn_smoke: "Smoke", btn_fire: "Fire", btn_water: "Water", btn_dust: "Dust", btn_snow: "Snow", btn_fabric: "Fabric", btn_ruleofthirds: "Rule of Thirds", btn_centered: "Centered", btn_leadinglines: "Leading Lines", btn_framewithin: "Frame Within", btn_negativespace: "Negative Space", btn_goldenratio: "Golden Ratio", btn_720p: "720p HD (Native)", btn_4k: "4K Enhanced", btn_8k: "8K Maximum", btn_ultrarealistic: "Ultra Realistic", btn_highdetail: "High Detail", btn_masterpiece: "Masterpiece", btn_awardwinning: "Award Winning", btn_professional: "Professional", btn_studioquality: "Studio Quality", btn_crystalclear: "Crystal Clear", btn_hdrenhanced: "HDR Enhanced", btn_intricatedetails: "Intricate Details", btn_hyperdetailed: "Hyper Detailed", btn_sharpfocus: "Sharp Focus", btn_richcolors: "Rich Colors", btn_premiumtextures: "Premium Textures", btn_musicOnly: "Music Only", btn_sfxOnly: "SFX Only", btn_dialogueOnly: "Dialogue Only", btn_ambientOnly: "Ambient Only", btn_silenceOnly: "Silence", btn_orchestral: "Orchestral", btn_ambient: "Ambient", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop", btn_dramaticSFX: "Dramatic", btn_natureSFX: "Nature", btn_urbanSFX: "Urban", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combat", btn_hdAudio: "HD Audio", btn_studioAudio: "Studio Quality", btn_clearDialogue: "Clear Dialogue", btn_noDistortion: "No Distortion", btn_169: "16:9 (YouTube)", btn_916: "9:16 (TikTok/Reels)", btn_11: "1:1 (Square)", btn_219: "21:9 (Cinema)", btn_43: "4:3 (Classic)", btn_8s: "8s (Dialogue)", btn_15s: "15s (Max)", btn_noblur: "No Blur", btn_nodeformed: "No Deformed", btn_nobadanatomy: "No Bad Anatomy", btn_nowatermark: "No Watermark", btn_nocartoon: "No Cartoon", btn_animestickers: "Anime Stickers", btn_2dhearts: "2D Hearts", btn_lingeriepasties: "Lingerie Pasties", btn_artisticnudity: "Artistic Nudity"
@@ -1546,13 +1546,12 @@ let selectedMakeupFX = null;
 let styleWeight = 50;
 let activeStyleTab = 'cinematic';
 
-// === DOM READY FIX ===
+// === DOM READY ===
 document.addEventListener('DOMContentLoaded', function() {
   initApp();
 });
 
 function initApp() {
-  // === LANGUAGE SWITCH ===
   setLanguage('en');
   
   // === ACCORDION ===
@@ -1563,7 +1562,7 @@ function initApp() {
     });
   });
   
-  // === MULTI-SELECT BUTTONS (FIXED) ===
+  // === MULTI-SELECT BUTTONS (ALL including style) ===
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       this.classList.toggle('selected');
@@ -1581,8 +1580,8 @@ function initApp() {
     });
   });
   
-  // === INITIAL RENDER ===
   renderStyleGrid();
+  renderMakeupGrid();
   updateSummary();
 }
 
@@ -1593,16 +1592,17 @@ function renderStyleGrid() {
   
   const styles = VISUAL_AESTHETICS[activeStyleTab] || [];
   grid.innerHTML = styles.map(style => `
-    <button class="option-btn style" data-value="${style.value}" onclick="selectVisualStyle('${style.value}', '${style.label}')">
+    <button class="option-btn style" data-value="${style.value}" data-label="${style.label}">
       ${currentLang === 'es' ? style.label : style.value}
     </button>
   `).join('');
   
-  // Re-attach click handlers
+  // Re-attach click handlers for new buttons
   grid.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('#styleGrid .option-btn').forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
+      this.classList.toggle('selected');
+      updateVisualStyleSelection();
+      updateSummary();
     });
   });
 }
@@ -1618,27 +1618,50 @@ function renderMakeupGrid() {
     html += `<div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">${category}</div>`;
     html += `<div class="option-grid" style="margin-bottom: 0;">`;
     html += options.map(makeup => `
-      <button class="option-btn style" data-value="${makeup.value}" onclick="selectMakeupFX('${makeup.value}', '${makeup.label}')">
+      <button class="option-btn style" data-value="${makeup.value}" data-label="${makeup.label}">
         ${currentLang === 'es' ? makeup.label : makeup.value}
       </button>
     `).join('');
     html += `</div></div>`;
   }
   grid.innerHTML = html;
+  
+  // Re-attach click handlers
+  grid.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      updateMakeupSelection();
+      updateSummary();
+    });
+  });
 }
 
-// === SELECT VISUAL STYLE ===
-function selectVisualStyle(value, label) {
-  selectedVisualStyle = { value, label };
+// === UPDATE VISUAL STYLE SELECTION ===
+function updateVisualStyleSelection() {
+  const selectedBtn = document.querySelector('#styleGrid .option-btn.selected');
+  if (selectedBtn) {
+    selectedVisualStyle = {
+      value: selectedBtn.getAttribute('data-value'),
+      label: selectedBtn.getAttribute('data-label')
+    };
+  } else {
+    selectedVisualStyle = null;
+  }
   updateStylePreview();
-  updateSummary();
 }
 
-// === SELECT MAKEUP FX ===
-function selectMakeupFX(value, label) {
-  selectedMakeupFX = { value, label };
+// === UPDATE MAKEUP SELECTION ===
+function updateMakeupSelection() {
+  const selectedBtn = document.querySelector('#makeupGrid .option-btn.selected');
+  if (selectedBtn) {
+    selectedMakeupFX = {
+      value: selectedBtn.getAttribute('data-value'),
+      label: selectedBtn.getAttribute('data-label')
+    };
+  } else {
+    selectedMakeupFX = null;
+  }
   updateStylePreview();
-  updateSummary();
 }
 
 // === UPDATE STYLE WEIGHT ===
@@ -1736,6 +1759,18 @@ function updateSummary() {
     tagsContainer.appendChild(tag);
   }
   
+  if (selectedMakeupFX) {
+    activeCount++;
+    const tag = document.createElement('div');
+    tag.className = 'summary-tag';
+    tag.style.borderColor = 'var(--style-pink)';
+    tag.style.color = 'var(--style-pink)';
+    tag.style.background = 'rgba(236, 72, 153, 0.1)';
+    const displayValue = currentLang === 'es' ? selectedMakeupFX.label : selectedMakeupFX.value;
+    tag.innerHTML = `<span>💄 ${displayValue}</span><span class="remove" onclick="clearMakeupFX()">×</span>`;
+    tagsContainer.appendChild(tag);
+  }
+  
   if (activeCount === 0) {
     tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.7rem;">${currentLang === 'en' ? 'No options selected' : 'Sin opciones seleccionadas'}</span>`;
   }
@@ -1783,6 +1818,13 @@ function removeSelection(group, id, value) {
 function clearVisualStyle() {
   selectedVisualStyle = null;
   document.querySelectorAll('#styleGrid .option-btn').forEach(b => b.classList.remove('selected'));
+  updateStylePreview();
+  updateSummary();
+}
+
+function clearMakeupFX() {
+  selectedMakeupFX = null;
+  document.querySelectorAll('#makeupGrid .option-btn').forEach(b => b.classList.remove('selected'));
   updateStylePreview();
   updateSummary();
 }
@@ -1991,7 +2033,6 @@ function setLanguage(lang) {
   document.querySelector('.summary-label').textContent = translations[lang].active + ' ';
   document.getElementById('langIndicator').textContent = 'EN OUTPUT';
   
-  // Re-render style grid with new language
   renderStyleGrid();
   renderMakeupGrid();
   updateStylePreview();
