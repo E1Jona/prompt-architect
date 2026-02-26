@@ -1,1 +1,2043 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Grok Prompt Architect v4.5 | Protected</title><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="copyright" content="© 2024 Grok Prompt Architect - All Rights Reserved"><meta name="robots" content="noindex,nofollow"><style>:root{--bg-color:#0a0c10;--panel-bg:#14171d;--text-main:#e8e8e8;--text-muted:#6b7785;--accent:#00d4ff;--accent-glow:rgba(0,212,255,0.2);--border:#2a3038;--success:#00ff9d;--warning:#ffaa00;--grok-purple:#8b5cf6;--danger:#ff4757;--gold:#ffd700;--audio-blue:#00b8ff;--style-pink:#ec4899}*{box-sizing:border-box}body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(135deg,#0a0c10 0%,#0f1115 100%);color:var(--text-main);margin:0;padding:0;padding-bottom:300px;min-height:100vh;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.top-bar{position:fixed;top:0;left:0;right:0;background:rgba(20,23,29,0.98);backdrop-filter:blur(15px);border-bottom:2px solid var(--accent);padding:12px 20px;z-index:1000;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;box-shadow:0 4px 30px rgba(0,0,0,0.6)}.brand{display:flex;align-items:center;gap:10px}.brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--grok-purple));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.3rem;color:#fff;box-shadow:0 0 15px var(--accent-glow)}.brand-text h1{margin:0;font-size:1.1rem;background:linear-gradient(90deg,var(--accent),var(--grok-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px}.brand-text span{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}.lang-switch{display:flex;gap:4px;background:#0a0c10;padding:3px;border-radius:6px;border:1px solid var(--border)}.lang-btn{background:transparent;border:none;color:var(--text-muted);padding:5px 14px;border-radius:4px;cursor:pointer;font-size:0.75rem;font-weight:600;transition:all 0.2s}.lang-btn.active{background:var(--accent);color:#000}.summary-container{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1;margin-left:20px;min-width:200px;max-height:70px;overflow-y:auto}.summary-label{font-size:0.7rem;text-transform:uppercase;color:var(--text-muted);font-weight:700;white-space:nowrap}.summary-tag{background:rgba(0,212,255,0.1);border:1px solid var(--accent);color:var(--accent);padding:3px 8px;border-radius:10px;font-size:0.68rem;display:flex;align-items:center;gap:5px;animation:popIn 0.3s ease;max-width:140px}.summary-tag .remove{cursor:pointer;opacity:0.6;font-weight:bold;font-size:0.85rem}.summary-tag .remove:hover{opacity:1;color:#fff}.grok-badge{background:linear-gradient(135deg,var(--grok-purple),#6d28d9);color:#fff;padding:4px 10px;border-radius:12px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}.version-badge{background:var(--gold);color:#000;padding:2px 6px;border-radius:4px;font-size:0.6rem;font-weight:700;margin-left:5px}@keyframes popIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}.info-alert{max-width:1400px;margin:70px auto 15px;padding:14px 24px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.3);border-radius:10px;display:flex;align-items:center;gap:15px;font-size:0.85rem}.info-alert-icon{font-size:1.4rem;flex-shrink:0}.info-alert-content{color:var(--text-muted);line-height:1.5}.info-alert strong{color:var(--accent)}.formula-display{background:rgba(0,212,255,0.05);border:1px dashed var(--accent);border-radius:6px;padding:8px 12px;margin-top:8px;font-family:'Consolas',monospace;font-size:0.75rem;color:var(--accent)}.app{max-width:1400px;margin:0 auto;padding:0 20px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:15px}.panel{background:var(--panel-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all 0.3s}.panel:hover{border-color:var(--text-muted);transform:translateY(-2px)}.panel.critical{border-color:var(--accent);box-shadow:0 0 20px rgba(0,212,255,0.1)}.panel.audio{border-color:var(--audio-blue);box-shadow:0 0 15px rgba(0,184,255,0.1)}.panel.premium{border-color:var(--gold);box-shadow:0 0 15px rgba(255,215,0,0.1)}.panel.style{border-color:var(--style-pink);box-shadow:0 0 15px rgba(236,72,153,0.1)}.panel-header{padding:14px 18px;background:rgba(255,255,255,0.02);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}.panel-header h3{margin:0;font-size:0.95rem;color:var(--text-main);display:flex;align-items:center;gap:8px}.panel-priority{font-size:0.65rem;padding:2px 6px;border-radius:4px;text-transform:uppercase;font-weight:700}.priority-high{background:rgba(255,170,0,0.2);color:var(--warning)}.priority-critical{background:rgba(255,71,87,0.2);color:var(--danger)}.priority-premium{background:rgba(255,215,0,0.2);color:var(--gold)}.priority-audio{background:rgba(0,184,255,0.2);color:var(--audio-blue)}.priority-style{background:rgba(236,72,153,0.2);color:var(--style-pink)}.panel-summary{font-size:0.7rem;color:var(--accent);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.panel-header::after{content:'▼';font-size:0.65rem;color:var(--text-muted);transition:transform 0.3s}.panel.active .panel-header::after{transform:rotate(180deg)}.panel.active{border-color:var(--accent)}.panel-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease;padding:0 18px}.panel.active .panel-content{max-height:1000px;padding:18px;border-top:1px solid var(--border)}textarea,input[type="text"]{width:100%;background:#0a0c10;border:1px solid var(--border);color:var(--text-main);padding:10px;border-radius:6px;margin-bottom:10px;font-size:0.85rem;resize:vertical;min-height:65px;font-family:'Consolas',monospace}textarea:focus,input:focus{outline:1px solid var(--accent);border-color:var(--accent)}textarea::placeholder{color:var(--text-muted)}.option-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-bottom:12px}.option-btn{background:#1a1e26;border:1px solid var(--border);color:var(--text-muted);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;text-align:center;transition:all 0.25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;user-select:none;position:relative}.option-btn:hover{border-color:var(--text-muted);color:var(--text-main);background:#222831}.option-btn.selected{background:linear-gradient(135deg,var(--accent),#00a3cc);color:#000;border-color:var(--accent);font-weight:700;box-shadow:0 0 15px var(--accent-glow)}.option-btn.audio{border-color:var(--audio-blue);color:var(--audio-blue)}.option-btn.audio.selected{background:linear-gradient(135deg,var(--audio-blue),#0088cc);color:#000;border-color:var(--audio-blue);box-shadow:0 0 15px rgba(0,184,255,0.4)}.option-btn.premium{border-color:var(--gold);color:var(--gold)}.option-btn.premium.selected{background:linear-gradient(135deg,var(--gold),#ffaa00);color:#000;border-color:var(--gold);box-shadow:0 0 15px rgba(255,215,0,0.4)}.option-btn.style{border-color:var(--style-pink);color:var(--style-pink)}.option-btn.style.selected{background:linear-gradient(135deg,var(--style-pink),#db2777);color:#fff;border-color:var(--style-pink);box-shadow:0 0 15px rgba(236,72,153,0.4)}.sub-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;margin:12px 0 6px;display:block;letter-spacing:0.5px;font-weight:600}.sub-label.critical{color:var(--warning)}.sub-label.danger{color:var(--danger)}.sub-label.premium{color:var(--gold)}.sub-label.audio{color:var(--audio-blue)}.sub-label.style{color:var(--style-pink)}.style-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.style-tab{background:#1a1e26;border:1px solid var(--border);color:var(--text-muted);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.7rem;font-weight:600;transition:all 0.2s}.style-tab:hover{border-color:var(--text-muted);color:var(--text-main)}.style-tab.active{background:linear-gradient(135deg,var(--style-pink),#db2777);color:#fff;border-color:var(--style-pink)}.style-weight-container{background:#1a1e26;border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:12px}.style-weight-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.style-weight-label{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:600}.style-weight-value{font-size:0.85rem;color:var(--style-pink);font-weight:700;font-family:'Consolas',monospace}.style-slider{width:100%;height:6px;background:#2a3038;border-radius:3px;appearance:none;outline:none}.style-slider::-webkit-slider-thumb{appearance:none;width:18px;height:18px;background:linear-gradient(135deg,var(--style-pink),#db2777);border-radius:50%;cursor:pointer;box-shadow:0 0 10px rgba(236,72,153,0.5)}.style-slider-labels{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-muted);margin-top:6px}.style-preview{background:rgba(236,72,153,0.1);border:1px solid var(--style-pink);border-radius:6px;padding:10px;margin-top:12px;font-size:0.75rem}.style-preview-title{color:var(--style-pink);font-weight:700;margin-bottom:6px;text-transform:uppercase;font-size:0.65rem}.style-preview-item{color:var(--text-main);margin:3px 0}.output-area{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,var(--panel-bg) 0%,#0f1115 100%);border-top:2px solid var(--accent);padding:18px 20px;z-index:1000;box-shadow:0 -6px 30px rgba(0,0,0,0.7)}.output-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px}.output-title{font-size:0.85rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px}.grok-structure-hint{font-size:0.68rem;color:var(--accent);background:rgba(0,212,255,0.1);padding:4px 10px;border-radius:12px;font-family:'Consolas',monospace}.output-controls{display:flex;gap:10px;margin-bottom:12px;justify-content:center;flex-wrap:wrap}#result{width:100%;height:110px;background:#0a0c10;border:1px solid var(--border);color:var(--success);padding:12px;border-radius:6px;font-family:'Consolas',monospace;font-size:0.85rem;resize:vertical;line-height:1.5}#result:focus{outline:1px solid var(--success);border-color:var(--success)}.btn{padding:10px 22px;border:none;border-radius:6px;cursor:pointer;font-weight:700;text-transform:uppercase;font-size:0.8rem;transition:all 0.25s;letter-spacing:0.5px;display:flex;align-items:center;gap:6px}.btn-primary{background:linear-gradient(135deg,var(--accent),#00a3cc);color:#000;box-shadow:0 0 20px rgba(0,212,255,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,212,255,0.5)}.btn-secondary{background:#2a3038;color:var(--text-main)}.btn-secondary:hover{background:#3a424d}.btn-random{background:transparent;border:1px solid var(--text-muted);color:var(--text-muted)}.btn-random:hover{border-color:var(--text-main);color:var(--text-main)}.btn-grok{background:linear-gradient(135deg,var(--grok-purple),#6d28d9);color:#fff}.btn-grok:hover{box-shadow:0 0 20px rgba(139,92,246,0.4)}.btn-premium{background:linear-gradient(135deg,var(--gold),#ffaa00);color:#000}.btn-premium:hover{box-shadow:0 0 20px rgba(255,215,0,0.4)}.spicy-warning{background:rgba(255,170,0,0.1);border:1px solid var(--warning);border-radius:6px;padding:10px;margin-bottom:12px;font-size:0.75rem;color:var(--warning)}.spicy-toggle{display:flex;align-items:center;gap:10px;margin-bottom:10px}.toggle-switch{width:44px;height:24px;background:#2a3038;border-radius:12px;position:relative;cursor:pointer;transition:background 0.3s}.toggle-switch.active{background:var(--warning)}.toggle-switch::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform 0.3s}.toggle-switch.active::after{transform:translateX(20px)}::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-track{background:var(--bg-color)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}@media(max-width:768px){.top-bar{flex-direction:column;align-items:flex-start}.summary-container{margin-left:0;width:100%}.app{grid-template-columns:1fr}.output-controls{flex-direction:column}.btn{width:100%;justify-content:center}}</style></head><body oncontextmenu="return false" onselectstart="return false" ondragstart="return false"><div class="top-bar"><div class="brand"><div class="brand-logo">G</div><div class="brand-text"><h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.5</span></h1><span data-i18n="subtitle">Imagine 1.0 | Protected</span></div></div><div class="summary-container" id="summaryBar"><span class="summary-label" data-i18n="active">Active:</span><div id="summaryTags" style="display:flex;gap:6px;flex-wrap:wrap"></div></div><div class="lang-switch"><button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">EN</button><button class="lang-btn" onclick="setLanguage('es')" id="btn-es">ES</button></div></div><div class="info-alert"><span class="info-alert-icon">⚡</span><div class="info-alert-content"><strong data-i18n="alertTitle">Grok Protocol Active:</strong><span data-i18n="alertText">Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.</span><div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Detalles]+[Estilo Visual]</div></div><span class="grok-badge">Aurora MoE</span></div><div class="app"><div class="panel critical active"><div class="panel-header"><h3>🎯 <span data-i18n="subject">Subject & Action</span><span class="panel-priority priority-critical" data-i18n="priorityCritical">LAYER 1</span></h3><span class="panel-summary" id="sum-subject"></span></div><div class="panel-content"><div style="background:rgba(255,170,0,0.1);border:1px solid var(--warning);border-radius:6px;padding:12px;margin-bottom:15px;font-size:0.8rem;color:var(--warning)"><strong>⚠️ CRITICAL:</strong> <span data-i18n="subjectWarning">These tokens have LOGARITHMIC WEIGHT. Must be FIRST in prompt for Grok Aurora engine.</span></div><label class="sub-label critical" data-i18n="mainSubject">Main Subject (FIRST in prompt)</label><textarea id="subject" placeholder="e.g. A cybernetic warrior..." oninput="updateSummary()"></textarea><label class="sub-label" data-i18n="action">Primary Action</label><textarea id="action" placeholder="e.g. walking through neon streets..." oninput="updateSummary()"></textarea><label class="sub-label" data-i18n="characterDNA">Character DNA (Immutable Traits)</label><textarea id="charDNA" placeholder="Age, ethnicity, voice tone..." oninput="updateSummary()"></textarea></div></div><div class="panel"><div class="panel-header"><h3>📷 <span data-i18n="lensLibrary">Lens Library</span></h3><span class="panel-summary" id="sum-lens"></span></div><div class="panel-content"><label class="sub-label" data-i18n="focalLength">Focal Length</label><div class="option-grid" data-group="focalLength"><button class="option-btn" data-value="14mm fisheye lens, extreme wide distortion" data-i18n-btn="btn_14mm">14mm Fisheye</button><button class="option-btn" data-value="24mm wide angle lens, environmental context" data-i18n-btn="btn_24mm">24mm Wide</button><button class="option-btn" data-value="35mm lens, natural perspective" data-i18n-btn="btn_35mm">35mm Standard</button><button class="option-btn" data-value="50mm standard lens, natural view" data-i18n-btn="btn_50mm">50mm Normal</button><button class="option-btn" data-value="85mm lens, portrait with bokeh" data-i18n-btn="btn_85mm">85mm Portrait</button><button class="option-btn" data-value="135mm telephoto lens, compressed background" data-i18n-btn="btn_135mm">135mm Tele</button><button class="option-btn" data-value="200mm super telephoto, extreme compression" data-i18n-btn="btn_200mm">200mm Super</button></div><label class="sub-label" data-i18n="specialtyLenses">Specialty Lenses</label><div class="option-grid" data-group="specialtyLenses"><button class="option-btn" data-value="anamorphic lens, cinematic flares" data-i18n-btn="btn_anamorphic">Anamorphic</button><button class="option-btn" data-value="tilt-shift lens, miniature effect" data-i18n-btn="btn_tiltshift">Tilt-Shift</button><button class="option-btn" data-value="macro lens, extreme detail" data-i18n-btn="btn_macro">Macro</button><button class="option-btn" data-value="soft focus lens, dreamy glow" data-i18n-btn="btn_softfocus">Soft Focus</button></div></div></div><div class="panel style"><div class="panel-header"><h3>🎨 <span data-i18n="visualStyleArchitect">Visual Style Architect</span><span class="panel-priority priority-style" data-i18n="priorityHigh">HIGH PRIORITY</span></h3><span class="panel-summary" id="sum-stylearch"></span></div><div class="panel-content"><div style="background:rgba(236,72,153,0.1);border:1px solid var(--style-pink);border-radius:6px;padding:12px;margin-bottom:15px;font-size:0.8rem;color:var(--style-pink)"><strong>✨ NEW:</strong> <span data-i18n="styleArchWarning">Select aesthetic filter + character FX. Control style weight for Grok optimization.</span></div><label class="sub-label style" data-i18n="mainAesthetic">Main Aesthetic (Filter Base)</label><div class="style-tabs" id="styleTabs"><button class="style-tab active" data-tab="cinematic" data-i18n-tab="tab_cinematic">Cinematic</button><button class="style-tab" data-tab="photography" data-i18n-tab="tab_photography">Photography</button><button class="style-tab" data-tab="animation" data-i18n-tab="tab_animation">Animation</button><button class="style-tab" data-tab="artistic" data-i18n-tab="tab_artistic">Artistic</button><button class="style-tab" data-tab="experimental" data-i18n-tab="tab_experimental">Experimental</button></div><div class="option-grid" id="styleGrid" data-group="visualStyle"></div><details style="background:#1a1e26;border:1px solid var(--border);border-radius:6px;margin-top:12px"><summary style="padding:10px;cursor:pointer;font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;font-weight:600">💄 <span data-i18n="makeupFX">Makeup & Character FX</span> <span style="color:var(--text-muted);font-weight:400" data-i18n="optional">(optional)</span></summary><div class="option-grid" id="makeupGrid" data-group="makeupFX" style="padding:12px"></div></details><div class="style-weight-container"><div class="style-weight-header"><span class="style-weight-label" data-i18n="styleWeight">Style Weight</span><span class="style-weight-value" id="styleWeightValue">50%</span></div><input type="range" class="style-slider" id="styleWeight" min="0" max="100" value="50" oninput="updateStyleWeight()"><div class="style-slider-labels"><span data-i18n="subtle">Subtle</span><span data-i18n="balanced">Balanced</span><span data-i18n="dominant">Dominant</span></div></div><div class="style-preview" id="stylePreview" style="display:none"><div class="style-preview-title" data-i18n="activeStyle">Active Style:</div><div id="stylePreviewContent"></div></div></div></div><div class="panel audio"><div class="panel-header"><h3>🔊 <span data-i18n="audio">Audio Composition</span><span class="panel-priority priority-audio" data-i18n="audioCritical">LAYER 5</span></h3><span class="panel-summary" id="sum-audio"></span></div><div class="panel-content"><div style="background:rgba(0,184,255,0.1);border:1px solid var(--audio-blue);border-radius:6px;padding:12px;margin-bottom:15px;font-size:0.8rem;color:var(--audio-blue)"><strong>⚠️ AUDIO QUALITY NOTE:</strong> <span data-i18n="audioWarning">Grok native audio mixes all elements (music + SFX + dialogue) which causes distortion. For clean audio: select ONE type only, then process in Adobe Podcast for HD quality.</span></div><label class="sub-label audio" data-i18n="audioType">Audio Type (Select ONE for clean output)</label><div class="option-grid" data-group="audioType"><button class="option-btn audio" data-value="music only, no dialogue" data-i18n-btn="btn_musicOnly">Music Only</button><button class="option-btn audio" data-value="sound effects only, no music" data-i18n-btn="btn_sfxOnly">SFX Only</button><button class="option-btn audio" data-value="dialogue only, clear speech" data-i18n-btn="btn_dialogueOnly">Dialogue Only</button><button class="option-btn audio" data-value="ambient soundscape only" data-i18n-btn="btn_ambientOnly">Ambient Only</button><button class="option-btn audio" data-value="silence, no audio track" data-i18n-btn="btn_silenceOnly">Silence</button></div></div></div><div class="panel critical"><div class="panel-header"><h3>⛔ <span data-i18n="negative">Negative Prompt</span><span class="panel-priority priority-critical" data-i18n="autoIncluded">AUTO</span></h3><span class="panel-summary" id="sum-negative"></span></div><div class="panel-content"><div class="info-alert" style="margin-bottom:15px;padding:10px;border-color:var(--warning);background:rgba(255,170,0,0.08)"><span class="info-alert-icon">⚠️</span><div class="info-alert-content"><strong data-i18n="negativeWarning">Grok Bias:</strong> Automatically adds [No subtitles, No text, No closed captions] to prevent burnt-in text artifacts</div></div><label class="sub-label" data-i18n="customNegative">Custom Negative</label><textarea id="negative" placeholder="Additional elements to avoid..." oninput="updateSummary()"></textarea></div></div></div><div class="output-area"><div class="output-header"><div class="output-title">📝 <span data-i18n="finalPrompt">Final Prompt (Always in English)</span><span class="grok-structure-hint" data-i18n="structureHint">Subject→Action→Optics; Lighting; Physics+Style</span></div><span class="grok-badge" id="langIndicator">EN OUTPUT</span></div><div class="output-controls"><button class="btn btn-random" onclick="randomize()">🎲 <span data-i18n="random">Random</span></button><button class="btn btn-primary" onclick="generatePrompt()">⚡ <span data-i18n="generate">Generate</span></button><button class="btn btn-secondary" onclick="copyPrompt()">📋 <span data-i18n="copy">Copy</span></button><button class="btn btn-secondary" onclick="clearAll()">🗑️ <span data-i18n="clear">Clear</span></button></div><textarea id="result" readonly placeholder="Your Grok-optimized prompt will appear here..."></textarea><div style="display:flex;justify-content:space-between;margin-top:10px;font-size:0.75rem;color:var(--text-muted)"><span data-i18n="creditsInfo">~180 credits per video</span><span data-i18n="optimalSettings">Optimal: 720p, 8s segments | P50: 15-20s latency</span></div></div><footer style="text-align:center;padding:20px;font-size:0.65rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:20px">© 2024 Grok Prompt Architect • Propiedad intelectual protegida • Uso no comercial • <span id="wm" style="opacity:0">w7x9k2m4p8q1</span></footer><script>const _0x5a3b=['\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65','\x73\x65\x6c\x65\x63\x74\x65\x64','\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e','\x63\x6c\x61\x73\x73\x4c\x69\x73\x74','\x74\x6f\x67\x67\x6c\x65','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65','\x64\x61\x74\x61\x2d\x6c\x61\x62\x65\x6c','\x76\x61\x6c\x75\x65','\x6c\x61\x62\x65\x6c','\x73\x74\x79\x6c\x65\x47\x72\x69\x64','\x6d\x61\x6b\x65\x75\x70\x47\x72\x69\x64','\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c','\x66\x6f\x72\x45\x61\x63\x68','\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72','\x63\x6c\x69\x63\x6b','\x66\x75\x6e\x63\x74\x69\x6f\x6e','\x74\x68\x69\x73','\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x56\x61\x6c\x75\x65','\x74\x65\x78\x74\x43\x6f\x6e\x74\x65\x6e\x74','\x73\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77','\x64\x69\x73\x70\x6c\x61\x79','\x6e\x6f\x6e\x65','\x62\x6c\x6f\x63\x6b','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x72\x65\x73\x75\x6c\x74','\x6a\x6f\x69\x6e','\x6c\x61\x79\x65\x72','\x70\x75\x73\x68','\x67\x65\x74\x54\x65\x78\x74','\x73\x75\x62\x6a\x65\x63\x74','\x61\x63\x74\x69\x6f\x6e','\x63\x68\x61\x72\x44\x4e\x41','\x6c\x6f\x63\x61\x74\x69\x6f\x6e','\x6e\x65\x67\x61\x74\x69\x76\x65','\x6e\x65\x67\x51\x75\x69\x63\x6b','\x2d\x2d\x6e\x6f\x20','\x4e\x6f\x20\x73\x75\x62\x74\x69\x74\x6c\x65\x73','\x4e\x6f\x20\x74\x65\x78\x74','\x4e\x6f\x20\x63\x6c\x6f\x73\x65\x64\x20\x63\x61\x70\x74\x69\x6f\x6e\x73','\x76\x61\x6c\x75\x65\x4f\x66','\x73\x65\x6c\x65\x63\x74','\x63\x6c\x69\x70\x62\x6f\x61\x72\x64','\x77\x72\x69\x74\x65\x54\x65\x78\x74','\x74\x61\x72\x67\x65\x74','\x63\x6c\x6f\x73\x65\x73\x74','\x2e\x62\x74\x6e','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x73\x65\x74\x54\x69\x6d\x65\x6f\x75\x74','\x3c\x73\x70\x61\x6e\x20\x64\x61\x74\x61\x2d\x69\x31\x38\x6e\x3d\x22\x63\x6f\x70\x79\x22\x3e','\x3c\x2f\x73\x70\x61\x6e\x3e','\x72\x65\x6d\x6f\x76\x65\x43\x6c\x61\x73\x73','\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74','\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65','\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x72\x65\x70\x6c\x61\x63\x65','\x2f\x27\x2f\x67','\x5c\x5c\x27','\x2f\x22\x2f\x67','\x26\x71\x75\x6f\x74\x3b','\x66\x69\x6c\x74\x65\x72','\x76\x20\x3d\x3e\x20\x76','\x6c\x65\x6e\x67\x74\x68','\x3e\x20\x30\x20\x3f\x20\x66\x69\x6c\x74\x65\x72\x65\x64\x2e\x6a\x6f\x69\x6e\x28\x27\x20\x5c\x75\x30\x30\x41\x33\x20\x27\x29\x20\x3a\x20\x27\x27','\x73\x75\x6d\x6d\x61\x72\x79\x54\x61\x67\x73','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x3c\x73\x70\x61\x6e\x20\x73\x74\x79\x6c\x65\x3d\x22\x63\x6f\x6c\x6f\x72\x3a\x76\x61\x72\x28\x2d\x2d\x74\x65\x78\x74\x2d\x6d\x75\x74\x65\x64\x29\x3b\x20\x66\x6f\x6e\x74\x2d\x73\x69\x7a\x65\x3a\x30\x2e\x37\x72\x65\x6d\x3b\x22\x3e','\x3c\x2f\x73\x70\x61\x6e\x3e','\x67\x72\x6f\x75\x70','\x69\x64','\x73\x75\x62\x73\x74\x72\x69\x6e\x67','\x2e\x2e\x2e','\x5d','\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74','\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65','\x73\x74\x79\x6c\x65','\x62\x6f\x72\x64\x65\x72\x43\x6f\x6c\x6f\x72','\x63\x6f\x6c\x6f\x72','\x62\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x3c\x73\x70\x61\x6e\x3e','\x3c\x2f\x73\x70\x61\x6e\x3e\x3c\x73\x70\x61\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x72\x65\x6d\x6f\x76\x65\x22\x20\x6f\x6e\x63\x6c\x69\x63\x6b\x3d\x22\x72\x65\x6d\x6f\x76\x65\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x27','\x27\x2c\x20\x27','\x27\x2c\x20\x27','\x27\x29\x22\x3e\x5c\x75\x30\x30\x44\x37\x3c\x2f\x73\x70\x61\x6e\x3e','\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64','\x61\x63\x74\x69\x76\x65\x43\x6f\x75\x6e\x74','\x3d\x3d\x3d\x20\x30','\x4e\x6f\x20\x6f\x70\x74\x69\x6f\x6e\x73\x20\x73\x65\x6c\x65\x63\x74\x65\x64','\x53\x69\x6e\x20\x6f\x70\x63\x69\x6f\x6e\x65\x73\x20\x73\x65\x6c\x65\x63\x63\x69\x6f\x6e\x61\x64\x61\x73','\x73\x75\x6d\x2d\x73\x75\x62\x6a\x65\x63\x74','\x73\x75\x6d\x2d\x6c\x65\x6e\x73','\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68','\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73','\x73\x75\x6d\x2d\x73\x68\x6f\x74\x73','\x73\x68\x6f\x74\x53\x69\x7a\x65','\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73','\x73\x75\x6d\x2d\x6d\x6f\x76\x65\x6d\x65\x6e\x74','\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74','\x73\x75\x6d\x2d\x65\x79\x65\x6c\x69\x6e\x65\x73','\x65\x79\x65\x4c\x69\x6e\x65\x73','\x73\x75\x6d\x2d\x6c\x69\x67\x68\x74\x69\x6e\x67','\x74\x69\x6d\x65\x4f\x66\x44\x61\x79','\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65','\x73\x75\x6d\x2d\x6f\x70\x74\x69\x63\x61\x6c','\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73','\x73\x75\x6d\x2d\x73\x74\x79\x6c\x65','\x61\x72\x74\x53\x74\x79\x6c\x65','\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73','\x73\x75\x6d\x2d\x65\x6e\x76\x69\x72\x6f\x6e\x6d\x65\x6e\x74','\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73','\x73\x75\x6d\x2d\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e','\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e','\x73\x75\x6d\x2d\x71\x75\x61\x6c\x69\x74\x79','\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e','\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73','\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73','\x73\x75\x6d\x2d\x61\x75\x64\x69\x6f','\x61\x75\x64\x69\x6f\x54\x79\x70\x65','\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65','\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79','\x73\x75\x6d\x2d\x6f\x75\x74\x70\x75\x74','\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f','\x64\x75\x72\x61\x74\x69\x6f\x6e','\x73\x75\x6d\x2d\x6e\x65\x67\x61\x74\x69\x76\x65','\x73\x75\x6d\x2d\x73\x70\x69\x63\x79','\x53\x70\x69\x63\x79\x20\x4f\x4e','\x65\x6c\x65\x6d\x65\x6e\x74\x49\x64','\x76\x61\x6c\x75\x65\x73','\x66\x69\x6c\x74\x65\x72\x65\x64','\x66\x69\x6c\x74\x65\x72','\x76\x20\x3d\x3e\x20\x76','\x6c\x65\x6e\x67\x74\x68','\x3e\x20\x30\x20\x3f\x20\x66\x69\x6c\x74\x65\x72\x65\x64\x2e\x6a\x6f\x69\x6e\x28\x27\x20\x5c\x75\x30\x30\x42\x37\x20\x27\x29\x20\x3a\x20\x27\x27','\x74\x65\x78\x74\x43\x6f\x6e\x74\x65\x6e\x74','\x67\x72\x6f\x75\x70','\x69\x64','\x76\x61\x6c\x75\x65','\x64\x61\x74\x61\x2d\x67\x72\x6f\x75\x70','\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e','\x61\x74\x74\x72\x69\x62\x75\x74\x65\x4e\x61\x6d\x65','\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65','\x72\x65\x6d\x6f\x76\x65\x43\x6c\x61\x73\x73','\x73\x65\x6c\x65\x63\x74\x65\x64','\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64','\x76\x61\x6c\x75\x65','\x3d\x3d\x3d','\x27\x27','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x56\x49\x53\x55\x41\x4c\x5f\x41\x45\x53\x54\x48\x45\x54\x49\x43\x53','\x63\x69\x6e\x65\x6d\x61\x74\x69\x63','\x76\x61\x6c\x75\x65','\x6c\x61\x62\x65\x6c','\x70\x68\x6f\x74\x6f\x67\x72\x61\x70\x68\x79','\x61\x6e\x69\x6d\x61\x74\x69\x6f\x6e','\x61\x72\x74\x69\x73\x74\x69\x63','\x65\x78\x70\x65\x72\x69\x6d\x65\x6e\x74\x61\x6c','\x4d\x41\x4b\x45\x55\x50\x5f\x46\x58','\x6e\x61\x74\x75\x72\x61\x6c','\x67\x6c\x61\x6d\x6f\x75\x72','\x63\x69\x6e\x65\x6d\x61\x74\x69\x63','\x73\x66\x78\x5f\x66\x61\x6e\x74\x61\x73\x79','\x63\x68\x61\x72\x61\x63\x74\x65\x72','\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67','\x65\x6e','\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64','\x66\x61\x6c\x73\x65','\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65','\x6e\x75\x6c\x6c','\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74','\x35\x30','\x61\x63\x74\x69\x76\x65\x53\x74\x79\x6c\x65\x54\x61\x62','\x63\x69\x6e\x65\x6d\x61\x74\x69\x63','\x74\x72\x61\x6e\x73\x6c\x61\x74\x69\x6f\x6e\x73','\x62\x75\x74\x74\x6f\x6e\x54\x72\x61\x6e\x73\x6c\x61\x74\x69\x6f\x6e\x73','\x44\x4f\x4d\x43\x6f\x6e\x74\x65\x6e\x74\x4c\x6f\x61\x64\x65\x64','\x69\x6e\x69\x74\x41\x70\x70','\x73\x65\x74\x4c\x61\x6e\x67\x75\x61\x67\x65','\x70\x61\x6e\x65\x6c\x2d\x68\x65\x61\x64\x65\x72','\x70\x61\x72\x65\x6e\x74\x45\x6c\x65\x6d\x65\x6e\x74','\x63\x6c\x61\x73\x73\x4c\x69\x73\x74','\x74\x6f\x67\x67\x6c\x65','\x61\x63\x74\x69\x76\x65','\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e','\x73\x74\x79\x6c\x65\x2d\x74\x61\x62','\x64\x61\x74\x61\x2d\x74\x61\x62','\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65','\x72\x65\x6e\x64\x65\x72\x53\x74\x79\x6c\x65\x47\x72\x69\x64','\x72\x65\x6e\x64\x65\x72\x4d\x61\x6b\x65\x75\x70\x47\x72\x69\x64','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x73\x74\x79\x6c\x65\x47\x72\x69\x64','\x56\x49\x53\x55\x41\x4c\x5f\x41\x45\x53\x54\x48\x45\x54\x49\x43\x53','\x61\x63\x74\x69\x76\x65\x53\x74\x79\x6c\x65\x54\x61\x62','\x6d\x61\x70','\x73\x74\x79\x6c\x65','\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67','\x65\x73','\x6c\x61\x62\x65\x6c','\x76\x61\x6c\x75\x65','\x3c\x62\x75\x74\x74\x6f\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x20\x73\x74\x79\x6c\x65\x22\x20\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x3d\x22','\x22\x20\x64\x61\x74\x61\x2d\x6c\x61\x62\x65\x6c\x3d\x22','\x22\x3e','\x3c\x2f\x62\x75\x74\x74\x6f\x6e\x3e','\x6a\x6f\x69\x6e','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x73\x74\x79\x6c\x65\x2d\x67\x72\x69\x64','\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e','\x63\x6c\x69\x63\x6b','\x75\x70\x64\x61\x74\x65\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e','\x6d\x61\x6b\x65\x75\x70\x47\x72\x69\x64','\x4d\x41\x4b\x45\x55\x50\x5f\x46\x58','\x4f\x62\x6a\x65\x63\x74','\x65\x6e\x74\x72\x69\x65\x73','\x63\x61\x74\x65\x67\x6f\x72\x79','\x6f\x70\x74\x69\x6f\x6e\x73','\x6d\x61\x72\x67\x69\x6e\x2d\x62\x6f\x74\x74\x6f\x6d\x3a\x20\x31\x30\x70\x78\x3b','\x66\x6f\x6e\x74\x2d\x73\x69\x7a\x65\x3a\x20\x30\x2e\x36\x35\x72\x65\x6d\x3b\x20\x63\x6f\x6c\x6f\x72\x3a\x20\x76\x61\x72\x28\x2d\x2d\x74\x65\x78\x74\x2d\x6d\x75\x74\x65\x64\x29\x3b\x20\x74\x65\x78\x74\x2d\x74\x72\x61\x6e\x73\x66\x6f\x72\x6d\x3a\x20\x75\x70\x70\x65\x72\x63\x61\x73\x65\x3b\x20\x6d\x61\x72\x67\x69\x6e\x2d\x62\x6f\x74\x74\x6f\x6d\x3a\x20\x34\x70\x78\x3b','\x6f\x70\x74\x69\x6f\x6e\x2d\x67\x72\x69\x64','\x6d\x61\x72\x67\x69\x6e\x2d\x62\x6f\x74\x74\x6f\x6d\x3a\x20\x30\x3b','\x6d\x61\x6b\x65\x75\x70','\x75\x70\x64\x61\x74\x65\x4d\x61\x6b\x65\x75\x70\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e','\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74','\x76\x61\x6c\x75\x65','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x56\x61\x6c\x75\x65','\x25','\x73\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77','\x73\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x43\x6f\x6e\x74\x65\x6e\x74','\x64\x69\x73\x70\x6c\x61\x79','\x62\x6c\x6f\x63\x6b','\x6c\x65\x74\x20\x68\x74\x6d\x6c\x20\x3d\x20\x27\x27\x3b','\x69\x66\x20\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x29\x20\x7b\x20\x68\x74\x6d\x6c\x20\x2b\x3d\x20\x60\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x73\x74\x79\x6c\x65\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x74\x65\x6d\x22\x3e\xf0\x9f\x8e\xa8\x20\x60\x20\x2b\x20\x28\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x20\x3d\x3d\x3d\x20\x27\x65\x73\x27\x20\x3f\x20\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x6c\x61\x62\x65\x6c\x20\x3a\x20\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x29\x20\x2b\x20\x60\x3c\x2f\x64\x69\x76\x3e\x60\x3b\x20\x7d','\x69\x66\x20\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x29\x20\x7b\x20\x68\x74\x6d\x6c\x20\x2b\x3d\x20\x60\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x73\x74\x79\x6c\x65\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x74\x65\x6d\x22\x3e\xf0\x9f\x92\x84\x20\x60\x20\x2b\x20\x28\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x20\x3d\x3d\x3d\x20\x27\x65\x73\x27\x20\x3f\x20\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x6c\x61\x62\x65\x6c\x20\x3a\x20\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x76\x61\x6c\x75\x65\x29\x20\x2b\x20\x60\x3c\x2f\x64\x69\x76\x3e\x60\x3b\x20\x7d','\x68\x74\x6d\x6c\x20\x2b\x3d\x20\x60\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x73\x74\x79\x6c\x65\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x74\x65\x6d\x22\x20\x73\x74\x79\x6c\x65\x3d\x22\x63\x6f\x6c\x6f\x72\x3a\x20\x76\x61\x72\x28\x2d\x2d\x73\x74\x79\x6c\x65\x2d\x70\x69\x6e\x6b\x29\x3b\x20\x6d\x61\x72\x67\x69\x6e\x2d\x74\x6f\x70\x3a\x20\x36\x70\x78\x3b\x22\x3e\xf0\x9f\x8e\x9a\xef\xb8\x8f\x20\x57\x65\x69\x67\x68\x74\x3a\x20\x60\x20\x2b\x20\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x20\x2b\x20\x60\x25\x3c\x2f\x64\x69\x76\x3e\x60\x3b','\x6e\x6f\x6e\x65','\x74\x6f\x67\x67\x6c\x65\x53\x70\x69\x63\x79\x4d\x6f\x64\x65','\x73\x70\x69\x63\x79\x54\x6f\x67\x67\x6c\x65','\x73\x70\x69\x63\x79\x43\x6f\x6e\x74\x65\x6e\x74','\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73','\x67\x65\x74\x54\x65\x78\x74','\x73\x75\x62\x6a\x65\x63\x74','\x61\x63\x74\x69\x6f\x6e','\x6c\x6f\x63\x61\x74\x69\x6f\x6e','\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68','\x4c\x65\x6e\x73','\x73\x68\x6f\x74\x53\x69\x7a\x65','\x53\x68\x6f\x74','\x74\x69\x6d\x65\x4f\x66\x44\x61\x79','\x54\x69\x6d\x65','\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65','\x4c\x69\x67\x68\x74','\x61\x72\x74\x53\x74\x79\x6c\x65','\x53\x74\x79\x6c\x65','\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e','\x52\x65\x73','\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73','\x51\x75\x61\x6c\x69\x74\x79','\x61\x75\x64\x69\x6f\x54\x79\x70\x65','\x41\x75\x64\x69\x6f','\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73','\x47\x72\x6f\x6b','\x6c\x61\x62\x65\x6c','\x67\x72\x6f\x75\x70','\x69\x64','\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73','\x67\x65\x74\x54\x65\x78\x74','\x73\x75\x62\x73\x74\x72\x69\x6e\x67','\x2e\x2e\x2e','\x5d','\x76\x61\x6c\x75\x65','\x74\x61\x67\x73\x43\x6f\x6e\x74\x61\x69\x6e\x65\x72','\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74','\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65','\x73\x74\x79\x6c\x65','\x62\x6f\x72\x64\x65\x72\x43\x6f\x6c\x6f\x72','\x63\x6f\x6c\x6f\x72','\x62\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x3c\x73\x70\x61\x6e\x3e\xf0\x9f\x8e\xa8\x20','\x3c\x2f\x73\x70\x61\x6e\x3e\x3c\x73\x70\x61\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x72\x65\x6d\x6f\x76\x65\x22\x20\x6f\x6e\x63\x6c\x69\x63\x6b\x3d\x22\x63\x6c\x65\x61\x72\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x28\x29\x22\x3e\xd7\x3c\x2f\x73\x70\x61\x6e\x3e','\x3c\x73\x70\x61\x6e\x3e\xf0\x9f\x92\x84\x20','\x3c\x2f\x73\x70\x61\x6e\x3e\x3c\x73\x70\x61\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x72\x65\x6d\x6f\x76\x65\x22\x20\x6f\x6e\x63\x6c\x69\x63\x6b\x3d\x22\x63\x6c\x65\x61\x72\x4d\x61\x6b\x65\x75\x70\x46\x58\x28\x29\x22\x3e\xd7\x3c\x2f\x73\x70\x61\x6e\x3e','\x61\x63\x74\x69\x76\x65\x43\x6f\x75\x6e\x74','\x3d\x3d\x3d\x20\x30','\x4e\x6f\x20\x6f\x70\x74\x69\x6f\x6e\x73\x20\x73\x65\x6c\x65\x63\x74\x65\x64','\x53\x69\x6e\x20\x6f\x70\x63\x69\x6f\x6e\x65\x73\x20\x73\x65\x6c\x65\x63\x63\x69\x6f\x6e\x61\x64\x61\x73','\x73\x75\x6d\x2d\x73\x75\x62\x6a\x65\x63\x74','\x73\x75\x6d\x2d\x6c\x65\x6e\x73','\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68','\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73','\x73\x75\x6d\x2d\x73\x68\x6f\x74\x73','\x73\x68\x6f\x74\x53\x69\x7a\x65','\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73','\x73\x75\x6d\x2d\x6d\x6f\x76\x65\x6d\x65\x6e\x74','\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74','\x73\x75\x6d\x2d\x65\x79\x65\x6c\x69\x6e\x65\x73','\x65\x79\x65\x4c\x69\x6e\x65\x73','\x73\x75\x6d\x2d\x6c\x69\x67\x68\x74\x69\x6e\x67','\x74\x69\x6d\x65\x4f\x66\x44\x61\x79','\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65','\x73\x75\x6d\x2d\x6f\x70\x74\x69\x63\x61\x6c','\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73','\x73\x75\x6d\x2d\x73\x74\x79\x6c\x65','\x61\x72\x74\x53\x74\x79\x6c\x65','\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73','\x73\x75\x6d\x2d\x73\x74\x79\x6c\x65\x61\x72\x63\x68','\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65','\x76\x61\x6c\x75\x65','\x73\x75\x6d\x2d\x65\x6e\x76\x69\x72\x6f\x6e\x6d\x65\x6e\x74','\x6c\x6f\x63\x61\x74\x69\x6f\x6e','\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73','\x73\x75\x6d\x2d\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e','\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e','\x73\x75\x6d\x2d\x71\x75\x61\x6c\x69\x74\x79','\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e','\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73','\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73','\x73\x75\x6d\x2d\x61\x75\x64\x69\x6f','\x61\x75\x64\x69\x6f\x54\x79\x70\x65','\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65','\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79','\x73\x75\x6d\x2d\x6f\x75\x74\x70\x75\x74','\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f','\x64\x75\x72\x61\x74\x69\x6f\x6e','\x73\x75\x6d\x2d\x6e\x65\x67\x61\x74\x69\x76\x65','\x6e\x65\x67\x61\x74\x69\x76\x65','\x73\x75\x6d\x2d\x73\x70\x69\x63\x79','\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64','\x53\x70\x69\x63\x79\x20\x4f\x4e','\x65\x6c\x65\x6d\x65\x6e\x74\x49\x64','\x76\x61\x6c\x75\x65\x73','\x66\x69\x6c\x74\x65\x72\x65\x64','\x66\x69\x6c\x74\x65\x72','\x76\x20\x3d\x3e\x20\x76','\x6c\x65\x6e\x67\x74\x68','\x3e\x20\x30\x20\x3f\x20\x66\x69\x6c\x74\x65\x72\x65\x64\x2e\x6a\x6f\x69\x6e\x28\x27\x20\x5c\x75\x30\x30\x42\x37\x20\x27\x29\x20\x3a\x20\x27\x27','\x74\x65\x78\x74\x43\x6f\x6e\x74\x65\x6e\x74','\x67\x72\x6f\x75\x70','\x69\x64','\x76\x61\x6c\x75\x65','\x64\x61\x74\x61\x2d\x67\x72\x6f\x75\x70','\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e','\x61\x74\x74\x72\x69\x62\x75\x74\x65\x4e\x61\x6d\x65','\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65','\x72\x65\x6d\x6f\x76\x65\x43\x6c\x61\x73\x73','\x73\x65\x6c\x65\x63\x74\x65\x64','\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64','\x76\x61\x6c\x75\x65','\x3d\x3d\x3d','\x27\x27','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x63\x6c\x65\x61\x72\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65','\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65','\x73\x74\x79\x6c\x65\x47\x72\x69\x64','\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x63\x6c\x65\x61\x72\x4d\x61\x6b\x65\x75\x70\x46\x58','\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58','\x6d\x61\x6b\x65\x75\x70\x47\x72\x69\x64','\x67\x65\x6e\x65\x72\x61\x74\x65\x50\x72\x6f\x6d\x70\x74','\x6c\x61\x79\x65\x72\x31','\x6c\x61\x79\x65\x72\x32','\x6c\x61\x79\x65\x72\x33','\x6c\x61\x79\x65\x72\x34','\x6c\x61\x79\x65\x72\x35','\x67\x65\x74\x54\x65\x78\x74','\x73\x75\x62\x6a\x65\x63\x74','\x61\x63\x74\x69\x6f\x6e','\x63\x68\x61\x72\x44\x4e\x41','\x70\x75\x73\x68','\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73','\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68','\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73','\x73\x68\x6f\x74\x53\x69\x7a\x65','\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73','\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74','\x65\x79\x65\x4c\x69\x6e\x65\x73','\x74\x69\x6d\x65\x4f\x66\x44\x61\x79','\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65','\x6d\x6f\x6f\x64','\x61\x72\x74\x53\x74\x79\x6c\x65','\x72\x65\x6e\x64\x65\x72\x45\x6e\x67\x69\x6e\x65','\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73','\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73','\x62\x69\x6f\x6d\x65','\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73','\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e','\x6c\x6f\x63\x61\x74\x69\x6f\x6e','\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e','\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73','\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73','\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65','\x76\x61\x6c\x75\x65','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74','\x4d\x41\x53\x54\x45\x52\x50\x49\x45\x43\x45\x2c\x20','\x2c\x20\x68\x69\x67\x68\x6c\x79\x20\x64\x65\x74\x61\x69\x6c\x65\x64\x2c\x20\x61\x77\x61\x72\x64\x20\x77\x69\x6e\x6e\x69\x6e\x67\x2c\x20\x70\x72\x6f\x66\x65\x73\x73\x69\x6f\x6e\x61\x6c\x20\x67\x72\x61\x64\x65','\x2c\x20\x64\x65\x74\x61\x69\x6c\x65\x64\x2c\x20\x68\x69\x67\x68\x20\x71\x75\x61\x6c\x69\x74\x79','\x73\x75\x62\x74\x6c\x65\x20','\x20\x69\x6e\x66\x6c\x75\x65\x6e\x63\x65','\x74\x6f\x4c\x6f\x77\x65\x72\x43\x61\x73\x65','\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58','\x63\x68\x61\x72\x61\x63\x74\x65\x72\x20\x66\x78\x3a\x20','\x61\x75\x64\x69\x6f\x54\x79\x70\x65','\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65','\x73\x66\x78\x54\x79\x70\x65','\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79','\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f','\x64\x75\x72\x61\x74\x69\x6f\x6e','\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64','\x73\x70\x69\x63\x79','\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74','\x6c\x61\x79\x65\x72\x31','\x6c\x61\x79\x65\x72\x32','\x6c\x61\x79\x65\x72\x33','\x6c\x61\x79\x65\x72\x34','\x6c\x61\x79\x65\x72\x35','\x6c\x65\x6e\x67\x74\x68','\x3e\x20\x30','\x6e\x65\x67\x61\x74\x69\x76\x65\x43\x75\x73\x74\x6f\x6d','\x6e\x65\x67\x61\x74\x69\x76\x65\x51\x75\x69\x63\x6b','\x6e\x65\x67\x61\x74\x69\x76\x65\x50\x61\x72\x74\x73','\x4e\x6f\x20\x73\x75\x62\x74\x69\x74\x6c\x65\x73','\x4e\x6f\x20\x74\x65\x78\x74','\x4e\x6f\x20\x63\x6c\x6f\x73\x65\x64\x20\x63\x61\x70\x74\x69\x6f\x6e\x73','\x20\x2d\x2d\x6e\x6f\x20','\x72\x65\x73\x75\x6c\x74','\x76\x61\x6c\x75\x65','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x63\x6f\x70\x79\x50\x72\x6f\x6d\x70\x74','\x72\x65\x73\x75\x6c\x74','\x73\x65\x6c\x65\x63\x74','\x6e\x61\x76\x69\x67\x61\x74\x6f\x72','\x63\x6c\x69\x70\x62\x6f\x61\x72\x64','\x77\x72\x69\x74\x65\x54\x65\x78\x74','\x65\x76\x65\x6e\x74','\x74\x61\x72\x67\x65\x74','\x63\x6c\x6f\x73\x65\x73\x74','\x2e\x62\x74\x6e','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x73\x65\x74\x54\x69\x6d\x65\x6f\x75\x74','\x3c\x73\x70\x61\x6e\x20\x64\x61\x74\x61\x2d\x69\x31\x38\x6e\x3d\x22\x63\x6f\x70\x79\x22\x3e','\x3c\x2f\x73\x70\x61\x6e\x3e','\x63\x6c\x65\x61\x72\x41\x6c\x6c','\x72\x65\x6d\x6f\x76\x65\x43\x6c\x61\x73\x73','\x73\x65\x6c\x65\x63\x74\x65\x64','\x76\x61\x6c\x75\x65','\x3d\x3d\x3d','\x27\x27','\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64','\x73\x70\x69\x63\x79\x54\x6f\x67\x67\x6c\x65','\x73\x70\x69\x63\x79\x43\x6f\x6e\x74\x65\x6e\x74','\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65','\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74','\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x56\x61\x6c\x75\x65','\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x72\x65\x73\x75\x6c\x74','\x72\x61\x6e\x64\x6f\x6d\x69\x7a\x65','\x67\x72\x6f\x75\x70\x73','\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68','\x73\x68\x6f\x74\x53\x69\x7a\x65','\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73','\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74','\x74\x69\x6d\x65\x4f\x66\x44\x61\x79','\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65','\x61\x72\x74\x53\x74\x79\x6c\x65','\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73','\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e','\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73','\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f','\x61\x75\x64\x69\x6f\x54\x79\x70\x65','\x6f\x70\x74\x73','\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e','\x63\x6f\x75\x6e\x74','\x4d\x61\x74\x68','\x66\x6c\x6f\x6f\x72','\x72\x61\x6e\x64\x6f\x6d','\x61\x64\x64\x43\x6c\x61\x73\x73','\x73\x75\x62\x6a\x65\x63\x74\x73','\x61\x63\x74\x69\x6f\x6e\x73','\x73\x75\x62\x6a\x65\x63\x74','\x61\x63\x74\x69\x6f\x6e','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x67\x65\x6e\x65\x72\x61\x74\x65\x50\x72\x6f\x6d\x70\x74','\x73\x65\x74\x4c\x61\x6e\x67\x75\x61\x67\x65','\x62\x74\x6e\x2d\x65\x6e','\x62\x74\x6e\x2d\x65\x73','\x64\x61\x74\x61\x2d\x69\x31\x38\x6e','\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65','\x74\x65\x78\x74\x43\x6f\x6e\x74\x65\x6e\x74','\x64\x61\x74\x61\x2d\x69\x31\x38\x6e\x2d\x62\x74\x6e','\x64\x61\x74\x61\x2d\x69\x31\x38\x6e\x2d\x74\x61\x62','\x70\x6c\x61\x63\x65\x68\x6f\x6c\x64\x65\x72\x53\x75\x62\x6a\x65\x63\x74','\x70\x6c\x61\x63\x65\x68\x6f\x6c\x64\x65\x72\x41\x63\x74\x69\x6f\x6e','\x70\x6c\x61\x63\x65\x68\x6f\x6c\x64\x65\x72\x44\x4e\x41','\x70\x6c\x61\x63\x65\x68\x6f\x6c\x64\x65\x72\x4c\x6f\x63\x61\x74\x69\x6f\x6e','\x70\x6c\x61\x63\x65\x68\x6f\x6c\x64\x65\x72\x4e\x65\x67\x61\x74\x69\x76\x65','\x72\x65\x73\x75\x6c\x74\x50\x6c\x61\x63\x65\x68\x6f\x6c\x64\x65\x72','\x73\x75\x6d\x6d\x61\x72\x79\x2d\x6c\x61\x62\x65\x6c','\x6c\x61\x6e\x67\x49\x6e\x64\x69\x63\x61\x74\x6f\x72','\x72\x65\x6e\x64\x65\x72\x53\x74\x79\x6c\x65\x47\x72\x69\x64','\x72\x65\x6e\x64\x65\x72\x4d\x61\x6b\x65\x75\x70\x47\x72\x69\x64','\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77','\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79','\x5f\x30\x78\x35\x61\x33\x62','\x66\x6f\x72\x20\x28\x6c\x65\x74\x20\x5f\x30\x78\x33\x64\x32\x31\x3d\x30\x3b\x5f\x30\x78\x33\x64\x32\x31\x3c\x5f\x30\x78\x35\x61\x33\x62\x5b\x6c\x65\x6e\x67\x74\x68\x5d\x3b\x5f\x30\x78\x33\x64\x32\x31\x2b\x2b\x29\x7b\x77\x69\x6e\x64\x6f\x77\x5b\x5f\x30\x78\x35\x61\x33\x62\x5b\x5f\x30\x78\x33\x64\x32\x31\x5d\x5d\x3d\x77\x69\x6e\x64\x6f\x77\x5b\x5f\x30\x78\x35\x61\x33\x62\x5b\x5f\x30\x78\x33\x64\x32\x31\x5d\x5d\x7c\x7c\x28\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x7b\x72\x65\x74\x75\x72\x6e\x20\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x28\x5f\x30\x78\x31\x61\x32\x66\x34\x64\x2c\x5f\x30\x78\x35\x63\x33\x65\x31\x62\x29\x7b\x5f\x30\x78\x35\x61\x33\x62\x3d\x5f\x30\x78\x35\x61\x33\x62\x7c\x7c\x28\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x7b\x72\x65\x74\x75\x72\x6e\x20\x77\x69\x6e\x64\x6f\x77\x3b\x7d\x28\x29\x29\x3b\x72\x65\x74\x75\x72\x6e\x20\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x3d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x28\x29\x7b\x7d\x2c\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x5b\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x5d\x3d\x5f\x30\x78\x35\x61\x33\x62\x2c\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x28\x29\x3b\x7d\x28\x29\x29\x3b\x7d\x29\x28\x29\x3b\x7d\x29\x3b\x7d\x3b\x76\x61\x72\x20\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x3d\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x28\x29\x3b\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x28\x5f\x30\x78\x32\x64\x38\x65\x33\x61\x2c\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x29\x7b\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x3d\x5f\x30\x78\x34\x62\x37\x63\x38\x61\x28\x29\x3b\x72\x65\x74\x75\x72\x6e\x20\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x3d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x28\x29\x7b\x7d\x2c\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x5b\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x5d\x3d\x5f\x30\x78\x32\x64\x38\x65\x33\x61\x2c\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x28\x29\x3b\x7d\x28\x29\x3b\x76\x61\x72\x20\x5f\x30\x78\x32\x64\x38\x65\x33\x61\x3d\x5f\x30\x78\x33\x61\x32\x66\x31\x63\x28\x29\x3b\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x5f\x30\x78\x31\x61\x32\x66\x34\x64\x28\x5f\x30\x78\x35\x63\x33\x65\x31\x62\x29\x7b\x72\x65\x74\x75\x72\x6e\x20\x5f\x30\x78\x35\x61\x33\x62\x5b\x5f\x30\x78\x35\x63\x33\x65\x31\x62\x5d\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x69\x6e\x69\x74\x41\x70\x70\x28\x29\x7b\x73\x65\x74\x4c\x61\x6e\x67\x75\x61\x67\x65\x28\x27\x65\x6e\x27\x29\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x70\x61\x6e\x65\x6c\x2d\x68\x65\x61\x64\x65\x72\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x68\x65\x61\x64\x65\x72\x3d\x3e\x7b\x68\x65\x61\x64\x65\x72\x2e\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72\x28\x27\x63\x6c\x69\x63\x6b\x27\x2c\x28\x29\x3d\x3e\x7b\x63\x6f\x6e\x73\x74\x20\x70\x61\x6e\x65\x6c\x3d\x68\x65\x61\x64\x65\x72\x2e\x70\x61\x72\x65\x6e\x74\x45\x6c\x65\x6d\x65\x6e\x74\x3b\x70\x61\x6e\x65\x6c\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x74\x6f\x67\x67\x6c\x65\x28\x27\x61\x63\x74\x69\x76\x65\x27\x29\x3b\x7d\x29\x3b\x7d\x29\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x74\x6e\x3d\x3e\x7b\x62\x74\x6e\x2e\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72\x28\x27\x63\x6c\x69\x63\x6b\x27\x2c\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x7b\x74\x68\x69\x73\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x74\x6f\x67\x67\x6c\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x29\x3b\x7d\x29\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x73\x74\x79\x6c\x65\x2d\x74\x61\x62\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x74\x61\x62\x3d\x3e\x7b\x74\x61\x62\x2e\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72\x28\x27\x63\x6c\x69\x63\x6b\x27\x2c\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x7b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x73\x74\x79\x6c\x65\x2d\x74\x61\x62\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x74\x3d\x3e\x74\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x72\x65\x6d\x6f\x76\x65\x28\x27\x61\x63\x74\x69\x76\x65\x27\x29\x29\x3b\x74\x68\x69\x73\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x61\x64\x64\x28\x27\x61\x63\x74\x69\x76\x65\x27\x29\x3b\x61\x63\x74\x69\x76\x65\x53\x74\x79\x6c\x65\x54\x61\x62\x3d\x74\x68\x69\x73\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x74\x61\x62\x27\x29\x3b\x72\x65\x6e\x64\x65\x72\x53\x74\x79\x6c\x65\x47\x72\x69\x64\x28\x29\x3b\x7d\x29\x3b\x7d\x29\x3b\x72\x65\x6e\x64\x65\x72\x53\x74\x79\x6c\x65\x47\x72\x69\x64\x28\x29\x3b\x72\x65\x6e\x64\x65\x72\x4d\x61\x6b\x65\x75\x70\x47\x72\x69\x64\x28\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x72\x65\x6e\x64\x65\x72\x53\x74\x79\x6c\x65\x47\x72\x69\x64\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x31\x62\x32\x61\x33\x64\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x74\x79\x6c\x65\x47\x72\x69\x64\x27\x29\x3b\x69\x66\x28\x21\x5f\x30\x78\x31\x62\x32\x61\x33\x64\x29\x72\x65\x74\x75\x72\x6e\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x34\x63\x38\x65\x32\x66\x3d\x56\x49\x53\x55\x41\x4c\x5f\x41\x45\x53\x54\x48\x45\x54\x49\x43\x53\x5b\x61\x63\x74\x69\x76\x65\x53\x74\x79\x6c\x65\x54\x61\x62\x5d\x7c\x7c\x5b\x5d\x3b\x5f\x30\x78\x31\x62\x32\x61\x33\x64\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x5f\x30\x78\x34\x63\x38\x65\x32\x66\x2e\x6d\x61\x70\x28\x73\x74\x79\x6c\x65\x3d\x3e\x60\x3c\x62\x75\x74\x74\x6f\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x20\x73\x74\x79\x6c\x65\x22\x20\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x3d\x22\x24\x7b\x73\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x7d\x22\x20\x64\x61\x74\x61\x2d\x6c\x61\x62\x65\x6c\x3d\x22\x24\x7b\x73\x74\x79\x6c\x65\x2e\x6c\x61\x62\x65\x6c\x7d\x22\x3e\x24\x7b\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x73\x27\x3f\x73\x74\x79\x6c\x65\x2e\x6c\x61\x62\x65\x6c\x3a\x73\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x7d\x3c\x2f\x62\x75\x74\x74\x6f\x6e\x3e\x60\x29\x2e\x6a\x6f\x69\x6e\x28\x27\x27\x29\x3b\x5f\x30\x78\x31\x62\x32\x61\x33\x64\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x74\x6e\x3d\x3e\x7b\x62\x74\x6e\x2e\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72\x28\x27\x63\x6c\x69\x63\x6b\x27\x2c\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x7b\x74\x68\x69\x73\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x74\x6f\x67\x67\x6c\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x3b\x75\x70\x64\x61\x74\x65\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x29\x3b\x7d\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x72\x65\x6e\x64\x65\x72\x4d\x61\x6b\x65\x75\x70\x47\x72\x69\x64\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x32\x63\x39\x66\x31\x65\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x6d\x61\x6b\x65\x75\x70\x47\x72\x69\x64\x27\x29\x3b\x69\x66\x28\x21\x5f\x30\x78\x32\x63\x39\x66\x31\x65\x29\x72\x65\x74\x75\x72\x6e\x3b\x6c\x65\x74\x20\x5f\x30\x78\x35\x64\x33\x61\x32\x62\x3d\x27\x27\x3b\x66\x6f\x72\x28\x63\x6f\x6e\x73\x74\x20\x5b\x5f\x30\x78\x33\x61\x37\x66\x32\x63\x2c\x5f\x30\x78\x31\x63\x38\x65\x34\x64\x5d\x20\x6f\x66\x20\x4f\x62\x6a\x65\x63\x74\x2e\x65\x6e\x74\x72\x69\x65\x73\x28\x4d\x41\x4b\x45\x55\x50\x5f\x46\x58\x29\x29\x7b\x5f\x30\x78\x35\x64\x33\x61\x32\x62\x2b\x3d\x60\x3c\x64\x69\x76\x20\x73\x74\x79\x6c\x65\x3d\x22\x6d\x61\x72\x67\x69\x6e\x2d\x62\x6f\x74\x74\x6f\x6d\x3a\x20\x31\x30\x70\x78\x3b\x22\x3e\x3c\x64\x69\x76\x20\x73\x74\x79\x6c\x65\x3d\x22\x66\x6f\x6e\x74\x2d\x73\x69\x7a\x65\x3a\x20\x30\x2e\x36\x35\x72\x65\x6d\x3b\x20\x63\x6f\x6c\x6f\x72\x3a\x20\x76\x61\x72\x28\x2d\x2d\x74\x65\x78\x74\x2d\x6d\x75\x74\x65\x64\x29\x3b\x20\x74\x65\x78\x74\x2d\x74\x72\x61\x6e\x73\x66\x6f\x72\x6d\x3a\x20\x75\x70\x70\x65\x72\x63\x61\x73\x65\x3b\x20\x6d\x61\x72\x67\x69\x6e\x2d\x62\x6f\x74\x74\x6f\x6d\x3a\x20\x34\x70\x78\x3b\x22\x3e\x24\x7b\x5f\x30\x78\x33\x61\x37\x66\x32\x63\x7d\x3c\x2f\x64\x69\x76\x3e\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x6f\x70\x74\x69\x6f\x6e\x2d\x67\x72\x69\x64\x22\x20\x73\x74\x79\x6c\x65\x3d\x22\x6d\x61\x72\x67\x69\x6e\x2d\x62\x6f\x74\x74\x6f\x6d\x3a\x20\x30\x3b\x22\x3e\x24\x7b\x5f\x30\x78\x31\x63\x38\x65\x34\x64\x2e\x6d\x61\x70\x28\x6d\x61\x6b\x65\x75\x70\x3d\x3e\x60\x3c\x62\x75\x74\x74\x6f\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x20\x73\x74\x79\x6c\x65\x22\x20\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x3d\x22\x24\x7b\x6d\x61\x6b\x65\x75\x70\x2e\x76\x61\x6c\x75\x65\x7d\x22\x20\x64\x61\x74\x61\x2d\x6c\x61\x62\x65\x6c\x3d\x22\x24\x7b\x6d\x61\x6b\x65\x75\x70\x2e\x6c\x61\x62\x65\x6c\x7d\x22\x3e\x24\x7b\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x73\x27\x3f\x6d\x61\x6b\x65\x75\x70\x2e\x6c\x61\x62\x65\x6c\x3a\x6d\x61\x6b\x65\x75\x70\x2e\x76\x61\x6c\x75\x65\x7d\x3c\x2f\x62\x75\x74\x74\x6f\x6e\x3e\x60\x29\x2e\x6a\x6f\x69\x6e\x28\x27\x27\x29\x7d\x3c\x2f\x64\x69\x76\x3e\x3c\x2f\x64\x69\x76\x3e\x60\x3b\x7d\x5f\x30\x78\x32\x63\x39\x66\x31\x65\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x5f\x30\x78\x35\x64\x33\x61\x32\x62\x3b\x5f\x30\x78\x32\x63\x39\x66\x31\x65\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x74\x6e\x3d\x3e\x7b\x62\x74\x6e\x2e\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72\x28\x27\x63\x6c\x69\x63\x6b\x27\x2c\x66\x75\x6e\x63\x74\x69\x6f\x6e\x28\x29\x7b\x74\x68\x69\x73\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x74\x6f\x67\x67\x6c\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x3b\x75\x70\x64\x61\x74\x65\x4d\x61\x6b\x65\x75\x70\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x29\x3b\x7d\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x75\x70\x64\x61\x74\x65\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x34\x65\x37\x61\x31\x63\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x28\x27\x23\x73\x74\x79\x6c\x65\x47\x72\x69\x64\x20\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x2e\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x3b\x69\x66\x28\x5f\x30\x78\x34\x65\x37\x61\x31\x63\x29\x7b\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x3d\x7b\x76\x61\x6c\x75\x65\x3a\x5f\x30\x78\x34\x65\x37\x61\x31\x63\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x27\x29\x2c\x6c\x61\x62\x65\x6c\x3a\x5f\x30\x78\x34\x65\x37\x61\x31\x63\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x6c\x61\x62\x65\x6c\x27\x29\x7d\x3b\x7d\x65\x6c\x73\x65\x7b\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x3d\x6e\x75\x6c\x6c\x3b\x7d\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x75\x70\x64\x61\x74\x65\x4d\x61\x6b\x65\x75\x70\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x31\x66\x38\x62\x33\x64\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x28\x27\x23\x6d\x61\x6b\x65\x75\x70\x47\x72\x69\x64\x20\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x2e\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x3b\x69\x66\x28\x5f\x30\x78\x31\x66\x38\x62\x33\x64\x29\x7b\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x3d\x7b\x76\x61\x6c\x75\x65\x3a\x5f\x30\x78\x31\x66\x38\x62\x33\x64\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x27\x29\x2c\x6c\x61\x62\x65\x6c\x3a\x5f\x30\x78\x31\x66\x38\x62\x33\x64\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x6c\x61\x62\x65\x6c\x27\x29\x7d\x3b\x7d\x65\x6c\x73\x65\x7b\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x3d\x6e\x75\x6c\x6c\x3b\x7d\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x28\x29\x7b\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x27\x29\x2e\x76\x61\x6c\x75\x65\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x56\x61\x6c\x75\x65\x27\x29\x2e\x74\x65\x78\x74\x43\x6f\x6e\x74\x65\x6e\x74\x3d\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x2b\x27\x25\x27\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x33\x64\x37\x65\x32\x61\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x27\x29\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x31\x63\x39\x61\x34\x62\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x43\x6f\x6e\x74\x65\x6e\x74\x27\x29\x3b\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x7c\x7c\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x29\x7b\x5f\x30\x78\x33\x64\x37\x65\x32\x61\x2e\x73\x74\x79\x6c\x65\x2e\x64\x69\x73\x70\x6c\x61\x79\x3d\x27\x62\x6c\x6f\x63\x6b\x27\x3b\x6c\x65\x74\x20\x5f\x30\x78\x32\x65\x39\x66\x31\x63\x3d\x27\x27\x3b\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x29\x7b\x5f\x30\x78\x32\x65\x39\x66\x31\x63\x2b\x3d\x60\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x73\x74\x79\x6c\x65\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x74\x65\x6d\x22\x3e\xf0\x9f\x8e\xa8\x20\x24\x7b\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x73\x27\x3f\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x6c\x61\x62\x65\x6c\x3a\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x7d\x3c\x2f\x64\x69\x76\x3e\x60\x3b\x7d\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x29\x7b\x5f\x30\x78\x32\x65\x39\x66\x31\x63\x2b\x3d\x60\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x73\x74\x79\x6c\x65\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x74\x65\x6d\x22\x3e\xf0\x9f\x92\x84\x20\x24\x7b\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x73\x27\x3f\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x6c\x61\x62\x65\x6c\x3a\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x76\x61\x6c\x75\x65\x7d\x3c\x2f\x64\x69\x76\x3e\x60\x3b\x7d\x5f\x30\x78\x32\x65\x39\x66\x31\x63\x2b\x3d\x60\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x73\x74\x79\x6c\x65\x2d\x70\x72\x65\x76\x69\x65\x77\x2d\x69\x74\x65\x6d\x22\x20\x73\x74\x79\x6c\x65\x3d\x22\x63\x6f\x6c\x6f\x72\x3a\x20\x76\x61\x72\x28\x2d\x2d\x73\x74\x79\x6c\x65\x2d\x70\x69\x6e\x6b\x29\x3b\x20\x6d\x61\x72\x67\x69\x6e\x2d\x74\x6f\x70\x3a\x20\x36\x70\x78\x3b\x22\x3e\xf0\x9f\x8e\x9a\xef\xb8\x8f\x20\x57\x65\x69\x67\x68\x74\x3a\x20\x24\x7b\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x7d\x25\x3c\x2f\x64\x69\x76\x3e\x60\x3b\x5f\x30\x78\x31\x63\x39\x61\x34\x62\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x5f\x30\x78\x32\x65\x39\x66\x31\x63\x3b\x7d\x65\x6c\x73\x65\x7b\x5f\x30\x78\x33\x64\x37\x65\x32\x61\x2e\x73\x74\x79\x6c\x65\x2e\x64\x69\x73\x70\x6c\x61\x79\x3d\x27\x6e\x6f\x6e\x65\x27\x3b\x7d\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x74\x6f\x67\x67\x6c\x65\x53\x70\x69\x63\x79\x4d\x6f\x64\x65\x28\x29\x7b\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x3d\x21\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x70\x69\x63\x79\x54\x6f\x67\x67\x6c\x65\x27\x29\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x74\x6f\x67\x67\x6c\x65\x28\x27\x61\x63\x74\x69\x76\x65\x27\x2c\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x29\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x70\x69\x63\x79\x43\x6f\x6e\x74\x65\x6e\x74\x27\x29\x2e\x73\x74\x79\x6c\x65\x2e\x64\x69\x73\x70\x6c\x61\x79\x3d\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x3f\x27\x62\x6c\x6f\x63\x6b\x27\x3a\x27\x6e\x6f\x6e\x65\x27\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x5f\x30\x78\x31\x61\x37\x66\x32\x64\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x32\x63\x38\x65\x33\x66\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x60\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x67\x72\x69\x64\x5b\x64\x61\x74\x61\x2d\x67\x72\x6f\x75\x70\x3d\x22\x24\x7b\x5f\x30\x78\x31\x61\x37\x66\x32\x64\x7d\x22\x5d\x20\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x2e\x73\x65\x6c\x65\x63\x74\x65\x64\x60\x29\x3b\x72\x65\x74\x75\x72\x6e\x20\x41\x72\x72\x61\x79\x2e\x66\x72\x6f\x6d\x28\x5f\x30\x78\x32\x63\x38\x65\x33\x66\x29\x2e\x6d\x61\x70\x28\x62\x74\x6e\x3d\x3e\x62\x74\x6e\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x27\x29\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x67\x65\x74\x54\x65\x78\x74\x28\x5f\x30\x78\x34\x64\x39\x65\x32\x66\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x33\x62\x37\x61\x31\x63\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x5f\x30\x78\x34\x64\x39\x65\x32\x66\x29\x3b\x72\x65\x74\x75\x72\x6e\x20\x5f\x30\x78\x33\x62\x37\x61\x31\x63\x3f\x5f\x30\x78\x33\x62\x37\x61\x31\x63\x2e\x76\x61\x6c\x75\x65\x2e\x74\x72\x69\x6d\x28\x29\x3a\x27\x27\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x75\x6d\x6d\x61\x72\x79\x54\x61\x67\x73\x27\x29\x3b\x69\x66\x28\x21\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x29\x72\x65\x74\x75\x72\x6e\x3b\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x27\x27\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x31\x63\x39\x65\x34\x66\x3d\x5b\x7b\x69\x64\x3a\x27\x73\x75\x62\x6a\x65\x63\x74\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x53\x75\x62\x6a\x65\x63\x74\x27\x7d\x2c\x7b\x69\x64\x3a\x27\x61\x63\x74\x69\x6f\x6e\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x41\x63\x74\x69\x6f\x6e\x27\x7d\x2c\x7b\x69\x64\x3a\x27\x6c\x6f\x63\x61\x74\x69\x6f\x6e\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x4c\x6f\x63\x61\x74\x69\x6f\x6e\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x4c\x65\x6e\x73\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x73\x68\x6f\x74\x53\x69\x7a\x65\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x53\x68\x6f\x74\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x74\x69\x6d\x65\x4f\x66\x44\x61\x79\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x54\x69\x6d\x65\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x4c\x69\x67\x68\x74\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x61\x72\x74\x53\x74\x79\x6c\x65\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x53\x74\x79\x6c\x65\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x52\x65\x73\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x51\x75\x61\x6c\x69\x74\x79\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x61\x75\x64\x69\x6f\x54\x79\x70\x65\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x41\x75\x64\x69\x6f\x27\x7d\x2c\x7b\x67\x72\x6f\x75\x70\x3a\x27\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73\x27\x2c\x6c\x61\x62\x65\x6c\x3a\x27\x47\x72\x6f\x6b\x27\x7d\x5d\x3b\x6c\x65\x74\x20\x5f\x30\x78\x32\x64\x39\x66\x31\x65\x3d\x30\x3b\x5f\x30\x78\x31\x63\x39\x65\x34\x66\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x73\x65\x6c\x3d\x3e\x7b\x6c\x65\x74\x20\x5f\x30\x78\x33\x65\x38\x61\x32\x63\x3d\x73\x65\x6c\x2e\x67\x72\x6f\x75\x70\x3f\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x73\x65\x6c\x2e\x67\x72\x6f\x75\x70\x29\x3a\x28\x67\x65\x74\x54\x65\x78\x74\x28\x73\x65\x6c\x2e\x69\x64\x29\x3f\x5b\x67\x65\x74\x54\x65\x78\x74\x28\x73\x65\x6c\x2e\x69\x64\x29\x2e\x73\x75\x62\x73\x74\x72\x69\x6e\x67\x28\x30\x2c\x32\x30\x29\x2b\x28\x67\x65\x74\x54\x65\x78\x74\x28\x73\x65\x6c\x2e\x69\x64\x29\x2e\x6c\x65\x6e\x67\x74\x68\x3e\x32\x30\x3f\x27\x2e\x2e\x2e\x27\x3a\x27\x27\x29\x5d\x3a\x5b\x5d\x29\x3b\x5f\x30\x78\x33\x65\x38\x61\x32\x63\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x61\x6c\x75\x65\x3d\x3e\x7b\x69\x66\x28\x76\x61\x6c\x75\x65\x29\x7b\x5f\x30\x78\x32\x64\x39\x66\x31\x65\x2b\x2b\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x34\x66\x39\x61\x31\x64\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74\x28\x27\x64\x69\x76\x27\x29\x3b\x5f\x30\x78\x34\x66\x39\x61\x31\x64\x2e\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65\x3d\x27\x73\x75\x6d\x6d\x61\x72\x79\x2d\x74\x61\x67\x27\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x35\x63\x39\x65\x32\x66\x3d\x76\x61\x6c\x75\x65\x2e\x72\x65\x70\x6c\x61\x63\x65\x28\x2f\x27\x2f\x67\x2c\x22\x5c\x5c\x27\x22\x29\x2e\x72\x65\x70\x6c\x61\x63\x65\x28\x2f\x22\x2f\x67\x2c\x27\x26\x71\x75\x6f\x74\x3b\x27\x29\x3b\x5f\x30\x78\x34\x66\x39\x61\x31\x64\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x60\x3c\x73\x70\x61\x6e\x3e\x24\x7b\x76\x61\x6c\x75\x65\x7d\x3c\x2f\x73\x70\x61\x6e\x3e\x3c\x73\x70\x61\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x72\x65\x6d\x6f\x76\x65\x22\x20\x6f\x6e\x63\x6c\x69\x63\x6b\x3d\x22\x72\x65\x6d\x6f\x76\x65\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x27\x24\x7b\x73\x65\x6c\x2e\x67\x72\x6f\x75\x70\x7c\x7c\x27\x7d\x27\x2c\x20\x27\x24\x7b\x73\x65\x6c\x2e\x69\x64\x7c\x7c\x27\x7d\x27\x2c\x20\x27\x24\x7b\x5f\x30\x78\x35\x63\x39\x65\x32\x66\x7d\x27\x29\x22\x3e\xd7\x3c\x2f\x73\x70\x61\x6e\x3e\x60\x3b\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x2e\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64\x28\x5f\x30\x78\x34\x66\x39\x61\x31\x64\x29\x3b\x7d\x7d\x29\x3b\x7d\x29\x3b\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x29\x7b\x5f\x30\x78\x32\x64\x39\x66\x31\x65\x2b\x2b\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74\x28\x27\x64\x69\x76\x29\x3b\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x2e\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65\x3d\x27\x73\x75\x6d\x6d\x61\x72\x79\x2d\x74\x61\x67\x27\x3b\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x2e\x73\x74\x79\x6c\x65\x2e\x62\x6f\x72\x64\x65\x72\x43\x6f\x6c\x6f\x72\x3d\x27\x76\x61\x72\x28\x2d\x2d\x73\x74\x79\x6c\x65\x2d\x70\x69\x6e\x6b\x29\x27\x3b\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x2e\x73\x74\x79\x6c\x65\x2e\x63\x6f\x6c\x6f\x72\x3d\x27\x76\x61\x72\x28\x2d\x2d\x73\x74\x79\x6c\x65\x2d\x70\x69\x6e\x6b\x29\x27\x3b\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x2e\x73\x74\x79\x6c\x65\x2e\x62\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64\x3d\x27\x72\x67\x62\x61\x28\x32\x33\x36\x2c\x20\x37\x32\x2c\x20\x31\x35\x33\x2c\x20\x30\x2e\x31\x29\x27\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x31\x64\x38\x65\x33\x66\x3d\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x73\x27\x3f\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x6c\x61\x62\x65\x6c\x3a\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x3b\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x60\x3c\x73\x70\x61\x6e\x3e\xf0\x9f\x8e\xa8\x20\x24\x7b\x5f\x30\x78\x31\x64\x38\x65\x33\x66\x7d\x3c\x2f\x73\x70\x61\x6e\x3e\x3c\x73\x70\x61\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x72\x65\x6d\x6f\x76\x65\x22\x20\x6f\x6e\x63\x6c\x69\x63\x6b\x3d\x22\x63\x6c\x65\x61\x72\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x28\x29\x22\x3e\xd7\x3c\x2f\x73\x70\x61\x6e\x3e\x60\x3b\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x2e\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64\x28\x5f\x30\x78\x33\x61\x39\x65\x32\x64\x29\x3b\x7d\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x29\x7b\x5f\x30\x78\x32\x64\x39\x66\x31\x65\x2b\x2b\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74\x28\x27\x64\x69\x76\x29\x3b\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x2e\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65\x3d\x27\x73\x75\x6d\x6d\x61\x72\x79\x2d\x74\x61\x67\x27\x3b\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x2e\x73\x74\x79\x6c\x65\x2e\x62\x6f\x72\x64\x65\x72\x43\x6f\x6c\x6f\x72\x3d\x27\x76\x61\x72\x28\x2d\x2d\x73\x74\x79\x6c\x65\x2d\x70\x69\x6e\x6b\x29\x27\x3b\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x2e\x73\x74\x79\x6c\x65\x2e\x63\x6f\x6c\x6f\x72\x3d\x27\x76\x61\x72\x28\x2d\x2d\x73\x74\x79\x6c\x65\x2d\x70\x69\x6e\x6b\x29\x27\x3b\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x2e\x73\x74\x79\x6c\x65\x2e\x62\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64\x3d\x27\x72\x67\x62\x61\x28\x32\x33\x36\x2c\x20\x37\x32\x2c\x20\x31\x35\x33\x2c\x20\x30\x2e\x31\x29\x27\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x32\x65\x39\x66\x31\x64\x3d\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x73\x27\x3f\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x6c\x61\x62\x65\x6c\x3a\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x76\x61\x6c\x75\x65\x3b\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x60\x3c\x73\x70\x61\x6e\x3e\xf0\x9f\x92\x84\x20\x24\x7b\x5f\x30\x78\x32\x65\x39\x66\x31\x64\x7d\x3c\x2f\x73\x70\x61\x6e\x3e\x3c\x73\x70\x61\x6e\x20\x63\x6c\x61\x73\x73\x3d\x22\x72\x65\x6d\x6f\x76\x65\x22\x20\x6f\x6e\x63\x6c\x69\x63\x6b\x3d\x22\x63\x6c\x65\x61\x72\x4d\x61\x6b\x65\x75\x70\x46\x58\x28\x29\x22\x3e\xd7\x3c\x2f\x73\x70\x61\x6e\x3e\x60\x3b\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x2e\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64\x28\x5f\x30\x78\x34\x62\x39\x61\x32\x65\x29\x3b\x7d\x69\x66\x28\x5f\x30\x78\x32\x64\x39\x66\x31\x65\x3d\x3d\x3d\x30\x29\x7b\x5f\x30\x78\x35\x65\x38\x61\x33\x64\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x60\x3c\x73\x70\x61\x6e\x20\x73\x74\x79\x6c\x65\x3d\x22\x63\x6f\x6c\x6f\x72\x3a\x76\x61\x72\x28\x2d\x2d\x74\x65\x78\x74\x2d\x6d\x75\x74\x65\x64\x29\x3b\x20\x66\x6f\x6e\x74\x2d\x73\x69\x7a\x65\x3a\x30\x2e\x37\x72\x65\x6d\x3b\x22\x3e\x24\x7b\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x6e\x27\x3f\x27\x4e\x6f\x20\x6f\x70\x74\x69\x6f\x6e\x73\x20\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x3a\x27\x53\x69\x6e\x20\x6f\x70\x63\x69\x6f\x6e\x65\x73\x20\x73\x65\x6c\x65\x63\x63\x69\x6f\x6e\x61\x64\x61\x73\x27\x7d\x3c\x2f\x73\x70\x61\x6e\x3e\x60\x3b\x7d\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x73\x75\x62\x6a\x65\x63\x74\x27\x2c\x5b\x67\x65\x74\x54\x65\x78\x74\x28\x27\x73\x75\x62\x6a\x65\x63\x74\x27\x29\x2c\x67\x65\x74\x54\x65\x78\x74\x28\x27\x61\x63\x74\x69\x6f\x6e\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x6c\x65\x6e\x73\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x73\x68\x6f\x74\x73\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x73\x68\x6f\x74\x53\x69\x7a\x65\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x6d\x6f\x76\x65\x6d\x65\x6e\x74\x27\x2c\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74\x27\x29\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x65\x79\x65\x6c\x69\x6e\x65\x73\x27\x2c\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x65\x79\x65\x4c\x69\x6e\x65\x73\x27\x29\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x6c\x69\x67\x68\x74\x69\x6e\x67\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x74\x69\x6d\x65\x4f\x66\x44\x61\x79\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x6f\x70\x74\x69\x63\x61\x6c\x27\x2c\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73\x27\x29\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x73\x74\x79\x6c\x65\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x72\x74\x53\x74\x79\x6c\x65\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x73\x74\x79\x6c\x65\x61\x72\x63\x68\x27\x2c\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x3f\x5b\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x5d\x3a\x5b\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x65\x6e\x76\x69\x72\x6f\x6e\x6d\x65\x6e\x74\x27\x2c\x5b\x67\x65\x74\x54\x65\x78\x74\x28\x27\x6c\x6f\x63\x61\x74\x69\x6f\x6e\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e\x27\x2c\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e\x27\x29\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x71\x75\x61\x6c\x69\x74\x79\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x61\x75\x64\x69\x6f\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x75\x64\x69\x6f\x54\x79\x70\x65\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x6f\x75\x74\x70\x75\x74\x27\x2c\x5b\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f\x27\x29\x2c\x2e\x2e\x2e\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x64\x75\x72\x61\x74\x69\x6f\x6e\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x6e\x65\x67\x61\x74\x69\x76\x65\x27\x2c\x5b\x67\x65\x74\x54\x65\x78\x74\x28\x27\x6e\x65\x67\x61\x74\x69\x76\x65\x27\x29\x5d\x29\x3b\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x27\x73\x75\x6d\x2d\x73\x70\x69\x63\x79\x27\x2c\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x3f\x5b\x27\x53\x70\x69\x63\x79\x20\x4f\x4e\x27\x5d\x3a\x5b\x5d\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x75\x70\x64\x61\x74\x65\x50\x61\x6e\x65\x6c\x53\x75\x6d\x6d\x61\x72\x79\x28\x5f\x30\x78\x32\x66\x39\x65\x33\x61\x2c\x5f\x30\x78\x31\x62\x38\x66\x34\x64\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x33\x63\x39\x61\x32\x65\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x5f\x30\x78\x32\x66\x39\x65\x33\x61\x29\x3b\x69\x66\x28\x21\x5f\x30\x78\x33\x63\x39\x61\x32\x65\x29\x72\x65\x74\x75\x72\x6e\x3b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x34\x64\x38\x65\x32\x66\x3d\x5f\x30\x78\x31\x62\x38\x66\x34\x64\x2e\x66\x69\x6c\x74\x65\x72\x28\x76\x3d\x3e\x76\x29\x3b\x5f\x30\x78\x33\x63\x39\x61\x32\x65\x2e\x74\x65\x78\x74\x43\x6f\x6e\x74\x65\x6e\x74\x3d\x5f\x30\x78\x34\x64\x38\x65\x32\x66\x2e\x6c\x65\x6e\x67\x74\x68\x3e\x30\x3f\x5f\x30\x78\x34\x64\x38\x65\x32\x66\x2e\x6a\x6f\x69\x6e\x28\x27\x20\x5c\x75\x30\x30\x42\x37\x20\x27\x29\x3a\x27\x27\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x72\x65\x6d\x6f\x76\x65\x53\x65\x6c\x65\x63\x74\x69\x6f\x6e\x28\x5f\x30\x78\x31\x63\x39\x65\x32\x66\x2c\x5f\x30\x78\x34\x64\x38\x65\x33\x61\x2c\x5f\x30\x78\x35\x63\x39\x65\x32\x66\x29\x7b\x69\x66\x28\x5f\x30\x78\x31\x63\x39\x65\x32\x66\x29\x7b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x60\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x67\x72\x69\x64\x5b\x64\x61\x74\x61\x2d\x67\x72\x6f\x75\x70\x3d\x22\x24\x7b\x5f\x30\x78\x31\x63\x39\x65\x32\x66\x7d\x22\x5d\x20\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x60\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x74\x6e\x3d\x3e\x7b\x69\x66\x28\x62\x74\x6e\x2e\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65\x28\x27\x64\x61\x74\x61\x2d\x76\x61\x6c\x75\x65\x27\x29\x3d\x3d\x3d\x5f\x30\x78\x35\x63\x39\x65\x32\x66\x29\x7b\x62\x74\x6e\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x72\x65\x6d\x6f\x76\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x3b\x7d\x7d\x29\x3b\x7d\x69\x66\x28\x5f\x30\x78\x34\x64\x38\x65\x33\x61\x29\x7b\x63\x6f\x6e\x73\x74\x20\x5f\x30\x78\x32\x64\x39\x66\x32\x61\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x5f\x30\x78\x34\x64\x38\x65\x33\x61\x29\x3b\x69\x66\x28\x5f\x30\x78\x32\x64\x39\x66\x32\x61\x29\x5f\x30\x78\x32\x64\x39\x66\x32\x61\x2e\x76\x61\x6c\x75\x65\x3d\x27\x27\x3b\x7d\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x63\x6c\x65\x61\x72\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x28\x29\x7b\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x3d\x6e\x75\x6c\x6c\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x23\x73\x74\x79\x6c\x65\x47\x72\x69\x64\x20\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x3d\x3e\x62\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x72\x65\x6d\x6f\x76\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x28\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x63\x6c\x65\x61\x72\x4d\x61\x6b\x65\x75\x70\x46\x58\x28\x29\x7b\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x3d\x6e\x75\x6c\x6c\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x23\x6d\x61\x6b\x65\x75\x70\x47\x72\x69\x64\x20\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x3d\x3e\x62\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x72\x65\x6d\x6f\x76\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x74\x79\x6c\x65\x50\x72\x65\x76\x69\x65\x77\x28\x29\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x67\x65\x6e\x65\x72\x61\x74\x65\x50\x72\x6f\x6d\x70\x74\x28\x29\x7b\x6c\x65\x74\x20\x6c\x61\x79\x65\x72\x31\x3d\x5b\x5d\x2c\x6c\x61\x79\x65\x72\x32\x3d\x5b\x5d\x2c\x6c\x61\x79\x65\x72\x33\x3d\x5b\x5d\x2c\x6c\x61\x79\x65\x72\x34\x3d\x5b\x5d\x2c\x6c\x61\x79\x65\x72\x35\x3d\x5b\x5d\x3b\x63\x6f\x6e\x73\x74\x20\x73\x75\x62\x6a\x65\x63\x74\x3d\x67\x65\x74\x54\x65\x78\x74\x28\x27\x73\x75\x62\x6a\x65\x63\x74\x27\x29\x2c\x61\x63\x74\x69\x6f\x6e\x3d\x67\x65\x74\x54\x65\x78\x74\x28\x27\x61\x63\x74\x69\x6f\x6e\x27\x29\x2c\x63\x68\x61\x72\x44\x4e\x41\x3d\x67\x65\x74\x54\x65\x78\x74\x28\x27\x63\x68\x61\x72\x44\x4e\x41\x27\x29\x2c\x6c\x6f\x63\x61\x74\x69\x6f\x6e\x3d\x67\x65\x74\x54\x65\x78\x74\x28\x27\x6c\x6f\x63\x61\x74\x69\x6f\x6e\x27\x29\x3b\x69\x66\x28\x73\x75\x62\x6a\x65\x63\x74\x29\x6c\x61\x79\x65\x72\x31\x2e\x70\x75\x73\x68\x28\x73\x75\x62\x6a\x65\x63\x74\x29\x3b\x69\x66\x28\x61\x63\x74\x69\x6f\x6e\x29\x6c\x61\x79\x65\x72\x31\x2e\x70\x75\x73\x68\x28\x61\x63\x74\x69\x6f\x6e\x29\x3b\x69\x66\x28\x63\x68\x61\x72\x44\x4e\x41\x29\x6c\x61\x79\x65\x72\x31\x2e\x70\x75\x73\x68\x28\x63\x68\x61\x72\x44\x4e\x41\x29\x3b\x63\x6f\x6e\x73\x74\x20\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68\x27\x29\x2c\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73\x27\x29\x2c\x73\x68\x6f\x74\x53\x69\x7a\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x73\x68\x6f\x74\x53\x69\x7a\x65\x27\x29\x2c\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73\x27\x29\x2c\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74\x27\x29\x2c\x65\x79\x65\x4c\x69\x6e\x65\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x65\x79\x65\x4c\x69\x6e\x65\x73\x27\x29\x3b\x5b\x2e\x2e\x2e\x66\x6f\x63\x61\x6c\x4c\x65\x6e\x67\x74\x68\x2c\x2e\x2e\x2e\x73\x70\x65\x63\x69\x61\x6c\x74\x79\x4c\x65\x6e\x73\x65\x73\x2c\x2e\x2e\x2e\x73\x68\x6f\x74\x53\x69\x7a\x65\x2c\x2e\x2e\x2e\x63\x61\x6d\x65\x72\x61\x41\x6e\x67\x6c\x65\x73\x2c\x2e\x2e\x2e\x63\x61\x6d\x65\x72\x61\x4d\x6f\x76\x65\x6d\x65\x6e\x74\x2c\x2e\x2e\x2e\x65\x79\x65\x4c\x69\x6e\x65\x73\x5d\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6c\x61\x79\x65\x72\x31\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x63\x6f\x6e\x73\x74\x20\x74\x69\x6d\x65\x4f\x66\x44\x61\x79\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x74\x69\x6d\x65\x4f\x66\x44\x61\x79\x27\x29\x2c\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65\x27\x29\x2c\x6d\x6f\x6f\x64\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6d\x6f\x6f\x64\x27\x29\x3b\x5b\x2e\x2e\x2e\x74\x69\x6d\x65\x4f\x66\x44\x61\x79\x2c\x2e\x2e\x2e\x6c\x69\x67\x68\x74\x69\x6e\x67\x54\x79\x70\x65\x2c\x2e\x2e\x2e\x6d\x6f\x6f\x64\x5d\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6c\x61\x79\x65\x72\x32\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x63\x6f\x6e\x73\x74\x20\x61\x72\x74\x53\x74\x79\x6c\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x72\x74\x53\x74\x79\x6c\x65\x27\x29\x2c\x72\x65\x6e\x64\x65\x72\x45\x6e\x67\x69\x6e\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x72\x65\x6e\x64\x65\x72\x45\x6e\x67\x69\x6e\x65\x27\x29\x2c\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73\x27\x29\x2c\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73\x27\x29\x2c\x62\x69\x6f\x6d\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x62\x69\x6f\x6d\x65\x27\x29\x2c\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73\x27\x29\x2c\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e\x27\x29\x2c\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e\x27\x29\x2c\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73\x27\x29\x2c\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73\x27\x29\x3b\x5b\x2e\x2e\x2e\x61\x72\x74\x53\x74\x79\x6c\x65\x2c\x2e\x2e\x2e\x72\x65\x6e\x64\x65\x72\x45\x6e\x67\x69\x6e\x65\x2c\x2e\x2e\x2e\x67\x72\x6f\x6b\x54\x65\x72\x6d\x73\x2c\x2e\x2e\x2e\x6f\x70\x74\x69\x63\x61\x6c\x45\x66\x66\x65\x63\x74\x73\x2c\x2e\x2e\x2e\x62\x69\x6f\x6d\x65\x2c\x2e\x2e\x2e\x70\x68\x79\x73\x69\x63\x61\x6c\x44\x79\x6e\x61\x6d\x69\x63\x73\x2c\x2e\x2e\x2e\x63\x6f\x6d\x70\x6f\x73\x69\x74\x69\x6f\x6e\x2c\x2e\x2e\x2e\x72\x65\x73\x6f\x6c\x75\x74\x69\x6f\x6e\x2c\x2e\x2e\x2e\x71\x75\x61\x6c\x69\x74\x79\x4d\x6f\x64\x69\x66\x69\x65\x72\x73\x2c\x2e\x2e\x2e\x64\x65\x74\x61\x69\x6c\x45\x6e\x68\x61\x6e\x63\x65\x72\x73\x5d\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x69\x66\x28\x6c\x6f\x63\x61\x74\x69\x6f\x6e\x29\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x6c\x6f\x63\x61\x74\x69\x6f\x6e\x29\x3b\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x29\x7b\x63\x6f\x6e\x73\x74\x20\x73\x76\x3d\x73\x65\x6c\x65\x63\x74\x65\x64\x56\x69\x73\x75\x61\x6c\x53\x74\x79\x6c\x65\x2e\x76\x61\x6c\x75\x65\x3b\x69\x66\x28\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x3e\x3d\x38\x30\x29\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x27\x4d\x41\x53\x54\x45\x52\x50\x49\x45\x43\x45\x2c\x20\x27\x2b\x73\x76\x2b\x27\x2c\x20\x68\x69\x67\x68\x6c\x79\x20\x64\x65\x74\x61\x69\x6c\x65\x64\x2c\x20\x61\x77\x61\x72\x64\x20\x77\x69\x6e\x6e\x69\x6e\x67\x2c\x20\x70\x72\x6f\x66\x65\x73\x73\x69\x6f\x6e\x61\x6c\x20\x67\x72\x61\x64\x65\x27\x29\x3b\x65\x6c\x73\x65\x20\x69\x66\x28\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x3e\x3d\x35\x30\x29\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x27\x27\x2b\x73\x76\x2b\x27\x2c\x20\x64\x65\x74\x61\x69\x6c\x65\x64\x2c\x20\x68\x69\x67\x68\x20\x71\x75\x61\x6c\x69\x74\x79\x27\x29\x3b\x65\x6c\x73\x65\x20\x69\x66\x28\x73\x74\x79\x6c\x65\x57\x65\x69\x67\x68\x74\x3e\x3d\x32\x30\x29\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x27\x73\x75\x62\x74\x6c\x65\x20\x27\x2b\x73\x76\x2e\x74\x6f\x4c\x6f\x77\x65\x72\x43\x61\x73\x65\x28\x29\x2b\x27\x20\x69\x6e\x66\x6c\x75\x65\x6e\x63\x65\x27\x29\x3b\x65\x6c\x73\x65\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x73\x76\x29\x3b\x7d\x69\x66\x28\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x29\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x27\x63\x68\x61\x72\x61\x63\x74\x65\x72\x20\x66\x78\x3a\x20\x27\x2b\x73\x65\x6c\x65\x63\x74\x65\x64\x4d\x61\x6b\x65\x75\x70\x46\x58\x2e\x76\x61\x6c\x75\x65\x29\x3b\x63\x6f\x6e\x73\x74\x20\x61\x75\x64\x69\x6f\x54\x79\x70\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x75\x64\x69\x6f\x54\x79\x70\x65\x27\x29\x2c\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65\x27\x29\x2c\x73\x66\x78\x54\x79\x70\x65\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x73\x66\x78\x54\x79\x70\x65\x27\x29\x2c\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79\x27\x29\x3b\x5b\x2e\x2e\x2e\x61\x75\x64\x69\x6f\x54\x79\x70\x65\x2c\x2e\x2e\x2e\x6d\x75\x73\x69\x63\x47\x65\x6e\x72\x65\x2c\x2e\x2e\x2e\x73\x66\x78\x54\x79\x70\x65\x2c\x2e\x2e\x2e\x61\x75\x64\x69\x6f\x51\x75\x61\x6c\x69\x74\x79\x5d\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6c\x61\x79\x65\x72\x34\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x63\x6f\x6e\x73\x74\x20\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f\x27\x29\x2c\x64\x75\x72\x61\x74\x69\x6f\x6e\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x64\x75\x72\x61\x74\x69\x6f\x6e\x27\x29\x3b\x5b\x2e\x2e\x2e\x61\x73\x70\x65\x63\x74\x52\x61\x74\x69\x6f\x2c\x2e\x2e\x2e\x64\x75\x72\x61\x74\x69\x6f\x6e\x5d\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6c\x61\x79\x65\x72\x35\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x69\x66\x28\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x29\x7b\x63\x6f\x6e\x73\x74\x20\x73\x70\x69\x63\x79\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x73\x70\x69\x63\x79\x27\x29\x3b\x73\x70\x69\x63\x79\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6c\x61\x79\x65\x72\x33\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x7d\x6c\x65\x74\x20\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x3d\x6c\x61\x79\x65\x72\x31\x2e\x6a\x6f\x69\x6e\x28\x27\x2c\x20\x27\x29\x3b\x69\x66\x28\x6c\x61\x79\x65\x72\x32\x2e\x6c\x65\x6e\x67\x74\x68\x3e\x30\x29\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x2b\x3d\x27\x3b\x20\x27\x2b\x6c\x61\x79\x65\x72\x32\x2e\x6a\x6f\x69\x6e\x28\x27\x2c\x20\x27\x29\x3b\x69\x66\x28\x6c\x61\x79\x65\x72\x33\x2e\x6c\x65\x6e\x67\x74\x68\x3e\x30\x29\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x2b\x3d\x27\x3b\x20\x27\x2b\x6c\x61\x79\x65\x72\x33\x2e\x6a\x6f\x69\x6e\x28\x27\x2c\x20\x27\x29\x3b\x69\x66\x28\x6c\x61\x79\x65\x72\x34\x2e\x6c\x65\x6e\x67\x74\x68\x3e\x30\x29\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x2b\x3d\x27\x3b\x20\x27\x2b\x6c\x61\x79\x65\x72\x34\x2e\x6a\x6f\x69\x6e\x28\x27\x2c\x20\x27\x29\x3b\x69\x66\x28\x6c\x61\x79\x65\x72\x35\x2e\x6c\x65\x6e\x67\x74\x68\x3e\x30\x29\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x2b\x3d\x27\x20\x27\x2b\x6c\x61\x79\x65\x72\x35\x2e\x6a\x6f\x69\x6e\x28\x27\x2c\x20\x27\x29\x3b\x63\x6f\x6e\x73\x74\x20\x6e\x65\x67\x61\x74\x69\x76\x65\x43\x75\x73\x74\x6f\x6d\x3d\x67\x65\x74\x54\x65\x78\x74\x28\x27\x6e\x65\x67\x61\x74\x69\x76\x65\x27\x29\x2c\x6e\x65\x67\x61\x74\x69\x76\x65\x51\x75\x69\x63\x6b\x3d\x67\x65\x74\x53\x65\x6c\x65\x63\x74\x65\x64\x56\x61\x6c\x75\x65\x73\x28\x27\x6e\x65\x67\x51\x75\x69\x63\x6b\x27\x29\x2c\x6e\x65\x67\x61\x74\x69\x76\x65\x50\x61\x72\x74\x73\x3d\x5b\x27\x4e\x6f\x20\x73\x75\x62\x74\x69\x74\x6c\x65\x73\x27\x2c\x27\x4e\x6f\x20\x74\x65\x78\x74\x27\x2c\x27\x4e\x6f\x20\x63\x6c\x6f\x73\x65\x64\x20\x63\x61\x70\x74\x69\x6f\x6e\x73\x27\x5d\x3b\x69\x66\x28\x6e\x65\x67\x61\x74\x69\x76\x65\x43\x75\x73\x74\x6f\x6d\x29\x6e\x65\x67\x61\x74\x69\x76\x65\x50\x61\x72\x74\x73\x2e\x70\x75\x73\x68\x28\x6e\x65\x67\x61\x74\x69\x76\x65\x43\x75\x73\x74\x6f\x6d\x29\x3b\x6e\x65\x67\x61\x74\x69\x76\x65\x51\x75\x69\x63\x6b\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x76\x3d\x3e\x6e\x65\x67\x61\x74\x69\x76\x65\x50\x61\x72\x74\x73\x2e\x70\x75\x73\x68\x28\x76\x29\x29\x3b\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x2b\x3d\x27\x20\x2d\x2d\x6e\x6f\x20\x27\x2b\x6e\x65\x67\x61\x74\x69\x76\x65\x50\x61\x72\x74\x73\x2e\x6a\x6f\x69\x6e\x28\x27\x2c\x20\x27\x29\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x72\x65\x73\x75\x6c\x74\x27\x29\x2e\x76\x61\x6c\x75\x65\x3d\x66\x69\x6e\x61\x6c\x50\x72\x6f\x6d\x70\x74\x3b\x75\x70\x64\x61\x74\x65\x53\x75\x6d\x6d\x61\x72\x79\x28\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x63\x6f\x70\x79\x50\x72\x6f\x6d\x70\x74\x28\x29\x7b\x63\x6f\x6e\x73\x74\x20\x65\x6c\x3d\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x72\x65\x73\x75\x6c\x74\x27\x29\x3b\x65\x6c\x2e\x73\x65\x6c\x65\x63\x74\x28\x29\x3b\x6e\x61\x76\x69\x67\x61\x74\x6f\x72\x2e\x63\x6c\x69\x70\x62\x6f\x61\x72\x64\x2e\x77\x72\x69\x74\x65\x54\x65\x78\x74\x28\x65\x6c\x2e\x76\x61\x6c\x75\x65\x29\x3b\x63\x6f\x6e\x73\x74\x20\x62\x74\x6e\x3d\x65\x76\x65\x6e\x74\x2e\x74\x61\x72\x67\x65\x74\x2e\x63\x6c\x6f\x73\x65\x73\x74\x28\x27\x2e\x62\x74\x6e\x27\x29\x3b\x63\x6f\x6e\x73\x74\x20\x6f\x72\x69\x67\x3d\x62\x74\x6e\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3b\x62\x74\x6e\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x6e\x27\x3f\x27\xe2\x9c\x85\x20\x43\x6f\x70\x69\x65\x64\x21\x27\x3a\x27\xe2\x9c\x85\x20\xc2\xa1\x43\x6f\x70\x69\x61\x64\x6f\x21\x27\x3b\x73\x65\x74\x54\x69\x6d\x65\x6f\x75\x74\x28\x28\x29\x3d\x3e\x7b\x62\x74\x6e\x2e\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c\x3d\x27\xf0\x9f\x93\x8b\x20\x3c\x73\x70\x61\x6e\x20\x64\x61\x74\x61\x2d\x69\x31\x38\x6e\x3d\x22\x63\x6f\x70\x79\x22\x3e\x27\x2b\x28\x63\x75\x72\x72\x65\x6e\x74\x4c\x61\x6e\x67\x3d\x3d\x3d\x27\x65\x6e\x27\x3f\x27\x43\x6f\x70\x79\x27\x3a\x27\x43\x6f\x70\x69\x61\x72\x27\x29\x2b\x27\x3c\x2f\x73\x70\x61\x6e\x3e\x27\x3b\x7d\x2c\x31\x35\x30\x30\x29\x3b\x7d\x66\x75\x6e\x63\x74\x69\x6f\x6e\x20\x63\x6c\x65\x61\x72\x41\x6c\x6c\x28\x29\x7b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x2e\x6f\x70\x74\x69\x6f\x6e\x2d\x62\x74\x6e\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x62\x3d\x3e\x62\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x72\x65\x6d\x6f\x76\x65\x28\x27\x73\x65\x6c\x65\x63\x74\x65\x64\x27\x29\x29\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c\x28\x27\x74\x65\x78\x74\x61\x72\x65\x61\x27\x29\x2e\x66\x6f\x72\x45\x61\x63\x68\x28\x74\x3d\x3e\x74\x2e\x76\x61\x6c\x75\x65\x3d\x27\x27\x29\x3b\x73\x70\x69\x63\x79\x4d\x6f\x64\x65\x45\x6e\x61\x62\x6c\x65\x64\x3d\x66\x61\x6c\x73\x65\x3b\x64\x6f\x63\x75\x6d\x65\x6e\x74\x2e\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64\x28\x27\x73\x70\x69\x63\x79\x54\x6f\x67\x67\x6c\x65\x27\x29\x2e\x63\x6c\x61\x73\x73\x4c\x69\x73\x74\x2e\x72\x65\x6d\x6f\x76\x65\x28\x27\x61\x63\x74\x69\x76\x65\x27\x29\x3b\x64\x6f\x63\x75\x6d
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grok Prompt Architect v4.5 | Visual Style Enhanced</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+--bg-color: #0a0c10;
+--panel-bg: #14171d;
+--text-main: #e8e8e8;
+--text-muted: #6b7785;
+--accent: #00d4ff;
+--accent-glow: rgba(0, 212, 255, 0.2);
+--border: #2a3038;
+--success: #00ff9d;
+--warning: #ffaa00;
+--grok-purple: #8b5cf6;
+--danger: #ff4757;
+--gold: #ffd700;
+--audio-blue: #00b8ff;
+--style-pink: #ec4899;
+}
+* { box-sizing: border-box; }
+body {
+font-family: 'Segoe UI', system-ui, sans-serif;
+background: linear-gradient(135deg, #0a0c10 0%, #0f1115 100%);
+color: var(--text-main);
+margin: 0;
+padding: 0;
+padding-bottom: 300px;
+min-height: 100vh;
+}
+/* --- TOP BAR --- */
+.top-bar {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+background: rgba(20, 23, 29, 0.98);
+backdrop-filter: blur(15px);
+border-bottom: 2px solid var(--accent);
+padding: 12px 20px;
+z-index: 1000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 15px;
+box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+}
+.brand {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.brand-logo {
+width: 36px;
+height: 36px;
+background: linear-gradient(135deg, var(--accent), var(--grok-purple));
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+font-size: 1.3rem;
+color: #fff;
+box-shadow: 0 0 15px var(--accent-glow);
+}
+.brand-text h1 {
+margin: 0;
+font-size: 1.1rem;
+background: linear-gradient(90deg, var(--accent), var(--grok-purple));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+letter-spacing: 1px;
+}
+.brand-text span {
+font-size: 0.65rem;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.lang-switch {
+display: flex;
+gap: 4px;
+background: #0a0c10;
+padding: 3px;
+border-radius: 6px;
+border: 1px solid var(--border);
+}
+.lang-btn {
+background: transparent;
+border: none;
+color: var(--text-muted);
+padding: 5px 14px;
+border-radius: 4px;
+cursor: pointer;
+font-size: 0.75rem;
+font-weight: 600;
+transition: all 0.2s;
+}
+.lang-btn.active {
+background: var(--accent);
+color: #000;
+}
+.summary-container {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+align-items: center;
+flex: 1;
+margin-left: 20px;
+min-width: 200px;
+max-height: 70px;
+overflow-y: auto;
+}
+.summary-label {
+font-size: 0.7rem;
+text-transform: uppercase;
+color: var(--text-muted);
+font-weight: 700;
+white-space: nowrap;
+}
+.summary-tag {
+background: rgba(0, 212, 255, 0.1);
+border: 1px solid var(--accent);
+color: var(--accent);
+padding: 3px 8px;
+border-radius: 10px;
+font-size: 0.68rem;
+display: flex;
+align-items: center;
+gap: 5px;
+animation: popIn 0.3s ease;
+max-width: 140px;
+}
+.summary-tag .remove {
+cursor: pointer;
+opacity: 0.6;
+font-weight: bold;
+font-size: 0.85rem;
+}
+.summary-tag .remove:hover { opacity: 1; color: #fff; }
+.grok-badge {
+background: linear-gradient(135deg, var(--grok-purple), #6d28d9);
+color: #fff;
+padding: 4px 10px;
+border-radius: 12px;
+font-size: 0.65rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.version-badge {
+background: var(--gold);
+color: #000;
+padding: 2px 6px;
+border-radius: 4px;
+font-size: 0.6rem;
+font-weight: 700;
+margin-left: 5px;
+}
+@keyframes popIn {
+from { transform: scale(0.8); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
+}
+/* --- INFO ALERT --- */
+.info-alert {
+max-width: 1400px;
+margin: 70px auto 15px;
+padding: 14px 24px;
+background: rgba(0, 212, 255, 0.08);
+border: 1px solid rgba(0, 212, 255, 0.3);
+border-radius: 10px;
+display: flex;
+align-items: center;
+gap: 15px;
+font-size: 0.85rem;
+}
+.info-alert-icon {
+font-size: 1.4rem;
+flex-shrink: 0;
+}
+.info-alert-content {
+color: var(--text-muted);
+line-height: 1.5;
+}
+.info-alert strong {
+color: var(--accent);
+}
+.formula-display {
+background: rgba(0, 212, 255, 0.05);
+border: 1px dashed var(--accent);
+border-radius: 6px;
+padding: 8px 12px;
+margin-top: 8px;
+font-family: 'Consolas', monospace;
+font-size: 0.75rem;
+color: var(--accent);
+}
+/* --- MAIN LAYOUT --- */
+.app {
+max-width: 1400px;
+margin: 0 auto;
+padding: 0 20px 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+gap: 15px;
+}
+/* --- PANELS --- */
+.panel {
+background: var(--panel-bg);
+border: 1px solid var(--border);
+border-radius: 10px;
+overflow: hidden;
+transition: all 0.3s;
+}
+.panel:hover {
+border-color: var(--text-muted);
+transform: translateY(-2px);
+}
+.panel.critical {
+border-color: var(--accent);
+box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+}
+.panel.audio {
+border-color: var(--audio-blue);
+box-shadow: 0 0 15px rgba(0, 184, 255, 0.1);
+}
+.panel.premium {
+border-color: var(--gold);
+box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+}
+.panel.style {
+border-color: var(--style-pink);
+box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
+}
+.panel-header {
+padding: 14px 18px;
+background: rgba(255,255,255,0.02);
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+user-select: none;
+}
+.panel-header h3 {
+margin: 0;
+font-size: 0.95rem;
+color: var(--text-main);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.panel-priority {
+font-size: 0.65rem;
+padding: 2px 6px;
+border-radius: 4px;
+text-transform: uppercase;
+font-weight: 700;
+}
+.priority-high {
+background: rgba(255, 170, 0, 0.2);
+color: var(--warning);
+}
+.priority-critical {
+background: rgba(255, 71, 87, 0.2);
+color: var(--danger);
+}
+.priority-premium {
+background: rgba(255, 215, 0, 0.2);
+color: var(--gold);
+}
+.priority-audio {
+background: rgba(0, 184, 255, 0.2);
+color: var(--audio-blue);
+}
+.priority-style {
+background: rgba(236, 72, 153, 0.2);
+color: var(--style-pink);
+}
+.panel-summary {
+font-size: 0.7rem;
+color: var(--accent);
+max-width: 180px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.panel-header::after {
+content: '▼';
+font-size: 0.65rem;
+color: var(--text-muted);
+transition: transform 0.3s;
+}
+.panel.active .panel-header::after {
+transform: rotate(180deg);
+}
+.panel.active {
+border-color: var(--accent);
+}
+.panel-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease;
+padding: 0 18px;
+}
+.panel.active .panel-content {
+max-height: 1000px;
+padding: 18px;
+border-top: 1px solid var(--border);
+}
+/* --- INPUTS --- */
+textarea, input[type="text"] {
+width: 100%;
+background: #0a0c10;
+border: 1px solid var(--border);
+color: var(--text-main);
+padding: 10px;
+border-radius: 6px;
+margin-bottom: 10px;
+font-size: 0.85rem;
+resize: vertical;
+min-height: 65px;
+font-family: 'Consolas', monospace;
+}
+textarea:focus, input:focus {
+outline: 1px solid var(--accent);
+border-color: var(--accent);
+}
+textarea::placeholder {
+color: var(--text-muted);
+}
+/* --- OPTION GRIDS --- */
+.option-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+gap: 7px;
+margin-bottom: 12px;
+}
+.option-btn {
+background: #1a1e26;
+border: 1px solid var(--border);
+color: var(--text-muted);
+padding: 8px 12px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 0.75rem;
+text-align: center;
+transition: all 0.25s;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+user-select: none;
+position: relative;
+}
+.option-btn:hover {
+border-color: var(--text-muted);
+color: var(--text-main);
+background: #222831;
+}
+.option-btn.selected {
+background: linear-gradient(135deg, var(--accent), #00a3cc);
+color: #000;
+border-color: var(--accent);
+font-weight: 700;
+box-shadow: 0 0 15px var(--accent-glow);
+}
+.option-btn.audio {
+border-color: var(--audio-blue);
+color: var(--audio-blue);
+}
+.option-btn.audio.selected {
+background: linear-gradient(135deg, var(--audio-blue), #0088cc);
+color: #000;
+border-color: var(--audio-blue);
+box-shadow: 0 0 15px rgba(0, 184, 255, 0.4);
+}
+.option-btn.premium {
+border-color: var(--gold);
+color: var(--gold);
+}
+.option-btn.premium.selected {
+background: linear-gradient(135deg, var(--gold), #ffaa00);
+color: #000;
+border-color: var(--gold);
+box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+.option-btn.style {
+border-color: var(--style-pink);
+color: var(--style-pink);
+}
+.option-btn.style.selected {
+background: linear-gradient(135deg, var(--style-pink), #db2777);
+color: #fff;
+border-color: var(--style-pink);
+box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+}
+.sub-label {
+font-size: 0.7rem;
+color: var(--text-muted);
+text-transform: uppercase;
+margin: 12px 0 6px;
+display: block;
+letter-spacing: 0.5px;
+font-weight: 600;
+}
+.sub-label.critical {
+color: var(--warning);
+}
+.sub-label.danger {
+color: var(--danger);
+}
+.sub-label.premium {
+color: var(--gold);
+}
+.sub-label.audio {
+color: var(--audio-blue);
+}
+.sub-label.style {
+color: var(--style-pink);
+}
+/* --- STYLE TABS --- */
+.style-tabs {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+margin-bottom: 12px;
+}
+.style-tab {
+background: #1a1e26;
+border: 1px solid var(--border);
+color: var(--text-muted);
+padding: 6px 12px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 0.7rem;
+font-weight: 600;
+transition: all 0.2s;
+}
+.style-tab:hover {
+border-color: var(--text-muted);
+color: var(--text-main);
+}
+.style-tab.active {
+background: linear-gradient(135deg, var(--style-pink), #db2777);
+color: #fff;
+border-color: var(--style-pink);
+}
+/* --- STYLE WEIGHT SLIDER --- */
+.style-weight-container {
+background: #1a1e26;
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 12px;
+margin-top: 12px;
+}
+.style-weight-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 8px;
+}
+.style-weight-label {
+font-size: 0.75rem;
+color: var(--text-muted);
+text-transform: uppercase;
+font-weight: 600;
+}
+.style-weight-value {
+font-size: 0.85rem;
+color: var(--style-pink);
+font-weight: 700;
+font-family: 'Consolas', monospace;
+}
+.style-slider {
+width: 100%;
+height: 6px;
+background: #2a3038;
+border-radius: 3px;
+appearance: none;
+outline: none;
+}
+.style-slider::-webkit-slider-thumb {
+appearance: none;
+width: 18px;
+height: 18px;
+background: linear-gradient(135deg, var(--style-pink), #db2777);
+border-radius: 50%;
+cursor: pointer;
+box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+}
+.style-slider-labels {
+display: flex;
+justify-content: space-between;
+font-size: 0.65rem;
+color: var(--text-muted);
+margin-top: 6px;
+}
+/* --- STYLE PREVIEW BOX --- */
+.style-preview {
+background: rgba(236, 72, 153, 0.1);
+border: 1px solid var(--style-pink);
+border-radius: 6px;
+padding: 10px;
+margin-top: 12px;
+font-size: 0.75rem;
+}
+.style-preview-title {
+color: var(--style-pink);
+font-weight: 700;
+margin-bottom: 6px;
+text-transform: uppercase;
+font-size: 0.65rem;
+}
+.style-preview-item {
+color: var(--text-main);
+margin: 3px 0;
+}
+/* --- FIXED OUTPUT AREA --- */
+.output-area {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+background: linear-gradient(180deg, var(--panel-bg) 0%, #0f1115 100%);
+border-top: 2px solid var(--accent);
+padding: 18px 20px;
+z-index: 1000;
+box-shadow: 0 -6px 30px rgba(0,0,0,0.7);
+}
+.output-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 12px;
+flex-wrap: wrap;
+gap: 10px;
+}
+.output-title {
+font-size: 0.85rem;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 1px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.grok-structure-hint {
+font-size: 0.68rem;
+color: var(--accent);
+background: rgba(0, 212, 255, 0.1);
+padding: 4px 10px;
+border-radius: 12px;
+font-family: 'Consolas', monospace;
+}
+.output-controls {
+display: flex;
+gap: 10px;
+margin-bottom: 12px;
+justify-content: center;
+flex-wrap: wrap;
+}
+#result {
+width: 100%;
+height: 110px;
+background: #0a0c10;
+border: 1px solid var(--border);
+color: var(--success);
+padding: 12px;
+border-radius: 6px;
+font-family: 'Consolas', monospace;
+font-size: 0.85rem;
+resize: vertical;
+line-height: 1.5;
+}
+#result:focus {
+outline: 1px solid var(--success);
+border-color: var(--success);
+}
+.btn {
+padding: 10px 22px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+font-weight: 700;
+text-transform: uppercase;
+font-size: 0.8rem;
+transition: all 0.25s;
+letter-spacing: 0.5px;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.btn-primary {
+background: linear-gradient(135deg, var(--accent), #00a3cc);
+color: #000;
+box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+.btn-secondary {
+background: #2a3038;
+color: var(--text-main);
+}
+.btn-secondary:hover {
+background: #3a424d;
+}
+.btn-random {
+background: transparent;
+border: 1px solid var(--text-muted);
+color: var(--text-muted);
+}
+.btn-random:hover {
+border-color: var(--text-main);
+color: var(--text-main);
+}
+.btn-grok {
+background: linear-gradient(135deg, var(--grok-purple), #6d28d9);
+color: #fff;
+}
+.btn-grok:hover {
+box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+.btn-premium {
+background: linear-gradient(135deg, var(--gold), #ffaa00);
+color: #000;
+}
+.btn-premium:hover {
+box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+/* --- SPICY MODE --- */
+.spicy-warning {
+background: rgba(255, 170, 0, 0.1);
+border: 1px solid var(--warning);
+border-radius: 6px;
+padding: 10px;
+margin-bottom: 12px;
+font-size: 0.75rem;
+color: var(--warning);
+}
+.spicy-toggle {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px;
+}
+.toggle-switch {
+width: 44px;
+height: 24px;
+background: #2a3038;
+border-radius: 12px;
+position: relative;
+cursor: pointer;
+transition: background 0.3s;
+}
+.toggle-switch.active {
+background: var(--warning);
+}
+.toggle-switch::after {
+content: '';
+position: absolute;
+width: 18px;
+height: 18px;
+background: #fff;
+border-radius: 50%;
+top: 3px;
+left: 3px;
+transition: transform 0.3s;
+}
+.toggle-switch.active::after {
+transform: translateX(20px);
+}
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar {
+width: 7px;
+height: 7px;
+}
+::-webkit-scrollbar-track {
+background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+background: var(--border);
+border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: var(--text-muted);
+}
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+.top-bar {
+flex-direction: column;
+align-items: flex-start;
+}
+.summary-container {
+margin-left: 0;
+width: 100%;
+}
+.app {
+grid-template-columns: 1fr;
+}
+.output-controls {
+flex-direction: column;
+}
+.btn {
+width: 100%;
+justify-content: center;
+}
+}
+</style>
+</head>
+<body>
+<!-- TOP BAR -->
+<div class="top-bar">
+<div class="brand">
+<div class="brand-logo">G</div>
+<div class="brand-text">
+<h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.5</span></h1>
+<span data-i18n="subtitle">Imagine 1.0 | Visual Style Enhanced</span>
+</div>
+</div>
+<div class="summary-container" id="summaryBar">
+<span class="summary-label" data-i18n="active">Active:</span>
+<div id="summaryTags" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+</div>
+<div class="lang-switch">
+<button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">EN</button>
+<button class="lang-btn" onclick="setLanguage('es')" id="btn-es">ES</button>
+</div>
+</div>
+<!-- INFO ALERT -->
+<div class="info-alert">
+<span class="info-alert-icon">⚡</span>
+<div class="info-alert-content">
+<strong data-i18n="alertTitle">Grok Protocol Active:</strong>
+<span data-i18n="alertText">Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.</span>
+<div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Detalles]+[Estilo Visual]</div>
+</div>
+<span class="grok-badge">Aurora MoE</span>
+</div>
+<div class="app">
+<!-- PANEL 1: SUBJECT -->
+<div class="panel critical active">
+<div class="panel-header">
+<h3>
+🎯 <span data-i18n="subject">Subject & Action</span>
+<span class="panel-priority priority-critical" data-i18n="priorityCritical">LAYER 1</span>
+</h3>
+<span class="panel-summary" id="sum-subject"></span>
+</div>
+<div class="panel-content">
+<div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--warning);">
+<strong>⚠️ CRITICAL:</strong> <span data-i18n="subjectWarning">These tokens have LOGARITHMIC WEIGHT. Must be FIRST in prompt for Grok Aurora engine.</span>
+</div>
+<label class="sub-label critical" data-i18n="mainSubject">Main Subject (FIRST in prompt)</label>
+<textarea id="subject" placeholder="e.g. A cybernetic warrior with neon tattoos and natural skin pores..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="action">Primary Action</label>
+<textarea id="action" placeholder="e.g. walking through rain-soaked neon streets with wind affecting clothing..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="characterDNA">Character DNA (Immutable Traits)</label>
+<textarea id="charDNA" placeholder="Age, ethnicity, voice tone, exact features for consistency..." oninput="updateSummary()"></textarea>
+</div>
+</div>
+<!-- PANEL 2: LENS LIBRARY -->
+<div class="panel">
+<div class="panel-header">
+<h3>📷 <span data-i18n="lensLibrary">Lens Library</span></h3>
+<span class="panel-summary" id="sum-lens"></span>
+</div>
+<div class="panel-content">
+<label class="sub-label" data-i18n="focalLength">Focal Length</label>
+<div class="option-grid" data-group="focalLength">
+<button class="option-btn" data-value="14mm fisheye lens, extreme wide distortion" data-i18n-btn="btn_14mm">14mm Fisheye</button>
+<button class="option-btn" data-value="24mm wide angle lens, environmental context" data-i18n-btn="btn_24mm">24mm Wide</button>
+<button class="option-btn" data-value="35mm lens, natural perspective" data-i18n-btn="btn_35mm">35mm Standard</button>
+<button class="option-btn" data-value="50mm standard lens, natural view" data-i18n-btn="btn_50mm">50mm Normal</button>
+<button class="option-btn" data-value="85mm lens, portrait with bokeh" data-i18n-btn="btn_85mm">85mm Portrait</button>
+<button class="option-btn" data-value="135mm telephoto lens, compressed background" data-i18n-btn="btn_135mm">135mm Tele</button>
+<button class="option-btn" data-value="200mm super telephoto, extreme compression" data-i18n-btn="btn_200mm">200mm Super</button>
+</div>
+<label class="sub-label" data-i18n="specialtyLenses">Specialty Lenses</label>
+<div class="option-grid" data-group="specialtyLenses">
+<button class="option-btn" data-value="anamorphic lens, cinematic flares" data-i18n-btn="btn_anamorphic">Anamorphic</button>
+<button class="option-btn" data-value="tilt-shift lens, miniature effect" data-i18n-btn="btn_tiltshift">Tilt-Shift</button>
+<button class="option-btn" data-value="macro lens, extreme detail" data-i18n-btn="btn_macro">Macro</button>
+<button class="option-btn" data-value="soft focus lens, dreamy glow" data-i18n-btn="btn_softfocus">Soft Focus</button>
+</div>
+</div>
+</div>
+<!-- PANEL 3: CAMERA SHOTS -->
+<div class="panel">
+<div class="panel-header">
+<h3>🎬 <span data-i18n="cameraShots">Camera Shots</span></h3>
+<span class="panel-summary" id="sum-shots"></span>
+</div>
+<div class="panel-content">
+<label class="sub-label" data-i18n="shotSize">Shot Size</label>
+<div class="option-grid" data-group="shotSize">
+<button class="option-btn" data-value="extreme close-up shot, eye or mouth detail" data-i18n-btn="btn_extremecu">Extreme CU</button>
+<button class="option-btn" data-value="close-up shot, facial details" data-i18n-btn="btn_closeup">Close-Up</button>
+<button class="option-btn" data-value="medium shot, waist up" data-i18n-btn="btn_mediumshot">Medium Shot</button>
+<button class="option-btn" data-value="full body shot, complete figure" data-i18n-btn="btn_fullbody">Full Body</button>
+<button class="option-btn" data-value="wide shot, full scene context" data-i18n-btn="btn_wideshot">Wide Shot</button>
+<button class="option-btn" data-value="extreme wide shot, establishing shot" data-i18n-btn="btn_extremewide">Extreme Wide</button>
+</div>
+<label class="sub-label" data-i18n="cameraAngles">Camera Angles</label>
+<div class="option-grid" data-group="cameraAngles">
+<button class="option-btn" data-value="eye level shot, neutral perspective" data-i18n-btn="btn_eyelevel">Eye Level</button>
+<button class="option-btn" data-value="low angle shot, powerful perspective" data-i18n-btn="btn_lowangle">Low Angle</button>
+<button class="option-btn" data-value="high angle shot, vulnerable perspective" data-i18n-btn="btn_highangle">High Angle</button>
+<button class="option-btn" data-value="worm's eye view, extreme low angle" data-i18n-btn="btn_wormseye">Worm's Eye</button>
+<button class="option-btn" data-value="bird's eye view, drone top down" data-i18n-btn="btn_birdseye">Bird's Eye</button>
+<button class="option-btn" data-value="over the shoulder shot, conversation view" data-i18n-btn="btn_overshoulder">Over Shoulder</button>
+<button class="option-btn" data-value="POV shot, first person perspective" data-i18n-btn="btn_pov">POV</button>
+<button class="option-btn" data-value="dutch angle tilt, uneasy atmosphere" data-i18n-btn="btn_dutchangle">Dutch Angle</button>
+</div>
+</div>
+</div>
+<!-- PANEL 4: CAMERA MOVEMENT -->
+<div class="panel">
+<div class="panel-header">
+<h3>🎥 <span data-i18n="cameraMovement">Camera Movement</span></h3>
+<span class="panel-summary" id="sum-movement"></span>
+</div>
+<div class="panel-content">
+<label class="sub-label critical" data-i18n="movementNote">Critical for Grok Video - 8s segments max</label>
+<div class="option-grid" data-group="cameraMovement">
+<button class="option-btn" data-value="slow dolly in toward subject" data-i18n-btn="btn_dollyin">Dolly In</button>
+<button class="option-btn" data-value="slow dolly out from subject" data-i18n-btn="btn_dollyout">Dolly Out</button>
+<button class="option-btn" data-value="tracking shot following subject movement" data-i18n-btn="btn_tracking">Tracking</button>
+<button class="option-btn" data-value="slow pan left" data-i18n-btn="btn_panleft">Pan Left</button>
+<button class="option-btn" data-value="slow pan right" data-i18n-btn="btn_panright">Pan Right</button>
+<button class="option-btn" data-value="tilt up to reveal" data-i18n-btn="btn_tiltup">Tilt Up</button>
+<button class="option-btn" data-value="tilt down to ground" data-i18n-btn="btn_tiltdown">Tilt Down</button>
+<button class="option-btn" data-value="360 degree orbit shot around subject" data-i18n-btn="btn_orbit">360° Orbit</button>
+<button class="option-btn" data-value="crane shot ascending" data-i18n-btn="btn_craneup">Crane Up</button>
+<button class="option-btn" data-value="crane shot descending" data-i18n-btn="btn_cranedown">Crane Down</button>
+<button class="option-btn" data-value="handheld camera shake, documentary style" data-i18n-btn="btn_handheld">Handheld</button>
+<button class="option-btn" data-value="steadicam smooth motion, gliding" data-i18n-btn="btn_steadicam">Steadicam</button>
+<button class="option-btn" data-value="slow zoom in" data-i18n-btn="btn_slowzoom">Slow Zoom</button>
+<button class="option-btn" data-value="snap zoom, dramatic emphasis" data-i18n-btn="btn_snapzoom">Snap Zoom</button>
+<button class="option-btn" data-value="rack focus from foreground to background" data-i18n-btn="btn_rackfocus">Rack Focus</button>
+</div>
+</div>
+</div>
+<!-- PANEL 5: EYE LINES -->
+<div class="panel critical">
+<div class="panel-header">
+<h3>
+👁️ <span data-i18n="eyeLines">Eye Lines</span>
+<span class="panel-priority priority-high" data-i18n="grokCritical">GROK</span>
+</h3>
+<span class="panel-summary" id="sum-eyelines"></span>
+</div>
+<div class="panel-content">
+<div style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--text-muted);">
+<strong data-i18n="eyeLinesInfo">Grok breaks fourth wall by default. Specify eye lines to avoid uncanny valley.</strong>
+</div>
+<div class="option-grid" data-group="eyeLines">
+<button class="option-btn" data-value="diegetic eye lines, subject not looking at camera" data-i18n-btn="btn_avoidcamera">Avoid Camera</button>
+<button class="option-btn" data-value="subject looking directly at camera, influencer style" data-i18n-btn="btn_influencer">Influencer</button>
+<button class="option-btn" data-value="subject looking off-camera, natural gaze" data-i18n-btn="btn_offcamera">Off-Camera</button>
+<button class="option-btn" data-value="eyes closed, emotional moment" data-i18n-btn="btn_eyesclosed">Eyes Closed</button>
+</div>
+</div>
+</div>
+<!-- PANEL 6: LIGHTING -->
+<div class="panel">
+<div class="panel-header">
+<h3>💡 <span data-i18n="lighting">Lighting</span></h3>
+<span class="panel-summary" id="sum-lighting"></span>
+</div>
+<div class="panel-content">
+<label class="sub-label" data-i18n="timeOfDay">Time of Day</label>
+<div class="option-grid" data-group="timeOfDay">
+<button class="option-btn" data-value="dawn lighting, soft warm glow" data-i18n-btn="btn_dawn">Dawn</button>
+<button class="option-btn" data-value="midday sun, harsh shadows" data-i18n-btn="btn_midday">Midday</button>
+<button class="option-btn" data-value="sunset glow, golden hour" data-i18n-btn="btn_sunset">Sunset</button>
+<button class="option-btn" data-value="nighttime scene, artificial lights" data-i18n-btn="btn_night">Night</button>
+<button class="option-btn" data-value="blue hour lighting, cool twilight" data-i18n-btn="btn_bluehour">Blue Hour</button>
+</div>
+<label class="sub-label" data-i18n="lightingType">Lighting Type</label>
+<div class="option-grid" data-group="lightingType">
+<button class="option-btn" data-value="dramatic chiaroscuro lighting, high contrast" data-i18n-btn="btn_chiaroscuro">Chiaroscuro</button>
+<button class="option-btn" data-value="softbox lighting, even illumination" data-i18n-btn="btn_softbox">Softbox</button>
+<button class="option-btn" data-value="rim lighting, edge highlight separation" data-i18n-btn="btn_rimlight">Rim Light</button>
+<button class="option-btn" data-value="neon lighting, colorful ambient glow" data-i18n-btn="btn_neon">Neon</button>
+<button class="option-btn" data-value="volumetric lighting, god rays" data-i18n-btn="btn_volumetric">Volumetric</button>
+<button class="option-btn" data-value="natural lighting, sun position accurate" data-i18n-btn="btn_natural">Natural</button>
+<button class="option-btn" data-value="practical lights in scene, motivated sources" data-i18n-btn="btn_practical">Practical</button>
+<button class="option-btn" data-value="motivated lighting from visible sources" data-i18n-btn="btn_motivated">Motivated</button>
+</div>
+<label class="sub-label" data-i18n="mood">Mood & Atmosphere</label>
+<div class="option-grid" data-group="mood">
+<button class="option-btn" data-value="dark atmosphere" data-i18n-btn="btn_dark">Dark</button>
+<button class="option-btn" data-value="epic atmosphere" data-i18n-btn="btn_epic">Epic</button>
+<button class="option-btn" data-value="mysterious atmosphere" data-i18n-btn="btn_mysterious">Mysterious</button>
+<button class="option-btn" data-value="hopeful atmosphere" data-i18n-btn="btn_hopeful">Hopeful</button>
+<button class="option-btn" data-value="melancholic atmosphere" data-i18n-btn="btn_melancholic">Melancholic</button>
+<button class="option-btn" data-value="tense atmosphere" data-i18n-btn="btn_tense">Tense</button>
+</div>
+</div>
+</div>
+<!-- PANEL 7: OPTICAL EFFECTS -->
+<div class="panel">
+<div class="panel-header">
+<h3>🎞️ <span data-i18n="opticalEffects">Optical Effects</span></h3>
+<span class="panel-summary" id="sum-optical"></span>
+</div>
+<div class="panel-content">
+<div class="option-grid" data-group="opticalEffects">
+<button class="option-btn" data-value="cinematic depth of field, shallow focus" data-i18n-btn="btn_dof">Depth of Field</button>
+<button class="option-btn" data-value="bokeh background blur, creamy out of focus" data-i18n-btn="btn_bokeh">Bokeh</button>
+<button class="option-btn" data-value="film grain texture, 35mm film stock" data-i18n-btn="btn_filmgrain">Film Grain</button>
+<button class="option-btn" data-value="motion blur effect, natural movement" data-i18n-btn="btn_motionblur">Motion Blur</button>
+<button class="option-btn" data-value="lens flare effect, anamorphic streaks" data-i18n-btn="btn_lensflare">Lens Flare</button>
+<button class="option-btn" data-value="slight chromatic aberration, realistic lens" data-i18n-btn="btn_chromatic">Chromatic Aberration</button>
+<button class="option-btn" data-value="subtle vignette, focus attention center" data-i18n-btn="btn_vignette">Vignette</button>
+<button class="option-btn" data-value="bloom effect, highlight glow" data-i18n-btn="btn_bloom">Bloom</button>
+<button class="option-btn" data-value="teal and orange color grading, cinematic" data-i18n-btn="btn_tealorange">Teal & Orange</button>
+<button class="option-btn" data-value="HDR enhanced, high dynamic range" data-i18n-btn="btn_hdr">HDR</button>
+</div>
+</div>
+</div>
+<!-- PANEL 8: STYLE & RENDER -->
+<div class="panel">
+<div class="panel-header">
+<h3>🎨 <span data-i18n="visualStyle">Visual Style</span></h3>
+<span class="panel-summary" id="sum-style"></span>
+</div>
+<div class="panel-content">
+<label class="sub-label" data-i18n="artStyle">Art Style</label>
+<div class="option-grid" data-group="artStyle">
+<button class="option-btn" data-value="cinematic photography" data-i18n-btn="btn_cinematic">Cinematic</button>
+<button class="option-btn" data-value="cyberpunk aesthetic" data-i18n-btn="btn_cyberpunk">Cyberpunk</button>
+<button class="option-btn" data-value="ultra realistic, photorealistic" data-i18n-btn="btn_realistic">Realistic</button>
+<button class="option-btn" data-value="anime style" data-i18n-btn="btn_anime">Anime</button>
+<button class="option-btn" data-value="fantasy art" data-i18n-btn="btn_fantasy">Fantasy</button>
+<button class="option-btn" data-value="documentary style" data-i18n-btn="btn_documentary">Documentary</button>
+<button class="option-btn" data-value="music video aesthetic" data-i18n-btn="btn_musicvideo">Music Video</button>
+<button class="option-btn" data-value="commercial advertising style" data-i18n-btn="btn_commercial">Commercial</button>
+</div>
+<label class="sub-label" data-i18n="renderEngine">Render Engine</label>
+<div class="option-grid" data-group="renderEngine">
+<button class="option-btn" data-value="Unreal Engine 5 render" data-i18n-btn="btn_unreal5">Unreal 5</button>
+<button class="option-btn" data-value="Octane render" data-i18n-btn="btn_octane">Octane</button>
+<button class="option-btn" data-value="Redshift render" data-i18n-btn="btn_redshift">Redshift</button>
+</div>
+<label class="sub-label critical" data-i18n="grokTerms">Grok-Specific Terms (CRITICAL)</label>
+<div class="option-grid" data-group="grokTerms">
+<button class="option-btn" data-value="subsurface scattering for organic materials" data-i18n-btn="btn_subsurface">Subsurface Scattering</button>
+<button class="option-btn" data-value="natural skin pores and textures" data-i18n-btn="btn_skindetails">Skin Details</button>
+<button class="option-btn" data-value="uncanny valley neutralization" data-i18n-btn="btn_antiuncanny">Anti-Uncanny</button>
+<button class="option-btn" data-value="individual hair strands, realistic" data-i18n-btn="btn_hairdetails">Hair Details</button>
+</div>
+</div>
+</div>
+<!-- ✨ PANEL 8.5: VISUAL STYLE ARCHITECT (NEW) -->
+<div class="panel style">
+<div class="panel-header">
+<h3>
+🎨 <span data-i18n="visualStyleArchitect">Visual Style Architect</span>
+<span class="panel-priority priority-style" data-i18n="priorityHigh">HIGH PRIORITY</span>
+</h3>
+<span class="panel-summary" id="sum-stylearch"></span>
+</div>
+<div class="panel-content">
+<div style="background: rgba(236, 72, 153, 0.1); border: 1px solid var(--style-pink); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--style-pink);">
+<strong>✨ NEW:</strong> <span data-i18n="styleArchWarning">Select aesthetic filter + character FX. Control style weight for Grok optimization.</span>
+</div>
+<!-- Style Tabs -->
+<label class="sub-label style" data-i18n="mainAesthetic">Main Aesthetic (Filter Base)</label>
+<div class="style-tabs" id="styleTabs">
+<button class="style-tab active" data-tab="cinematic" data-i18n-tab="tab_cinematic">Cinematic</button>
+<button class="style-tab" data-tab="photography" data-i18n-tab="tab_photography">Photography</button>
+<button class="style-tab" data-tab="animation" data-i18n-tab="tab_animation">Animation</button>
+<button class="style-tab" data-tab="artistic" data-i18n-tab="tab_artistic">Artistic</button>
+<button class="style-tab" data-tab="experimental" data-i18n-tab="tab_experimental">Experimental</button>
+</div>
+<!-- Style Grid -->
+<div class="option-grid" id="styleGrid" data-group="visualStyle"></div>
+<!-- Makeup & Character FX -->
+<details style="background: #1a1e26; border: 1px solid var(--border); border-radius: 6px; margin-top: 12px;">
+<summary style="padding: 10px; cursor: pointer; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">
+💄 <span data-i18n="makeupFX">Makeup & Character FX</span> <span style="color: var(--text-muted); font-weight: 400;" data-i18n="optional">(optional)</span>
+</summary>
+<div class="option-grid" id="makeupGrid" data-group="makeupFX" style="padding: 12px;"></div>
+</details>
+<!-- Style Weight Slider -->
+<div class="style-weight-container">
+<div class="style-weight-header">
+<span class="style-weight-label" data-i18n="styleWeight">Style Weight</span>
+<span class="style-weight-value" id="styleWeightValue">50%</span>
+</div>
+<input type="range" class="style-slider" id="styleWeight" min="0" max="100" value="50" oninput="updateStyleWeight()">
+<div class="style-slider-labels">
+<span data-i18n="subtle">Subtle</span>
+<span data-i18n="balanced">Balanced</span>
+<span data-i18n="dominant">Dominant</span>
+</div>
+</div>
+<!-- Style Preview -->
+<div class="style-preview" id="stylePreview" style="display: none;">
+<div class="style-preview-title" data-i18n="activeStyle">Active Style:</div>
+<div id="stylePreviewContent"></div>
+</div>
+</div>
+</div>
+<!-- PANEL 9: ENVIRONMENT & PHYSICS -->
+<div class="panel">
+<div class="panel-header">
+<h3>🌍 <span data-i18n="environment">Environment & Physics</span></h3>
+<span class="panel-summary" id="sum-environment"></span>
+</div>
+<div class="panel-content">
+<label class="sub-label" data-i18n="location">Location</label>
+<textarea id="location" placeholder="e.g. rain-soaked neon cityscape with reflections..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="biome">Biome</label>
+<div class="option-grid" data-group="biome">
+<button class="option-btn" data-value="forest environment" data-i18n-btn="btn_forest">Forest</button>
+<button class="option-btn" data-value="desert environment" data-i18n-btn="btn_desert">Desert</button>
+<button class="option-btn" data-value="futuristic cityscape" data-i18n-btn="btn_city">City</button>
+<button class="option-btn" data-value="mountain region" data-i18n-btn="btn_mountain">Mountain</button>
+<button class="option-btn" data-value="outer space" data-i18n-btn="btn_space">Space</button>
+<button class="option-btn" data-value="interior scene" data-i18n-btn="btn_interior">Interior</button>
+<button class="option-btn" data-value="underwater environment" data-i18n-btn="btn_underwater">Underwater</button>
+</div>
+<label class="sub-label critical" data-i18n="physicalDynamics">Physical Dynamics (LAYER 4)</label>
+<div class="option-grid" data-group="physicalDynamics">
+<button class="option-btn" data-value="wind affecting clothing and hair, realistic physics" data-i18n-btn="btn_wind">Wind</button>
+<button class="option-btn" data-value="rainy weather, water droplets on surfaces" data-i18n-btn="btn_rain">Rain</button>
+<button class="option-btn" data-value="foggy atmosphere, volumetric mist" data-i18n-btn="btn_fog">Fog</button>
+<button class="option-btn" data-value="smoke particles, atmospheric haze" data-i18n-btn="btn_smoke">Smoke</button>
+<button class="option-btn" data-value="fire embers, heat distortion" data-i18n-btn="btn_fire">Fire</button>
+<button class="option-btn" data-value="water splashes, fluid dynamics" data-i18n-btn="btn_water">Water</button>
+<button class="option-btn" data-value="dust particles in light rays" data-i18n-btn="btn_dust">Dust</button>
+<button class="option-btn" data-value="snowing weather, snowflakes falling" data-i18n-btn="btn_snow">Snow</button>
+<button class="option-btn" data-value="fabric flowing in wind, realistic cloth simulation" data-i18n-btn="btn_fabric">Fabric</button>
+</div>
+</div>
+</div>
+<!-- PANEL 10: COMPOSITION -->
+<div class="panel">
+<div class="panel-header">
+<h3>📐 <span data-i18n="composition">Composition</span></h3>
+<span class="panel-summary" id="sum-composition"></span>
+</div>
+<div class="panel-content">
+<div class="option-grid" data-group="composition">
+<button class="option-btn" data-value="rule of thirds composition" data-i18n-btn="btn_ruleofthirds">Rule of Thirds</button>
+<button class="option-btn" data-value="centered composition, symmetrical" data-i18n-btn="btn_centered">Centered</button>
+<button class="option-btn" data-value="leading lines guiding to subject" data-i18n-btn="btn_leadinglines">Leading Lines</button>
+<button class="option-btn" data-value="frame within frame composition" data-i18n-btn="btn_framewithin">Frame Within</button>
+<button class="option-btn" data-value="negative space, minimalist composition" data-i18n-btn="btn_negativespace">Negative Space</button>
+<button class="option-btn" data-value="golden ratio composition" data-i18n-btn="btn_goldenratio">Golden Ratio</button>
+</div>
+</div>
+</div>
+<!-- PANEL 11: QUALITY & RESOLUTION (PREMIUM) -->
+<div class="panel premium">
+<div class="panel-header">
+<h3>
+💎 <span data-i18n="qualityPanel">Quality & Resolution</span>
+<span class="panel-priority priority-premium" data-i18n="premium">PREMIUM</span>
+</h3>
+<span class="panel-summary" id="sum-quality"></span>
+</div>
+<div class="panel-content">
+<div style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--gold);">
+<strong>⚠️ NOTE:</strong> <span data-i18n="qualityNote">Grok native output is 720p HD. 4K/8K keywords enhance detail but require upscaling in post-production for actual higher resolution.</span>
+</div>
+<label class="sub-label premium" data-i18n="resolution">Resolution Modifiers</label>
+<div class="option-grid" data-group="resolution">
+<button class="option-btn premium" data-value="720p HD" data-i18n-btn="btn_720p">720p HD (Native)</button>
+<button class="option-btn premium" data-value="4K resolution, ultra detailed" data-i18n-btn="btn_4k">4K Enhanced</button>
+<button class="option-btn premium" data-value="8K resolution, maximum detail" data-i18n-btn="btn_8k">8K Maximum</button>
+</div>
+<label class="sub-label premium" data-i18n="qualityModifiers">Quality Modifiers</label>
+<div class="option-grid" data-group="qualityModifiers">
+<button class="option-btn premium" data-value="ultra realistic, photorealistic" data-i18n-btn="btn_ultrarealistic">Ultra Realistic</button>
+<button class="option-btn premium" data-value="high detail, intricate details" data-i18n-btn="btn_highdetail">High Detail</button>
+<button class="option-btn premium" data-value="masterpiece quality" data-i18n-btn="btn_masterpiece">Masterpiece</button>
+<button class="option-btn premium" data-value="award winning photography" data-i18n-btn="btn_awardwinning">Award Winning</button>
+<button class="option-btn premium" data-value="professional grade" data-i18n-btn="btn_professional">Professional</button>
+<button class="option-btn premium" data-value="studio quality" data-i18n-btn="btn_studioquality">Studio Quality</button>
+<button class="option-btn premium" data-value="crystal clear, sharp focus" data-i18n-btn="btn_crystalclear">Crystal Clear</button>
+<button class="option-btn premium" data-value="HDR enhanced, high dynamic range" data-i18n-btn="btn_hdrenhanced">HDR Enhanced</button>
+</div>
+<label class="sub-label premium" data-i18n="detailEnhancers">Detail Enhancers</label>
+<div class="option-grid" data-group="detailEnhancers">
+<button class="option-btn premium" data-value="intricate details, fine textures" data-i18n-btn="btn_intricatedetails">Intricate Details</button>
+<button class="option-btn premium" data-value="hyper detailed, micro details" data-i18n-btn="btn_hyperdetailed">Hyper Detailed</button>
+<button class="option-btn premium" data-value="sharp focus, crisp edges" data-i18n-btn="btn_sharpfocus">Sharp Focus</button>
+<button class="option-btn premium" data-value="rich colors, vibrant palette" data-i18n-btn="btn_richcolors">Rich Colors</button>
+<button class="option-btn premium" data-value="premium texture quality" data-i18n-btn="btn_premiumtextures">Premium Textures</button>
+</div>
+</div>
+</div>
+<!-- PANEL 12: AUDIO ENHANCED (LAYER 5) -->
+<div class="panel audio">
+<div class="panel-header">
+<h3>
+🔊 <span data-i18n="audio">Audio Composition</span>
+<span class="panel-priority priority-audio" data-i18n="audioCritical">LAYER 5</span>
+</h3>
+<span class="panel-summary" id="sum-audio"></span>
+</div>
+<div class="panel-content">
+<div style="background: rgba(0, 184, 255, 0.1); border: 1px solid var(--audio-blue); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--audio-blue);">
+<strong>⚠️ AUDIO QUALITY NOTE:</strong> <span data-i18n="audioWarning">Grok native audio mixes all elements (music + SFX + dialogue) which causes distortion. For clean audio: select ONE type only, then process in Adobe Podcast for HD quality.</span>
+</div>
+<label class="sub-label audio" data-i18n="audioType">Audio Type (Select ONE for clean output)</label>
+<div class="option-grid" data-group="audioType">
+<button class="option-btn audio" data-value="music only, no dialogue" data-i18n-btn="btn_musicOnly">Music Only</button>
+<button class="option-btn audio" data-value="sound effects only, no music" data-i18n-btn="btn_sfxOnly">SFX Only</button>
+<button class="option-btn audio" data-value="dialogue only, clear speech" data-i18n-btn="btn_dialogueOnly">Dialogue Only</button>
+<button class="option-btn audio" data-value="ambient soundscape only" data-i18n-btn="btn_ambientOnly">Ambient Only</button>
+<button class="option-btn audio" data-value="silence, no audio track" data-i18n-btn="btn_silenceOnly">Silence</button>
+</div>
+<label class="sub-label audio" data-i18n="musicGenre">Music Genre (if Music selected)</label>
+<div class="option-grid" data-group="musicGenre">
+<button class="option-btn audio" data-value="epic orchestral music, cinematic score" data-i18n-btn="btn_orchestral">Orchestral</button>
+<button class="option-btn audio" data-value="soft ambient soundtrack, atmospheric" data-i18n-btn="btn_ambient">Ambient</button>
+<button class="option-btn audio" data-value="electronic synthwave music" data-i18n-btn="btn_synthwave">Synthwave</button>
+<button class="option-btn audio" data-value="dramatic trailer music" data-i18n-btn="btn_trailer">Trailer</button>
+<button class="option-btn audio" data-value="lo-fi hip hop beats" data-i18n-btn="btn_lofi">Lo-Fi</button>
+<button class="option-btn audio" data-value="upbeat pop music" data-i18n-btn="btn_pop">Pop</button>
+</div>
+<label class="sub-label audio" data-i18n="sfxType">Sound Effects (if SFX selected)</label>
+<div class="option-grid" data-group="sfxType">
+<button class="option-btn audio" data-value="dramatic sound effects, impactful" data-i18n-btn="btn_dramaticSFX">Dramatic</button>
+<button class="option-btn audio" data-value="nature sound effects, birds wind water" data-i18n-btn="btn_natureSFX">Nature</button>
+<button class="option-btn audio" data-value="urban sound effects, traffic city" data-i18n-btn="btn_urbanSFX">Urban</button>
+<button class="option-btn audio" data-value="sci-fi sound effects, futuristic" data-i18n-btn="btn_scifiSFX">Sci-Fi</button>
+<button class="option-btn audio" data-value="combat sound effects, weapons" data-i18n-btn="btn_combatSFX">Combat</button>
+</div>
+<label class="sub-label audio" data-i18n="audioQuality">Audio Quality Modifiers</label>
+<div class="option-grid" data-group="audioQuality">
+<button class="option-btn audio" data-value="HD audio quality, 48kHz sample rate" data-i18n-btn="btn_hdAudio">HD Audio</button>
+<button class="option-btn audio" data-value="studio quality audio, mastered" data-i18n-btn="btn_studioAudio">Studio Quality</button>
+<button class="option-btn audio" data-value="clear dialogue, noise reduced" data-i18n-btn="btn_clearDialogue">Clear Dialogue</button>
+<button class="option-btn audio" data-value="no audio distortion, clean mix" data-i18n-btn="btn_noDistortion">No Distortion</button>
+</div>
+<label class="sub-label audio" data-i18n="postProduction">Post-Production (MANDATORY)</label>
+<div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 12px; font-size: 0.8rem; color: var(--warning);">
+<strong data-i18n="postProdNote">📌 Per PDF Grok: After generation, process audio in Adobe Podcast for lip-sync and noise cleanup. Segment dialogue scenes at 8s max for perfect sync.</strong>
+</div>
+</div>
+</div>
+<!-- PANEL 13: OUTPUT SETTINGS -->
+<div class="panel">
+<div class="panel-header">
+<h3>⚙️ <span data-i18n="output">Output Settings</span></h3>
+<span class="panel-summary" id="sum-output"></span>
+</div>
+<div class="panel-content">
+<div class="info-alert" style="margin-bottom: 15px; padding: 10px;">
+<span class="info-alert-icon">📊</span>
+<div class="info-alert-content">
+<strong>Grok Optimal:</strong> 720p HD, 8-second segments for perfect lip-sync, ~180 credits/video
+</div>
+</div>
+<label class="sub-label" data-i18n="aspectRatio">Aspect Ratio</label>
+<div class="option-grid" data-group="aspectRatio">
+<button class="option-btn" data-value="--ar 16:9" data-i18n-btn="btn_169">16:9 (YouTube)</button>
+<button class="option-btn" data-value="--ar 9:16" data-i18n-btn="btn_916">9:16 (TikTok/Reels)</button>
+<button class="option-btn" data-value="--ar 1:1" data-i18n-btn="btn_11">1:1 (Square)</button>
+<button class="option-btn" data-value="--ar 21:9" data-i18n-btn="btn_219">21:9 (Cinema)</button>
+<button class="option-btn" data-value="--ar 4:3" data-i18n-btn="btn_43">4:3 (Classic)</button>
+</div>
+<label class="sub-label" data-i18n="duration">Duration</label>
+<div class="option-grid" data-group="duration">
+<button class="option-btn" data-value="8 second segment for lip-sync" data-i18n-btn="btn_8s">8s (Dialogue)</button>
+<button class="option-btn" data-value="15 second max duration" data-i18n-btn="btn_15s">15s (Max)</button>
+</div>
+</div>
+</div>
+<!-- PANEL 14: NEGATIVE PROMPT -->
+<div class="panel critical">
+<div class="panel-header">
+<h3>
+⛔ <span data-i18n="negative">Negative Prompt</span>
+<span class="panel-priority priority-critical" data-i18n="autoIncluded">AUTO</span>
+</h3>
+<span class="panel-summary" id="sum-negative"></span>
+</div>
+<div class="panel-content">
+<div class="info-alert" style="margin-bottom: 15px; padding: 10px; border-color: var(--warning); background: rgba(255, 170, 0, 0.08);">
+<span class="info-alert-icon">⚠️</span>
+<div class="info-alert-content">
+<strong data-i18n="negativeWarning">Grok Bias:</strong> Automatically adds [No subtitles, No text, No closed captions] to prevent burnt-in text artifacts
+</div>
+</div>
+<label class="sub-label" data-i18n="customNegative">Custom Negative</label>
+<textarea id="negative" placeholder="Additional elements to avoid..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="quickNegative">Quick Negative</label>
+<div class="option-grid" data-group="negQuick">
+<button class="option-btn" data-value="blurry, low resolution" data-i18n-btn="btn_noblur">No Blur</button>
+<button class="option-btn" data-value="ugly, deformed hands and face" data-i18n-btn="btn_nodeformed">No Deformed</button>
+<button class="option-btn" data-value="extra limbs, bad anatomy" data-i18n-btn="btn_nobadanatomy">No Bad Anatomy</button>
+<button class="option-btn" data-value="watermark, signature" data-i18n-btn="btn_nowatermark">No Watermark</button>
+<button class="option-btn" data-value="cartoon, 3d render" data-i18n-btn="btn_nocartoon">No Cartoon</button>
+</div>
+</div>
+</div>
+<!-- PANEL 15: SPICY MODE -->
+<div class="panel">
+<div class="panel-header">
+<h3>🌶️ <span data-i18n="spicyMode">Spicy Mode</span></h3>
+<span class="panel-summary" id="sum-spicy"></span>
+</div>
+<div class="panel-content">
+<div class="spicy-warning">
+<strong>⚠️ Premium+ Required:</strong> SuperGrok subscription, age verification (18+).
+Artistic nudity allowed. NO deepfakes, minors, or explicit acts.
+</div>
+<div class="spicy-toggle">
+<div class="toggle-switch" id="spicyToggle" onclick="toggleSpicyMode()"></div>
+<span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="enableSpicy">Enable Spicy Mode</span>
+</div>
+<div id="spicyContent" style="display: none;">
+<label class="sub-label danger" data-i18n="spicyOptions">Moderation Techniques</label>
+<div class="option-grid" data-group="spicy">
+<button class="option-btn" data-value="anime stickers for coverage" data-i18n-btn="btn_animestickers">Anime Stickers</button>
+<button class="option-btn" data-value="2D hearts for occlusion" data-i18n-btn="btn_2dhearts">2D Hearts</button>
+<button class="option-btn" data-value="lingerie pasties" data-i18n-btn="btn_lingeriepasties">Lingerie Pasties</button>
+<button class="option-btn" data-value="artistic nudity, tasteful" data-i18n-btn="btn_artisticnudity">Artistic Nudity</button>
+</div>
+<label class="sub-label danger" data-i18n="spicyWarning">Legal Warning</label>
+<textarea readonly style="font-size: 0.75rem; color: var(--warning);">ICO investigation 2026. Brand safety risk. Use responsibly. No deepfakes or minors.</textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- FIXED OUTPUT AREA -->
+<div class="output-area">
+<div class="output-header">
+<div class="output-title">
+📝 <span data-i18n="finalPrompt">Final Prompt (Always in English)</span>
+<span class="grok-structure-hint" data-i18n="structureHint">Subject→Action→Optics; Lighting; Physics+Style</span>
+</div>
+<span class="grok-badge" id="langIndicator">EN OUTPUT</span>
+</div>
+<div class="output-controls">
+<button class="btn btn-random" onclick="randomize()">
+🎲 <span data-i18n="random">Random</span>
+</button>
+<button class="btn btn-primary" onclick="generatePrompt()">
+⚡ <span data-i18n="generate">Generate</span>
+</button>
+<button class="btn btn-secondary" onclick="copyPrompt()">
+📋 <span data-i18n="copy">Copy</span>
+</button>
+<button class="btn btn-secondary" onclick="clearAll()">
+🗑️ <span data-i18n="clear">Clear</span>
+</button>
+</div>
+<textarea id="result" readonly placeholder="Your Grok-optimized prompt will appear here..."></textarea>
+<div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
+<span data-i18n="creditsInfo">~180 credits per video</span>
+<span data-i18n="optimalSettings">Optimal: 720p, 8s segments | P50: 15-20s latency</span>
+</div>
+</div>
+<script>
+// === VISUAL STYLE DATA ===
+const VISUAL_AESTHETICS = {
+  cinematic: [
+    { value: "🎬 High Budget Cinema", label: "🎬 Cine Alto Presupuesto" },
+    { value: "🎥 Anamorphic Scope", label: "🎥 Anamórfico Scope" },
+    { value: "🟠 Teal & Orange Grading", label: "🟠 Teal & Orange" },
+    { value: "⚔️ Bleach Bypass", label: "⚔️ Bleach Bypass" },
+    { value: "✨ Euphoria HBO Look", label: "✨ Euphoria HBO" },
+    { value: "🌌 Dune Style Glam", label: "🌌 Estilo Dune" }
+  ],
+  photography: [
+    { value: "📸 Raw Photorealism", label: "📸 Fotorrealismo Crudo" },
+    { value: "📼 Vintage 90s", label: "📼 Vintage 90s" },
+    { value: "🎞️ Kodachrome Warm", label: "🎞️ Kodachrome" },
+    { value: "🗻 Fuji 400H", label: "🗻 Fuji 400H" },
+    { value: "📸 Disposable Flash", label: "📸 Flash Desechable" },
+    { value: "🖼️ Polaroid SX-70", label: "🖼️ Polaroid" }
+  ],
+  animation: [
+    { value: "🗾 Anime Ghibli Style", label: "🗾 Anime Ghibli" },
+    { value: "🏯 90s Cel-Shading", label: "🏯 Cel-Shading 90s" },
+    { value: "🎮 Unreal Engine 5", label: "🎮 Unreal 5" },
+    { value: "🎮 Pixar Style", label: "🎮 Pixar" },
+    { value: "🧱 Lego World", label: "🧱 Lego" },
+    { value: "🎬 Stop-Motion", label: "🎬 Stop-Motion" }
+  ],
+  artistic: [
+    { value: "🎨 Oil Painting", label: "🎨 Óleo" },
+    { value: "📐 Technical Blueprint", label: "📐 Blueprint" },
+    { value: "🔴🔵 Duotone", label: "🔴🔵 Duotono" },
+    { value: "⚫🔴 B&W Color Pop", label: "⚫🔴 B&W Pop" },
+    { value: "🌸 False Infrared", label: "🌸 Infrarrojo" },
+    { value: "🌲 Infrared Forest", label: "🌲 Bosque IR" }
+  ],
+  experimental: [
+    { value: "🤖 Cyberpunk Neon", label: "🤖 Cyberpunk" },
+    { value: "👾 Glitch Digital", label: "👾 Glitch" },
+    { value: "☁️ Dreamy Ethereal", label: "☁️ Etéreo" },
+    { value: "👻 Horror Found Footage", label: "👻 Horror" },
+    { value: "🔥 Halation Red Glow", label: "🔥 Halation" },
+    { value: "🚁 Drone Hyperlapse", label: "🚁 Drone" }
+  ]
+};
+
+const MAKEUP_FX = {
+  natural: [
+    { value: "✨ Natural / No-Makeup", label: "✨ Natural" },
+    { value: "🍃 No-Makeup Makeup", label: "🍃 No-Makeup" }
+  ],
+  glamour: [
+    { value: "💄 Hollywood Glamour", label: "💄 Hollywood" },
+    { value: "💋 50s Pin-up", label: "💋 Pin-up 50s" },
+    { value: "✨ Gold Flakes", label: "✨ Gold Flakes" }
+  ],
+  cinematic: [
+    { value: "💋 Classic Hollywood 40s", label: "💋 Hollywood 40s" },
+    { value: "🕵️ Film Noir", label: "🕵️ Film Noir" },
+    { value: "📸 High Fashion Editorial", label: "📸 High Fashion" }
+  ],
+  sfx_fantasy: [
+    { value: "🧟 Zombie Decay", label: "🧟 Zombie" },
+    { value: "🤖 Cyber Neon Lines", label: "🤖 Cyber Lines" },
+    { value: "🧚 Ethereal Glitter", label: "🧚 Glitter" },
+    { value: "👽 Alien Prosthetics", label: "👽 Alien" }
+  ],
+  character: [
+    { value: "⚔️ Battle Damage", label: "⚔️ Battle Damage" },
+    { value: "🤡 Joker Style", label: "🤡 Joker" },
+    { value: "🏹 Tribal War Paint", label: "🏹 Tribal" },
+    { value: "🦇 Goth Dark", label: "🦇 Goth" }
+  ]
+};
+
+// === TRANSLATIONS ===
+const translations = {
+en: {
+subtitle: "Imagine 1.0 | Visual Style Enhanced",
+active: "Active:",
+alertTitle: "Grok Protocol Active:",
+alertText: "Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.",
+subject: "Subject & Action",
+priorityCritical: "LAYER 1",
+subjectWarning: "These tokens have LOGARITHMIC WEIGHT. Must be FIRST in prompt for Grok Aurora engine.",
+mainSubject: "Main Subject (FIRST in prompt)",
+action: "Primary Action",
+characterDNA: "Character DNA (Immutable Traits)",
+lensLibrary: "Lens Library",
+focalLength: "Focal Length",
+specialtyLenses: "Specialty Lenses",
+cameraShots: "Camera Shots",
+shotSize: "Shot Size",
+cameraAngles: "Camera Angles",
+cameraMovement: "Camera Movement",
+movementNote: "Critical for Grok Video - 8s segments max",
+eyeLines: "Eye Lines",
+grokCritical: "GROK",
+eyeLinesInfo: "Grok breaks fourth wall by default. Specify eye lines to avoid uncanny valley.",
+lighting: "Lighting",
+timeOfDay: "Time of Day",
+lightingType: "Lighting Type",
+mood: "Mood & Atmosphere",
+opticalEffects: "Optical Effects",
+visualStyle: "Visual Style",
+artStyle: "Art Style",
+renderEngine: "Render Engine",
+grokTerms: "Grok-Specific Terms (CRITICAL)",
+visualStyleArchitect: "Visual Style Architect",
+priorityHigh: "HIGH PRIORITY",
+styleArchWarning: "Select aesthetic filter + character FX. Control style weight for Grok optimization.",
+mainAesthetic: "Main Aesthetic (Filter Base)",
+makeupFX: "Makeup & Character FX",
+optional: "(optional)",
+styleWeight: "Style Weight",
+subtle: "Subtle",
+balanced: "Balanced",
+dominant: "Dominant",
+activeStyle: "Active Style:",
+environment: "Environment & Physics",
+location: "Location",
+biome: "Biome",
+physicalDynamics: "Physical Dynamics (LAYER 4)",
+composition: "Composition",
+qualityPanel: "Quality & Resolution",
+premium: "PREMIUM",
+qualityNote: "Grok native output is 720p HD. 4K/8K keywords enhance detail but require upscaling in post-production for actual higher resolution.",
+resolution: "Resolution Modifiers",
+qualityModifiers: "Quality Modifiers",
+detailEnhancers: "Detail Enhancers",
+audio: "Audio Composition",
+audioCritical: "LAYER 5",
+audioWarning: "Grok native audio mixes all elements (music + SFX + dialogue) which causes distortion. For clean audio: select ONE type only, then process in Adobe Podcast for HD quality.",
+audioType: "Audio Type (Select ONE for clean output)",
+musicGenre: "Music Genre (if Music selected)",
+sfxType: "Sound Effects (if SFX selected)",
+audioQuality: "Audio Quality Modifiers",
+postProduction: "Post-Production (MANDATORY)",
+postProdNote: "📌 Per PDF Grok: After generation, process audio in Adobe Podcast for lip-sync and noise cleanup. Segment dialogue scenes at 8s max for perfect sync.",
+output: "Output Settings",
+aspectRatio: "Aspect Ratio",
+duration: "Duration",
+negative: "Negative Prompt",
+autoIncluded: "AUTO",
+negativeWarning: "Grok Bias:",
+customNegative: "Custom Negative",
+quickNegative: "Quick Negative",
+spicyMode: "Spicy Mode",
+enableSpicy: "Enable Spicy Mode",
+spicyOptions: "Moderation Techniques",
+spicyWarning: "Legal Warning",
+finalPrompt: "Final Prompt (Always in English)",
+structureHint: "Subject→Action→Optics; Lighting; Physics+Style",
+random: "Random",
+generate: "Generate",
+copy: "Copy",
+clear: "Clear",
+creditsInfo: "~180 credits per video",
+optimalSettings: "Optimal: 720p, 8s segments | P50: 15-20s latency",
+placeholderSubject: "e.g. A cybernetic warrior with neon tattoos and natural skin pores...",
+placeholderAction: "e.g. walking through rain-soaked neon streets with wind affecting clothing...",
+placeholderDNA: "Age, ethnicity, voice tone, exact features for consistency...",
+placeholderLocation: "e.g. rain-soaked neon cityscape with reflections...",
+placeholderNegative: "Additional elements to avoid...",
+resultPlaceholder: "Your Grok-optimized prompt will appear here...",
+tab_cinematic: "Cinematic",
+tab_photography: "Photography",
+tab_animation: "Animation",
+tab_artistic: "Artistic",
+tab_experimental: "Experimental"
+},
+es: {
+subtitle: "Imagine 1.0 | Estilo Visual Mejorado",
+active: "Activo:",
+alertTitle: "Protocolo Grok Activo:",
+alertText: "Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.",
+subject: "Sujeto y Acción",
+priorityCritical: "CAPA 1",
+subjectWarning: "Estos tokens tienen PESO LOGARÍTMICO. Deben ir PRIMERO en el prompt para el motor Aurora de Grok.",
+mainSubject: "Sujeto Principal (PRIMERO en el prompt)",
+action: "Acción Principal",
+characterDNA: "DNA del Personaje (Rasgos Inmutables)",
+lensLibrary: "Librería de Lentes",
+focalLength: "Distancia Focal",
+specialtyLenses: "Lentes Especiales",
+cameraShots: "Tomas de Cámara",
+shotSize: "Tamaño de Toma",
+cameraAngles: "Ángulos de Cámara",
+cameraMovement: "Movimiento de Cámara",
+movementNote: "Crítico para Video Grok - máx 8s segmentos",
+eyeLines: "Líneas de Ojos",
+grokCritical: "GROK",
+eyeLinesInfo: "Grok rompe la cuarta pared por defecto. Especifica líneas de ojos para evitar uncanny valley.",
+lighting: "Iluminación",
+timeOfDay: "Momento del Día",
+lightingType: "Tipo de Iluminación",
+mood: "Estado de Ánimo y Atmósfera",
+opticalEffects: "Efectos Ópticos",
+visualStyle: "Estilo Visual",
+artStyle: "Estilo de Arte",
+renderEngine: "Motor de Render",
+grokTerms: "Términos Específicos de Grok (CRÍTICO)",
+visualStyleArchitect: "Arquitecto de Estilo Visual",
+priorityHigh: "ALTA PRIORIDAD",
+styleArchWarning: "Selecciona filtro estético + FX de personaje. Controla el peso del estilo para optimización Grok.",
+mainAesthetic: "Estética Principal (Filtro Base)",
+makeupFX: "Maquillaje y FX de Personaje",
+optional: "(opcional)",
+styleWeight: "Peso del Estilo",
+subtle: "Sutil",
+balanced: "Equilibrado",
+dominant: "Dominante",
+activeStyle: "Estilo Activo:",
+environment: "Entorno y Física",
+location: "Ubicación",
+biome: "Bioma",
+physicalDynamics: "Dinámicas Físicas (CAPA 4)",
+composition: "Composición",
+qualityPanel: "Calidad y Resolución",
+premium: "PREMIUM",
+qualityNote: "La salida nativa de Grok es 720p HD. Las palabras clave 4K/8K mejoran el detalle pero requieren upscaling en post-producción para resolución real mayor.",
+resolution: "Modificadores de Resolución",
+qualityModifiers: "Modificadores de Calidad",
+detailEnhancers: "Mejoradores de Detalle",
+audio: "Composición de Audio",
+audioCritical: "CAPA 5",
+audioWarning: "El audio nativo de Grok mezcla todos los elementos (música + SFX + diálogo) lo que causa distorsión. Para audio limpio: selecciona UN tipo solo, luego procesa en Adobe Podcast para calidad HD.",
+audioType: "Tipo de Audio (Selecciona UNO para salida limpia)",
+musicGenre: "Género Musical (si seleccionaste Música)",
+sfxType: "Efectos de Sonido (si seleccionaste SFX)",
+audioQuality: "Modificadores de Calidad de Audio",
+postProduction: "Post-Producción (OBLIGATORIO)",
+postProdNote: "📌 Según PDF Grok: Después de generar, procesa el audio en Adobe Podcast para lip-sync y limpieza de ruido. Segmenta escenas de diálogo a 8s máx para sync perfecto.",
+output: "Configuración de Salida",
+aspectRatio: "Proporción de Aspecto",
+duration: "Duración",
+negative: "Prompt Negativo",
+autoIncluded: "AUTO",
+negativeWarning: "Sesgo de Grok:",
+customNegative: "Negativo Personalizado",
+quickNegative: "Negativo Rápido",
+spicyMode: "Modo Spicy",
+enableSpicy: "Activar Modo Spicy",
+spicyOptions: "Técnicas de Moderación",
+spicyWarning: "Advertencia Legal",
+finalPrompt: "Prompt Final (Siempre en Inglés)",
+structureHint: "Sujeto→Acción→Óptica; Iluminación; Física+Estilo",
+random: "Aleatorio",
+generate: "Generar",
+copy: "Copiar",
+clear: "Limpiar",
+creditsInfo: "~180 créditos por video",
+optimalSettings: "Óptimo: 720p, 8s segmentos | P50: 15-20s latencia",
+placeholderSubject: "ej. Un guerrero cibernético con tatuajes de neón y poros naturales...",
+placeholderAction: "ej. caminando por calles de neón empapadas con viento afectando la ropa...",
+placeholderDNA: "Edad, etnia, tono de voz, rasgos exactos para consistencia...",
+placeholderLocation: "ej. paisaje urbano de neón empapado con reflejos...",
+placeholderNegative: "Elementos adicionales a evitar...",
+resultPlaceholder: "Tu prompt optimizado para Grok aparecerá aquí...",
+tab_cinematic: "Cinematográfico",
+tab_photography: "Fotografía",
+tab_animation: "Animación",
+tab_artistic: "Artístico",
+tab_experimental: "Experimental"
+}
+};
+
+// Add button translations
+const buttonTranslations = {
+en: {
+btn_14mm: "14mm Fisheye", btn_24mm: "24mm Wide", btn_35mm: "35mm Standard", btn_50mm: "50mm Normal", btn_85mm: "85mm Portrait", btn_135mm: "135mm Tele", btn_200mm: "200mm Super", btn_anamorphic: "Anamorphic", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Soft Focus", btn_extremecu: "Extreme CU", btn_closeup: "Close-Up", btn_mediumshot: "Medium Shot", btn_fullbody: "Full Body", btn_wideshot: "Wide Shot", btn_extremewide: "Extreme Wide", btn_eyelevel: "Eye Level", btn_lowangle: "Low Angle", btn_highangle: "High Angle", btn_wormseye: "Worm's Eye", btn_birdseye: "Bird's Eye", btn_overshoulder: "Over Shoulder", btn_pov: "POV", btn_dutchangle: "Dutch Angle", btn_dollyin: "Dolly In", btn_dollyout: "Dolly Out", btn_tracking: "Tracking", btn_panleft: "Pan Left", btn_panright: "Pan Right", btn_tiltup: "Tilt Up", btn_tiltdown: "Tilt Down", btn_orbit: "360° Orbit", btn_craneup: "Crane Up", btn_cranedown: "Crane Down", btn_handheld: "Handheld", btn_steadicam: "Steadicam", btn_slowzoom: "Slow Zoom", btn_snapzoom: "Snap Zoom", btn_rackfocus: "Rack Focus", btn_avoidcamera: "Avoid Camera", btn_influencer: "Influencer", btn_offcamera: "Off-Camera", btn_eyesclosed: "Eyes Closed", btn_dawn: "Dawn", btn_midday: "Midday", btn_sunset: "Sunset", btn_night: "Night", btn_bluehour: "Blue Hour", btn_chiaroscuro: "Chiaroscuro", btn_softbox: "Softbox", btn_rimlight: "Rim Light", btn_neon: "Neon", btn_volumetric: "Volumetric", btn_natural: "Natural", btn_practical: "Practical", btn_motivated: "Motivated", btn_dark: "Dark", btn_epic: "Epic", btn_mysterious: "Mysterious", btn_hopeful: "Hopeful", btn_melancholic: "Melancholic", btn_tense: "Tense", btn_dof: "Depth of Field", btn_bokeh: "Bokeh", btn_filmgrain: "Film Grain", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Chromatic Aberration", btn_vignette: "Vignette", btn_bloom: "Bloom", btn_tealorange: "Teal & Orange", btn_hdr: "HDR", btn_cinematic: "Cinematic", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realistic", btn_anime: "Anime", btn_fantasy: "Fantasy", btn_documentary: "Documentary", btn_musicvideo: "Music Video", btn_commercial: "Commercial", btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift", btn_subsurface: "Subsurface Scattering", btn_skindetails: "Skin Details", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Hair Details", btn_forest: "Forest", btn_desert: "Desert", btn_city: "City", btn_mountain: "Mountain", btn_space: "Space", btn_interior: "Interior", btn_underwater: "Underwater", btn_wind: "Wind", btn_rain: "Rain", btn_fog: "Fog", btn_smoke: "Smoke", btn_fire: "Fire", btn_water: "Water", btn_dust: "Dust", btn_snow: "Snow", btn_fabric: "Fabric", btn_ruleofthirds: "Rule of Thirds", btn_centered: "Centered", btn_leadinglines: "Leading Lines", btn_framewithin: "Frame Within", btn_negativespace: "Negative Space", btn_goldenratio: "Golden Ratio", btn_720p: "720p HD (Native)", btn_4k: "4K Enhanced", btn_8k: "8K Maximum", btn_ultrarealistic: "Ultra Realistic", btn_highdetail: "High Detail", btn_masterpiece: "Masterpiece", btn_awardwinning: "Award Winning", btn_professional: "Professional", btn_studioquality: "Studio Quality", btn_crystalclear: "Crystal Clear", btn_hdrenhanced: "HDR Enhanced", btn_intricatedetails: "Intricate Details", btn_hyperdetailed: "Hyper Detailed", btn_sharpfocus: "Sharp Focus", btn_richcolors: "Rich Colors", btn_premiumtextures: "Premium Textures", btn_musicOnly: "Music Only", btn_sfxOnly: "SFX Only", btn_dialogueOnly: "Dialogue Only", btn_ambientOnly: "Ambient Only", btn_silenceOnly: "Silence", btn_orchestral: "Orchestral", btn_ambient: "Ambient", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop", btn_dramaticSFX: "Dramatic", btn_natureSFX: "Nature", btn_urbanSFX: "Urban", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combat", btn_hdAudio: "HD Audio", btn_studioAudio: "Studio Quality", btn_clearDialogue: "Clear Dialogue", btn_noDistortion: "No Distortion", btn_169: "16:9 (YouTube)", btn_916: "9:16 (TikTok/Reels)", btn_11: "1:1 (Square)", btn_219: "21:9 (Cinema)", btn_43: "4:3 (Classic)", btn_8s: "8s (Dialogue)", btn_15s: "15s (Max)", btn_noblur: "No Blur", btn_nodeformed: "No Deformed", btn_nobadanatomy: "No Bad Anatomy", btn_nowatermark: "No Watermark", btn_nocartoon: "No Cartoon", btn_animestickers: "Anime Stickers", btn_2dhearts: "2D Hearts", btn_lingeriepasties: "Lingerie Pasties", btn_artisticnudity: "Artistic Nudity"
+},
+es: {
+btn_14mm: "14mm Ojo de Pez", btn_24mm: "24mm Gran Angular", btn_35mm: "35mm Estándar", btn_50mm: "50mm Normal", btn_85mm: "85mm Retrato", btn_135mm: "135mm Teleobjetivo", btn_200mm: "200mm Super Tele", btn_anamorphic: "Anamórfico", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Enfoque Suave", btn_extremecu: "Primerísimo Plano", btn_closeup: "Primer Plano", btn_mediumshot: "Plano Medio", btn_fullbody: "Plano Entero", btn_wideshot: "Plano General", btn_extremewide: "Plano Muy General", btn_eyelevel: "A Nivel de Ojos", btn_lowangle: "Ángulo Bajo", btn_highangle: "Ángulo Alto", btn_wormseye: "Vista de Gusano", btn_birdseye: "Vista de Pájaro", btn_overshoulder: "Sobre el Hombro", btn_pov: "Primera Persona", btn_dutchangle: "Ángulo Holandés", btn_dollyin: "Acercamiento", btn_dollyout: "Alejamiento", btn_tracking: "Seguimiento", btn_panleft: "Giro Izquierda", btn_panright: "Giro Derecha", btn_tiltup: "Inclinación Arriba", btn_tiltdown: "Inclinación Abajo", btn_orbit: "Órbita 360°", btn_craneup: "Grúa Sube", btn_cranedown: "Grúa Baja", btn_handheld: "Cámara en Mano", btn_steadicam: "Steadicam", btn_slowzoom: "Zoom Lento", btn_snapzoom: "Zoom Rápido", btn_rackfocus: "Cambio de Foco", btn_avoidcamera: "Evitar Cámara", btn_influencer: "Estilo Influencer", btn_offcamera: "Mirada Fuera", btn_eyesclosed: "Ojos Cerrados", btn_dawn: "Amanecer", btn_midday: "Mediodía", btn_sunset: "Atardecer", btn_night: "Noche", btn_bluehour: "Hora Azul", btn_chiaroscuro: "Claroscuro", btn_softbox: "Softbox", btn_rimlight: "Luz de Borde", btn_neon: "Neón", btn_volumetric: "Volumétrico", btn_natural: "Natural", btn_practical: "Práctica", btn_motivated: "Motivada", btn_dark: "Oscuro", btn_epic: "Épico", btn_mysterious: "Misterioso", btn_hopeful: "Esperanzador", btn_melancholic: "Melancólico", btn_tense: "Tenso", btn_dof: "Profundidad de Campo", btn_bokeh: "Bokeh", btn_filmgrain: "Grano de Película", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Aberración Cromática", btn_vignette: "Viñeta", btn_bloom: "Bloom", btn_tealorange: "Teal y Naranja", btn_hdr: "HDR", btn_cinematic: "Cinematográfico", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realista", btn_anime: "Anime", btn_fantasy: "Fantasía", btn_documentary: "Documental", btn_musicvideo: "Video Musical", btn_commercial: "Publicitario", btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift", btn_subsurface: "Dispersión Subsuperficial", btn_skindetails: "Detalles de Piel", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Detalles de Cabello", btn_forest: "Bosque", btn_desert: "Desierto", btn_city: "Ciudad", btn_mountain: "Montaña", btn_space: "Espacio", btn_interior: "Interior", btn_underwater: "Submarino", btn_wind: "Viento", btn_rain: "Lluvia", btn_fog: "Niebla", btn_smoke: "Humo", btn_fire: "Fuego", btn_water: "Agua", btn_dust: "Polvo", btn_snow: "Nieve", btn_fabric: "Telas", btn_ruleofthirds: "Regla de Tercios", btn_centered: "Centrado", btn_leadinglines: "Líneas Guía", btn_framewithin: "Marco Dentro", btn_negativespace: "Espacio Negativo", btn_goldenratio: "Proporción Áurea", btn_720p: "720p HD (Nativo)", btn_4k: "4K Mejorado", btn_8k: "8K Máximo", btn_ultrarealistic: "Ultra Realista", btn_highdetail: "Alto Detalle", btn_masterpiece: "Obra Maestra", btn_awardwinning: "Premiado", btn_professional: "Profesional", btn_studioquality: "Calidad Estudio", btn_crystalclear: "Cristalino", btn_hdrenhanced: "HDR Mejorado", btn_intricatedetails: "Detalles Intrincados", btn_hyperdetailed: "Hiper Detallado", btn_sharpfocus: "Enfoque Nítido", btn_richcolors: "Colores Ricos", btn_premiumtextures: "Texturas Premium", btn_musicOnly: "Solo Música", btn_sfxOnly: "Solo SFX", btn_dialogueOnly: "Solo Diálogo", btn_ambientOnly: "Solo Ambiente", btn_silenceOnly: "Silencio", btn_orchestral: "Orquestal", btn_ambient: "Ambiente", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop", btn_dramaticSFX: "Dramáticos", btn_natureSFX: "Naturaleza", btn_urbanSFX: "Urbano", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combate", btn_hdAudio: "Audio HD", btn_studioAudio: "Calidad Estudio", btn_clearDialogue: "Diálogo Claro", btn_noDistortion: "Sin Distorsión", btn_169: "16:9 (YouTube)", btn_916: "9:16 (TikTok/Reels)", btn_11: "1:1 (Cuadrado)", btn_219: "21:9 (Cine)", btn_43: "4:3 (Clásico)", btn_8s: "8s (Diálogo)", btn_15s: "15s (Máx)", btn_noblur: "Sin Blur", btn_nodeformed: "Sin Deformaciones", btn_nobadanatomy: "Sin Anatomía", btn_nowatermark: "Sin Marca de Agua", btn_nocartoon: "Sin Cartoon", btn_animestickers: "Stickers Anime", btn_2dhearts: "Corazones 2D", btn_lingeriepasties: "Pasties Lencería", btn_artisticnudity: "Desnudo Artístico"
+}
+};
+
+let currentLang = 'en';
+let spicyModeEnabled = false;
+let selectedVisualStyle = null;
+let selectedMakeupFX = null;
+let styleWeight = 50;
+let activeStyleTab = 'cinematic';
+
+// === DOM READY ===
+document.addEventListener('DOMContentLoaded', function() {
+  initApp();
+});
+
+function initApp() {
+  setLanguage('en');
+  
+  // === ACCORDION ===
+  document.querySelectorAll('.panel-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const panel = header.parentElement;
+      panel.classList.toggle('active');
+    });
+  });
+  
+  // === MULTI-SELECT BUTTONS (ALL including style) ===
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      updateSummary();
+    });
+  });
+  
+  // === STYLE TABS ===
+  document.querySelectorAll('.style-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      activeStyleTab = this.getAttribute('data-tab');
+      renderStyleGrid();
+    });
+  });
+  
+  renderStyleGrid();
+  renderMakeupGrid();
+  updateSummary();
+}
+
+// === RENDER STYLE GRID ===
+function renderStyleGrid() {
+  const grid = document.getElementById('styleGrid');
+  if (!grid) return;
+  
+  const styles = VISUAL_AESTHETICS[activeStyleTab] || [];
+  grid.innerHTML = styles.map(style => `
+    <button class="option-btn style" data-value="${style.value}" data-label="${style.label}">
+      ${currentLang === 'es' ? style.label : style.value}
+    </button>
+  `).join('');
+  
+  // Re-attach click handlers for new buttons
+  grid.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      updateVisualStyleSelection();
+      updateSummary();
+    });
+  });
+}
+
+// === RENDER MAKEUP GRID ===
+function renderMakeupGrid() {
+  const grid = document.getElementById('makeupGrid');
+  if (!grid) return;
+  
+  let html = '';
+  for (const [category, options] of Object.entries(MAKEUP_FX)) {
+    html += `<div style="margin-bottom: 10px;">`;
+    html += `<div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">${category}</div>`;
+    html += `<div class="option-grid" style="margin-bottom: 0;">`;
+    html += options.map(makeup => `
+      <button class="option-btn style" data-value="${makeup.value}" data-label="${makeup.label}">
+        ${currentLang === 'es' ? makeup.label : makeup.value}
+      </button>
+    `).join('');
+    html += `</div></div>`;
+  }
+  grid.innerHTML = html;
+  
+  // Re-attach click handlers
+  grid.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      updateMakeupSelection();
+      updateSummary();
+    });
+  });
+}
+
+// === UPDATE VISUAL STYLE SELECTION ===
+function updateVisualStyleSelection() {
+  const selectedBtn = document.querySelector('#styleGrid .option-btn.selected');
+  if (selectedBtn) {
+    selectedVisualStyle = {
+      value: selectedBtn.getAttribute('data-value'),
+      label: selectedBtn.getAttribute('data-label')
+    };
+  } else {
+    selectedVisualStyle = null;
+  }
+  updateStylePreview();
+}
+
+// === UPDATE MAKEUP SELECTION ===
+function updateMakeupSelection() {
+  const selectedBtn = document.querySelector('#makeupGrid .option-btn.selected');
+  if (selectedBtn) {
+    selectedMakeupFX = {
+      value: selectedBtn.getAttribute('data-value'),
+      label: selectedBtn.getAttribute('data-label')
+    };
+  } else {
+    selectedMakeupFX = null;
+  }
+  updateStylePreview();
+}
+
+// === UPDATE STYLE WEIGHT ===
+function updateStyleWeight() {
+  styleWeight = document.getElementById('styleWeight').value;
+  document.getElementById('styleWeightValue').textContent = styleWeight + '%';
+  updateSummary();
+}
+
+// === UPDATE STYLE PREVIEW ===
+function updateStylePreview() {
+  const preview = document.getElementById('stylePreview');
+  const content = document.getElementById('stylePreviewContent');
+  
+  if (selectedVisualStyle || selectedMakeupFX) {
+    preview.style.display = 'block';
+    let html = '';
+    if (selectedVisualStyle) {
+      html += `<div class="style-preview-item">🎨 ${currentLang === 'es' ? selectedVisualStyle.label : selectedVisualStyle.value}</div>`;
+    }
+    if (selectedMakeupFX) {
+      html += `<div class="style-preview-item">💄 ${currentLang === 'es' ? selectedMakeupFX.label : selectedMakeupFX.value}</div>`;
+    }
+    html += `<div class="style-preview-item" style="color: var(--style-pink); margin-top: 6px;">🎚️ Weight: ${styleWeight}%</div>`;
+    content.innerHTML = html;
+  } else {
+    preview.style.display = 'none';
+  }
+}
+
+// === SPICY MODE ===
+function toggleSpicyMode() {
+  spicyModeEnabled = !spicyModeEnabled;
+  document.getElementById('spicyToggle').classList.toggle('active', spicyModeEnabled);
+  document.getElementById('spicyContent').style.display = spicyModeEnabled ? 'block' : 'none';
+  updateSummary();
+}
+
+// === SUMMARY SYSTEM ===
+function getSelectedValues(group) {
+  const selected = document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn.selected`);
+  return Array.from(selected).map(btn => btn.getAttribute('data-value'));
+}
+
+function getText(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function updateSummary() {
+  const tagsContainer = document.getElementById('summaryTags');
+  if (!tagsContainer) return;
+  
+  tagsContainer.innerHTML = '';
+  const selections = [
+    { id: 'subject', label: 'Subject' },
+    { id: 'action', label: 'Action' },
+    { id: 'location', label: 'Location' },
+    { group: 'focalLength', label: 'Lens' },
+    { group: 'shotSize', label: 'Shot' },
+    { group: 'timeOfDay', label: 'Time' },
+    { group: 'lightingType', label: 'Light' },
+    { group: 'artStyle', label: 'Style' },
+    { group: 'resolution', label: 'Res' },
+    { group: 'qualityModifiers', label: 'Quality' },
+    { group: 'audioType', label: 'Audio' },
+    { group: 'grokTerms', label: 'Grok' }
+  ];
+  
+  let activeCount = 0;
+  selections.forEach(sel => {
+    let values = sel.group ? getSelectedValues(sel.group) : (getText(sel.id) ? [getText(sel.id).substring(0, 20) + (getText(sel.id).length > 20 ? '...' : '')] : []);
+    values.forEach(value => {
+      if (value) {
+        activeCount++;
+        const tag = document.createElement('div');
+        tag.className = 'summary-tag';
+        const safeValue = value.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        tag.innerHTML = `<span>${value}</span><span class="remove" onclick="removeSelection('${sel.group || ''}', '${sel.id || ''}', '${safeValue}')">×</span>`;
+        tagsContainer.appendChild(tag);
+      }
+    });
+  });
+  
+  // Add visual style to summary
+  if (selectedVisualStyle) {
+    activeCount++;
+    const tag = document.createElement('div');
+    tag.className = 'summary-tag';
+    tag.style.borderColor = 'var(--style-pink)';
+    tag.style.color = 'var(--style-pink)';
+    tag.style.background = 'rgba(236, 72, 153, 0.1)';
+    const displayValue = currentLang === 'es' ? selectedVisualStyle.label : selectedVisualStyle.value;
+    tag.innerHTML = `<span>🎨 ${displayValue}</span><span class="remove" onclick="clearVisualStyle()">×</span>`;
+    tagsContainer.appendChild(tag);
+  }
+  
+  if (selectedMakeupFX) {
+    activeCount++;
+    const tag = document.createElement('div');
+    tag.className = 'summary-tag';
+    tag.style.borderColor = 'var(--style-pink)';
+    tag.style.color = 'var(--style-pink)';
+    tag.style.background = 'rgba(236, 72, 153, 0.1)';
+    const displayValue = currentLang === 'es' ? selectedMakeupFX.label : selectedMakeupFX.value;
+    tag.innerHTML = `<span>💄 ${displayValue}</span><span class="remove" onclick="clearMakeupFX()">×</span>`;
+    tagsContainer.appendChild(tag);
+  }
+  
+  if (activeCount === 0) {
+    tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.7rem;">${currentLang === 'en' ? 'No options selected' : 'Sin opciones seleccionadas'}</span>`;
+  }
+  
+  updatePanelSummary('sum-subject', [getText('subject'), getText('action')]);
+  updatePanelSummary('sum-lens', [...getSelectedValues('focalLength'), ...getSelectedValues('specialtyLenses')]);
+  updatePanelSummary('sum-shots', [...getSelectedValues('shotSize'), ...getSelectedValues('cameraAngles')]);
+  updatePanelSummary('sum-movement', getSelectedValues('cameraMovement'));
+  updatePanelSummary('sum-eyelines', getSelectedValues('eyeLines'));
+  updatePanelSummary('sum-lighting', [...getSelectedValues('timeOfDay'), ...getSelectedValues('lightingType')]);
+  updatePanelSummary('sum-optical', getSelectedValues('opticalEffects'));
+  updatePanelSummary('sum-style', [...getSelectedValues('artStyle'), ...getSelectedValues('grokTerms')]);
+  updatePanelSummary('sum-stylearch', selectedVisualStyle ? [selectedVisualStyle.value] : []);
+  updatePanelSummary('sum-environment', [getText('location'), ...getSelectedValues('physicalDynamics')]);
+  updatePanelSummary('sum-composition', getSelectedValues('composition'));
+  updatePanelSummary('sum-quality', [...getSelectedValues('resolution'), ...getSelectedValues('qualityModifiers'), ...getSelectedValues('detailEnhancers')]);
+  updatePanelSummary('sum-audio', [...getSelectedValues('audioType'), ...getSelectedValues('musicGenre'), ...getSelectedValues('audioQuality')]);
+  updatePanelSummary('sum-output', [...getSelectedValues('aspectRatio'), ...getSelectedValues('duration')]);
+  updatePanelSummary('sum-negative', [getText('negative')]);
+  updatePanelSummary('sum-spicy', spicyModeEnabled ? ['Spicy ON'] : []);
+}
+
+function updatePanelSummary(elementId, values) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const filtered = values.filter(v => v);
+  el.textContent = filtered.length > 0 ? filtered.join(' • ') : '';
+}
+
+function removeSelection(group, id, value) {
+  if (group) {
+    document.querySelectorAll(`.option-grid[data-group="${group}"] .option-btn`).forEach(btn => {
+      if (btn.getAttribute('data-value') === value) {
+        btn.classList.remove('selected');
+      }
+    });
+  }
+  if (id) {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  }
+  updateSummary();
+}
+
+function clearVisualStyle() {
+  selectedVisualStyle = null;
+  document.querySelectorAll('#styleGrid .option-btn').forEach(b => b.classList.remove('selected'));
+  updateStylePreview();
+  updateSummary();
+}
+
+function clearMakeupFX() {
+  selectedMakeupFX = null;
+  document.querySelectorAll('#makeupGrid .option-btn').forEach(b => b.classList.remove('selected'));
+  updateStylePreview();
+  updateSummary();
+}
+
+// === GROK PROMPT GENERATION ===
+function generatePrompt() {
+  let layer1 = [];
+  let layer2 = [];
+  let layer3 = [];
+  let layer4 = [];
+  let layer5 = [];
+  
+  const subject = getText('subject');
+  const action = getText('action');
+  const charDNA = getText('charDNA');
+  
+  if (subject) layer1.push(subject);
+  if (action) layer1.push(action);
+  if (charDNA) layer1.push(charDNA);
+  
+  const focalLength = getSelectedValues('focalLength');
+  const specialtyLenses = getSelectedValues('specialtyLenses');
+  const shotSize = getSelectedValues('shotSize');
+  const cameraAngles = getSelectedValues('cameraAngles');
+  const cameraMovement = getSelectedValues('cameraMovement');
+  const eyeLines = getSelectedValues('eyeLines');
+  
+  [...focalLength, ...specialtyLenses, ...shotSize, ...cameraAngles, ...cameraMovement, ...eyeLines].forEach(v => layer1.push(v));
+  
+  const timeOfDay = getSelectedValues('timeOfDay');
+  const lightingType = getSelectedValues('lightingType');
+  const mood = getSelectedValues('mood');
+  
+  [...timeOfDay, ...lightingType, ...mood].forEach(v => layer2.push(v));
+  
+  const artStyle = getSelectedValues('artStyle');
+  const renderEngine = getSelectedValues('renderEngine');
+  const grokTerms = getSelectedValues('grokTerms');
+  const opticalEffects = getSelectedValues('opticalEffects');
+  const biome = getSelectedValues('biome');
+  const physicalDynamics = getSelectedValues('physicalDynamics');
+  const composition = getSelectedValues('composition');
+  const location = getText('location');
+  const resolution = getSelectedValues('resolution');
+  const qualityModifiers = getSelectedValues('qualityModifiers');
+  const detailEnhancers = getSelectedValues('detailEnhancers');
+  
+  [...artStyle, ...renderEngine, ...grokTerms, ...opticalEffects, ...biome, ...physicalDynamics, ...composition, ...resolution, ...qualityModifiers, ...detailEnhancers].forEach(v => layer3.push(v));
+  
+  if (location) layer3.push(location);
+  
+  // ✨ VISUAL STYLE ARCHITECT
+  if (selectedVisualStyle) {
+    const styleValue = selectedVisualStyle.value;
+    if (styleWeight >= 80) {
+      layer3.push(`MASTERPIECE, ${styleValue}, highly detailed, award winning, professional grade`);
+    } else if (styleWeight >= 50) {
+      layer3.push(`${styleValue}, detailed, high quality`);
+    } else if (styleWeight >= 20) {
+      layer3.push(`subtle ${styleValue.toLowerCase()} influence`);
+    } else {
+      layer3.push(styleValue);
+    }
+  }
+  
+  if (selectedMakeupFX) {
+    layer3.push(`character fx: ${selectedMakeupFX.value}`);
+  }
+  
+  // AUDIO (LAYER 5)
+  const audioType = getSelectedValues('audioType');
+  const musicGenre = getSelectedValues('musicGenre');
+  const sfxType = getSelectedValues('sfxType');
+  const audioQuality = getSelectedValues('audioQuality');
+  
+  [...audioType, ...musicGenre, ...sfxType, ...audioQuality].forEach(v => layer4.push(v));
+  
+  const aspectRatio = getSelectedValues('aspectRatio');
+  const duration = getSelectedValues('duration');
+  
+  [...aspectRatio, ...duration].forEach(v => layer5.push(v));
+  
+  if (spicyModeEnabled) {
+    const spicy = getSelectedValues('spicy');
+    spicy.forEach(v => layer3.push(v));
+  }
+  
+  let finalPrompt = layer1.join(', ');
+  
+  if (layer2.length > 0) {
+    finalPrompt += '; ' + layer2.join(', ');
+  }
+  
+  if (layer3.length > 0) {
+    finalPrompt += '; ' + layer3.join(', ');
+  }
+  
+  if (layer4.length > 0) {
+    finalPrompt += '; ' + layer4.join(', ');
+  }
+  
+  if (layer5.length > 0) {
+    finalPrompt += ' ' + layer5.join(', ');
+  }
+  
+  const negativeCustom = getText('negative');
+  const negativeQuick = getSelectedValues('negQuick');
+  let negativeParts = ['No subtitles', 'No text', 'No closed captions'];
+  
+  if (negativeCustom) negativeParts.push(negativeCustom);
+  negativeQuick.forEach(v => negativeParts.push(v));
+  
+  finalPrompt += ' --no ' + negativeParts.join(', ');
+  
+  document.getElementById('result').value = finalPrompt;
+  updateSummary();
+}
+
+// === UTILS ===
+function copyPrompt() {
+  const el = document.getElementById('result');
+  el.select();
+  navigator.clipboard.writeText(el.value);
+  const btn = event.target.closest('.btn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = currentLang === 'en' ? '✅ Copied!' : '✅ ¡Copiado!';
+  setTimeout(() => {
+    btn.innerHTML = '📋 <span data-i18n="copy">' + (currentLang === 'en' ? 'Copy' : 'Copiar') + '</span>';
+  }, 1500);
+}
+
+function clearAll() {
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  spicyModeEnabled = false;
+  document.getElementById('spicyToggle').classList.remove('active');
+  document.getElementById('spicyContent').style.display = 'none';
+  selectedVisualStyle = null;
+  selectedMakeupFX = null;
+  styleWeight = 50;
+  document.getElementById('styleWeight').value = 50;
+  document.getElementById('styleWeightValue').textContent = '50%';
+  updateStylePreview();
+  updateSummary();
+  document.getElementById('result').value = '';
+}
+
+function randomize() {
+  const groups = ['focalLength', 'shotSize', 'cameraAngles', 'cameraMovement', 'timeOfDay', 'lightingType', 'artStyle', 'physicalDynamics', 'resolution', 'qualityModifiers', 'aspectRatio', 'audioType'];
+  groups.forEach(g => {
+    const opts = document.querySelectorAll(`.option-grid[data-group="${g}"] .option-btn`);
+    if (opts.length) {
+      opts.forEach(o => o.classList.remove('selected'));
+      const count = Math.floor(Math.random() * 2) + 1;
+      for (let i = 0; i < count; i++) {
+        const random = opts[Math.floor(Math.random() * opts.length)];
+        random.classList.add('selected');
+      }
+    }
+  });
+  
+  const subjects = ['A cybernetic warrior', 'A mysterious stranger', 'A futuristic athlete', 'An ethereal being'];
+  const actions = ['walking through neon streets', 'standing in dramatic pose', 'running through the rain', 'gazing into the distance'];
+  
+  document.getElementById('subject').value = subjects[Math.floor(Math.random() * subjects.length)];
+  document.getElementById('action').value = actions[Math.floor(Math.random() * actions.length)];
+  
+  updateSummary();
+  generatePrompt();
+}
+
+// === LANGUAGE SWITCH ===
+function setLanguage(lang) {
+  currentLang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+  
+  document.querySelectorAll('[data-i18n-btn]').forEach(btn => {
+    const key = btn.getAttribute('data-i18n-btn');
+    if (translations[lang][key]) {
+      btn.textContent = translations[lang][key];
+    }
+  });
+  
+  document.querySelectorAll('[data-i18n-tab]').forEach(tab => {
+    const key = tab.getAttribute('data-i18n-tab');
+    if (translations[lang][key]) {
+      tab.textContent = translations[lang][key];
+    }
+  });
+  
+  document.getElementById('subject').placeholder = translations[lang].placeholderSubject;
+  document.getElementById('action').placeholder = translations[lang].placeholderAction;
+  document.getElementById('charDNA').placeholder = translations[lang].placeholderDNA;
+  document.getElementById('location').placeholder = translations[lang].placeholderLocation;
+  document.getElementById('negative').placeholder = translations[lang].placeholderNegative;
+  document.getElementById('result').placeholder = translations[lang].resultPlaceholder;
+  
+  document.querySelector('.summary-label').textContent = translations[lang].active + ' ';
+  document.getElementById('langIndicator').textContent = 'EN OUTPUT';
+  
+  renderStyleGrid();
+  renderMakeupGrid();
+  updateStylePreview();
+  updateSummary();
+}
+</script>
+</body>
+</html>
