@@ -1,0 +1,31 @@
+{
+  "name": "Grok Prompt Architect",
+  "short_name": "GrokPA",
+  "description": "Professional prompt builder for Grok AI video generation",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0c10",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false,
+  "shortcuts": [],
+  "share_target": {}
+}
