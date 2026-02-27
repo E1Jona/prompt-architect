@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Grok Prompt Architect v4.5 | Mobile Optimized</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0a0c10">
+<title>Grok Prompt Architect v4.5 | Estilo Visual Mejorado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#00d4ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GrokPA">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root {
 --bg-color: #0a0c10;
@@ -23,22 +26,17 @@
 --gold: #ffd700;
 --audio-blue: #00b8ff;
 --style-pink: #ec4899;
---touch-target: 48px;
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; }
 body {
-font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+font-family: 'Segoe UI', system-ui, sans-serif;
 background: linear-gradient(135deg, #0a0c10 0%, #0f1115 100%);
 color: var(--text-main);
 margin: 0;
 padding: 0;
-padding-bottom: 280px;
+padding-bottom: 300px;
 min-height: 100vh;
--webkit-text-size-adjust: 100%;
-touch-action: manipulation;
 }
-
-/* === TOP BAR MOBILE === */
 .top-bar {
 position: fixed;
 top: 0;
@@ -47,74 +45,65 @@ right: 0;
 background: rgba(20, 23, 29, 0.98);
 backdrop-filter: blur(15px);
 border-bottom: 2px solid var(--accent);
-padding: 10px 12px;
+padding: 12px 20px;
 z-index: 1000;
 display: flex;
 justify-content: space-between;
 align-items: center;
 flex-wrap: wrap;
-gap: 10px;
+gap: 15px;
 box-shadow: 0 4px 30px rgba(0,0,0,0.6);
 }
 .brand {
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 10px;
 }
 .brand-logo {
-width: 32px;
-height: 32px;
+width: 36px;
+height: 36px;
 background: linear-gradient(135deg, var(--accent), var(--grok-purple));
-border-radius: 6px;
+border-radius: 8px;
 display: flex;
 align-items: center;
 justify-content: center;
 font-weight: bold;
-font-size: 1.1rem;
+font-size: 1.3rem;
 color: #fff;
 box-shadow: 0 0 15px var(--accent-glow);
-flex-shrink: 0;
 }
 .brand-text h1 {
 margin: 0;
-font-size: 0.9rem;
+font-size: 1.1rem;
 background: linear-gradient(90deg, var(--accent), var(--grok-purple));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-letter-spacing: 0.5px;
-white-space: nowrap;
+letter-spacing: 1px;
 }
 .brand-text span {
-font-size: 0.55rem;
+font-size: 0.65rem;
 color: var(--text-muted);
 text-transform: uppercase;
 letter-spacing: 0.5px;
-display: block;
 }
 .lang-switch {
 display: flex;
-gap: 3px;
+gap: 4px;
 background: #0a0c10;
-padding: 2px;
-border-radius: 5px;
+padding: 3px;
+border-radius: 6px;
 border: 1px solid var(--border);
-flex-shrink: 0;
 }
 .lang-btn {
 background: transparent;
 border: none;
 color: var(--text-muted);
-padding: 4px 10px;
-border-radius: 3px;
+padding: 5px 14px;
+border-radius: 4px;
 cursor: pointer;
-font-size: 0.65rem;
+font-size: 0.75rem;
 font-weight: 600;
 transition: all 0.2s;
-min-height: var(--touch-target);
-min-width: var(--touch-target);
-display: flex;
-align-items: center;
-justify-content: center;
 }
 .lang-btn.active {
 background: var(--accent);
@@ -123,94 +112,83 @@ color: #000;
 .summary-container {
 display: flex;
 flex-wrap: wrap;
-gap: 4px;
+gap: 6px;
 align-items: center;
 flex: 1;
-min-width: 0;
-max-height: 50px;
+margin-left: 20px;
+min-width: 200px;
+max-height: 70px;
 overflow-y: auto;
-overflow-x: auto;
 }
 .summary-label {
-font-size: 0.6rem;
+font-size: 0.7rem;
 text-transform: uppercase;
 color: var(--text-muted);
 font-weight: 700;
 white-space: nowrap;
-flex-shrink: 0;
 }
 .summary-tag {
 background: rgba(0, 212, 255, 0.1);
 border: 1px solid var(--accent);
 color: var(--accent);
-padding: 2px 6px;
-border-radius: 8px;
-font-size: 0.6rem;
+padding: 3px 8px;
+border-radius: 10px;
+font-size: 0.68rem;
 display: flex;
 align-items: center;
-gap: 4px;
+gap: 5px;
 animation: popIn 0.3s ease;
-max-width: 120px;
-flex-shrink: 0;
+max-width: 140px;
 }
 .summary-tag .remove {
 cursor: pointer;
 opacity: 0.6;
 font-weight: bold;
-font-size: 0.75rem;
-min-height: 20px;
-min-width: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
+font-size: 0.85rem;
 }
 .summary-tag .remove:hover { opacity: 1; color: #fff; }
 .grok-badge {
 background: linear-gradient(135deg, var(--grok-purple), #6d28d9);
 color: #fff;
-padding: 3px 8px;
-border-radius: 10px;
-font-size: 0.55rem;
+padding: 4px 10px;
+border-radius: 12px;
+font-size: 0.65rem;
 font-weight: 700;
 text-transform: uppercase;
 letter-spacing: 0.5px;
-white-space: nowrap;
 }
 .version-badge {
 background: var(--gold);
 color: #000;
-padding: 1px 4px;
-border-radius: 3px;
-font-size: 0.5rem;
+padding: 2px 6px;
+border-radius: 4px;
+font-size: 0.6rem;
 font-weight: 700;
-margin-left: 4px;
+margin-left: 5px;
 }
 @keyframes popIn {
 from { transform: scale(0.8); opacity: 0; }
 to { transform: scale(1); opacity: 1; }
 }
-
-/* === INFO ALERT MOBILE === */
 .info-alert {
-max-width: 100%;
-margin: 60px auto 10px;
-padding: 10px 12px;
+max-width: 1400px;
+margin: 70px auto 15px;
+padding: 14px 24px;
 background: rgba(0, 212, 255, 0.08);
 border: 1px solid rgba(0, 212, 255, 0.3);
-border-radius: 8px;
+border-radius: 10px;
 display: flex;
-align-items: flex-start;
-gap: 10px;
-font-size: 0.75rem;
+align-items: center;
+gap: 15px;
+font-size: 0.85rem;
 }
 .info-alert-icon {
-font-size: 1.2rem;
+font-size: 1.4rem;
 flex-shrink: 0;
 }
 .info-alert-content {
 color: var(--text-muted);
-line-height: 1.4;
-flex: 1;
+line-height: 1.5;
 }
 .info-alert strong {
 color: var(--accent);
@@ -218,35 +196,31 @@ color: var(--accent);
 .formula-display {
 background: rgba(0, 212, 255, 0.05);
 border: 1px dashed var(--accent);
-border-radius: 5px;
-padding: 6px 8px;
-margin-top: 6px;
+border-radius: 6px;
+padding: 8px 12px;
+margin-top: 8px;
 font-family: 'Consolas', monospace;
-font-size: 0.65rem;
+font-size: 0.75rem;
 color: var(--accent);
-word-break: break-all;
 }
-
-/* === MAIN LAYOUT MOBILE === */
 .app {
-max-width: 100%;
+max-width: 1400px;
 margin: 0 auto;
-padding: 0 10px 10px;
+padding: 0 20px 20px;
 display: grid;
-grid-template-columns: 1fr;
-gap: 10px;
+grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+gap: 15px;
 }
-
-/* === PANELS MOBILE === */
 .panel {
 background: var(--panel-bg);
 border: 1px solid var(--border);
-border-radius: 8px;
+border-radius: 10px;
 overflow: hidden;
 transition: all 0.3s;
 }
 .panel:hover {
 border-color: var(--text-muted);
+transform: translateY(-2px);
 }
 .panel.critical {
 border-color: var(--accent);
@@ -265,31 +239,28 @@ border-color: var(--style-pink);
 box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
 }
 .panel-header {
-padding: 12px 14px;
+padding: 14px 18px;
 background: rgba(255,255,255,0.02);
 cursor: pointer;
 display: flex;
 justify-content: space-between;
 align-items: center;
 user-select: none;
-min-height: var(--touch-target);
 }
 .panel-header h3 {
 margin: 0;
-font-size: 0.85rem;
+font-size: 0.95rem;
 color: var(--text-main);
 display: flex;
 align-items: center;
-gap: 6px;
-flex: 1;
+gap: 8px;
 }
 .panel-priority {
-font-size: 0.55rem;
-padding: 2px 5px;
-border-radius: 3px;
+font-size: 0.65rem;
+padding: 2px 6px;
+border-radius: 4px;
 text-transform: uppercase;
 font-weight: 700;
-white-space: nowrap;
 }
 .priority-high {
 background: rgba(255, 170, 0, 0.2);
@@ -312,21 +283,18 @@ background: rgba(236, 72, 153, 0.2);
 color: var(--style-pink);
 }
 .panel-summary {
-font-size: 0.6rem;
+font-size: 0.7rem;
 color: var(--accent);
-max-width: 120px;
+max-width: 180px;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
-flex-shrink: 0;
 }
 .panel-header::after {
 content: '▼';
-font-size: 0.55rem;
+font-size: 0.65rem;
 color: var(--text-muted);
 transition: transform 0.3s;
-flex-shrink: 0;
-margin-left: 8px;
 }
 .panel.active .panel-header::after {
 transform: rotate(180deg);
@@ -338,15 +306,13 @@ border-color: var(--accent);
 max-height: 0;
 overflow: hidden;
 transition: max-height 0.3s ease;
-padding: 0 14px;
+padding: 0 18px;
 }
 .panel.active .panel-content {
-max-height: 2000px;
-padding: 14px;
+max-height: 1000px;
+padding: 18px;
 border-top: 1px solid var(--border);
 }
-
-/* === INPUTS MOBILE === */
 textarea, input[type="text"] {
 width: 100%;
 background: #0a0c10;
@@ -354,12 +320,11 @@ border: 1px solid var(--border);
 color: var(--text-main);
 padding: 10px;
 border-radius: 6px;
-margin-bottom: 8px;
-font-size: 0.8rem;
+margin-bottom: 10px;
+font-size: 0.85rem;
 resize: vertical;
-min-height: 60px;
+min-height: 65px;
 font-family: 'Consolas', monospace;
-touch-action: manipulation;
 }
 textarea:focus, input:focus {
 outline: 1px solid var(--accent);
@@ -367,24 +332,21 @@ border-color: var(--accent);
 }
 textarea::placeholder {
 color: var(--text-muted);
-font-size: 0.7rem;
 }
-
-/* === OPTION GRIDS MOBILE === */
 .option-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-gap: 6px;
-margin-bottom: 10px;
+grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+gap: 7px;
+margin-bottom: 12px;
 }
 .option-btn {
 background: #1a1e26;
 border: 1px solid var(--border);
 color: var(--text-muted);
-padding: 8px 6px;
+padding: 8px 12px;
 border-radius: 6px;
 cursor: pointer;
-font-size: 0.65rem;
+font-size: 0.75rem;
 text-align: center;
 transition: all 0.25s;
 white-space: nowrap;
@@ -392,19 +354,11 @@ overflow: hidden;
 text-overflow: ellipsis;
 user-select: none;
 position: relative;
-min-height: var(--touch-target);
-display: flex;
-align-items: center;
-justify-content: center;
-line-height: 1.2;
 }
 .option-btn:hover {
 border-color: var(--text-muted);
 color: var(--text-main);
 background: #222831;
-}
-.option-btn:active {
-transform: scale(0.98);
 }
 .option-btn.selected {
 background: linear-gradient(135deg, var(--accent), #00a3cc);
@@ -444,10 +398,10 @@ border-color: var(--style-pink);
 box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
 }
 .sub-label {
-font-size: 0.6rem;
+font-size: 0.7rem;
 color: var(--text-muted);
 text-transform: uppercase;
-margin: 10px 0 5px;
+margin: 12px 0 6px;
 display: block;
 letter-spacing: 0.5px;
 font-weight: 600;
@@ -467,28 +421,22 @@ color: var(--audio-blue);
 .sub-label.style {
 color: var(--style-pink);
 }
-
-/* === STYLE TABS MOBILE === */
 .style-tabs {
 display: flex;
 flex-wrap: wrap;
-gap: 4px;
-margin-bottom: 10px;
+gap: 6px;
+margin-bottom: 12px;
 }
 .style-tab {
 background: #1a1e26;
 border: 1px solid var(--border);
 color: var(--text-muted);
-padding: 6px 10px;
-border-radius: 5px;
+padding: 6px 12px;
+border-radius: 6px;
 cursor: pointer;
-font-size: 0.6rem;
+font-size: 0.7rem;
 font-weight: 600;
 transition: all 0.2s;
-min-height: 36px;
-display: flex;
-align-items: center;
-justify-content: center;
 }
 .style-tab:hover {
 border-color: var(--text-muted);
@@ -499,29 +447,27 @@ background: linear-gradient(135deg, var(--style-pink), #db2777);
 color: #fff;
 border-color: var(--style-pink);
 }
-
-/* === STYLE WEIGHT SLIDER MOBILE === */
 .style-weight-container {
 background: #1a1e26;
 border: 1px solid var(--border);
-border-radius: 6px;
-padding: 10px;
-margin-top: 10px;
+border-radius: 8px;
+padding: 12px;
+margin-top: 12px;
 }
 .style-weight-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 6px;
+margin-bottom: 8px;
 }
 .style-weight-label {
-font-size: 0.65rem;
+font-size: 0.75rem;
 color: var(--text-muted);
 text-transform: uppercase;
 font-weight: 600;
 }
 .style-weight-value {
-font-size: 0.75rem;
+font-size: 0.85rem;
 color: var(--style-pink);
 font-weight: 700;
 font-family: 'Consolas', monospace;
@@ -536,8 +482,8 @@ outline: none;
 }
 .style-slider::-webkit-slider-thumb {
 appearance: none;
-width: 20px;
-height: 20px;
+width: 18px;
+height: 18px;
 background: linear-gradient(135deg, var(--style-pink), #db2777);
 border-radius: 50%;
 cursor: pointer;
@@ -546,33 +492,29 @@ box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
 .style-slider-labels {
 display: flex;
 justify-content: space-between;
-font-size: 0.55rem;
+font-size: 0.65rem;
 color: var(--text-muted);
-margin-top: 4px;
+margin-top: 6px;
 }
-
-/* === STYLE PREVIEW BOX MOBILE === */
 .style-preview {
 background: rgba(236, 72, 153, 0.1);
 border: 1px solid var(--style-pink);
 border-radius: 6px;
-padding: 8px;
-margin-top: 10px;
-font-size: 0.65rem;
+padding: 10px;
+margin-top: 12px;
+font-size: 0.75rem;
 }
 .style-preview-title {
 color: var(--style-pink);
 font-weight: 700;
-margin-bottom: 4px;
+margin-bottom: 6px;
 text-transform: uppercase;
-font-size: 0.55rem;
+font-size: 0.65rem;
 }
 .style-preview-item {
 color: var(--text-main);
-margin: 2px 0;
+margin: 3px 0;
 }
-
-/* === FIXED OUTPUT AREA MOBILE === */
 .output-area {
 position: fixed;
 bottom: 0;
@@ -580,7 +522,7 @@ left: 0;
 right: 0;
 background: linear-gradient(180deg, var(--panel-bg) 0%, #0f1115 100%);
 border-top: 2px solid var(--accent);
-padding: 12px 10px;
+padding: 18px 20px;
 z-index: 1000;
 box-shadow: 0 -6px 30px rgba(0,0,0,0.7);
 }
@@ -588,84 +530,79 @@ box-shadow: 0 -6px 30px rgba(0,0,0,0.7);
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 8px;
+margin-bottom: 12px;
 flex-wrap: wrap;
-gap: 8px;
+gap: 10px;
 }
 .output-title {
-font-size: 0.7rem;
+font-size: 0.85rem;
 color: var(--text-muted);
 text-transform: uppercase;
-letter-spacing: 0.5px;
+letter-spacing: 1px;
 display: flex;
 align-items: center;
-gap: 6px;
-flex: 1;
+gap: 8px;
 }
 .grok-structure-hint {
-font-size: 0.55rem;
+font-size: 0.68rem;
 color: var(--accent);
 background: rgba(0, 212, 255, 0.1);
-padding: 3px 6px;
-border-radius: 8px;
+padding: 4px 10px;
+border-radius: 12px;
 font-family: 'Consolas', monospace;
-white-space: nowrap;
 }
 .output-controls {
 display: flex;
-gap: 6px;
-margin-bottom: 8px;
+gap: 10px;
+margin-bottom: 12px;
 justify-content: center;
 flex-wrap: wrap;
 }
 #result {
 width: 100%;
-height: 80px;
+height: 110px;
 background: #0a0c10;
 border: 1px solid var(--border);
 color: var(--success);
-padding: 8px;
+padding: 12px;
 border-radius: 6px;
 font-family: 'Consolas', monospace;
-font-size: 0.7rem;
+font-size: 0.85rem;
 resize: vertical;
-line-height: 1.4;
+line-height: 1.5;
 }
 #result:focus {
 outline: 1px solid var(--success);
 border-color: var(--success);
 }
 .btn {
-padding: 8px 14px;
+padding: 10px 22px;
 border: none;
 border-radius: 6px;
 cursor: pointer;
 font-weight: 700;
 text-transform: uppercase;
-font-size: 0.65rem;
+font-size: 0.8rem;
 transition: all 0.25s;
 letter-spacing: 0.5px;
 display: flex;
 align-items: center;
-justify-content: center;
-gap: 4px;
-min-height: var(--touch-target);
-flex: 1;
-max-width: 120px;
+gap: 6px;
 }
 .btn-primary {
 background: linear-gradient(135deg, var(--accent), #00a3cc);
 color: #000;
 box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
 }
-.btn-primary:active {
-transform: scale(0.98);
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
 }
 .btn-secondary {
 background: #2a3038;
 color: var(--text-main);
 }
-.btn-secondary:active {
+.btn-secondary:hover {
 background: #3a424d;
 }
 .btn-random {
@@ -673,7 +610,7 @@ background: transparent;
 border: 1px solid var(--text-muted);
 color: var(--text-muted);
 }
-.btn-random:active {
+.btn-random:hover {
 border-color: var(--text-main);
 color: var(--text-main);
 }
@@ -681,36 +618,39 @@ color: var(--text-main);
 background: linear-gradient(135deg, var(--grok-purple), #6d28d9);
 color: #fff;
 }
+.btn-grok:hover {
+box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
 .btn-premium {
 background: linear-gradient(135deg, var(--gold), #ffaa00);
 color: #000;
 }
-
-/* === SPICY MODE MOBILE === */
+.btn-premium:hover {
+box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
 .spicy-warning {
 background: rgba(255, 170, 0, 0.1);
 border: 1px solid var(--warning);
 border-radius: 6px;
-padding: 8px;
-margin-bottom: 10px;
-font-size: 0.65rem;
+padding: 10px;
+margin-bottom: 12px;
+font-size: 0.75rem;
 color: var(--warning);
 }
 .spicy-toggle {
 display: flex;
 align-items: center;
-gap: 8px;
-margin-bottom: 8px;
+gap: 10px;
+margin-bottom: 10px;
 }
 .toggle-switch {
-width: 40px;
-height: 22px;
+width: 44px;
+height: 24px;
 background: #2a3038;
-border-radius: 11px;
+border-radius: 12px;
 position: relative;
 cursor: pointer;
 transition: background 0.3s;
-flex-shrink: 0;
 }
 .toggle-switch.active {
 background: var(--warning);
@@ -718,8 +658,8 @@ background: var(--warning);
 .toggle-switch::after {
 content: '';
 position: absolute;
-width: 16px;
-height: 16px;
+width: 18px;
+height: 18px;
 background: #fff;
 border-radius: 50%;
 top: 3px;
@@ -727,108 +667,56 @@ left: 3px;
 transition: transform 0.3s;
 }
 .toggle-switch.active::after {
-transform: translateX(18px);
+transform: translateX(20px);
 }
-
-/* === SCROLLBAR MOBILE === */
 ::-webkit-scrollbar {
-width: 5px;
-height: 5px;
+width: 7px;
+height: 7px;
 }
 ::-webkit-scrollbar-track {
 background: var(--bg-color);
 }
 ::-webkit-scrollbar-thumb {
 background: var(--border);
-border-radius: 3px;
+border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
 background: var(--text-muted);
 }
-
-/* === DESKTOP (768px+) === */
-@media (min-width: 768px) {
-.app {
-grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 12px;
-padding: 0 15px 15px;
-}
-.panel-header {
-padding: 14px 18px;
-}
-.panel-content {
-padding: 0 18px;
-}
-.panel.active .panel-content {
-padding: 18px;
-}
-.option-grid {
-grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-gap: 7px;
-}
-.option-btn {
-font-size: 0.7rem;
-padding: 8px 10px;
-}
+@media (max-width: 768px) {
 .top-bar {
-padding: 12px 20px;
+flex-direction: column;
+align-items: flex-start;
 }
-.brand-logo {
-width: 36px;
-height: 36px;
-font-size: 1.3rem;
+.summary-container {
+margin-left: 0;
+width: 100%;
 }
-.brand-text h1 {
-font-size: 1.1rem;
+.app {
+grid-template-columns: 1fr;
 }
-.output-area {
-padding: 18px 20px;
-}
-#result {
-height: 100px;
-font-size: 0.8rem;
+.output-controls {
+flex-direction: column;
 }
 .btn {
-font-size: 0.75rem;
-padding: 10px 18px;
-}
-}
-
-/* === LARGE DESKTOP (1200px+) === */
-@media (min-width: 1200px) {
-.app {
-max-width: 1400px;
-grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-}
-}
-
-/* === SAFE AREA FOR NOTCH === */
-@supports (padding: max(0px)) {
-.top-bar {
-padding-left: max(12px, env(safe-area-inset-left));
-padding-right: max(12px, env(safe-area-inset-right));
-}
-.output-area {
-padding-left: max(10px, env(safe-area-inset-left));
-padding-right: max(10px, env(safe-area-inset-right));
-padding-bottom: max(12px, env(safe-area-inset-bottom));
+width: 100%;
+justify-content: center;
 }
 }
 </style>
 </head>
 <body>
-<!-- TOP BAR -->
 <div class="top-bar">
 <div class="brand">
 <div class="brand-logo">G</div>
 <div class="brand-text">
 <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.5</span></h1>
-<span data-i18n="subtitle">Mobile Optimized</span>
+<span data-i18n="subtitle">Imagine 1.0 | Estilo Visual Mejorado</span>
 </div>
 </div>
 <div class="summary-container" id="summaryBar">
-<span class="summary-label" data-i18n="active">Active:</span>
-<div id="summaryTags" style="display:flex; gap:4px; flex-wrap:wrap;"></div>
+<span class="summary-label" data-i18n="active">Activo:</span>
+<div id="summaryTags" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
 </div>
 <div class="lang-switch">
 <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">EN</button>
@@ -836,13 +724,12 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 </div>
 </div>
 
-<!-- INFO ALERT -->
 <div class="info-alert">
 <span class="info-alert-icon">⚡</span>
 <div class="info-alert-content">
-<strong data-i18n="alertTitle">Grok Protocol Active:</strong>
-<span data-i18n="alertText">Subject + Action MUST be FIRST. Negative prompts auto-included. Optimal: 720p, 8s segments.</span>
-<div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Estilo]</div>
+<strong data-i18n="alertTitle">Protocolo Grok Activo:</strong>
+<span data-i18n="alertText">Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.</span>
+<div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Detalles]+[Estilo Visual]</div>
 </div>
 <span class="grok-badge">Aurora MoE</span>
 </div>
@@ -852,47 +739,47 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <div class="panel critical active">
 <div class="panel-header">
 <h3>
-🎯 <span data-i18n="subject">Subject & Action</span>
-<span class="panel-priority priority-critical" data-i18n="priorityCritical">LAYER 1</span>
+🎯 <span data-i18n="subject">Sujeto y Acción</span>
+<span class="panel-priority priority-critical" data-i18n="priorityCritical">CAPA 1</span>
 </h3>
 <span class="panel-summary" id="sum-subject"></span>
 </div>
 <div class="panel-content">
-<div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 0.7rem; color: var(--warning);">
-<strong>⚠️ CRITICAL:</strong> <span data-i18n="subjectWarning">LOGARITHMIC WEIGHT. Must be FIRST for Grok Aurora.</span>
+<div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--warning);">
+<strong>⚠️ CRÍTICO:</strong> <span data-i18n="subjectWarning">Estos tokens tienen PESO LOGARÍTMICO. Deben ir PRIMERO en el prompt para el motor Aurora de Grok.</span>
 </div>
-<label class="sub-label critical" data-i18n="mainSubject">Main Subject (FIRST)</label>
-<textarea id="subject" placeholder="e.g. A cybernetic warrior..." oninput="updateSummary()"></textarea>
-<label class="sub-label" data-i18n="action">Primary Action</label>
-<textarea id="action" placeholder="e.g. walking through neon streets..." oninput="updateSummary()"></textarea>
-<label class="sub-label" data-i18n="characterDNA">Character DNA</label>
-<textarea id="charDNA" placeholder="Age, ethnicity, features..." oninput="updateSummary()"></textarea>
+<label class="sub-label critical" data-i18n="mainSubject">Sujeto Principal (PRIMERO en el prompt)</label>
+<textarea id="subject" placeholder="ej. Un guerrero cibernético con tatuajes de neón y poros naturales..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="action">Acción Principal</label>
+<textarea id="action" placeholder="ej. caminando por calles de neón empapadas con viento afectando la ropa..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="characterDNA">DNA del Personaje (Rasgos Inmutables)</label>
+<textarea id="charDNA" placeholder="Edad, etnia, tono de voz, rasgos exactos para consistencia..." oninput="updateSummary()"></textarea>
 </div>
 </div>
 
 <!-- PANEL 2: LENS LIBRARY -->
 <div class="panel">
 <div class="panel-header">
-<h3>📷 <span data-i18n="lensLibrary">Lens Library</span></h3>
+<h3>📷 <span data-i18n="lensLibrary">Librería de Lentes</span></h3>
 <span class="panel-summary" id="sum-lens"></span>
 </div>
 <div class="panel-content">
-<label class="sub-label" data-i18n="focalLength">Focal Length</label>
+<label class="sub-label" data-i18n="focalLength">Distancia Focal</label>
 <div class="option-grid" data-group="focalLength">
-<button class="option-btn" data-value="14mm fisheye lens, extreme wide distortion" data-i18n-btn="btn_14mm">14mm</button>
-<button class="option-btn" data-value="24mm wide angle lens, environmental context" data-i18n-btn="btn_24mm">24mm</button>
-<button class="option-btn" data-value="35mm lens, natural perspective" data-i18n-btn="btn_35mm">35mm</button>
-<button class="option-btn" data-value="50mm standard lens, natural view" data-i18n-btn="btn_50mm">50mm</button>
-<button class="option-btn" data-value="85mm lens, portrait with bokeh" data-i18n-btn="btn_85mm">85mm</button>
-<button class="option-btn" data-value="135mm telephoto lens, compressed background" data-i18n-btn="btn_135mm">135mm</button>
-<button class="option-btn" data-value="200mm super telephoto, extreme compression" data-i18n-btn="btn_200mm">200mm</button>
+<button class="option-btn" data-value="14mm fisheye lens, extreme wide distortion" data-i18n-btn="btn_14mm">14mm Ojo de Pez</button>
+<button class="option-btn" data-value="24mm wide angle lens, environmental context" data-i18n-btn="btn_24mm">24mm Gran Angular</button>
+<button class="option-btn" data-value="35mm lens, natural perspective" data-i18n-btn="btn_35mm">35mm Estándar</button>
+<button class="option-btn" data-value="50mm standard lens, natural view" data-i18n-btn="btn_50mm">50mm Normal</button>
+<button class="option-btn" data-value="85mm lens, portrait with bokeh" data-i18n-btn="btn_85mm">85mm Retrato</button>
+<button class="option-btn" data-value="135mm telephoto lens, compressed background" data-i18n-btn="btn_135mm">135mm Teleobjetivo</button>
+<button class="option-btn" data-value="200mm super telephoto, extreme compression" data-i18n-btn="btn_200mm">200mm Super Tele</button>
 </div>
-<label class="sub-label" data-i18n="specialtyLenses">Specialty</label>
+<label class="sub-label" data-i18n="specialtyLenses">Lentes Especiales</label>
 <div class="option-grid" data-group="specialtyLenses">
-<button class="option-btn" data-value="anamorphic lens, cinematic flares" data-i18n-btn="btn_anamorphic">Anamorphic</button>
+<button class="option-btn" data-value="anamorphic lens, cinematic flares" data-i18n-btn="btn_anamorphic">Anamórfico</button>
 <button class="option-btn" data-value="tilt-shift lens, miniature effect" data-i18n-btn="btn_tiltshift">Tilt-Shift</button>
 <button class="option-btn" data-value="macro lens, extreme detail" data-i18n-btn="btn_macro">Macro</button>
-<button class="option-btn" data-value="soft focus lens, dreamy glow" data-i18n-btn="btn_softfocus">Soft Focus</button>
+<button class="option-btn" data-value="soft focus lens, dreamy glow" data-i18n-btn="btn_softfocus">Enfoque Suave</button>
 </div>
 </div>
 </div>
@@ -900,27 +787,29 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 3: CAMERA SHOTS -->
 <div class="panel">
 <div class="panel-header">
-<h3>🎬 <span data-i18n="cameraShots">Camera Shots</span></h3>
+<h3>🎬 <span data-i18n="cameraShots">Tomas de Cámara</span></h3>
 <span class="panel-summary" id="sum-shots"></span>
 </div>
 <div class="panel-content">
-<label class="sub-label" data-i18n="shotSize">Shot Size</label>
+<label class="sub-label" data-i18n="shotSize">Tamaño de Toma</label>
 <div class="option-grid" data-group="shotSize">
-<button class="option-btn" data-value="extreme close-up shot, eye or mouth detail" data-i18n-btn="btn_extremecu">Extreme CU</button>
-<button class="option-btn" data-value="close-up shot, facial details" data-i18n-btn="btn_closeup">Close-Up</button>
-<button class="option-btn" data-value="medium shot, waist up" data-i18n-btn="btn_mediumshot">Medium</button>
-<button class="option-btn" data-value="full body shot, complete figure" data-i18n-btn="btn_fullbody">Full Body</button>
-<button class="option-btn" data-value="wide shot, full scene context" data-i18n-btn="btn_wideshot">Wide</button>
-<button class="option-btn" data-value="extreme wide shot, establishing shot" data-i18n-btn="btn_extremewide">Extreme Wide</button>
+<button class="option-btn" data-value="extreme close-up shot, eye or mouth detail" data-i18n-btn="btn_extremecu">Primerísimo Plano</button>
+<button class="option-btn" data-value="close-up shot, facial details" data-i18n-btn="btn_closeup">Primer Plano</button>
+<button class="option-btn" data-value="medium shot, waist up" data-i18n-btn="btn_mediumshot">Plano Medio</button>
+<button class="option-btn" data-value="full body shot, complete figure" data-i18n-btn="btn_fullbody">Plano Entero</button>
+<button class="option-btn" data-value="wide shot, full scene context" data-i18n-btn="btn_wideshot">Plano General</button>
+<button class="option-btn" data-value="extreme wide shot, establishing shot" data-i18n-btn="btn_extremewide">Plano Muy General</button>
 </div>
-<label class="sub-label" data-i18n="cameraAngles">Angles</label>
+<label class="sub-label" data-i18n="cameraAngles">Ángulos de Cámara</label>
 <div class="option-grid" data-group="cameraAngles">
-<button class="option-btn" data-value="eye level shot, neutral perspective" data-i18n-btn="btn_eyelevel">Eye Level</button>
-<button class="option-btn" data-value="low angle shot, powerful perspective" data-i18n-btn="btn_lowangle">Low Angle</button>
-<button class="option-btn" data-value="high angle shot, vulnerable perspective" data-i18n-btn="btn_highangle">High Angle</button>
-<button class="option-btn" data-value="bird's eye view, drone top down" data-i18n-btn="btn_birdseye">Bird's Eye</button>
-<button class="option-btn" data-value="POV shot, first person perspective" data-i18n-btn="btn_pov">POV</button>
-<button class="option-btn" data-value="dutch angle tilt, uneasy atmosphere" data-i18n-btn="btn_dutchangle">Dutch</button>
+<button class="option-btn" data-value="eye level shot, neutral perspective" data-i18n-btn="btn_eyelevel">A Nivel de Ojos</button>
+<button class="option-btn" data-value="low angle shot, powerful perspective" data-i18n-btn="btn_lowangle">Ángulo Bajo</button>
+<button class="option-btn" data-value="high angle shot, vulnerable perspective" data-i18n-btn="btn_highangle">Ángulo Alto</button>
+<button class="option-btn" data-value="worm's eye view, extreme low angle" data-i18n-btn="btn_wormseye">Vista de Gusano</button>
+<button class="option-btn" data-value="bird's eye view, drone top down" data-i18n-btn="btn_birdseye">Vista de Pájaro</button>
+<button class="option-btn" data-value="over the shoulder shot, conversation view" data-i18n-btn="btn_overshoulder">Sobre el Hombro</button>
+<button class="option-btn" data-value="POV shot, first person perspective" data-i18n-btn="btn_pov">Primera Persona</button>
+<button class="option-btn" data-value="dutch angle tilt, uneasy atmosphere" data-i18n-btn="btn_dutchangle">Ángulo Holandés</button>
 </div>
 </div>
 </div>
@@ -928,22 +817,27 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 4: CAMERA MOVEMENT -->
 <div class="panel">
 <div class="panel-header">
-<h3>🎥 <span data-i18n="cameraMovement">Movement</span></h3>
+<h3>🎥 <span data-i18n="cameraMovement">Movimiento de Cámara</span></h3>
 <span class="panel-summary" id="sum-movement"></span>
 </div>
 <div class="panel-content">
-<label class="sub-label critical" data-i18n="movementNote">Max 8s segments</label>
+<label class="sub-label critical" data-i18n="movementNote">Crítico para Video Grok - máx 8s segmentos</label>
 <div class="option-grid" data-group="cameraMovement">
-<button class="option-btn" data-value="slow dolly in toward subject" data-i18n-btn="btn_dollyin">Dolly In</button>
-<button class="option-btn" data-value="slow dolly out from subject" data-i18n-btn="btn_dollyout">Dolly Out</button>
-<button class="option-btn" data-value="tracking shot following subject movement" data-i18n-btn="btn_tracking">Tracking</button>
-<button class="option-btn" data-value="slow pan left" data-i18n-btn="btn_panleft">Pan Left</button>
-<button class="option-btn" data-value="slow pan right" data-i18n-btn="btn_panright">Pan Right</button>
-<button class="option-btn" data-value="360 degree orbit shot around subject" data-i18n-btn="btn_orbit">360° Orbit</button>
-<button class="option-btn" data-value="handheld camera shake, documentary style" data-i18n-btn="btn_handheld">Handheld</button>
+<button class="option-btn" data-value="slow dolly in toward subject" data-i18n-btn="btn_dollyin">Acercamiento</button>
+<button class="option-btn" data-value="slow dolly out from subject" data-i18n-btn="btn_dollyout">Alejamiento</button>
+<button class="option-btn" data-value="tracking shot following subject movement" data-i18n-btn="btn_tracking">Seguimiento</button>
+<button class="option-btn" data-value="slow pan left" data-i18n-btn="btn_panleft">Giro Izquierda</button>
+<button class="option-btn" data-value="slow pan right" data-i18n-btn="btn_panright">Giro Derecha</button>
+<button class="option-btn" data-value="tilt up to reveal" data-i18n-btn="btn_tiltup">Inclinación Arriba</button>
+<button class="option-btn" data-value="tilt down to ground" data-i18n-btn="btn_tiltdown">Inclinación Abajo</button>
+<button class="option-btn" data-value="360 degree orbit shot around subject" data-i18n-btn="btn_orbit">Órbita 360°</button>
+<button class="option-btn" data-value="crane shot ascending" data-i18n-btn="btn_craneup">Grúa Sube</button>
+<button class="option-btn" data-value="crane shot descending" data-i18n-btn="btn_cranedown">Grúa Baja</button>
+<button class="option-btn" data-value="handheld camera shake, documentary style" data-i18n-btn="btn_handheld">Cámara en Mano</button>
 <button class="option-btn" data-value="steadicam smooth motion, gliding" data-i18n-btn="btn_steadicam">Steadicam</button>
-<button class="option-btn" data-value="slow zoom in" data-i18n-btn="btn_slowzoom">Slow Zoom</button>
-<button class="option-btn" data-value="rack focus from foreground to background" data-i18n-btn="btn_rackfocus">Rack Focus</button>
+<button class="option-btn" data-value="slow zoom in" data-i18n-btn="btn_slowzoom">Zoom Lento</button>
+<button class="option-btn" data-value="snap zoom, dramatic emphasis" data-i18n-btn="btn_snapzoom">Zoom Rápido</button>
+<button class="option-btn" data-value="rack focus from foreground to background" data-i18n-btn="btn_rackfocus">Cambio de Foco</button>
 </div>
 </div>
 </div>
@@ -951,20 +845,21 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 5: EYE LINES -->
 <div class="panel critical">
 <div class="panel-header">
-<h3>👁️ <span data-i18n="eyeLines">Eye Lines</span>
+<h3>
+👁️ <span data-i18n="eyeLines">Líneas de Ojos</span>
 <span class="panel-priority priority-high" data-i18n="grokCritical">GROK</span>
 </h3>
 <span class="panel-summary" id="sum-eyelines"></span>
 </div>
 <div class="panel-content">
-<div style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent); border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 0.7rem; color: var(--text-muted);">
-<strong data-i18n="eyeLinesInfo">Grok breaks fourth wall. Specify to avoid uncanny valley.</strong>
+<div style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--text-muted);">
+<strong data-i18n="eyeLinesInfo">Grok rompe la cuarta pared por defecto. Especifica líneas de ojos para evitar uncanny valley.</strong>
 </div>
 <div class="option-grid" data-group="eyeLines">
-<button class="option-btn" data-value="diegetic eye lines, subject not looking at camera" data-i18n-btn="btn_avoidcamera">Avoid Camera</button>
-<button class="option-btn" data-value="subject looking directly at camera, influencer style" data-i18n-btn="btn_influencer">Influencer</button>
-<button class="option-btn" data-value="subject looking off-camera, natural gaze" data-i18n-btn="btn_offcamera">Off-Camera</button>
-<button class="option-btn" data-value="eyes closed, emotional moment" data-i18n-btn="btn_eyesclosed">Eyes Closed</button>
+<button class="option-btn" data-value="diegetic eye lines, subject not looking at camera" data-i18n-btn="btn_avoidcamera">Evitar Cámara</button>
+<button class="option-btn" data-value="subject looking directly at camera, influencer style" data-i18n-btn="btn_influencer">Estilo Influencer</button>
+<button class="option-btn" data-value="subject looking off-camera, natural gaze" data-i18n-btn="btn_offcamera">Mirada Fuera</button>
+<button class="option-btn" data-value="eyes closed, emotional moment" data-i18n-btn="btn_eyesclosed">Ojos Cerrados</button>
 </div>
 </div>
 </div>
@@ -972,35 +867,37 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 6: LIGHTING -->
 <div class="panel">
 <div class="panel-header">
-<h3>💡 <span data-i18n="lighting">Lighting</span></h3>
+<h3>💡 <span data-i18n="lighting">Iluminación</span></h3>
 <span class="panel-summary" id="sum-lighting"></span>
 </div>
 <div class="panel-content">
-<label class="sub-label" data-i18n="timeOfDay">Time</label>
+<label class="sub-label" data-i18n="timeOfDay">Momento del Día</label>
 <div class="option-grid" data-group="timeOfDay">
-<button class="option-btn" data-value="dawn lighting, soft warm glow" data-i18n-btn="btn_dawn">Dawn</button>
-<button class="option-btn" data-value="midday sun, harsh shadows" data-i18n-btn="btn_midday">Midday</button>
-<button class="option-btn" data-value="sunset glow, golden hour" data-i18n-btn="btn_sunset">Sunset</button>
-<button class="option-btn" data-value="nighttime scene, artificial lights" data-i18n-btn="btn_night">Night</button>
-<button class="option-btn" data-value="blue hour lighting, cool twilight" data-i18n-btn="btn_bluehour">Blue Hour</button>
+<button class="option-btn" data-value="dawn lighting, soft warm glow" data-i18n-btn="btn_dawn">Amanecer</button>
+<button class="option-btn" data-value="midday sun, harsh shadows" data-i18n-btn="btn_midday">Mediodía</button>
+<button class="option-btn" data-value="sunset glow, golden hour" data-i18n-btn="btn_sunset">Atardecer</button>
+<button class="option-btn" data-value="nighttime scene, artificial lights" data-i18n-btn="btn_night">Noche</button>
+<button class="option-btn" data-value="blue hour lighting, cool twilight" data-i18n-btn="btn_bluehour">Hora Azul</button>
 </div>
-<label class="sub-label" data-i18n="lightingType">Type</label>
+<label class="sub-label" data-i18n="lightingType">Tipo de Iluminación</label>
 <div class="option-grid" data-group="lightingType">
-<button class="option-btn" data-value="dramatic chiaroscuro lighting, high contrast" data-i18n-btn="btn_chiaroscuro">Chiaroscuro</button>
+<button class="option-btn" data-value="dramatic chiaroscuro lighting, high contrast" data-i18n-btn="btn_chiaroscuro">Claroscuro</button>
 <button class="option-btn" data-value="softbox lighting, even illumination" data-i18n-btn="btn_softbox">Softbox</button>
-<button class="option-btn" data-value="rim lighting, edge highlight separation" data-i18n-btn="btn_rimlight">Rim Light</button>
-<button class="option-btn" data-value="neon lighting, colorful ambient glow" data-i18n-btn="btn_neon">Neon</button>
-<button class="option-btn" data-value="volumetric lighting, god rays" data-i18n-btn="btn_volumetric">Volumetric</button>
+<button class="option-btn" data-value="rim lighting, edge highlight separation" data-i18n-btn="btn_rimlight">Luz de Borde</button>
+<button class="option-btn" data-value="neon lighting, colorful ambient glow" data-i18n-btn="btn_neon">Neón</button>
+<button class="option-btn" data-value="volumetric lighting, god rays" data-i18n-btn="btn_volumetric">Volumétrico</button>
 <button class="option-btn" data-value="natural lighting, sun position accurate" data-i18n-btn="btn_natural">Natural</button>
+<button class="option-btn" data-value="practical lights in scene, motivated sources" data-i18n-btn="btn_practical">Práctica</button>
+<button class="option-btn" data-value="motivated lighting from visible sources" data-i18n-btn="btn_motivated">Motivada</button>
 </div>
-<label class="sub-label" data-i18n="mood">Mood</label>
+<label class="sub-label" data-i18n="mood">Estado de Ánimo y Atmósfera</label>
 <div class="option-grid" data-group="mood">
-<button class="option-btn" data-value="dark atmosphere" data-i18n-btn="btn_dark">Dark</button>
-<button class="option-btn" data-value="epic atmosphere" data-i18n-btn="btn_epic">Epic</button>
-<button class="option-btn" data-value="mysterious atmosphere" data-i18n-btn="btn_mysterious">Mysterious</button>
-<button class="option-btn" data-value="hopeful atmosphere" data-i18n-btn="btn_hopeful">Hopeful</button>
-<button class="option-btn" data-value="melancholic atmosphere" data-i18n-btn="btn_melancholic">Melancholic</button>
-<button class="option-btn" data-value="tense atmosphere" data-i18n-btn="btn_tense">Tense</button>
+<button class="option-btn" data-value="dark atmosphere" data-i18n-btn="btn_dark">Oscuro</button>
+<button class="option-btn" data-value="epic atmosphere" data-i18n-btn="btn_epic">Épico</button>
+<button class="option-btn" data-value="mysterious atmosphere" data-i18n-btn="btn_mysterious">Misterioso</button>
+<button class="option-btn" data-value="hopeful atmosphere" data-i18n-btn="btn_hopeful">Esperanzador</button>
+<button class="option-btn" data-value="melancholic atmosphere" data-i18n-btn="btn_melancholic">Melancólico</button>
+<button class="option-btn" data-value="tense atmosphere" data-i18n-btn="btn_tense">Tenso</button>
 </div>
 </div>
 </div>
@@ -1008,18 +905,20 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 7: OPTICAL EFFECTS -->
 <div class="panel">
 <div class="panel-header">
-<h3>🎞️ <span data-i18n="opticalEffects">Optical FX</span></h3>
+<h3>🎞️ <span data-i18n="opticalEffects">Efectos Ópticos</span></h3>
 <span class="panel-summary" id="sum-optical"></span>
 </div>
 <div class="panel-content">
 <div class="option-grid" data-group="opticalEffects">
-<button class="option-btn" data-value="cinematic depth of field, shallow focus" data-i18n-btn="btn_dof">Depth of Field</button>
+<button class="option-btn" data-value="cinematic depth of field, shallow focus" data-i18n-btn="btn_dof">Profundidad de Campo</button>
 <button class="option-btn" data-value="bokeh background blur, creamy out of focus" data-i18n-btn="btn_bokeh">Bokeh</button>
-<button class="option-btn" data-value="film grain texture, 35mm film stock" data-i18n-btn="btn_filmgrain">Film Grain</button>
+<button class="option-btn" data-value="film grain texture, 35mm film stock" data-i18n-btn="btn_filmgrain">Grano de Película</button>
 <button class="option-btn" data-value="motion blur effect, natural movement" data-i18n-btn="btn_motionblur">Motion Blur</button>
 <button class="option-btn" data-value="lens flare effect, anamorphic streaks" data-i18n-btn="btn_lensflare">Lens Flare</button>
-<button class="option-btn" data-value="slight chromatic aberration, realistic lens" data-i18n-btn="btn_chromatic">Chromatic</button>
+<button class="option-btn" data-value="slight chromatic aberration, realistic lens" data-i18n-btn="btn_chromatic">Aberración Cromática</button>
+<button class="option-btn" data-value="subtle vignette, focus attention center" data-i18n-btn="btn_vignette">Viñeta</button>
 <button class="option-btn" data-value="bloom effect, highlight glow" data-i18n-btn="btn_bloom">Bloom</button>
+<button class="option-btn" data-value="teal and orange color grading, cinematic" data-i18n-btn="btn_tealorange">Teal y Naranja</button>
 <button class="option-btn" data-value="HDR enhanced, high dynamic range" data-i18n-btn="btn_hdr">HDR</button>
 </div>
 </div>
@@ -1028,31 +927,33 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 8: STYLE & RENDER -->
 <div class="panel">
 <div class="panel-header">
-<h3>🎨 <span data-i18n="visualStyle">Visual Style</span></h3>
+<h3>🎨 <span data-i18n="visualStyle">Estilo Visual</span></h3>
 <span class="panel-summary" id="sum-style"></span>
 </div>
 <div class="panel-content">
-<label class="sub-label" data-i18n="artStyle">Art Style</label>
+<label class="sub-label" data-i18n="artStyle">Estilo de Arte</label>
 <div class="option-grid" data-group="artStyle">
-<button class="option-btn" data-value="cinematic photography" data-i18n-btn="btn_cinematic">Cinematic</button>
+<button class="option-btn" data-value="cinematic photography" data-i18n-btn="btn_cinematic">Cinematográfico</button>
 <button class="option-btn" data-value="cyberpunk aesthetic" data-i18n-btn="btn_cyberpunk">Cyberpunk</button>
-<button class="option-btn" data-value="ultra realistic, photorealistic" data-i18n-btn="btn_realistic">Realistic</button>
+<button class="option-btn" data-value="ultra realistic, photorealistic" data-i18n-btn="btn_realistic">Realista</button>
 <button class="option-btn" data-value="anime style" data-i18n-btn="btn_anime">Anime</button>
-<button class="option-btn" data-value="fantasy art" data-i18n-btn="btn_fantasy">Fantasy</button>
-<button class="option-btn" data-value="documentary style" data-i18n-btn="btn_documentary">Documentary</button>
+<button class="option-btn" data-value="fantasy art" data-i18n-btn="btn_fantasy">Fantasía</button>
+<button class="option-btn" data-value="documentary style" data-i18n-btn="btn_documentary">Documental</button>
+<button class="option-btn" data-value="music video aesthetic" data-i18n-btn="btn_musicvideo">Video Musical</button>
+<button class="option-btn" data-value="commercial advertising style" data-i18n-btn="btn_commercial">Publicitario</button>
 </div>
-<label class="sub-label" data-i18n="renderEngine">Render</label>
+<label class="sub-label" data-i18n="renderEngine">Motor de Render</label>
 <div class="option-grid" data-group="renderEngine">
 <button class="option-btn" data-value="Unreal Engine 5 render" data-i18n-btn="btn_unreal5">Unreal 5</button>
 <button class="option-btn" data-value="Octane render" data-i18n-btn="btn_octane">Octane</button>
 <button class="option-btn" data-value="Redshift render" data-i18n-btn="btn_redshift">Redshift</button>
 </div>
-<label class="sub-label critical" data-i18n="grokTerms">Grok Terms</label>
+<label class="sub-label critical" data-i18n="grokTerms">Términos Específicos de Grok (CRÍTICO)</label>
 <div class="option-grid" data-group="grokTerms">
-<button class="option-btn" data-value="subsurface scattering for organic materials" data-i18n-btn="btn_subsurface">Subsurface</button>
-<button class="option-btn" data-value="natural skin pores and textures" data-i18n-btn="btn_skindetails">Skin Details</button>
+<button class="option-btn" data-value="subsurface scattering for organic materials" data-i18n-btn="btn_subsurface">Dispersión Subsuperficial</button>
+<button class="option-btn" data-value="natural skin pores and textures" data-i18n-btn="btn_skindetails">Detalles de Piel</button>
 <button class="option-btn" data-value="uncanny valley neutralization" data-i18n-btn="btn_antiuncanny">Anti-Uncanny</button>
-<button class="option-btn" data-value="individual hair strands, realistic" data-i18n-btn="btn_hairdetails">Hair Details</button>
+<button class="option-btn" data-value="individual hair strands, realistic" data-i18n-btn="btn_hairdetails">Detalles de Cabello</button>
 </div>
 </div>
 </div>
@@ -1060,44 +961,45 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- ✨ PANEL 8.5: VISUAL STYLE ARCHITECT -->
 <div class="panel style">
 <div class="panel-header">
-<h3>🎨 <span data-i18n="visualStyleArchitect">Style Architect</span>
-<span class="panel-priority priority-style" data-i18n="priorityHigh">HIGH</span>
+<h3>
+🎨 <span data-i18n="visualStyleArchitect">Arquitecto de Estilo Visual</span>
+<span class="panel-priority priority-style" data-i18n="priorityHigh">ALTA PRIORIDAD</span>
 </h3>
 <span class="panel-summary" id="sum-stylearch"></span>
 </div>
 <div class="panel-content">
-<div style="background: rgba(236, 72, 153, 0.1); border: 1px solid var(--style-pink); border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 0.7rem; color: var(--style-pink);">
-<strong>✨ NEW:</strong> <span data-i18n="styleArchWarning">Select aesthetic + FX. Control weight.</span>
+<div style="background: rgba(236, 72, 153, 0.1); border: 1px solid var(--style-pink); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--style-pink);">
+<strong>✨ NUEVO:</strong> <span data-i18n="styleArchWarning">Selecciona filtro estético + FX de personaje. Controla el peso del estilo para optimización Grok.</span>
 </div>
-<label class="sub-label style" data-i18n="mainAesthetic">Aesthetic</label>
+<label class="sub-label style" data-i18n="mainAesthetic">Estética Principal (Filtro Base)</label>
 <div class="style-tabs" id="styleTabs">
-<button class="style-tab active" data-tab="cinematic" data-i18n-tab="tab_cinematic">Cinematic</button>
-<button class="style-tab" data-tab="photography" data-i18n-tab="tab_photography">Photo</button>
-<button class="style-tab" data-tab="animation" data-i18n-tab="tab_animation">Animation</button>
-<button class="style-tab" data-tab="artistic" data-i18n-tab="tab_artistic">Artistic</button>
+<button class="style-tab active" data-tab="cinematic" data-i18n-tab="tab_cinematic">Cinematográfico</button>
+<button class="style-tab" data-tab="photography" data-i18n-tab="tab_photography">Fotografía</button>
+<button class="style-tab" data-tab="animation" data-i18n-tab="tab_animation">Animación</button>
+<button class="style-tab" data-tab="artistic" data-i18n-tab="tab_artistic">Artístico</button>
 <button class="style-tab" data-tab="experimental" data-i18n-tab="tab_experimental">Experimental</button>
 </div>
 <div class="option-grid" id="styleGrid" data-group="visualStyle"></div>
-<details style="background: #1a1e26; border: 1px solid var(--border); border-radius: 6px; margin-top: 10px;">
-<summary style="padding: 8px; cursor: pointer; font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">
-💄 <span data-i18n="makeupFX">Makeup & FX</span> <span style="color: var(--text-muted); font-weight: 400;" data-i18n="optional">(opt)</span>
+<details style="background: #1a1e26; border: 1px solid var(--border); border-radius: 6px; margin-top: 12px;">
+<summary style="padding: 10px; cursor: pointer; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">
+💄 <span data-i18n="makeupFX">Maquillaje y FX de Personaje</span> <span style="color: var(--text-muted); font-weight: 400;" data-i18n="optional">(opcional)</span>
 </summary>
-<div class="option-grid" id="makeupGrid" data-group="makeupFX" style="padding: 10px;"></div>
+<div class="option-grid" id="makeupGrid" data-group="makeupFX" style="padding: 12px;"></div>
 </details>
 <div class="style-weight-container">
 <div class="style-weight-header">
-<span class="style-weight-label" data-i18n="styleWeight">Weight</span>
+<span class="style-weight-label" data-i18n="styleWeight">Peso del Estilo</span>
 <span class="style-weight-value" id="styleWeightValue">50%</span>
 </div>
 <input type="range" class="style-slider" id="styleWeight" min="0" max="100" value="50" oninput="updateStyleWeight()">
 <div class="style-slider-labels">
-<span data-i18n="subtle">Subtle</span>
-<span data-i18n="balanced">Balanced</span>
-<span data-i18n="dominant">Dominant</span>
+<span data-i18n="subtle">Sutil</span>
+<span data-i18n="balanced">Equilibrado</span>
+<span data-i18n="dominant">Dominante</span>
 </div>
 </div>
 <div class="style-preview" id="stylePreview" style="display: none;">
-<div class="style-preview-title" data-i18n="activeStyle">Active:</div>
+<div class="style-preview-title" data-i18n="activeStyle">Estilo Activo:</div>
 <div id="stylePreviewContent"></div>
 </div>
 </div>
@@ -1106,29 +1008,33 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 9: ENVIRONMENT & PHYSICS -->
 <div class="panel">
 <div class="panel-header">
-<h3>🌍 <span data-i18n="environment">Environment</span></h3>
+<h3>🌍 <span data-i18n="environment">Entorno y Física</span></h3>
 <span class="panel-summary" id="sum-environment"></span>
 </div>
 <div class="panel-content">
-<label class="sub-label" data-i18n="location">Location</label>
-<textarea id="location" placeholder="e.g. neon cityscape..." oninput="updateSummary()"></textarea>
-<label class="sub-label" data-i18n="biome">Biome</label>
+<label class="sub-label" data-i18n="location">Ubicación</label>
+<textarea id="location" placeholder="ej. paisaje urbano de neón empapado con reflejos..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="biome">Bioma</label>
 <div class="option-grid" data-group="biome">
-<button class="option-btn" data-value="forest environment" data-i18n-btn="btn_forest">Forest</button>
-<button class="option-btn" data-value="desert environment" data-i18n-btn="btn_desert">Desert</button>
-<button class="option-btn" data-value="futuristic cityscape" data-i18n-btn="btn_city">City</button>
-<button class="option-btn" data-value="outer space" data-i18n-btn="btn_space">Space</button>
-<button class="option-btn" data-value="underwater environment" data-i18n-btn="btn_underwater">Underwater</button>
+<button class="option-btn" data-value="forest environment" data-i18n-btn="btn_forest">Bosque</button>
+<button class="option-btn" data-value="desert environment" data-i18n-btn="btn_desert">Desierto</button>
+<button class="option-btn" data-value="futuristic cityscape" data-i18n-btn="btn_city">Ciudad</button>
+<button class="option-btn" data-value="mountain region" data-i18n-btn="btn_mountain">Montaña</button>
+<button class="option-btn" data-value="outer space" data-i18n-btn="btn_space">Espacio</button>
+<button class="option-btn" data-value="interior scene" data-i18n-btn="btn_interior">Interior</button>
+<button class="option-btn" data-value="underwater environment" data-i18n-btn="btn_underwater">Submarino</button>
 </div>
-<label class="sub-label critical" data-i18n="physicalDynamics">Physics</label>
+<label class="sub-label critical" data-i18n="physicalDynamics">Dinámicas Físicas (CAPA 4)</label>
 <div class="option-grid" data-group="physicalDynamics">
-<button class="option-btn" data-value="wind affecting clothing and hair, realistic physics" data-i18n-btn="btn_wind">Wind</button>
-<button class="option-btn" data-value="rainy weather, water droplets on surfaces" data-i18n-btn="btn_rain">Rain</button>
-<button class="option-btn" data-value="foggy atmosphere, volumetric mist" data-i18n-btn="btn_fog">Fog</button>
-<button class="option-btn" data-value="smoke particles, atmospheric haze" data-i18n-btn="btn_smoke">Smoke</button>
-<button class="option-btn" data-value="fire embers, heat distortion" data-i18n-btn="btn_fire">Fire</button>
-<button class="option-btn" data-value="water splashes, fluid dynamics" data-i18n-btn="btn_water">Water</button>
-<button class="option-btn" data-value="snowing weather, snowflakes falling" data-i18n-btn="btn_snow">Snow</button>
+<button class="option-btn" data-value="wind affecting clothing and hair, realistic physics" data-i18n-btn="btn_wind">Viento</button>
+<button class="option-btn" data-value="rainy weather, water droplets on surfaces" data-i18n-btn="btn_rain">Lluvia</button>
+<button class="option-btn" data-value="foggy atmosphere, volumetric mist" data-i18n-btn="btn_fog">Niebla</button>
+<button class="option-btn" data-value="smoke particles, atmospheric haze" data-i18n-btn="btn_smoke">Humo</button>
+<button class="option-btn" data-value="fire embers, heat distortion" data-i18n-btn="btn_fire">Fuego</button>
+<button class="option-btn" data-value="water splashes, fluid dynamics" data-i18n-btn="btn_water">Agua</button>
+<button class="option-btn" data-value="dust particles in light rays" data-i18n-btn="btn_dust">Polvo</button>
+<button class="option-btn" data-value="snowing weather, snowflakes falling" data-i18n-btn="btn_snow">Nieve</button>
+<button class="option-btn" data-value="fabric flowing in wind, realistic cloth simulation" data-i18n-btn="btn_fabric">Telas</button>
 </div>
 </div>
 </div>
@@ -1136,16 +1042,17 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 10: COMPOSITION -->
 <div class="panel">
 <div class="panel-header">
-<h3>📐 <span data-i18n="composition">Composition</span></h3>
+<h3>📐 <span data-i18n="composition">Composición</span></h3>
 <span class="panel-summary" id="sum-composition"></span>
 </div>
 <div class="panel-content">
 <div class="option-grid" data-group="composition">
-<button class="option-btn" data-value="rule of thirds composition" data-i18n-btn="btn_ruleofthirds">Rule of Thirds</button>
-<button class="option-btn" data-value="centered composition, symmetrical" data-i18n-btn="btn_centered">Centered</button>
-<button class="option-btn" data-value="leading lines guiding to subject" data-i18n-btn="btn_leadinglines">Leading Lines</button>
-<button class="option-btn" data-value="negative space, minimalist composition" data-i18n-btn="btn_negativespace">Negative Space</button>
-<button class="option-btn" data-value="golden ratio composition" data-i18n-btn="btn_goldenratio">Golden Ratio</button>
+<button class="option-btn" data-value="rule of thirds composition" data-i18n-btn="btn_ruleofthirds">Regla de Tercios</button>
+<button class="option-btn" data-value="centered composition, symmetrical" data-i18n-btn="btn_centered">Centrado</button>
+<button class="option-btn" data-value="leading lines guiding to subject" data-i18n-btn="btn_leadinglines">Líneas Guía</button>
+<button class="option-btn" data-value="frame within frame composition" data-i18n-btn="btn_framewithin">Marco Dentro</button>
+<button class="option-btn" data-value="negative space, minimalist composition" data-i18n-btn="btn_negativespace">Espacio Negativo</button>
+<button class="option-btn" data-value="golden ratio composition" data-i18n-btn="btn_goldenratio">Proporción Áurea</button>
 </div>
 </div>
 </div>
@@ -1153,28 +1060,40 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 11: QUALITY & RESOLUTION -->
 <div class="panel premium">
 <div class="panel-header">
-<h3>💎 <span data-i18n="qualityPanel">Quality</span>
+<h3>
+💎 <span data-i18n="qualityPanel">Calidad y Resolución</span>
 <span class="panel-priority priority-premium" data-i18n="premium">PREMIUM</span>
 </h3>
 <span class="panel-summary" id="sum-quality"></span>
 </div>
 <div class="panel-content">
-<div style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 0.7rem; color: var(--gold);">
-<strong>⚠️ NOTE:</strong> <span data-i18n="qualityNote">Grok native: 720p. 4K/8K need upscaling.</span>
+<div style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--gold);">
+<strong>⚠️ NOTA:</strong> <span data-i18n="qualityNote">La salida nativa de Grok es 720p HD. Las palabras clave 4K/8K mejoran el detalle pero requieren upscaling en post-producción para resolución real mayor.</span>
 </div>
-<label class="sub-label premium" data-i18n="resolution">Resolution</label>
+<label class="sub-label premium" data-i18n="resolution">Modificadores de Resolución</label>
 <div class="option-grid" data-group="resolution">
-<button class="option-btn premium" data-value="720p HD" data-i18n-btn="btn_720p">720p</button>
-<button class="option-btn premium" data-value="4K resolution, ultra detailed" data-i18n-btn="btn_4k">4K</button>
-<button class="option-btn premium" data-value="8K resolution, maximum detail" data-i18n-btn="btn_8k">8K</button>
+<button class="option-btn premium" data-value="720p HD" data-i18n-btn="btn_720p">720p HD (Nativo)</button>
+<button class="option-btn premium" data-value="4K resolution, ultra detailed" data-i18n-btn="btn_4k">4K Mejorado</button>
+<button class="option-btn premium" data-value="8K resolution, maximum detail" data-i18n-btn="btn_8k">8K Máximo</button>
 </div>
-<label class="sub-label premium" data-i18n="qualityModifiers">Quality</label>
+<label class="sub-label premium" data-i18n="qualityModifiers">Modificadores de Calidad</label>
 <div class="option-grid" data-group="qualityModifiers">
-<button class="option-btn premium" data-value="masterpiece quality" data-i18n-btn="btn_masterpiece">Masterpiece</button>
-<button class="option-btn premium" data-value="professional grade" data-i18n-btn="btn_professional">Professional</button>
-<button class="option-btn premium" data-value="studio quality" data-i18n-btn="btn_studioquality">Studio</button>
-<button class="option-btn premium" data-value="ultra realistic, photorealistic" data-i18n-btn="btn_ultrarealistic">Ultra Real</button>
-<button class="option-btn premium" data-value="high detail, intricate details" data-i18n-btn="btn_highdetail">High Detail</button>
+<button class="option-btn premium" data-value="ultra realistic, photorealistic" data-i18n-btn="btn_ultrarealistic">Ultra Realista</button>
+<button class="option-btn premium" data-value="high detail, intricate details" data-i18n-btn="btn_highdetail">Alto Detalle</button>
+<button class="option-btn premium" data-value="masterpiece quality" data-i18n-btn="btn_masterpiece">Obra Maestra</button>
+<button class="option-btn premium" data-value="award winning photography" data-i18n-btn="btn_awardwinning">Premiado</button>
+<button class="option-btn premium" data-value="professional grade" data-i18n-btn="btn_professional">Profesional</button>
+<button class="option-btn premium" data-value="studio quality" data-i18n-btn="btn_studioquality">Calidad Estudio</button>
+<button class="option-btn premium" data-value="crystal clear, sharp focus" data-i18n-btn="btn_crystalclear">Cristalino</button>
+<button class="option-btn premium" data-value="HDR enhanced, high dynamic range" data-i18n-btn="btn_hdrenhanced">HDR Mejorado</button>
+</div>
+<label class="sub-label premium" data-i18n="detailEnhancers">Mejoradores de Detalle</label>
+<div class="option-grid" data-group="detailEnhancers">
+<button class="option-btn premium" data-value="intricate details, fine textures" data-i18n-btn="btn_intricatedetails">Detalles Intrincados</button>
+<button class="option-btn premium" data-value="hyper detailed, micro details" data-i18n-btn="btn_hyperdetailed">Hiper Detallado</button>
+<button class="option-btn premium" data-value="sharp focus, crisp edges" data-i18n-btn="btn_sharpfocus">Enfoque Nítido</button>
+<button class="option-btn premium" data-value="rich colors, vibrant palette" data-i18n-btn="btn_richcolors">Colores Ricos</button>
+<button class="option-btn premium" data-value="premium texture quality" data-i18n-btn="btn_premiumtextures">Texturas Premium</button>
 </div>
 </div>
 </div>
@@ -1182,33 +1101,51 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 12: AUDIO -->
 <div class="panel audio">
 <div class="panel-header">
-<h3>🔊 <span data-i18n="audio">Audio</span>
-<span class="panel-priority priority-audio" data-i18n="audioCritical">LAYER 5</span>
+<h3>
+🔊 <span data-i18n="audio">Composición de Audio</span>
+<span class="panel-priority priority-audio" data-i18n="audioCritical">CAPA 5</span>
 </h3>
 <span class="panel-summary" id="sum-audio"></span>
 </div>
 <div class="panel-content">
-<div style="background: rgba(0, 184, 255, 0.1); border: 1px solid var(--audio-blue); border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 0.7rem; color: var(--audio-blue);">
-<strong>⚠️ NOTE:</strong> <span data-i18n="audioWarning">Select ONE type. Process in Adobe Podcast.</span>
+<div style="background: rgba(0, 184, 255, 0.1); border: 1px solid var(--audio-blue); border-radius: 6px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--audio-blue);">
+<strong>⚠️ NOTA DE CALIDAD DE AUDIO:</strong> <span data-i18n="audioWarning">El audio nativo de Grok mezcla todos los elementos (música + SFX + diálogo) lo que causa distorsión. Para audio limpio: selecciona UN tipo solo, luego procesa en Adobe Podcast para calidad HD.</span>
 </div>
-<label class="sub-label audio" data-i18n="audioType">Type (ONE)</label>
+<label class="sub-label audio" data-i18n="audioType">Tipo de Audio (Selecciona UNO para salida limpia)</label>
 <div class="option-grid" data-group="audioType">
-<button class="option-btn audio" data-value="music only, no dialogue" data-i18n-btn="btn_musicOnly">Music</button>
-<button class="option-btn audio" data-value="sound effects only, no music" data-i18n-btn="btn_sfxOnly">SFX</button>
-<button class="option-btn audio" data-value="dialogue only, clear speech" data-i18n-btn="btn_dialogueOnly">Dialogue</button>
-<button class="option-btn audio" data-value="ambient soundscape only" data-i18n-btn="btn_ambientOnly">Ambient</button>
-<button class="option-btn audio" data-value="silence, no audio track" data-i18n-btn="btn_silenceOnly">Silence</button>
+<button class="option-btn audio" data-value="music only, no dialogue" data-i18n-btn="btn_musicOnly">Solo Música</button>
+<button class="option-btn audio" data-value="sound effects only, no music" data-i18n-btn="btn_sfxOnly">Solo SFX</button>
+<button class="option-btn audio" data-value="dialogue only, clear speech" data-i18n-btn="btn_dialogueOnly">Solo Diálogo</button>
+<button class="option-btn audio" data-value="ambient soundscape only" data-i18n-btn="btn_ambientOnly">Solo Ambiente</button>
+<button class="option-btn audio" data-value="silence, no audio track" data-i18n-btn="btn_silenceOnly">Silencio</button>
 </div>
-<label class="sub-label audio" data-i18n="musicGenre">Genre</label>
+<label class="sub-label audio" data-i18n="musicGenre">Género Musical (si seleccionaste Música)</label>
 <div class="option-grid" data-group="musicGenre">
-<button class="option-btn audio" data-value="epic orchestral music, cinematic score" data-i18n-btn="btn_orchestral">Orchestral</button>
+<button class="option-btn audio" data-value="epic orchestral music, cinematic score" data-i18n-btn="btn_orchestral">Orquestal</button>
+<button class="option-btn audio" data-value="soft ambient soundtrack, atmospheric" data-i18n-btn="btn_ambient">Ambiente</button>
 <button class="option-btn audio" data-value="electronic synthwave music" data-i18n-btn="btn_synthwave">Synthwave</button>
+<button class="option-btn audio" data-value="dramatic trailer music" data-i18n-btn="btn_trailer">Trailer</button>
 <button class="option-btn audio" data-value="lo-fi hip hop beats" data-i18n-btn="btn_lofi">Lo-Fi</button>
-<button class="option-btn audio" data-value="soft ambient soundtrack, atmospheric" data-i18n-btn="btn_ambient">Ambient</button>
+<button class="option-btn audio" data-value="upbeat pop music" data-i18n-btn="btn_pop">Pop</button>
 </div>
-<label class="sub-label audio" data-i18n="postProduction">Post-Production</label>
-<div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 10px; font-size: 0.7rem; color: var(--warning);">
-<strong data-i18n="postProdNote">📌 Process in Adobe Podcast. 8s max for lip-sync.</strong>
+<label class="sub-label audio" data-i18n="sfxType">Efectos de Sonido (si seleccionaste SFX)</label>
+<div class="option-grid" data-group="sfxType">
+<button class="option-btn audio" data-value="dramatic sound effects, impactful" data-i18n-btn="btn_dramaticSFX">Dramáticos</button>
+<button class="option-btn audio" data-value="nature sound effects, birds wind water" data-i18n-btn="btn_natureSFX">Naturaleza</button>
+<button class="option-btn audio" data-value="urban sound effects, traffic city" data-i18n-btn="btn_urbanSFX">Urbano</button>
+<button class="option-btn audio" data-value="sci-fi sound effects, futuristic" data-i18n-btn="btn_scifiSFX">Sci-Fi</button>
+<button class="option-btn audio" data-value="combat sound effects, weapons" data-i18n-btn="btn_combatSFX">Combate</button>
+</div>
+<label class="sub-label audio" data-i18n="audioQuality">Modificadores de Calidad de Audio</label>
+<div class="option-grid" data-group="audioQuality">
+<button class="option-btn audio" data-value="HD audio quality, 48kHz sample rate" data-i18n-btn="btn_hdAudio">Audio HD</button>
+<button class="option-btn audio" data-value="studio quality audio, mastered" data-i18n-btn="btn_studioAudio">Calidad Estudio</button>
+<button class="option-btn audio" data-value="clear dialogue, noise reduced" data-i18n-btn="btn_clearDialogue">Diálogo Claro</button>
+<button class="option-btn audio" data-value="no audio distortion, clean mix" data-i18n-btn="btn_noDistortion">Sin Distorsión</button>
+</div>
+<label class="sub-label audio" data-i18n="postProduction">Post-Producción (OBLIGATORIO)</label>
+<div style="background: rgba(255, 170, 0, 0.1); border: 1px solid var(--warning); border-radius: 6px; padding: 12px; font-size: 0.8rem; color: var(--warning);">
+<strong data-i18n="postProdNote">📌 Según PDF Grok: Después de generar, procesa el audio en Adobe Podcast para lip-sync y limpieza de ruido. Segmenta escenas de diálogo a 8s máx para sync perfecto.</strong>
 </div>
 </div>
 </div>
@@ -1216,27 +1153,28 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 13: OUTPUT SETTINGS -->
 <div class="panel">
 <div class="panel-header">
-<h3>⚙️ <span data-i18n="output">Output</span></h3>
+<h3>⚙️ <span data-i18n="output">Configuración de Salida</span></h3>
 <span class="panel-summary" id="sum-output"></span>
 </div>
 <div class="panel-content">
-<div class="info-alert" style="margin-bottom: 10px; padding: 8px;">
+<div class="info-alert" style="margin-bottom: 15px; padding: 10px;">
 <span class="info-alert-icon">📊</span>
 <div class="info-alert-content">
-<strong>Grok Optimal:</strong> 720p, 8s, ~180 credits/video
+<strong>Grok Óptimo:</strong> 720p HD, segmentos de 8s para lip-sync perfecto, ~180 créditos/video
 </div>
 </div>
-<label class="sub-label" data-i18n="aspectRatio">Aspect Ratio</label>
+<label class="sub-label" data-i18n="aspectRatio">Proporción de Aspecto</label>
 <div class="option-grid" data-group="aspectRatio">
-<button class="option-btn" data-value="--ar 16:9" data-i18n-btn="btn_169">16:9</button>
-<button class="option-btn" data-value="--ar 9:16" data-i18n-btn="btn_916">9:16</button>
-<button class="option-btn" data-value="--ar 1:1" data-i18n-btn="btn_11">1:1</button>
-<button class="option-btn" data-value="--ar 21:9" data-i18n-btn="btn_219">21:9</button>
+<button class="option-btn" data-value="--ar 16:9" data-i18n-btn="btn_169">16:9 (YouTube)</button>
+<button class="option-btn" data-value="--ar 9:16" data-i18n-btn="btn_916">9:16 (TikTok/Reels)</button>
+<button class="option-btn" data-value="--ar 1:1" data-i18n-btn="btn_11">1:1 (Cuadrado)</button>
+<button class="option-btn" data-value="--ar 21:9" data-i18n-btn="btn_219">21:9 (Cine)</button>
+<button class="option-btn" data-value="--ar 4:3" data-i18n-btn="btn_43">4:3 (Clásico)</button>
 </div>
-<label class="sub-label" data-i18n="duration">Duration</label>
+<label class="sub-label" data-i18n="duration">Duración</label>
 <div class="option-grid" data-group="duration">
-<button class="option-btn" data-value="8 second segment for lip-sync" data-i18n-btn="btn_8s">8s</button>
-<button class="option-btn" data-value="15 second max duration" data-i18n-btn="btn_15s">15s</button>
+<button class="option-btn" data-value="8 second segment for lip-sync" data-i18n-btn="btn_8s">8s (Diálogo)</button>
+<button class="option-btn" data-value="15 second max duration" data-i18n-btn="btn_15s">15s (Máx)</button>
 </div>
 </div>
 </div>
@@ -1244,26 +1182,28 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 14: NEGATIVE PROMPT -->
 <div class="panel critical">
 <div class="panel-header">
-<h3>⛔ <span data-i18n="negative">Negative</span>
+<h3>
+⛔ <span data-i18n="negative">Prompt Negativo</span>
 <span class="panel-priority priority-critical" data-i18n="autoIncluded">AUTO</span>
 </h3>
 <span class="panel-summary" id="sum-negative"></span>
 </div>
 <div class="panel-content">
-<div class="info-alert" style="margin-bottom: 10px; padding: 8px; border-color: var(--warning); background: rgba(255, 170, 0, 0.08);">
+<div class="info-alert" style="margin-bottom: 15px; padding: 10px; border-color: var(--warning); background: rgba(255, 170, 0, 0.08);">
 <span class="info-alert-icon">⚠️</span>
 <div class="info-alert-content">
-<strong data-i18n="negativeWarning">Auto:</strong> [No subtitles, No text, No captions]
+<strong data-i18n="negativeWarning">Sesgo de Grok:</strong> Automáticamente agrega [No subtítulos, No texto, No closed captions] para prevenir artefactos de texto quemado
 </div>
 </div>
-<label class="sub-label" data-i18n="customNegative">Custom</label>
-<textarea id="negative" placeholder="Additional to avoid..." oninput="updateSummary()"></textarea>
-<label class="sub-label" data-i18n="quickNegative">Quick</label>
+<label class="sub-label" data-i18n="customNegative">Negativo Personalizado</label>
+<textarea id="negative" placeholder="Elementos adicionales a evitar..." oninput="updateSummary()"></textarea>
+<label class="sub-label" data-i18n="quickNegative">Negativo Rápido</label>
 <div class="option-grid" data-group="negQuick">
-<button class="option-btn" data-value="blurry, low resolution" data-i18n-btn="btn_noblur">No Blur</button>
-<button class="option-btn" data-value="ugly, deformed hands and face" data-i18n-btn="btn_nodeformed">No Deformed</button>
-<button class="option-btn" data-value="extra limbs, bad anatomy" data-i18n-btn="btn_nobadanatomy">No Bad Anatomy</button>
-<button class="option-btn" data-value="watermark, signature" data-i18n-btn="btn_nowatermark">No Watermark</button>
+<button class="option-btn" data-value="blurry, low resolution" data-i18n-btn="btn_noblur">Sin Blur</button>
+<button class="option-btn" data-value="ugly, deformed hands and face" data-i18n-btn="btn_nodeformed">Sin Deformaciones</button>
+<button class="option-btn" data-value="extra limbs, bad anatomy" data-i18n-btn="btn_nobadanatomy">Sin Anatomía</button>
+<button class="option-btn" data-value="watermark, signature" data-i18n-btn="btn_nowatermark">Sin Marca de Agua</button>
+<button class="option-btn" data-value="cartoon, 3d render" data-i18n-btn="btn_nocartoon">Sin Cartoon</button>
 </div>
 </div>
 </div>
@@ -1271,24 +1211,28 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <!-- PANEL 15: SPICY MODE -->
 <div class="panel">
 <div class="panel-header">
-<h3>🌶️ <span data-i18n="spicyMode">Spicy Mode</span></h3>
+<h3>🌶️ <span data-i18n="spicyMode">Modo Spicy</span></h3>
 <span class="panel-summary" id="sum-spicy"></span>
 </div>
 <div class="panel-content">
 <div class="spicy-warning">
-<strong>⚠️ Premium+ Required:</strong> 18+. Artistic nudity allowed. NO deepfakes or minors.
+<strong>⚠️ Requiere Premium+:</strong> Suscripción SuperGrok, verificación de edad (18+).
+Desnudo artístico permitido. NO deepfakes, menores o actos explícitos.
 </div>
 <div class="spicy-toggle">
 <div class="toggle-switch" id="spicyToggle" onclick="toggleSpicyMode()"></div>
-<span style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="enableSpicy">Enable</span>
+<span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="enableSpicy">Activar Modo Spicy</span>
 </div>
 <div id="spicyContent" style="display: none;">
-<label class="sub-label danger" data-i18n="spicyOptions">Moderation</label>
+<label class="sub-label danger" data-i18n="spicyOptions">Técnicas de Moderación</label>
 <div class="option-grid" data-group="spicy">
-<button class="option-btn" data-value="anime stickers for coverage" data-i18n-btn="btn_animestickers">Anime Stickers</button>
-<button class="option-btn" data-value="2D hearts for occlusion" data-i18n-btn="btn_2dhearts">2D Hearts</button>
-<button class="option-btn" data-value="artistic nudity, tasteful" data-i18n-btn="btn_artisticnudity">Artistic</button>
+<button class="option-btn" data-value="anime stickers for coverage" data-i18n-btn="btn_animestickers">Stickers Anime</button>
+<button class="option-btn" data-value="2D hearts for occlusion" data-i18n-btn="btn_2dhearts">Corazones 2D</button>
+<button class="option-btn" data-value="lingerie pasties" data-i18n-btn="btn_lingeriepasties">Pasties Lencería</button>
+<button class="option-btn" data-value="artistic nudity, tasteful" data-i18n-btn="btn_artisticnudity">Desnudo Artístico</button>
 </div>
+<label class="sub-label danger" data-i18n="spicyWarning">Advertencia Legal</label>
+<textarea readonly style="font-size: 0.75rem; color: var(--warning);">Investigación ICO 2026. Riesgo de seguridad de marca. Usar responsablemente. No deepfakes o menores.</textarea>
 </div>
 </div>
 </div>
@@ -1298,284 +1242,307 @@ padding-bottom: max(12px, env(safe-area-inset-bottom));
 <div class="output-area">
 <div class="output-header">
 <div class="output-title">
-📝 <span data-i18n="finalPrompt">Final Prompt</span>
-<span class="grok-structure-hint" data-i18n="structureHint">Subject→Action→Style</span>
+📝 <span data-i18n="finalPrompt">Prompt Final (Siempre en Inglés)</span>
+<span class="grok-structure-hint" data-i18n="structureHint">Sujeto→Acción→Óptica; Iluminación; Física+Estilo</span>
 </div>
-<span class="grok-badge" id="langIndicator">EN</span>
+<span class="grok-badge" id="langIndicator">EN OUTPUT</span>
 </div>
 <div class="output-controls">
-<button class="btn btn-random" onclick="randomize()">🎲 <span data-i18n="random">Random</span></button>
-<button class="btn btn-primary" onclick="generatePrompt()">⚡ <span data-i18n="generate">Generate</span></button>
-<button class="btn btn-secondary" onclick="copyPrompt()">📋 <span data-i18n="copy">Copy</span></button>
-<button class="btn btn-secondary" onclick="clearAll()">🗑️ <span data-i18n="clear">Clear</span></button>
+<button class="btn btn-random" onclick="randomize()">
+🎲 <span data-i18n="random">Aleatorio</span>
+</button>
+<button class="btn btn-primary" onclick="generatePrompt()">
+⚡ <span data-i18n="generate">Generar</span>
+</button>
+<button class="btn btn-secondary" onclick="copyPrompt()">
+📋 <span data-i18n="copy">Copiar</span>
+</button>
+<button class="btn btn-secondary" onclick="clearAll()">
+🗑️ <span data-i18n="clear">Limpiar</span>
+</button>
 </div>
-<textarea id="result" readonly placeholder="Your Grok-optimized prompt..."></textarea>
-<div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.6rem; color: var(--text-muted);">
-<span data-i18n="creditsInfo">~180 credits/video</span>
-<span data-i18n="optimalSettings">720p, 8s | 15-20s latency</span>
+<textarea id="result" readonly placeholder="Tu prompt optimizado para Grok aparecerá aquí..."></textarea>
+<div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
+<span data-i18n="creditsInfo">~180 créditos por video</span>
+<span data-i18n="optimalSettings">Óptimo: 720p, 8s segmentos | P50: 15-20s latencia</span>
 </div>
 </div>
+
+<!-- PWA Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => {
+        console.log('Service Worker registrado:', reg.scope);
+      })
+      .catch(err => {
+        console.log('Registro de Service Worker falló:', err);
+      });
+  });
+}
+</script>
 
 <script>
 // === VISUAL STYLE DATA ===
 const VISUAL_AESTHETICS = {
-cinematic: [
-{ value: "🎬 High Budget Cinema", label: "🎬 Cine Alto Presupuesto" },
-{ value: "🎥 Anamorphic Scope", label: "🎥 Anamórfico Scope" },
-{ value: "🟠 Teal & Orange Grading", label: "🟠 Teal & Orange" },
-{ value: "⚔️ Bleach Bypass", label: "⚔️ Bleach Bypass" },
-{ value: "✨ Euphoria HBO Look", label: "✨ Euphoria HBO" },
-{ value: "🌌 Dune Style Glam", label: "🌌 Estilo Dune" }
-],
-photography: [
-{ value: "📸 Raw Photorealism", label: "📸 Fotorrealismo Crudo" },
-{ value: "📼 Vintage 90s", label: "📼 Vintage 90s" },
-{ value: "🎞️ Kodachrome Warm", label: "🎞️ Kodachrome" },
-{ value: "🗻 Fuji 400H", label: "🗻 Fuji 400H" },
-{ value: "📸 Disposable Flash", label: "📸 Flash Desechable" },
-{ value: "🖼️ Polaroid SX-70", label: "🖼️ Polaroid" }
-],
-animation: [
-{ value: "🗾 Anime Ghibli Style", label: "🗾 Anime Ghibli" },
-{ value: "🏯 90s Cel-Shading", label: "🏯 Cel-Shading 90s" },
-{ value: "🎮 Unreal Engine 5", label: "🎮 Unreal 5" },
-{ value: "🎮 Pixar Style", label: "🎮 Pixar" },
-{ value: "🧱 Lego World", label: "🧱 Lego" },
-{ value: "🎬 Stop-Motion", label: "🎬 Stop-Motion" }
-],
-artistic: [
-{ value: "🎨 Oil Painting", label: "🎨 Óleo" },
-{ value: "📐 Technical Blueprint", label: "📐 Blueprint" },
-{ value: "🔴🔵 Duotone", label: "🔴🔵 Duotono" },
-{ value: "⚫🔴 B&W Color Pop", label: "⚫🔴 B&W Pop" },
-{ value: "🌸 False Infrared", label: "🌸 Infrarrojo" },
-{ value: "🌲 Infrared Forest", label: "🌲 Bosque IR" }
-],
-experimental: [
-{ value: "🤖 Cyberpunk Neon", label: "🤖 Cyberpunk" },
-{ value: "👾 Glitch Digital", label: "👾 Glitch" },
-{ value: "☁️ Dreamy Ethereal", label: "☁️ Etéreo" },
-{ value: "👻 Horror Found Footage", label: "👻 Horror" },
-{ value: "🔥 Halation Red Glow", label: "🔥 Halation" },
-{ value: "🚁 Drone Hyperlapse", label: "🚁 Drone" }
-]
+  cinematic: [
+    { value: "🎬 High Budget Cinema", label: "🎬 Cine Alto Presupuesto" },
+    { value: "🎥 Anamorphic Scope", label: "🎥 Anamórfico Scope" },
+    { value: "🟠 Teal & Orange Grading", label: "🟠 Teal & Orange" },
+    { value: "⚔️ Bleach Bypass", label: "⚔️ Bleach Bypass" },
+    { value: "✨ Euphoria HBO Look", label: "✨ Euphoria HBO" },
+    { value: "🌌 Dune Style Glam", label: "🌌 Estilo Dune" }
+  ],
+  photography: [
+    { value: "📸 Raw Photorealism", label: "📸 Fotorrealismo Crudo" },
+    { value: "📼 Vintage 90s", label: "📼 Vintage 90s" },
+    { value: "🎞️ Kodachrome Warm", label: "🎞️ Kodachrome" },
+    { value: "🗻 Fuji 400H", label: "🗻 Fuji 400H" },
+    { value: "📸 Disposable Flash", label: "📸 Flash Desechable" },
+    { value: "🖼️ Polaroid SX-70", label: "🖼️ Polaroid" }
+  ],
+  animation: [
+    { value: "🗾 Anime Ghibli Style", label: "🗾 Anime Ghibli" },
+    { value: "🏯 90s Cel-Shading", label: "🏯 Cel-Shading 90s" },
+    { value: "🎮 Unreal Engine 5", label: "🎮 Unreal 5" },
+    { value: "🎮 Pixar Style", label: "🎮 Pixar" },
+    { value: "🧱 Lego World", label: "🧱 Lego" },
+    { value: "🎬 Stop-Motion", label: "🎬 Stop-Motion" }
+  ],
+  artistic: [
+    { value: "🎨 Oil Painting", label: "🎨 Óleo" },
+    { value: "📐 Technical Blueprint", label: "📐 Blueprint" },
+    { value: "🔴🔵 Duotone", label: "🔴🔵 Duotono" },
+    { value: "⚫🔴 B&W Color Pop", label: "⚫🔴 B&W Pop" },
+    { value: "🌸 False Infrared", label: "🌸 Infrarrojo" },
+    { value: "🌲 Infrared Forest", label: "🌲 Bosque IR" }
+  ],
+  experimental: [
+    { value: "🤖 Cyberpunk Neon", label: "🤖 Cyberpunk" },
+    { value: "👾 Glitch Digital", label: "👾 Glitch" },
+    { value: "☁️ Dreamy Ethereal", label: "☁️ Etéreo" },
+    { value: "👻 Horror Found Footage", label: "👻 Horror" },
+    { value: "🔥 Halation Red Glow", label: "🔥 Halation" },
+    { value: "🚁 Drone Hyperlapse", label: "🚁 Drone" }
+  ]
 };
 
 const MAKEUP_FX = {
-natural: [
-{ value: "✨ Natural / No-Makeup", label: "✨ Natural" },
-{ value: "🍃 No-Makeup Makeup", label: "🍃 No-Makeup" }
-],
-glamour: [
-{ value: "💄 Hollywood Glamour", label: "💄 Hollywood" },
-{ value: "💋 50s Pin-up", label: "💋 Pin-up 50s" },
-{ value: "✨ Gold Flakes", label: "✨ Gold Flakes" }
-],
-cinematic: [
-{ value: "💋 Classic Hollywood 40s", label: "💋 Hollywood 40s" },
-{ value: "🕵️ Film Noir", label: "🕵️ Film Noir" },
-{ value: "📸 High Fashion Editorial", label: "📸 High Fashion" }
-],
-sfx_fantasy: [
-{ value: "🧟 Zombie Decay", label: "🧟 Zombie" },
-{ value: "🤖 Cyber Neon Lines", label: "🤖 Cyber Lines" },
-{ value: "🧚 Ethereal Glitter", label: "🧚 Glitter" },
-{ value: "👽 Alien Prosthetics", label: "👽 Alien" }
-],
-character: [
-{ value: "⚔️ Battle Damage", label: "⚔️ Battle Damage" },
-{ value: "🤡 Joker Style", label: "🤡 Joker" },
-{ value: "🏹 Tribal War Paint", label: "🏹 Tribal" },
-{ value: "🦇 Goth Dark", label: "🦇 Goth" }
-]
+  natural: [
+    { value: "✨ Natural / No-Makeup", label: "✨ Natural" },
+    { value: "🍃 No-Makeup Makeup", label: "🍃 No-Makeup" }
+  ],
+  glamour: [
+    { value: "💄 Hollywood Glamour", label: "💄 Hollywood" },
+    { value: "💋 50s Pin-up", label: "💋 Pin-up 50s" },
+    { value: "✨ Gold Flakes", label: "✨ Gold Flakes" }
+  ],
+  cinematic: [
+    { value: "💋 Classic Hollywood 40s", label: "💋 Hollywood 40s" },
+    { value: "🕵️ Film Noir", label: "🕵️ Film Noir" },
+    { value: "📸 High Fashion Editorial", label: "📸 High Fashion" }
+  ],
+  sfx_fantasy: [
+    { value: "🧟 Zombie Decay", label: "🧟 Zombie" },
+    { value: "🤖 Cyber Neon Lines", label: "🤖 Cyber Lines" },
+    { value: "🧚 Ethereal Glitter", label: "🧚 Glitter" },
+    { value: "👽 Alien Prosthetics", label: "👽 Alien" }
+  ],
+  character: [
+    { value: "⚔️ Battle Damage", label: "⚔️ Battle Damage" },
+    { value: "🤡 Joker Style", label: "🤡 Joker" },
+    { value: "🏹 Tribal War Paint", label: "🏹 Tribal" },
+    { value: "🦇 Goth Dark", label: "🦇 Goth" }
+  ]
 };
 
 // === TRANSLATIONS ===
 const translations = {
 en: {
-subtitle: "Mobile Optimized",
+subtitle: "Imagine 1.0 | Visual Style Enhanced",
 active: "Active:",
 alertTitle: "Grok Protocol Active:",
-alertText: "Subject + Action MUST be FIRST. Negative prompts auto-included. Optimal: 720p, 8s segments.",
+alertText: "Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.",
 subject: "Subject & Action",
 priorityCritical: "LAYER 1",
-subjectWarning: "LOGARITHMIC WEIGHT. Must be FIRST for Grok Aurora.",
-mainSubject: "Main Subject (FIRST)",
+subjectWarning: "These tokens have LOGARITHMIC WEIGHT. Must be FIRST in prompt for Grok Aurora engine.",
+mainSubject: "Main Subject (FIRST in prompt)",
 action: "Primary Action",
-characterDNA: "Character DNA",
+characterDNA: "Character DNA (Immutable Traits)",
 lensLibrary: "Lens Library",
 focalLength: "Focal Length",
-specialtyLenses: "Specialty",
+specialtyLenses: "Specialty Lenses",
 cameraShots: "Camera Shots",
 shotSize: "Shot Size",
-cameraAngles: "Angles",
-cameraMovement: "Movement",
-movementNote: "Max 8s segments",
+cameraAngles: "Camera Angles",
+cameraMovement: "Camera Movement",
+movementNote: "Critical for Grok Video - 8s segments max",
 eyeLines: "Eye Lines",
 grokCritical: "GROK",
-eyeLinesInfo: "Grok breaks fourth wall. Specify to avoid uncanny valley.",
+eyeLinesInfo: "Grok breaks fourth wall by default. Specify eye lines to avoid uncanny valley.",
 lighting: "Lighting",
-timeOfDay: "Time",
-lightingType: "Type",
-mood: "Mood",
-opticalEffects: "Optical FX",
+timeOfDay: "Time of Day",
+lightingType: "Lighting Type",
+mood: "Mood & Atmosphere",
+opticalEffects: "Optical Effects",
 visualStyle: "Visual Style",
 artStyle: "Art Style",
-renderEngine: "Render",
-grokTerms: "Grok Terms",
-visualStyleArchitect: "Style Architect",
-priorityHigh: "HIGH",
-styleArchWarning: "Select aesthetic + FX. Control weight.",
-mainAesthetic: "Aesthetic",
-makeupFX: "Makeup & FX",
-optional: "(opt)",
-styleWeight: "Weight",
+renderEngine: "Render Engine",
+grokTerms: "Grok-Specific Terms (CRITICAL)",
+visualStyleArchitect: "Visual Style Architect",
+priorityHigh: "HIGH PRIORITY",
+styleArchWarning: "Select aesthetic filter + character FX. Control style weight for Grok optimization.",
+mainAesthetic: "Main Aesthetic (Filter Base)",
+makeupFX: "Makeup & Character FX",
+optional: "(optional)",
+styleWeight: "Style Weight",
 subtle: "Subtle",
 balanced: "Balanced",
 dominant: "Dominant",
-activeStyle: "Active:",
-environment: "Environment",
+activeStyle: "Active Style:",
+environment: "Environment & Physics",
 location: "Location",
 biome: "Biome",
-physicalDynamics: "Physics",
+physicalDynamics: "Physical Dynamics (LAYER 4)",
 composition: "Composition",
-qualityPanel: "Quality",
+qualityPanel: "Quality & Resolution",
 premium: "PREMIUM",
-qualityNote: "Grok native: 720p. 4K/8K need upscaling.",
-resolution: "Resolution",
-qualityModifiers: "Quality",
-detailEnhancers: "Details",
-audio: "Audio",
+qualityNote: "Grok native output is 720p HD. 4K/8K keywords enhance detail but require upscaling in post-production for actual higher resolution.",
+resolution: "Resolution Modifiers",
+qualityModifiers: "Quality Modifiers",
+detailEnhancers: "Detail Enhancers",
+audio: "Audio Composition",
 audioCritical: "LAYER 5",
-audioWarning: "Select ONE type. Process in Adobe Podcast.",
-audioType: "Type (ONE)",
-musicGenre: "Genre",
-sfxType: "SFX Type",
-audioQuality: "Quality",
-postProduction: "Post-Production",
-postProdNote: "📌 Process in Adobe Podcast. 8s max for lip-sync.",
-output: "Output",
+audioWarning: "Grok native audio mixes all elements (music + SFX + dialogue) which causes distortion. For clean audio: select ONE type only, then process in Adobe Podcast for HD quality.",
+audioType: "Audio Type (Select ONE for clean output)",
+musicGenre: "Music Genre (if Music selected)",
+sfxType: "Sound Effects (if SFX selected)",
+audioQuality: "Audio Quality Modifiers",
+postProduction: "Post-Production (MANDATORY)",
+postProdNote: "📌 Per PDF Grok: After generation, process audio in Adobe Podcast for lip-sync and noise cleanup. Segment dialogue scenes at 8s max for perfect sync.",
+output: "Output Settings",
 aspectRatio: "Aspect Ratio",
 duration: "Duration",
-negative: "Negative",
+negative: "Negative Prompt",
 autoIncluded: "AUTO",
-negativeWarning: "Auto:",
-customNegative: "Custom",
-quickNegative: "Quick",
+negativeWarning: "Grok Bias:",
+customNegative: "Custom Negative",
+quickNegative: "Quick Negative",
 spicyMode: "Spicy Mode",
-enableSpicy: "Enable",
-spicyOptions: "Moderation",
+enableSpicy: "Enable Spicy Mode",
+spicyOptions: "Moderation Techniques",
 spicyWarning: "Legal Warning",
-finalPrompt: "Final Prompt",
-structureHint: "Subject→Action→Style",
+finalPrompt: "Final Prompt (Always in English)",
+structureHint: "Subject→Action→Optics; Lighting; Physics+Style",
 random: "Random",
 generate: "Generate",
 copy: "Copy",
 clear: "Clear",
-creditsInfo: "~180 credits/video",
-optimalSettings: "720p, 8s | 15-20s latency",
-placeholderSubject: "e.g. A cybernetic warrior...",
-placeholderAction: "e.g. walking through neon streets...",
-placeholderDNA: "Age, ethnicity, features...",
-placeholderLocation: "e.g. neon cityscape...",
-placeholderNegative: "Additional to avoid...",
-resultPlaceholder: "Your Grok-optimized prompt...",
+creditsInfo: "~180 credits per video",
+optimalSettings: "Optimal: 720p, 8s segments | P50: 15-20s latency",
+placeholderSubject: "e.g. A cybernetic warrior with neon tattoos and natural skin pores...",
+placeholderAction: "e.g. walking through rain-soaked neon streets with wind affecting clothing...",
+placeholderDNA: "Age, ethnicity, voice tone, exact features for consistency...",
+placeholderLocation: "e.g. rain-soaked neon cityscape with reflections...",
+placeholderNegative: "Additional elements to avoid...",
+resultPlaceholder: "Your Grok-optimized prompt will appear here...",
 tab_cinematic: "Cinematic",
-tab_photography: "Photo",
+tab_photography: "Photography",
 tab_animation: "Animation",
 tab_artistic: "Artistic",
 tab_experimental: "Experimental"
 },
 es: {
-subtitle: "Optimizado Móvil",
+subtitle: "Imagine 1.0 | Estilo Visual Mejorado",
 active: "Activo:",
 alertTitle: "Protocolo Grok Activo:",
-alertText: "Sujeto + Acción DEBEN ir PRIMERO. Negativos auto-incluidos. Óptimo: 720p, 8s.",
+alertText: "Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.",
 subject: "Sujeto y Acción",
 priorityCritical: "CAPA 1",
-subjectWarning: "PESO LOGARÍTMICO. Debe ir PRIMERO para Grok Aurora.",
-mainSubject: "Sujeto Principal (PRIMERO)",
+subjectWarning: "Estos tokens tienen PESO LOGARÍTMICO. Deben ir PRIMERO en el prompt para el motor Aurora de Grok.",
+mainSubject: "Sujeto Principal (PRIMERO en el prompt)",
 action: "Acción Principal",
-characterDNA: "DNA del Personaje",
+characterDNA: "DNA del Personaje (Rasgos Inmutables)",
 lensLibrary: "Librería de Lentes",
 focalLength: "Distancia Focal",
-specialtyLenses: "Especiales",
+specialtyLenses: "Lentes Especiales",
 cameraShots: "Tomas de Cámara",
 shotSize: "Tamaño de Toma",
-cameraAngles: "Ángulos",
-cameraMovement: "Movimiento",
-movementNote: "Máx 8s segmentos",
+cameraAngles: "Ángulos de Cámara",
+cameraMovement: "Movimiento de Cámara",
+movementNote: "Crítico para Video Grok - máx 8s segmentos",
 eyeLines: "Líneas de Ojos",
 grokCritical: "GROK",
-eyeLinesInfo: "Grok rompe la cuarta pared. Especifica para evitar uncanny valley.",
+eyeLinesInfo: "Grok rompe la cuarta pared por defecto. Especifica líneas de ojos para evitar uncanny valley.",
 lighting: "Iluminación",
-timeOfDay: "Momento",
-lightingType: "Tipo",
-mood: "Estado de Ánimo",
+timeOfDay: "Momento del Día",
+lightingType: "Tipo de Iluminación",
+mood: "Estado de Ánimo y Atmósfera",
 opticalEffects: "Efectos Ópticos",
 visualStyle: "Estilo Visual",
 artStyle: "Estilo de Arte",
-renderEngine: "Render",
-grokTerms: "Términos Grok",
-visualStyleArchitect: "Arquitecto de Estilo",
-priorityHigh: "ALTA",
-styleArchWarning: "Selecciona estética + FX. Controla peso.",
-mainAesthetic: "Estética",
-makeupFX: "Maquillaje y FX",
-optional: "(opc)",
-styleWeight: "Peso",
+renderEngine: "Motor de Render",
+grokTerms: "Términos Específicos de Grok (CRÍTICO)",
+visualStyleArchitect: "Arquitecto de Estilo Visual",
+priorityHigh: "ALTA PRIORIDAD",
+styleArchWarning: "Selecciona filtro estético + FX de personaje. Controla el peso del estilo para optimización Grok.",
+mainAesthetic: "Estética Principal (Filtro Base)",
+makeupFX: "Maquillaje y FX de Personaje",
+optional: "(opcional)",
+styleWeight: "Peso del Estilo",
 subtle: "Sutil",
 balanced: "Equilibrado",
 dominant: "Dominante",
-activeStyle: "Activo:",
-environment: "Entorno",
+activeStyle: "Estilo Activo:",
+environment: "Entorno y Física",
 location: "Ubicación",
 biome: "Bioma",
-physicalDynamics: "Física",
+physicalDynamics: "Dinámicas Físicas (CAPA 4)",
 composition: "Composición",
-qualityPanel: "Calidad",
+qualityPanel: "Calidad y Resolución",
 premium: "PREMIUM",
-qualityNote: "Nativo Grok: 720p. 4K/8K necesitan upscaling.",
-resolution: "Resolución",
-qualityModifiers: "Calidad",
-detailEnhancers: "Detalles",
-audio: "Audio",
+qualityNote: "La salida nativa de Grok es 720p HD. Las palabras clave 4K/8K mejoran el detalle pero requieren upscaling en post-producción para resolución real mayor.",
+resolution: "Modificadores de Resolución",
+qualityModifiers: "Modificadores de Calidad",
+detailEnhancers: "Mejoradores de Detalle",
+audio: "Composición de Audio",
 audioCritical: "CAPA 5",
-audioWarning: "Selecciona UN tipo. Procesa en Adobe Podcast.",
-audioType: "Tipo (UNO)",
-musicGenre: "Género",
-sfxType: "Tipo SFX",
-audioQuality: "Calidad",
-postProduction: "Post-Producción",
-postProdNote: "📌 Procesa en Adobe Podcast. 8s máx para lip-sync.",
-output: "Salida",
-aspectRatio: "Proporción",
+audioWarning: "El audio nativo de Grok mezcla todos los elementos (música + SFX + diálogo) lo que causa distorsión. Para audio limpio: selecciona UN tipo solo, luego procesa en Adobe Podcast para calidad HD.",
+audioType: "Tipo de Audio (Selecciona UNO para salida limpia)",
+musicGenre: "Género Musical (si seleccionaste Música)",
+sfxType: "Efectos de Sonido (si seleccionaste SFX)",
+audioQuality: "Modificadores de Calidad de Audio",
+postProduction: "Post-Producción (OBLIGATORIO)",
+postProdNote: "📌 Según PDF Grok: Después de generar, procesa el audio en Adobe Podcast para lip-sync y limpieza de ruido. Segmenta escenas de diálogo a 8s máx para sync perfecto.",
+output: "Configuración de Salida",
+aspectRatio: "Proporción de Aspecto",
 duration: "Duración",
-negative: "Negativo",
+negative: "Prompt Negativo",
 autoIncluded: "AUTO",
-negativeWarning: "Auto:",
-customNegative: "Personalizado",
-quickNegative: "Rápido",
+negativeWarning: "Sesgo de Grok:",
+customNegative: "Negativo Personalizado",
+quickNegative: "Negativo Rápido",
 spicyMode: "Modo Spicy",
-enableSpicy: "Activar",
-spicyOptions: "Moderación",
+enableSpicy: "Activar Modo Spicy",
+spicyOptions: "Técnicas de Moderación",
 spicyWarning: "Advertencia Legal",
-finalPrompt: "Prompt Final",
-structureHint: "Sujeto→Acción→Estilo",
+finalPrompt: "Prompt Final (Siempre en Inglés)",
+structureHint: "Sujeto→Acción→Óptica; Iluminación; Física+Estilo",
 random: "Aleatorio",
 generate: "Generar",
 copy: "Copiar",
 clear: "Limpiar",
-creditsInfo: "~180 créditos/video",
-optimalSettings: "720p, 8s | 15-20s latencia",
-placeholderSubject: "ej. Un guerrero cibernético...",
-placeholderAction: "ej. caminando por calles de neón...",
-placeholderDNA: "Edad, etnia, rasgos...",
-placeholderLocation: "ej. paisaje urbano de neón...",
-placeholderNegative: "Elementos a evitar...",
-resultPlaceholder: "Tu prompt optimizado para Grok...",
-tab_cinematic: "Cine",
-tab_photography: "Foto",
+creditsInfo: "~180 créditos por video",
+optimalSettings: "Óptimo: 720p, 8s segmentos | P50: 15-20s latencia",
+placeholderSubject: "ej. Un guerrero cibernético con tatuajes de neón y poros naturales...",
+placeholderAction: "ej. caminando por calles de neón empapadas con viento afectando la ropa...",
+placeholderDNA: "Edad, etnia, tono de voz, rasgos exactos para consistencia...",
+placeholderLocation: "ej. paisaje urbano de neón empapado con reflejos...",
+placeholderNegative: "Elementos adicionales a evitar...",
+resultPlaceholder: "Tu prompt optimizado para Grok aparecerá aquí...",
+tab_cinematic: "Cinematográfico",
+tab_photography: "Fotografía",
 tab_animation: "Animación",
 tab_artistic: "Artístico",
 tab_experimental: "Experimental"
@@ -1584,66 +1551,14 @@ tab_experimental: "Experimental"
 
 const buttonTranslations = {
 en: {
-btn_14mm: "14mm", btn_24mm: "24mm", btn_35mm: "35mm", btn_50mm: "50mm", btn_85mm: "85mm", btn_135mm: "135mm", btn_200mm: "200mm",
-btn_anamorphic: "Anamorphic", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Soft Focus",
-btn_extremecu: "Extreme CU", btn_closeup: "Close-Up", btn_mediumshot: "Medium", btn_fullbody: "Full Body", btn_wideshot: "Wide", btn_extremewide: "Extreme Wide",
-btn_eyelevel: "Eye Level", btn_lowangle: "Low Angle", btn_highangle: "High Angle", btn_wormseye: "Worm's Eye", btn_birdseye: "Bird's Eye", btn_overshoulder: "Over Shoulder", btn_pov: "POV", btn_dutchangle: "Dutch",
-btn_dollyin: "Dolly In", btn_dollyout: "Dolly Out", btn_tracking: "Tracking", btn_panleft: "Pan Left", btn_panright: "Pan Right", btn_tiltup: "Tilt Up", btn_tiltdown: "Tilt Down", btn_orbit: "360° Orbit", btn_craneup: "Crane Up", btn_cranedown: "Crane Down", btn_handheld: "Handheld", btn_steadicam: "Steadicam", btn_slowzoom: "Slow Zoom", btn_snapzoom: "Snap Zoom", btn_rackfocus: "Rack Focus",
-btn_avoidcamera: "Avoid Camera", btn_influencer: "Influencer", btn_offcamera: "Off-Camera", btn_eyesclosed: "Eyes Closed",
-btn_dawn: "Dawn", btn_midday: "Midday", btn_sunset: "Sunset", btn_night: "Night", btn_bluehour: "Blue Hour",
-btn_chiaroscuro: "Chiaroscuro", btn_softbox: "Softbox", btn_rimlight: "Rim Light", btn_neon: "Neon", btn_volumetric: "Volumetric", btn_natural: "Natural", btn_practical: "Practical", btn_motivated: "Motivated",
-btn_dark: "Dark", btn_epic: "Epic", btn_mysterious: "Mysterious", btn_hopeful: "Hopeful", btn_melancholic: "Melancholic", btn_tense: "Tense",
-btn_dof: "Depth of Field", btn_bokeh: "Bokeh", btn_filmgrain: "Film Grain", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Chromatic", btn_vignette: "Vignette", btn_bloom: "Bloom", btn_tealorange: "Teal & Orange", btn_hdr: "HDR",
-btn_cinematic: "Cinematic", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realistic", btn_anime: "Anime", btn_fantasy: "Fantasy", btn_documentary: "Documentary", btn_musicvideo: "Music Video", btn_commercial: "Commercial",
-btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift",
-btn_subsurface: "Subsurface", btn_skindetails: "Skin Details", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Hair Details",
-btn_forest: "Forest", btn_desert: "Desert", btn_city: "City", btn_mountain: "Mountain", btn_space: "Space", btn_interior: "Interior", btn_underwater: "Underwater",
-btn_wind: "Wind", btn_rain: "Rain", btn_fog: "Fog", btn_smoke: "Smoke", btn_fire: "Fire", btn_water: "Water", btn_dust: "Dust", btn_snow: "Snow", btn_fabric: "Fabric",
-btn_ruleofthirds: "Rule of Thirds", btn_centered: "Centered", btn_leadinglines: "Leading Lines", btn_framewithin: "Frame Within", btn_negativespace: "Negative Space", btn_goldenratio: "Golden Ratio",
-btn_720p: "720p", btn_4k: "4K", btn_8k: "8K",
-btn_ultrarealistic: "Ultra Realistic", btn_highdetail: "High Detail", btn_masterpiece: "Masterpiece", btn_awardwinning: "Award Winning", btn_professional: "Professional", btn_studioquality: "Studio Quality", btn_crystalclear: "Crystal Clear", btn_hdrenhanced: "HDR Enhanced",
-btn_intricatedetails: "Intricate Details", btn_hyperdetailed: "Hyper Detailed", btn_sharpfocus: "Sharp Focus", btn_richcolors: "Rich Colors", btn_premiumtextures: "Premium Textures",
-btn_musicOnly: "Music", btn_sfxOnly: "SFX", btn_dialogueOnly: "Dialogue", btn_ambientOnly: "Ambient", btn_silenceOnly: "Silence",
-btn_orchestral: "Orchestral", btn_ambient: "Ambient", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop",
-btn_dramaticSFX: "Dramatic", btn_natureSFX: "Nature", btn_urbanSFX: "Urban", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combat",
-btn_hdAudio: "HD Audio", btn_studioAudio: "Studio Quality", btn_clearDialogue: "Clear Dialogue", btn_noDistortion: "No Distortion",
-btn_169: "16:9", btn_916: "9:16", btn_11: "1:1", btn_219: "21:9", btn_43: "4:3",
-btn_8s: "8s", btn_15s: "15s",
-btn_noblur: "No Blur", btn_nodeformed: "No Deformed", btn_nobadanatomy: "No Bad Anatomy", btn_nowatermark: "No Watermark", btn_nocartoon: "No Cartoon",
-btn_animestickers: "Anime Stickers", btn_2dhearts: "2D Hearts", btn_lingeriepasties: "Lingerie Pasties", btn_artisticnudity: "Artistic"
+btn_14mm: "14mm Fisheye", btn_24mm: "24mm Wide", btn_35mm: "35mm Standard", btn_50mm: "50mm Normal", btn_85mm: "85mm Portrait", btn_135mm: "135mm Tele", btn_200mm: "200mm Super", btn_anamorphic: "Anamorphic", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Soft Focus", btn_extremecu: "Extreme CU", btn_closeup: "Close-Up", btn_mediumshot: "Medium Shot", btn_fullbody: "Full Body", btn_wideshot: "Wide Shot", btn_extremewide: "Extreme Wide", btn_eyelevel: "Eye Level", btn_lowangle: "Low Angle", btn_highangle: "High Angle", btn_wormseye: "Worm's Eye", btn_birdseye: "Bird's Eye", btn_overshoulder: "Over Shoulder", btn_pov: "POV", btn_dutchangle: "Dutch Angle", btn_dollyin: "Dolly In", btn_dollyout: "Dolly Out", btn_tracking: "Tracking", btn_panleft: "Pan Left", btn_panright: "Pan Right", btn_tiltup: "Tilt Up", btn_tiltdown: "Tilt Down", btn_orbit: "360° Orbit", btn_craneup: "Crane Up", btn_cranedown: "Crane Down", btn_handheld: "Handheld", btn_steadicam: "Steadicam", btn_slowzoom: "Slow Zoom", btn_snapzoom: "Snap Zoom", btn_rackfocus: "Rack Focus", btn_avoidcamera: "Avoid Camera", btn_influencer: "Influencer", btn_offcamera: "Off-Camera", btn_eyesclosed: "Eyes Closed", btn_dawn: "Dawn", btn_midday: "Midday", btn_sunset: "Sunset", btn_night: "Night", btn_bluehour: "Blue Hour", btn_chiaroscuro: "Chiaroscuro", btn_softbox: "Softbox", btn_rimlight: "Rim Light", btn_neon: "Neon", btn_volumetric: "Volumetric", btn_natural: "Natural", btn_practical: "Practical", btn_motivated: "Motivated", btn_dark: "Dark", btn_epic: "Epic", btn_mysterious: "Mysterious", btn_hopeful: "Hopeful", btn_melancholic: "Melancholic", btn_tense: "Tense", btn_dof: "Depth of Field", btn_bokeh: "Bokeh", btn_filmgrain: "Film Grain", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Chromatic Aberration", btn_vignette: "Vignette", btn_bloom: "Bloom", btn_tealorange: "Teal & Orange", btn_hdr: "HDR", btn_cinematic: "Cinematic", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realistic", btn_anime: "Anime", btn_fantasy: "Fantasy", btn_documentary: "Documentary", btn_musicvideo: "Music Video", btn_commercial: "Commercial", btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift", btn_subsurface: "Subsurface Scattering", btn_skindetails: "Skin Details", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Hair Details", btn_forest: "Forest", btn_desert: "Desert", btn_city: "City", btn_mountain: "Mountain", btn_space: "Space", btn_interior: "Interior", btn_underwater: "Underwater", btn_wind: "Wind", btn_rain: "Rain", btn_fog: "Fog", btn_smoke: "Smoke", btn_fire: "Fire", btn_water: "Water", btn_dust: "Dust", btn_snow: "Snow", btn_fabric: "Fabric", btn_ruleofthirds: "Rule of Thirds", btn_centered: "Centered", btn_leadinglines: "Leading Lines", btn_framewithin: "Frame Within", btn_negativespace: "Negative Space", btn_goldenratio: "Golden Ratio", btn_720p: "720p HD (Native)", btn_4k: "4K Enhanced", btn_8k: "8K Maximum", btn_ultrarealistic: "Ultra Realistic", btn_highdetail: "High Detail", btn_masterpiece: "Masterpiece", btn_awardwinning: "Award Winning", btn_professional: "Professional", btn_studioquality: "Studio Quality", btn_crystalclear: "Crystal Clear", btn_hdrenhanced: "HDR Enhanced", btn_intricatedetails: "Intricate Details", btn_hyperdetailed: "Hyper Detailed", btn_sharpfocus: "Sharp Focus", btn_richcolors: "Rich Colors", btn_premiumtextures: "Premium Textures", btn_musicOnly: "Music Only", btn_sfxOnly: "SFX Only", btn_dialogueOnly: "Dialogue Only", btn_ambientOnly: "Ambient Only", btn_silenceOnly: "Silence", btn_orchestral: "Orchestral", btn_ambient: "Ambient", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop", btn_dramaticSFX: "Dramatic", btn_natureSFX: "Nature", btn_urbanSFX: "Urban", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combat", btn_hdAudio: "HD Audio", btn_studioAudio: "Studio Quality", btn_clearDialogue: "Clear Dialogue", btn_noDistortion: "No Distortion", btn_169: "16:9 (YouTube)", btn_916: "9:16 (TikTok/Reels)", btn_11: "1:1 (Square)", btn_219: "21:9 (Cinema)", btn_43: "4:3 (Classic)", btn_8s: "8s (Dialogue)", btn_15s: "15s (Max)", btn_noblur: "No Blur", btn_nodeformed: "No Deformed", btn_nobadanatomy: "No Bad Anatomy", btn_nowatermark: "No Watermark", btn_nocartoon: "No Cartoon", btn_animestickers: "Anime Stickers", btn_2dhearts: "2D Hearts", btn_lingeriepasties: "Lingerie Pasties", btn_artisticnudity: "Artistic Nudity"
 },
 es: {
-btn_14mm: "14mm", btn_24mm: "24mm", btn_35mm: "35mm", btn_50mm: "50mm", btn_85mm: "85mm", btn_135mm: "135mm", btn_200mm: "200mm",
-btn_anamorphic: "Anamórfico", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Enfoque Suave",
-btn_extremecu: "Primerísimo Plano", btn_closeup: "Primer Plano", btn_mediumshot: "Plano Medio", btn_fullbody: "Plano Entero", btn_wideshot: "Plano General", btn_extremewide: "Plano Muy General",
-btn_eyelevel: "A Nivel de Ojos", btn_lowangle: "Ángulo Bajo", btn_highangle: "Ángulo Alto", btn_wormseye: "Vista de Gusano", btn_birdseye: "Vista de Pájaro", btn_overshoulder: "Sobre el Hombro", btn_pov: "Primera Persona", btn_dutchangle: "Ángulo Holandés",
-btn_dollyin: "Acercamiento", btn_dollyout: "Alejamiento", btn_tracking: "Seguimiento", btn_panleft: "Giro Izquierda", btn_panright: "Giro Derecha", btn_tiltup: "Inclinación Arriba", btn_tiltdown: "Inclinación Abajo", btn_orbit: "Órbita 360°", btn_craneup: "Grúa Sube", btn_cranedown: "Grúa Baja", btn_handheld: "Cámara en Mano", btn_steadicam: "Steadicam", btn_slowzoom: "Zoom Lento", btn_snapzoom: "Zoom Rápido", btn_rackfocus: "Cambio de Foco",
-btn_avoidcamera: "Evitar Cámara", btn_influencer: "Estilo Influencer", btn_offcamera: "Mirada Fuera", btn_eyesclosed: "Ojos Cerrados",
-btn_dawn: "Amanecer", btn_midday: "Mediodía", btn_sunset: "Atardecer", btn_night: "Noche", btn_bluehour: "Hora Azul",
-btn_chiaroscuro: "Claroscuro", btn_softbox: "Softbox", btn_rimlight: "Luz de Borde", btn_neon: "Neón", btn_volumetric: "Volumétrico", btn_natural: "Natural", btn_practical: "Práctica", btn_motivated: "Motivada",
-btn_dark: "Oscuro", btn_epic: "Épico", btn_mysterious: "Misterioso", btn_hopeful: "Esperanzador", btn_melancholic: "Melancólico", btn_tense: "Tenso",
-btn_dof: "Profundidad de Campo", btn_bokeh: "Bokeh", btn_filmgrain: "Grano de Película", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Aberración Cromática", btn_vignette: "Viñeta", btn_bloom: "Bloom", btn_tealorange: "Teal y Naranja", btn_hdr: "HDR",
-btn_cinematic: "Cinematográfico", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realista", btn_anime: "Anime", btn_fantasy: "Fantasía", btn_documentary: "Documental", btn_musicvideo: "Video Musical", btn_commercial: "Publicitario",
-btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift",
-btn_subsurface: "Dispersión Subsuperficial", btn_skindetails: "Detalles de Piel", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Detalles de Cabello",
-btn_forest: "Bosque", btn_desert: "Desierto", btn_city: "Ciudad", btn_mountain: "Montaña", btn_space: "Espacio", btn_interior: "Interior", btn_underwater: "Submarino",
-btn_wind: "Viento", btn_rain: "Lluvia", btn_fog: "Niebla", btn_smoke: "Humo", btn_fire: "Fuego", btn_water: "Agua", btn_dust: "Polvo", btn_snow: "Nieve", btn_fabric: "Telas",
-btn_ruleofthirds: "Regla de Tercios", btn_centered: "Centrado", btn_leadinglines: "Líneas Guía", btn_framewithin: "Marco Dentro", btn_negativespace: "Espacio Negativo", btn_goldenratio: "Proporción Áurea",
-btn_720p: "720p", btn_4k: "4K", btn_8k: "8K",
-btn_ultrarealistic: "Ultra Realista", btn_highdetail: "Alto Detalle", btn_masterpiece: "Obra Maestra", btn_awardwinning: "Premiado", btn_professional: "Profesional", btn_studioquality: "Calidad Estudio", btn_crystalclear: "Cristalino", btn_hdrenhanced: "HDR Mejorado",
-btn_intricatedetails: "Detalles Intrincados", btn_hyperdetailed: "Hiper Detallado", btn_sharpfocus: "Enfoque Nítido", btn_richcolors: "Colores Ricos", btn_premiumtextures: "Texturas Premium",
-btn_musicOnly: "Música", btn_sfxOnly: "SFX", btn_dialogueOnly: "Diálogo", btn_ambientOnly: "Ambiente", btn_silenceOnly: "Silencio",
-btn_orchestral: "Orquestal", btn_ambient: "Ambiente", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop",
-btn_dramaticSFX: "Dramáticos", btn_natureSFX: "Naturaleza", btn_urbanSFX: "Urbano", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combate",
-btn_hdAudio: "Audio HD", btn_studioAudio: "Calidad Estudio", btn_clearDialogue: "Diálogo Claro", btn_noDistortion: "Sin Distorsión",
-btn_169: "16:9", btn_916: "9:16", btn_11: "1:1", btn_219: "21:9", btn_43: "4:3",
-btn_8s: "8s", btn_15s: "15s",
-btn_noblur: "Sin Blur", btn_nodeformed: "Sin Deformaciones", btn_nobadanatomy: "Sin Anatomía", btn_nowatermark: "Sin Marca de Agua", btn_nocartoon: "Sin Cartoon",
-btn_animestickers: "Stickers Anime", btn_2dhearts: "Corazones 2D", btn_lingeriepasties: "Pasties Lencería", btn_artisticnudity: "Desnudo Artístico"
+btn_14mm: "14mm Ojo de Pez", btn_24mm: "24mm Gran Angular", btn_35mm: "35mm Estándar", btn_50mm: "50mm Normal", btn_85mm: "85mm Retrato", btn_135mm: "135mm Teleobjetivo", btn_200mm: "200mm Super Tele", btn_anamorphic: "Anamórfico", btn_tiltshift: "Tilt-Shift", btn_macro: "Macro", btn_softfocus: "Enfoque Suave", btn_extremecu: "Primerísimo Plano", btn_closeup: "Primer Plano", btn_mediumshot: "Plano Medio", btn_fullbody: "Plano Entero", btn_wideshot: "Plano General", btn_extremewide: "Plano Muy General", btn_eyelevel: "A Nivel de Ojos", btn_lowangle: "Ángulo Bajo", btn_highangle: "Ángulo Alto", btn_wormseye: "Vista de Gusano", btn_birdseye: "Vista de Pájaro", btn_overshoulder: "Sobre el Hombro", btn_pov: "Primera Persona", btn_dutchangle: "Ángulo Holandés", btn_dollyin: "Acercamiento", btn_dollyout: "Alejamiento", btn_tracking: "Seguimiento", btn_panleft: "Giro Izquierda", btn_panright: "Giro Derecha", btn_tiltup: "Inclinación Arriba", btn_tiltdown: "Inclinación Abajo", btn_orbit: "Órbita 360°", btn_craneup: "Grúa Sube", btn_cranedown: "Grúa Baja", btn_handheld: "Cámara en Mano", btn_steadicam: "Steadicam", btn_slowzoom: "Zoom Lento", btn_snapzoom: "Zoom Rápido", btn_rackfocus: "Cambio de Foco", btn_avoidcamera: "Evitar Cámara", btn_influencer: "Estilo Influencer", btn_offcamera: "Mirada Fuera", btn_eyesclosed: "Ojos Cerrados", btn_dawn: "Amanecer", btn_midday: "Mediodía", btn_sunset: "Atardecer", btn_night: "Noche", btn_bluehour: "Hora Azul", btn_chiaroscuro: "Claroscuro", btn_softbox: "Softbox", btn_rimlight: "Luz de Borde", btn_neon: "Neón", btn_volumetric: "Volumétrico", btn_natural: "Natural", btn_practical: "Práctica", btn_motivated: "Motivada", btn_dark: "Oscuro", btn_epic: "Épico", btn_mysterious: "Misterioso", btn_hopeful: "Esperanzador", btn_melancholic: "Melancólico", btn_tense: "Tenso", btn_dof: "Profundidad de Campo", btn_bokeh: "Bokeh", btn_filmgrain: "Grano de Película", btn_motionblur: "Motion Blur", btn_lensflare: "Lens Flare", btn_chromatic: "Aberración Cromática", btn_vignette: "Viñeta", btn_bloom: "Bloom", btn_tealorange: "Teal y Naranja", btn_hdr: "HDR", btn_cinematic: "Cinematográfico", btn_cyberpunk: "Cyberpunk", btn_realistic: "Realista", btn_anime: "Anime", btn_fantasy: "Fantasía", btn_documentary: "Documental", btn_musicvideo: "Video Musical", btn_commercial: "Publicitario", btn_unreal5: "Unreal 5", btn_octane: "Octane", btn_redshift: "Redshift", btn_subsurface: "Dispersión Subsuperficial", btn_skindetails: "Detalles de Piel", btn_antiuncanny: "Anti-Uncanny", btn_hairdetails: "Detalles de Cabello", btn_forest: "Bosque", btn_desert: "Desierto", btn_city: "Ciudad", btn_mountain: "Montaña", btn_space: "Espacio", btn_interior: "Interior", btn_underwater: "Submarino", btn_wind: "Viento", btn_rain: "Lluvia", btn_fog: "Niebla", btn_smoke: "Humo", btn_fire: "Fuego", btn_water: "Agua", btn_dust: "Polvo", btn_snow: "Nieve", btn_fabric: "Telas", btn_ruleofthirds: "Regla de Tercios", btn_centered: "Centrado", btn_leadinglines: "Líneas Guía", btn_framewithin: "Marco Dentro", btn_negativespace: "Espacio Negativo", btn_goldenratio: "Proporción Áurea", btn_720p: "720p HD (Nativo)", btn_4k: "4K Mejorado", btn_8k: "8K Máximo", btn_ultrarealistic: "Ultra Realista", btn_highdetail: "Alto Detalle", btn_masterpiece: "Obra Maestra", btn_awardwinning: "Premiado", btn_professional: "Profesional", btn_studioquality: "Calidad Estudio", btn_crystalclear: "Cristalino", btn_hdrenhanced: "HDR Mejorado", btn_intricatedetails: "Detalles Intrincados", btn_hyperdetailed: "Hiper Detallado", btn_sharpfocus: "Enfoque Nítido", btn_richcolors: "Colores Ricos", btn_premiumtextures: "Texturas Premium", btn_musicOnly: "Solo Música", btn_sfxOnly: "Solo SFX", btn_dialogueOnly: "Solo Diálogo", btn_ambientOnly: "Solo Ambiente", btn_silenceOnly: "Silencio", btn_orchestral: "Orquestal", btn_ambient: "Ambiente", btn_synthwave: "Synthwave", btn_trailer: "Trailer", btn_lofi: "Lo-Fi", btn_pop: "Pop", btn_dramaticSFX: "Dramáticos", btn_natureSFX: "Naturaleza", btn_urbanSFX: "Urbano", btn_scifiSFX: "Sci-Fi", btn_combatSFX: "Combate", btn_hdAudio: "Audio HD", btn_studioAudio: "Calidad Estudio", btn_clearDialogue: "Diálogo Claro", btn_noDistortion: "Sin Distorsión", btn_169: "16:9 (YouTube)", btn_916: "9:16 (TikTok/Reels)", btn_11: "1:1 (Cuadrado)", btn_219: "21:9 (Cine)", btn_43: "4:3 (Clásico)", btn_8s: "8s (Diálogo)", btn_15s: "15s (Máx)", btn_noblur: "Sin Blur", btn_nodeformed: "Sin Deformaciones", btn_nobadanatomy: "Sin Anatomía", btn_nowatermark: "Sin Marca de Agua", btn_nocartoon: "Sin Cartoon", btn_animestickers: "Stickers Anime", btn_2dhearts: "Corazones 2D", btn_lingeriepasties: "Pasties Lencería", btn_artisticnudity: "Desnudo Artístico"
 }
 };
 
-let currentLang = 'en';
+let currentLang = 'es';
 let spicyModeEnabled = false;
 let selectedVisualStyle = null;
 let selectedMakeupFX = null;
@@ -1655,7 +1570,7 @@ initApp();
 });
 
 function initApp() {
-setLanguage('en');
+setLanguage('es');
 document.querySelectorAll('.panel-header').forEach(header => {
 header.addEventListener('click', () => {
 const panel = header.parentElement;
@@ -1704,8 +1619,8 @@ const grid = document.getElementById('makeupGrid');
 if (!grid) return;
 let html = '';
 for (const [category, options] of Object.entries(MAKEUP_FX)) {
-html += `<div style="margin-bottom: 8px;">`;
-html += `<div style="font-size: 0.55rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">${category}</div>`;
+html += `<div style="margin-bottom: 10px;">`;
+html += `<div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">${category}</div>`;
 html += `<div class="option-grid" style="margin-bottom: 0;">`;
 html += options.map(makeup => `
 <button class="option-btn style" data-value="${makeup.value}" data-label="${makeup.label}">
@@ -1768,7 +1683,7 @@ html += `<div class="style-preview-item">🎨 ${currentLang === 'es' ? selectedV
 if (selectedMakeupFX) {
 html += `<div class="style-preview-item">💄 ${currentLang === 'es' ? selectedMakeupFX.label : selectedMakeupFX.value}</div>`;
 }
-html += `<div class="style-preview-item" style="color: var(--style-pink); margin-top: 4px;">🎚️ Weight: ${styleWeight}%</div>`;
+html += `<div class="style-preview-item" style="color: var(--style-pink); margin-top: 6px;">🎚️ Peso: ${styleWeight}%</div>`;
 content.innerHTML = html;
 } else {
 preview.style.display = 'none';
@@ -1797,22 +1712,22 @@ const tagsContainer = document.getElementById('summaryTags');
 if (!tagsContainer) return;
 tagsContainer.innerHTML = '';
 const selections = [
-{ id: 'subject', label: 'Subject' },
-{ id: 'action', label: 'Action' },
-{ id: 'location', label: 'Location' },
-{ group: 'focalLength', label: 'Lens' },
-{ group: 'shotSize', label: 'Shot' },
-{ group: 'timeOfDay', label: 'Time' },
-{ group: 'lightingType', label: 'Light' },
-{ group: 'artStyle', label: 'Style' },
+{ id: 'subject', label: 'Sujeto' },
+{ id: 'action', label: 'Acción' },
+{ id: 'location', label: 'Ubicación' },
+{ group: 'focalLength', label: 'Lente' },
+{ group: 'shotSize', label: 'Toma' },
+{ group: 'timeOfDay', label: 'Momento' },
+{ group: 'lightingType', label: 'Luz' },
+{ group: 'artStyle', label: 'Estilo' },
 { group: 'resolution', label: 'Res' },
-{ group: 'qualityModifiers', label: 'Quality' },
+{ group: 'qualityModifiers', label: 'Calidad' },
 { group: 'audioType', label: 'Audio' },
 { group: 'grokTerms', label: 'Grok' }
 ];
 let activeCount = 0;
 selections.forEach(sel => {
-let values = sel.group ? getSelectedValues(sel.group) : (getText(sel.id) ? [getText(sel.id).substring(0, 15) + (getText(sel.id).length > 15 ? '...' : '')] : []);
+let values = sel.group ? getSelectedValues(sel.group) : (getText(sel.id) ? [getText(sel.id).substring(0, 20) + (getText(sel.id).length > 20 ? '...' : '')] : []);
 values.forEach(value => {
 if (value) {
 activeCount++;
@@ -1847,7 +1762,7 @@ tag.innerHTML = `<span>💄 ${displayValue}</span><span class="remove" onclick="
 tagsContainer.appendChild(tag);
 }
 if (activeCount === 0) {
-tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.6rem;">${currentLang === 'en' ? 'No options' : 'Sin opciones'}</span>`;
+tagsContainer.innerHTML = `<span style="color:var(--text-muted); font-size:0.7rem;">${currentLang === 'en' ? 'No options selected' : 'Sin opciones seleccionadas'}</span>`;
 }
 updatePanelSummary('sum-subject', [getText('subject'), getText('action')]);
 updatePanelSummary('sum-lens', [...getSelectedValues('focalLength'), ...getSelectedValues('specialtyLenses')]);
@@ -2067,7 +1982,7 @@ document.getElementById('location').placeholder = translations[lang].placeholder
 document.getElementById('negative').placeholder = translations[lang].placeholderNegative;
 document.getElementById('result').placeholder = translations[lang].resultPlaceholder;
 document.querySelector('.summary-label').textContent = translations[lang].active + ' ';
-document.getElementById('langIndicator').textContent = 'EN';
+document.getElementById('langIndicator').textContent = 'EN OUTPUT';
 renderStyleGrid();
 renderMakeupGrid();
 updateStylePreview();
