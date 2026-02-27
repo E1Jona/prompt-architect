@@ -2,14 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Grok Prompt Architect v4.5 | Estilo Visual Mejorado</title>
+<title>Grok Prompt Architect v4.5 | PWA Ready</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#00d4ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="GrokPA">
+<meta name="description" content="Professional prompt builder for Grok AI video generation">
 <link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <style>
 :root {
 --bg-color: #0a0c10;
@@ -29,13 +30,14 @@
 }
 * { box-sizing: border-box; }
 body {
-font-family: 'Segoe UI', system-ui, sans-serif;
+font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 background: linear-gradient(135deg, #0a0c10 0%, #0f1115 100%);
 color: var(--text-main);
 margin: 0;
 padding: 0;
 padding-bottom: 300px;
 min-height: 100vh;
+-webkit-text-size-adjust: 100%;
 }
 .top-bar {
 position: fixed;
@@ -711,7 +713,7 @@ justify-content: center;
 <div class="brand-logo">G</div>
 <div class="brand-text">
 <h1>GROK PROMPT ARCHITECT <span class="version-badge">v4.5</span></h1>
-<span data-i18n="subtitle">Imagine 1.0 | Estilo Visual Mejorado</span>
+<span data-i18n="subtitle">Imagine 1.0 | PWA Ready</span>
 </div>
 </div>
 <div class="summary-container" id="summaryBar">
@@ -729,7 +731,7 @@ justify-content: center;
 <div class="info-alert-content">
 <strong data-i18n="alertTitle">Protocolo Grok Activo:</strong>
 <span data-i18n="alertText">Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.</span>
-<div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Detalles]+[Estilo Visual]</div>
+<div class="formula-display">[Sujeto]+[Acción]+[Óptica]; [Iluminación]; [Física]+[Detalles]+[Estilo]</div>
 </div>
 <span class="grok-badge">Aurora MoE</span>
 </div>
@@ -1360,7 +1362,7 @@ const MAKEUP_FX = {
 // === TRANSLATIONS ===
 const translations = {
 en: {
-subtitle: "Imagine 1.0 | Visual Style Enhanced",
+subtitle: "Imagine 1.0 | PWA Ready",
 active: "Active:",
 alertTitle: "Grok Protocol Active:",
 alertText: "Subject + Action MUST be FIRST (logarithmic weight). Negative prompts auto-included. Optimal: 720p, 8s segments for perfect lip-sync.",
@@ -1454,7 +1456,7 @@ tab_artistic: "Artistic",
 tab_experimental: "Experimental"
 },
 es: {
-subtitle: "Imagine 1.0 | Estilo Visual Mejorado",
+subtitle: "Imagine 1.0 | PWA Ready",
 active: "Activo:",
 alertTitle: "Protocolo Grok Activo:",
 alertText: "Sujeto + Acción DEBEN ir PRIMERO (peso logarítmico). Negativos auto-incluidos. Óptimo: 720p, segmentos de 8s para lip-sync perfecto.",
